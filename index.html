@@ -1700,6 +1700,9 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       duration: 1.15,
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10*t)),
       smoothWheel: true,
+      /* fără syncTouch, Lenis smoothează doar rotița de mouse și nu face
+         nimic pe telefon — inerția de pe desktop lipsea complet la touch */
+      syncTouch: true,
       touchMultiplier: 1.6
     });
 
