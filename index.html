@@ -225,7 +225,9 @@ a{color:inherit;text-decoration:none}
 
 /* ── HERO ─────────────────────────── */
 #hero{
-  position:relative;min-height:100dvh;
+  position:relative;
+  min-height:100vh;    /* fallback */
+  min-height:100svh;   /* nu crește când se ascunde bara de adrese pe mobil */
   display:flex;flex-direction:column;
   align-items:flex-start;justify-content:flex-end;
   padding:6rem 3rem 5rem;overflow:hidden;
@@ -901,7 +903,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 <section id="hero">
   <div class="h-bg" id="hBg"></div>
   <div class="h-inner">
-    <p class="h-tag"><span>Web Development · Timișoara</span></p>
+    <p class="h-tag"><span>Web Development</span></p>
     <h1 class="h-h1 vf">
       <span class="lw"><span class="wd">Site-uri</span><span class="wd">care</span></span>
       <span class="lw"><span class="wd"><em>lucrează</em></span></span>
@@ -1700,9 +1702,8 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       duration: 1.15,
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10*t)),
       smoothWheel: true,
-      /* fără syncTouch, Lenis smoothează doar rotița de mouse și nu face
-         nimic pe telefon — inerția de pe desktop lipsea complet la touch */
-      syncTouch: true,
+      /* NU activa syncTouch: pe iOS producea un salt înapoi la primul
+         scroll din erou. Pe touch rămâne momentum-ul nativ, care e bun. */
       touchMultiplier: 1.6
     });
 
