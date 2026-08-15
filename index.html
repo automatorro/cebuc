@@ -342,6 +342,8 @@ a{color:inherit;text-decoration:none}
 }
 .sh-title .lw{display:block;overflow:hidden;padding-bottom:.06em}
 .sh-title .li{display:block}
+/* cuvintele produse de SplitType — masca e .lw */
+.sh-title .word{display:inline-block;will-change:transform}
 .s-dk .sh-title{color:var(--ods)}
 .s-lt .sh-title{color:var(--ols)}
 
@@ -372,7 +374,7 @@ a{color:inherit;text-decoration:none}
   flex:1;
   font-family:'Cormorant Garamond',serif;
   font-variation-settings:'wght' 600;
-  font-size:clamp(1.3rem,2.9vw,2.3rem);line-height:1.18;
+  font-size:clamp(1.45rem,2.9vw,2.3rem);line-height:1.18;
   color:var(--ods);
   transition:font-variation-settings .55s var(--fx),color .4s ease;
 }
@@ -398,10 +400,10 @@ a{color:inherit;text-decoration:none}
 .obj-inner{padding:0 0 2.4rem calc(3.2rem + 1.75rem);max-width:66ch}
 .obj-line{
   font-size:clamp(.95rem,1.35vw,1.08rem);line-height:1.78;
-  color:var(--mdk);opacity:0;
+  color:var(--mlt);opacity:0;
 }
 .obj-line + .obj-line{margin-top:.8rem}
-.obj-line.strong{color:var(--od)}
+.obj-line.strong{color:var(--ods)}
 
 /* ── DE CE EU ─────────────────────── */
 .diff-lay{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
@@ -502,7 +504,7 @@ a{color:inherit;text-decoration:none}
 .pf-media img{
   width:100%;height:100%;object-fit:cover;object-position:center 30%;
   filter:saturate(.65) brightness(.72);
-  transition:filter .8s var(--fx),transform 1.1s var(--fx);
+  transition:filter .8s var(--fx);   /* transform e condus de GSAP (scrub) */
   will-change:transform;
 }
 .pf-card:hover .pf-media img{filter:saturate(1) brightness(.85)}
@@ -562,29 +564,41 @@ a{color:inherit;text-decoration:none}
   background:var(--olive);transform:scaleY(0);transform-origin:top;
 }
 .proc-panels{position:relative}
-.proc-panel{display:grid;grid-template-columns:auto 1fr;gap:0 2rem;align-items:start}
+.proc-panel{display:grid;grid-template-columns:auto 1fr;gap:0 2.5rem;align-items:start}
 .proc-n{
   font-family:'Cormorant Garamond',serif;
   font-variation-settings:'wght' 600;
-  font-size:clamp(2.6rem,6vw,4.5rem);color:var(--olive);
-  line-height:.9;opacity:.45;min-width:2.6ch;
+  font-size:clamp(2.6rem,7.5vw,7rem);color:var(--olive);
+  line-height:.85;opacity:.5;min-width:2.4ch;
 }
 .proc-ttl{
   font-family:'Syne',sans-serif;
   font-variation-settings:'wght' 700;
-  font-size:clamp(1.1rem,2.2vw,1.6rem);color:var(--ols);margin-bottom:.7rem;
+  font-size:clamp(1.15rem,3vw,2.6rem);color:var(--ols);margin-bottom:1rem;line-height:1.1;
 }
-.proc-desc{font-size:.95rem;color:var(--mlt);line-height:1.82;max-width:52ch}
-.proc-dots{display:flex;gap:.5rem;margin-top:2.5rem}
-.proc-dot{
-  width:2.2rem;height:2px;background:var(--llt);
-  transition:background-color .45s ease;
+.proc-desc{font-size:clamp(.95rem,1.45vw,1.22rem);color:var(--mlt);line-height:1.75;max-width:44ch}
+.proc-body{display:grid;grid-template-columns:1fr auto;gap:0 4rem;align-items:start}
+.proc-index{
+  list-style:none;display:flex;flex-direction:column;gap:1.15rem;
+  min-width:14rem;border-left:1px solid var(--llt);padding-left:1.85rem;
 }
-.proc-dot.on{background:var(--olive)}
+.proc-ix{
+  display:flex;gap:.9rem;align-items:baseline;
+  font-family:'Syne',sans-serif;font-size:.85rem;
+  font-variation-settings:'wght' 600;
+  color:var(--mlt);
+  transition:color .5s ease,font-variation-settings .5s var(--fx),opacity .5s ease;
+  opacity:.55;
+}
+.proc-ix i{
+  font-style:normal;font-size:.6rem;letter-spacing:.18em;
+  color:var(--olive);opacity:.75;
+}
+.proc-ix.on{color:var(--ols);font-variation-settings:'wght' 800;opacity:1}
 
 /* varianta pinned: panourile se suprapun, doar cel activ e vizibil */
 @media (min-width:961px){
-  .proc-panels{min-height:15rem}
+  .proc-panels{min-height:14rem}
   .proc-panel{
     position:absolute;top:0;left:0;width:100%;
     opacity:0;visibility:hidden;
@@ -594,6 +608,8 @@ a{color:inherit;text-decoration:none}
 /* pe mobil: fără pin, listă normală */
 @media (max-width:960px){
   .proc-lay{grid-template-columns:1fr;gap:0}
+  .proc-body{grid-template-columns:1fr;gap:0}
+  .proc-index{display:none}
   .proc-rail{display:none}
   .proc-panels{display:flex;flex-direction:column}
   .proc-panel{
@@ -601,7 +617,6 @@ a{color:inherit;text-decoration:none}
     grid-template-columns:3.5rem 1fr;gap:0 1.25rem;
   }
   .proc-panel:first-child{border-top:1px solid var(--llt)}
-  .proc-dots{display:none}
 }
 
 /* ── ABOUT ────────────────────────── */
@@ -1430,7 +1445,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       </div>
       <div class="proc-lay">
         <div class="proc-rail" aria-hidden="true"><div class="proc-fill"></div></div>
-        <div>
+        <div class="proc-body">
           <div class="proc-panels">
             <article class="proc-panel on">
               <span class="proc-n" aria-hidden="true">01</span>
@@ -1461,12 +1476,12 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
               </div>
             </article>
           </div>
-          <div class="proc-dots" aria-hidden="true">
-            <span class="proc-dot on"></span>
-            <span class="proc-dot"></span>
-            <span class="proc-dot"></span>
-            <span class="proc-dot"></span>
-          </div>
+          <ol class="proc-index" aria-hidden="true">
+            <li class="proc-ix on"><i>01</i>Discuție și brief</li>
+            <li class="proc-ix"><i>02</i>Design și aprobare</li>
+            <li class="proc-ix"><i>03</i>Dezvoltare și teste</li>
+            <li class="proc-ix"><i>04</i>Lansare și predare</li>
+          </ol>
         </div>
       </div>
     </div>
@@ -1714,18 +1729,61 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
     gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',
       scrollTrigger:{trigger:el,start:'top 90%',once:true}});
   });
+  /* titlurile se sparg pe cuvinte (SplitType) și urcă din mască, cu stagger.
+     dacă SplitType nu e disponibil, cade elegant pe reveal per linie. */
   gsap.utils.toArray('.sh-title').forEach(t=>{
-    gsap.fromTo(t.querySelectorAll('.li'),{y:'110%'},
-      {y:'0%',duration:1.4,stagger:.2,ease:'expo.out',
-       scrollTrigger:{trigger:t,start:'top 88%',once:true}});
+    const lines = t.querySelectorAll('.li');
+    let targets = [];
+
+    if (typeof SplitType !== 'undefined'){
+      lines.forEach(li=>{
+        const split = new SplitType(li, {types:'words', tagName:'span'});
+        targets = targets.concat(split.words);
+      });
+    }
+    if (!targets.length) targets = Array.from(lines);
+
+    gsap.fromTo(targets,
+      {yPercent:115, rotate:2.5, opacity:0},
+      {yPercent:0, rotate:0, opacity:1,
+       duration:1.25, stagger:.075, ease:'expo.out',
+       scrollTrigger:{trigger:t, start:'top 88%', once:true}});
   });
 
-  /* ═══ PARALLAX & REVEALS ═══════════════════════════════ */
-  gsap.to('#hBg',{yPercent:28,ease:'none',
-    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  /* ═══ SCROLL-LINKED (scrub) ════════════════════════════ */
+  /* transformările de mai jos nu sunt fade-in la intrare în viewport:
+     scale / rotate / opacity sunt legate direct de progresul scroll-ului. */
 
-  gsap.to('#fb1 img',{yPercent:-18,ease:'none',
-    scrollTrigger:{trigger:'#fb1',start:'top bottom',end:'bottom top',scrub:true}});
+  /* hero: fundalul coboară, conținutul se retrage în adâncime */
+  gsap.to('#hBg',{yPercent:28,scale:1.12,ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.h-inner',{yPercent:-14,scale:.94,opacity:0,ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'25% top',end:'bottom top',scrub:.6}});
+
+  /* divider full-bleed: imaginea se dezoomează pe măsură ce trece */
+  gsap.fromTo('#fb1 img',{scale:1.28,yPercent:6},
+    {scale:1,yPercent:-12,ease:'none',
+     scrollTrigger:{trigger:'#fb1',start:'top bottom',end:'bottom top',scrub:.4}});
+
+  /* numerele mari de secțiune derivă mai repede decât textul */
+  gsap.utils.toArray('.sh-n').forEach(n=>{
+    gsap.to(n,{yPercent:-38,ease:'none',
+      scrollTrigger:{trigger:n.closest('section')||n,start:'top bottom',end:'bottom top',scrub:.5}});
+  });
+
+  /* cardurile de pachete: paralaxă pe coloane, adâncime la scroll */
+  gsap.utils.toArray('.pkg-card').forEach((card,i)=>{
+    gsap.fromTo(card,{yPercent:(i%2?5:9)},
+      {yPercent:(i%2?-5:-9),ease:'none',
+       scrollTrigger:{trigger:'.pkg-grid',start:'top bottom',end:'bottom top',scrub:.7}});
+  });
+
+  /* portofoliu: imaginea se dezoomează și derivă cât timp cardul traversează ecranul */
+  gsap.utils.toArray('.pf-media').forEach(m=>{
+    gsap.fromTo(m.querySelector('img'),{scale:1.22,yPercent:-6},
+      {scale:1.02,yPercent:6,ease:'none',
+       scrollTrigger:{trigger:m,start:'top bottom',end:'bottom top',scrub:.5}});
+  });
 
   gsap.to('#dp1 img',{yPercent:-12,ease:'none',
     scrollTrigger:{trigger:'#dp1',start:'top bottom',end:'bottom top',scrub:true}});
@@ -1775,7 +1833,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 
   mm.add('(min-width:961px)', ()=>{
     const panels = gsap.utils.toArray('.proc-panel');
-    const dots   = gsap.utils.toArray('.proc-dot');
+    const index  = gsap.utils.toArray('.proc-ix');
     const fill   = document.querySelector('.proc-fill');
     let active   = 0;
 
@@ -1783,7 +1841,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       if (i === active) return;
       active = i;
       panels.forEach((p,k)=>p.classList.toggle('on', k===i));
-      dots.forEach((d,k)=>d.classList.toggle('on', k===i));
+      index.forEach((d,k)=>d.classList.toggle('on', k===i));
       gsap.fromTo(panels[i],{opacity:0,y:34},{opacity:1,y:0,duration:.7,ease:'expo.out'});
     };
 
@@ -1803,7 +1861,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       st.kill();
       gsap.set(panels,{clearProps:'all'});
       panels.forEach((p,k)=>p.classList.toggle('on',k===0));
-      dots.forEach((d,k)=>d.classList.toggle('on',k===0));
+      index.forEach((d,k)=>d.classList.toggle('on',k===0));
     };
   });
 
