@@ -512,11 +512,11 @@ a{color:inherit;text-decoration:none}
 .pf-card{display:block;position:relative}
 .pf-media{
   position:relative;overflow:hidden;
-  aspect-ratio:21/9;background:#101014;
+  aspect-ratio:9/4;background:#101014;   /* aproape exact raportul capturilor */
 }
 .pf-media img{
-  width:100%;height:100%;object-fit:cover;object-position:center 30%;
-  filter:saturate(.65) brightness(.72);
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  filter:saturate(.88) brightness(.9);
   transition:filter .8s var(--fx);   /* transform e condus de GSAP (scrub) */
   will-change:transform;
 }
@@ -823,7 +823,8 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
   .about-txt{padding:3rem 2rem}
   .ct-grid{grid-template-columns:1fr;gap:3rem}
   .pf-list{gap:3.5rem}
-  .pf-media{aspect-ratio:4/3}
+  /* pe mobil păstrăm raportul capturii: mai bine mică și întreagă
+     decât decupată la jumătate de cuvânt */
   .pf-meta{grid-template-columns:1fr;align-items:start}
 }
 @media(max-width:640px){
@@ -1395,8 +1396,8 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 
       <a class="pf-card" href="https://santier.app" target="_blank" rel="noopener noreferrer" data-work>
         <div class="pf-media">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=85"
-               alt="Proiect de construcții — santier.app" loading="lazy" crossorigin="anonymous">
+          <img src="images/santier.webp"
+               alt="Pagina principală santier.app — management de proiecte de construcții" loading="lazy">
         </div>
         <div class="pf-meta">
           <div>
@@ -1415,8 +1416,8 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 
       <a class="pf-card" href="https://coursecopilot.app" target="_blank" rel="noopener noreferrer" data-work>
         <div class="pf-media">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1400&q=85"
-               alt="Educație online — coursecopilot.app" loading="lazy" crossorigin="anonymous">
+          <img src="images/coursecopilot.webp"
+               alt="Pagina principală coursecopilot.app — generare de cursuri pentru traineri" loading="lazy">
         </div>
         <div class="pf-meta">
           <div>
@@ -1435,8 +1436,8 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 
       <a class="pf-card" href="https://maxbau.vercel.app" target="_blank" rel="noopener noreferrer" data-work>
         <div class="pf-media">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=85"
-               alt="Arhitectură modernă — maxbau.vercel.app" loading="lazy" crossorigin="anonymous">
+          <img src="images/maxbau.webp"
+               alt="Configurator de rețete și sisteme din aplicația Max Bau" loading="lazy">
         </div>
         <div class="pf-meta">
           <div>
@@ -1826,10 +1827,12 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
        scrollTrigger:{trigger:'.pkg-grid',start:'top bottom',end:'bottom top',scrub:.7}});
   });
 
-  /* portofoliu: imaginea se dezoomează și derivă cât timp cardul traversează ecranul */
+  /* portofoliu: derivă discretă cât timp cardul traversează ecranul.
+     amplitudine mică intenționat — sunt capturi de aplicație, iar un zoom
+     mare ar decupa textul din interfață și l-ar face neclar */
   gsap.utils.toArray('.pf-media').forEach(m=>{
-    gsap.fromTo(m.querySelector('img'),{scale:1.22,yPercent:-6},
-      {scale:1.02,yPercent:6,ease:'none',
+    gsap.fromTo(m.querySelector('img'),{scale:1.05,yPercent:-2},
+      {scale:1.0,yPercent:2,ease:'none',
        scrollTrigger:{trigger:m,start:'top bottom',end:'bottom top',scrub:.5}});
   });
 
@@ -1984,27 +1987,29 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       vec2 ratio = vec2(min(rC / rI, 1.0), min(rI / rC, 1.0));
       vec2 uv = vec2(
         vUv.x * ratio.x + (1.0 - ratio.x) * 0.5,
-        vUv.y * ratio.y + (1.0 - ratio.y) * 0.62
+        vUv.y * ratio.y + (1.0 - ratio.y) * 0.98
       );
 
       /* paralaxă legată de scroll — mutăm UV-ul, nu pânza, ca să rămână clar */
       uv.y += (uProgress - 0.5) * 0.07 * ratio.y;
-      uv = (uv - 0.5) * 0.94 + 0.5;
+      uv = (uv - 0.5) * 0.96 + 0.5;
 
       /* valul pornește din dreptul cursorului și se stinge cu distanța */
       vec2  toM  = uv - uMouse;
       float d    = length(toM);
       vec2  dir  = toM / max(d, 0.0001);
-      float fall = smoothstep(0.62, 0.0, d);
-      float wave = sin(d * 26.0 - uTime * 3.4) * 0.028 * fall * uHover;
+      /* cădere în inel: zona de sub cursor rămâne clară, valul radiază în jur —
+         esențial pe capturi de UI, unde textul mic devine ilizibil la distorsiune */
+      float fall = smoothstep(0.62, 0.10, d) * smoothstep(0.0, 0.10, d);
+      float wave = sin(d * 20.0 - uTime * 2.8) * 0.011 * fall * uHover;
 
       vec2 duv = uv + dir * wave;
-      duv.x += sin(uv.y *  9.0 + uTime * 1.1) * 0.007 * uHover;
-      duv.y += cos(uv.x * 11.0 - uTime * 0.9) * 0.005 * uHover;
+      duv.x += sin(uv.y *  9.0 + uTime * 1.1) * 0.0035 * uHover;
+      duv.y += cos(uv.x * 11.0 - uTime * 0.9) * 0.0025 * uHover;
       duv = (duv - 0.5) * (1.0 - 0.045 * uHover) + 0.5;
 
       /* aberație cromatică pe direcția valului */
-      float ca = 0.0065 * uHover * (0.35 + fall);
+      float ca = 0.0020 * uHover * fall;
       vec3 col;
       col.r = texture2D(uTex, clamp(duv + dir * ca, 0.001, 0.999)).r;
       col.g = texture2D(uTex, clamp(duv,            0.001, 0.999)).g;
@@ -2012,7 +2017,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 
       /* aceleași corecții ca filtrul CSS, interpolate cu hover */
       float lum = dot(col, vec3(0.2126, 0.7152, 0.0722));
-      col = mix(vec3(lum), col, mix(0.65, 1.0, uHover)) * mix(0.72, 0.9, uHover);
+      col = mix(vec3(lum), col, mix(0.88, 1.0, uHover)) * mix(0.90, 1.0, uHover);
 
       gl_FragColor = vec4(col, 1.0);
     }`;
