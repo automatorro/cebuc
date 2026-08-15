@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThermoFix · Instalații Sanitare și Termice Timișoara</title>
+<meta name="description" content="Firmă de instalații sanitare, termice și aer condiționat în Timișoara. Intervenție rapidă, prețuri corecte, garanție pe lucrare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1B2A;--navy2:#162336;--orange:#FF5E14;--orange2:#FF7A3D;--steel:#8A9BB0;--steeldk:#4A5C72;--cream:#F0F2F5;--ink:#0A1520;--white:#FFFFFF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;overscroll-behavior:none}
+body{font-family:'Inter',system-ui,sans-serif;font-weight:300;background:var(--navy);color:var(--steel);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* CURSOR */
+#cur,#curR{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;transform:translate(-200px,-200px)}
+#cur{width:8px;height:8px;background:var(--orange);border-radius:50%}
+#curR{width:36px;height:36px;border:1.5px solid rgba(255,94,20,.4);border-radius:50%;z-index:9998;transition:width .25s,height .25s,border-color .25s}
+.cur-big #curR{width:50px;height:50px;border-color:rgba(255,94,20,.65)}
+@media(max-width:768px){#cur,#curR{display:none}body{cursor:auto}}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
+#nav.on{background:rgba(13,27,42,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:rgba(255,94,20,.12)}
+.nav-logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.04em;color:var(--white);text-transform:uppercase}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--steel);transition:color .25s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{font-family:'Oswald',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;background:var(--orange);color:var(--white);padding:.68rem 1.6rem;transition:background .25s;cursor:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,0 100%)}
+.nav-cta:hover{background:var(--orange2)}
+
+/* HERO */
+#hero{position:relative;min-height:100dvh;display:flex;align-items:center;overflow:hidden;background:var(--navy)}
+.h-bg{position:absolute;inset:0;will-change:transform}
+.h-bg img{width:100%;height:115%;object-fit:cover;object-position:center 40%;opacity:.22;will-change:transform}
+/* diagonal orange stripe */
+.h-stripe{position:absolute;top:0;right:0;width:45%;height:100%;background:linear-gradient(135deg,transparent 0%,transparent 35%,rgba(255,94,20,.07) 35%,rgba(255,94,20,.07) 100%);pointer-events:none}
+.h-stripe2{position:absolute;bottom:-1px;left:0;right:0;height:120px;background:linear-gradient(to bottom right,transparent 49.5%,var(--navy) 50%)}
+.h-inner{position:relative;z-index:2;padding:7rem 3rem 5rem;max-width:1200px;width:100%}
+.h-number{font-family:'Oswald',sans-serif;font-size:clamp(8rem,18vw,18rem);font-weight:700;line-height:1;color:rgba(255,94,20,.06);position:absolute;top:50%;right:2rem;transform:translateY(-50%);pointer-events:none;letter-spacing:-.02em;user-select:none}
+.h-label{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;opacity:0}
+.h-label span{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--orange);font-weight:600}
+.h-label::before{content:'';width:28px;height:2px;background:var(--orange)}
+.h-h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(3rem,8vw,8.5rem);line-height:.92;color:var(--white);text-transform:uppercase;margin-bottom:2.5rem}
+.h-h1 .lw{display:block;overflow:hidden}
+.h-h1 .li{display:block;transform:translateY(110%)}
+.h-h1 .accent{color:var(--orange)}
+.h-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;opacity:0;transform:translateY(22px)}
+.h-desc{font-size:.97rem;line-height:1.75;color:var(--steel);max-width:420px}
+.h-badges{display:flex;gap:.6rem;flex-wrap:wrap}
+.h-badge{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.4rem .9rem;border:1px solid rgba(138,155,176,.25);color:var(--steel)}
+.btn-o{display:inline-flex;align-items:center;gap:.7rem;background:var(--orange);color:var(--white);font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;padding:1rem 2.4rem;transition:background .2s;cursor:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,0 100%)}
+.btn-o:hover{background:var(--orange2)}
+.btn-os{display:inline-flex;align-items:center;gap:.7rem;border:1.5px solid rgba(255,94,20,.45);color:var(--orange);font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;padding:1rem 2.4rem;transition:border-color .2s,color .2s;cursor:none}
+.btn-os:hover{border-color:var(--orange);color:var(--orange2)}
+
+/* SERVICII */
+#servicii{padding:7rem 3rem;background:var(--cream)}
+.srv-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:flex-end;margin-bottom:5rem}
+.srv-label{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:1rem;font-family:'Oswald',sans-serif}
+.srv-title{font-family:'Oswald',sans-serif;font-size:clamp(2.2rem,4.5vw,4rem);font-weight:700;text-transform:uppercase;line-height:1;color:var(--navy)}
+.srv-title .acc{color:var(--orange)}
+.srv-desc{font-size:.95rem;line-height:1.72;color:var(--steeldk)}
+.srv-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(13,27,42,.08)}
+.srv-item{background:var(--cream);padding:3rem;position:relative;overflow:hidden;cursor:none;transition:background .3s}
+.srv-item:hover{background:var(--navy)}
+.srv-item:hover .srv-n,.srv-item:hover .srv-it-title{color:var(--orange)}
+.srv-item:hover .srv-it-desc,.srv-item:hover .srv-its{color:rgba(240,242,245,.6)}
+.srv-item:hover .srv-line{background:var(--orange)}
+.srv-n{font-family:'Oswald',sans-serif;font-size:4.5rem;font-weight:700;color:rgba(13,27,42,.08);line-height:1;margin-bottom:1.5rem;transition:color .3s;letter-spacing:-.02em}
+.srv-line{width:36px;height:2px;background:var(--orange);margin-bottom:1.5rem;transition:background .3s}
+.srv-it-title{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.8rem;transition:color .3s}
+.srv-it-desc{font-size:.88rem;line-height:1.68;color:var(--steeldk);margin-bottom:1.5rem;transition:color .3s}
+.srv-its{list-style:none;font-size:.8rem;color:var(--steeldk);transition:color .3s}
+.srv-its li{padding:.25rem 0;padding-left:1rem;position:relative}
+.srv-its li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:.7rem}
+
+/* STATS */
+#stats{background:var(--orange);padding:4rem 3rem}
+.stats-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.st-item{text-align:center;padding:1.5rem}
+.st-n{font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:700;color:var(--white);line-height:1}
+.st-lbl{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-top:.4rem;font-weight:500}
+
+/* PROIECTE */
+#proiecte{padding:7rem 3rem;background:var(--navy2)}
+.proj-head{margin-bottom:3.5rem}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.proj-card{position:relative;overflow:hidden;cursor:none;aspect-ratio:4/3}
+.proj-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.proj-card:hover img{transform:scale(1.06)}
+.proj-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.9) 0%,transparent 55%);opacity:0;transition:opacity .4s}
+.proj-card:hover .proj-overlay{opacity:1}
+.proj-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;transform:translateY(10px);opacity:0;transition:transform .4s,opacity .4s}
+.proj-card:hover .proj-info{transform:translateY(0);opacity:1}
+.proj-tag{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:.4rem}
+.proj-name{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white);text-transform:uppercase}
+
+/* ZONE */
+#zone{padding:7rem 3rem;background:var(--cream)}
+.zone-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.zone-img{position:relative;overflow:hidden}
+.zone-img img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.zone-img::after{content:'';position:absolute;inset:0;border:3px solid var(--orange);top:1.5rem;left:1.5rem;right:-1.5rem;bottom:-1.5rem;z-index:-1}
+.zone-list{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:2rem}
+.zone-city{font-size:.82rem;letter-spacing:.06em;font-weight:500;color:var(--navy);padding:.55rem .9rem;border-left:2px solid var(--orange);background:rgba(255,94,20,.05)}
+
+/* CONTACT */
+#contact{padding:7rem 3rem;background:var(--navy)}
+.ct-wrap{max-width:800px;margin:0 auto}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:4rem}
+.ct-info-title{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;text-transform:uppercase;color:var(--white);margin-bottom:1.2rem;letter-spacing:.06em}
+.ct-info-item{display:flex;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:flex-start}
+.ct-info-icon{width:32px;height:32px;background:rgba(255,94,20,.12);border:1px solid rgba(255,94,20,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ct-info-icon svg{width:14px;height:14px;stroke:var(--orange);fill:none;stroke-width:2}
+.ct-info-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--steeldk);margin-bottom:.2rem;font-weight:600}
+.ct-info-val{font-size:.9rem;color:var(--cream);font-weight:400}
+.ct-form{display:grid;gap:1rem}
+.ct-in,.ct-sel,.ct-ta{width:100%;padding:.9rem 1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);font-family:'Inter',sans-serif;font-size:.9rem;color:var(--cream);outline:none;transition:border-color .25s;cursor:auto;border-radius:0;-webkit-appearance:none;appearance:none}
+.ct-in:focus,.ct-sel:focus,.ct-ta:focus{border-color:var(--orange);background:rgba(255,94,20,.05)}
+.ct-in::placeholder,.ct-ta::placeholder{color:var(--steeldk)}
+.ct-ta{resize:vertical;min-height:110px}
+.ct-sel{background:rgba(255,255,255,.04);color:var(--cream)}
+.ct-sel option{background:var(--navy);color:var(--cream)}
+.ct-sub{width:100%;padding:1.05rem;background:var(--orange);color:var(--white);font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:none;transition:background .25s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,0 100%)}
+.ct-sub:hover{background:var(--orange2)}
+
+/* URGENTE BANNER */
+.urgente{background:var(--orange);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.urgente-txt{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.04em}
+.urgente-txt span{font-size:.8rem;font-weight:400;opacity:.85;display:block;margin-top:.15rem;font-family:'Inter',sans-serif;text-transform:none;letter-spacing:0}
+.urgente-tel{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;color:var(--white);letter-spacing:.04em}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(138,155,176,.4);padding:2.2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.ft-logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:1rem;color:rgba(240,242,245,.7);letter-spacing:.06em;text-transform:uppercase}
+.ft-logo span{color:var(--orange)}
+footer small{font-size:.72rem}
+footer a{color:var(--orange);transition:opacity .2s}
+footer a:hover{opacity:.8}
+
+@media(max-width:960px){
+  #nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  #hero .h-inner{padding:5.5rem 1.5rem 4rem}
+  .h-number{display:none}
+  #servicii,#proiecte,#zone,#contact{padding:5rem 1.5rem}
+  .srv-head{grid-template-columns:1fr}
+  .srv-list{grid-template-columns:1fr}
+  .stats-wrap{grid-template-columns:1fr 1fr}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .zone-wrap{grid-template-columns:1fr}
+  .zone-img{display:none}
+  .ct-grid{grid-template-columns:1fr}
+  .urgente{padding:1.5rem}
+  .urgente-tel{font-size:1.4rem}
+  footer{padding:1.8rem 1.5rem;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+
+<nav id="nav">
+  <div class="nav-logo">Thermo<span>Fix</span></div>
+  <ul class="nav-links">
+    <li><a href="#servicii">Servicii</a></li>
+    <li><a href="#proiecte">Proiecte</a></li>
+    <li><a href="#zone">Zone</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+40700000000" class="nav-cta">Urgențe 24/7</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-bg" id="hBg">
+    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80" alt="" loading="eager">
+  </div>
+  <div class="h-stripe"></div>
+  <div class="h-stripe2"></div>
+  <div class="h-number" aria-hidden="true">TF</div>
+  <div class="h-inner">
+    <div class="h-label"><span>Timișoara · Jud. Timiș</span></div>
+    <h1 class="h-h1">
+      <span class="lw"><span class="li">Instalații.</span></span>
+      <span class="lw"><span class="li"><span class="accent">Rapid.</span></span></span>
+      <span class="lw"><span class="li">Corect.</span></span>
+    </h1>
+    <div class="h-foot">
+      <div>
+        <p class="h-desc">Intervenție rapidă în Timișoara și județ. Sanitare, termice, aer condiționat — prețuri corecte, garanție pe lucrare, fără surprize.</p>
+        <div class="h-badges" style="margin-top:1.2rem">
+          <span class="h-badge">Intervenție &lt;4h</span>
+          <span class="h-badge">Garanție 2 ani</span>
+          <span class="h-badge">Autorizat ANRE</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;flex-shrink:0">
+        <a href="#contact" class="btn-o">Cere ofertă gratuită <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="tel:+40700000000" class="btn-os">Sună acum</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICII -->
+<section id="servicii">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="srv-head">
+      <div>
+        <p class="srv-label">Ce facem</p>
+        <h2 class="srv-title">Servicii<br><span class="acc">Complete</span></h2>
+      </div>
+      <p class="srv-desc">De la instalarea unui robinet până la proiectarea sistemelor termice complexe — suntem echipa ta pentru orice lucrare de instalații.</p>
+    </div>
+    <div class="srv-list">
+      <div class="srv-item">
+        <div class="srv-n">01</div>
+        <div class="srv-line"></div>
+        <div class="srv-it-title">Instalații Sanitare</div>
+        <p class="srv-it-desc">Montaj, reparații și înlocuire pentru toate tipurile de instalații de apă și canalizare.</p>
+        <ul class="srv-its">
+          <li>Robineți, baterii, chiuvete</li>
+          <li>Calorifere și țevi</li>
+          <li>Canalizare și sifoane</li>
+          <li>Remediere avarii urgente</li>
+        </ul>
+      </div>
+      <div class="srv-item">
+        <div class="srv-n">02</div>
+        <div class="srv-line"></div>
+        <div class="srv-it-title">Instalații Termice</div>
+        <p class="srv-it-desc">Proiectare și execuție sisteme de încălzire centrală, centrale termice și pompe de căldură.</p>
+        <ul class="srv-its">
+          <li>Centrale termice murale</li>
+          <li>Pardoseală radiantă</li>
+          <li>Pompe de căldură</li>
+          <li>Service și revizie anuală</li>
+        </ul>
+      </div>
+      <div class="srv-item">
+        <div class="srv-n">03</div>
+        <div class="srv-line"></div>
+        <div class="srv-it-title">Aer Condiționat</div>
+        <p class="srv-it-desc">Montaj și service pentru toate mărcile de aer condiționat. Split-uri, multi-split și VRF.</p>
+        <ul class="srv-its">
+          <li>Montaj unități noi</li>
+          <li>Reîncărcare freon</li>
+          <li>Curățare și igienizare</li>
+          <li>Sisteme multi-zone</li>
+        </ul>
+      </div>
+      <div class="srv-item">
+        <div class="srv-n">04</div>
+        <div class="srv-line"></div>
+        <div class="srv-it-title">Urgențe 24 / 7</div>
+        <p class="srv-it-desc">Avarie la instalație? Suntem acolo în mai puțin de 4 ore, indiferent de zi sau oră.</p>
+        <ul class="srv-its">
+          <li>Spargere țeav</li>
+          <li>Centrală oprită</li>
+          <li>Scurgeri active</li>
+          <li>Intervenție nocturnă</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stats-wrap">
+    <div class="st-item"><div class="st-n" data-target="350">0</div><div class="st-lbl">Proiecte finalizate</div></div>
+    <div class="st-item"><div class="st-n" data-target="15">0</div><div class="st-lbl">Ani experiență</div></div>
+    <div class="st-item"><div class="st-n" data-target="4">0</div><div class="st-lbl">Ore răspuns urgențe</div></div>
+    <div class="st-item"><div class="st-n" data-target="98">0</div><div class="st-lbl">% Clienți mulțumiți</div></div>
+  </div>
+</div>
+
+<!-- PROIECTE -->
+<section id="proiecte">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="proj-head">
+      <p class="srv-label" style="color:rgba(255,94,20,.85)">Portofoliu</p>
+      <h2 class="srv-title" style="color:var(--cream)">Lucrări <span style="color:var(--orange)">Recente</span></h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="" loading="lazy">
+        <div class="proj-overlay"></div>
+        <div class="proj-info"><p class="proj-tag">Instalații sanitare</p><p class="proj-name">Bloc Rezidențial · 40 apartamente</p></div>
+      </div>
+      <div class="proj-card">
+        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80" alt="" loading="lazy">
+        <div class="proj-overlay"></div>
+        <div class="proj-info"><p class="proj-tag">Termic</p><p class="proj-name">Centrală + Pardoseală radiantă</p></div>
+      </div>
+      <div class="proj-card">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80" alt="" loading="lazy">
+        <div class="proj-overlay"></div>
+        <div class="proj-info"><p class="proj-tag">Aer condiționat</p><p class="proj-name">Showroom Auto · 12 unități</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE -->
+<section id="zone">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="zone-wrap">
+      <div class="zone-img" id="zoneImg">
+        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80" alt="Timișoara" loading="lazy">
+      </div>
+      <div>
+        <p class="srv-label">Unde lucrăm</p>
+        <h2 class="srv-title" style="margin-bottom:1rem">Zone de <span class="acc">Acoperire</span></h2>
+        <p class="srv-desc" style="margin-bottom:2rem">Deservim Timișoara și localitățile din jur. Timp de deplasare maxim 30 minute.</p>
+        <div class="zone-list">
+          <span class="zone-city">Timișoara</span>
+          <span class="zone-city">Giroc</span>
+          <span class="zone-city">Dumbrăvița</span>
+          <span class="zone-city">Ghiroda</span>
+          <span class="zone-city">Moșnița Nouă</span>
+          <span class="zone-city">Sânandrei</span>
+          <span class="zone-city">Bucovăț</span>
+          <span class="zone-city">Remetea Mare</span>
+        </div>
+        <p style="font-size:.8rem;color:var(--steeldk);margin-top:1.2rem">*Deplasări și în alte localități din Timiș, tarif suplimentar de deplasare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENTE BANNER -->
+<div class="urgente">
+  <div class="urgente-txt">Avarie? Sunăm în 4 ore.
+    <span>Disponibili 24/7 inclusiv weekend și sărbători legale</span>
+  </div>
+  <a href="tel:+40700000000" class="urgente-tel">0700 000 000</a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-wrap">
+    <p class="srv-label" style="color:rgba(255,94,20,.85)">Cerere ofertă</p>
+    <h2 class="srv-title" style="color:var(--cream)">Spune-ne ce<br><span style="color:var(--orange)">Ai Nevoie</span></h2>
+    <div class="ct-grid">
+      <div>
+        <p class="ct-info-title">Date de contact</p>
+        <div class="ct-info-item">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 12 19.79 19.79 0 011.07 3.42 2 2 0 013.05 2h3a2 2 0 012 1.72 12.85 12.85 0 00.7 2.81A2 2 0 018.09 8.6l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.85 12.85 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="ct-info-label">Telefon</div><div class="ct-info-val">0700 000 000</div></div>
+        </div>
+        <div class="ct-info-item">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="ct-info-label">Email</div><div class="ct-info-val">office@thermofix.ro</div></div>
+        </div>
+        <div class="ct-info-item">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ct-info-label">Adresă</div><div class="ct-info-val">Str. Industriilor 12, Timișoara</div></div>
+        </div>
+        <div class="ct-info-item" style="border-bottom:none">
+          <div class="ct-info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="ct-info-label">Program</div><div class="ct-info-val">Lun–Vin 07:00–19:00<br>Urgențe 24/7</div></div>
+        </div>
+      </div>
+      <form class="ct-form" action="https://formsubmit.co/lucian.cebuc@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Cerere ofertă · ThermoFix">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="nume" placeholder="Numele tău *" class="ct-in" required>
+        <input type="tel" name="telefon" placeholder="Telefon *" class="ct-in" required>
+        <select name="serviciu" class="ct-sel">
+          <option value="">— Tipul de lucrare —</option>
+          <option>Instalații sanitare</option>
+          <option>Instalații termice</option>
+          <option>Aer condiționat</option>
+          <option>Urgență / Avarie</option>
+          <option>Altceva</option>
+        </select>
+        <textarea name="detalii" placeholder="Descrie pe scurt situația..." class="ct-ta"></textarea>
+        <button type="submit" class="ct-sub">Trimite cererea →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">Thermo<span>Fix</span></div>
+  <small>Timișoara · © 2025 · CUI 12345678 · Autorizat ANRE</small>
+  <small>Site realizat de <a href="https://cebuclucian.pages.dev">Lucian Cebuc</a></small>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  /* cursor */
+  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-4}px,${my-4}px)`;});
+  (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.transform=`translate(${rx-18}px,${ry-18}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-big'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-big'));
+  });
+
+  /* nav */
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('on',window.scrollY>80);},{passive:true});
+
+  /* lenis */
+  if(typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.2,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    setTimeout(()=>ScrollTrigger.refresh(),600);
+  }
+
+  /* hero parallax */
+  gsap.to('#hBg img',{yPercent:20,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* hero entrance */
+  const tl=gsap.timeline({delay:.2});
+  tl.to('.h-label',{opacity:1,duration:.7,ease:'power3.out'})
+    .to('.h-h1 .li',{y:'0%',duration:1,stagger:.12,ease:'expo.out'},'-=.4')
+    .to('.h-foot',{opacity:1,y:0,duration:.9,ease:'power3.out'},'-=.55');
+
+  /* counters */
+  document.querySelectorAll('.st-n[data-target]').forEach(el=>{
+    const end=+el.dataset.target;
+    const suffix=end===4?'h':end===98?'%':'+';
+    ScrollTrigger.create({trigger:'#stats',start:'top 85%',once:true,onEnter:()=>{
+      gsap.to({v:0},{v:end,duration:1.6,ease:'power2.out',onUpdate:function(){
+        el.textContent=Math.round(this.targets()[0].v)+suffix;
+      }});
+    }});
+  });
+
+  /* service items */
+  gsap.utils.toArray('.srv-item').forEach((el,i)=>{
+    gsap.from(el,{opacity:0,y:40,duration:.8,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 88%',once:true},delay:i%2*.12});
+  });
+
+  /* project cards */
+  gsap.utils.toArray('.proj-card').forEach((c,i)=>{
+    gsap.from(c,{opacity:0,y:35,duration:.75,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 90%',once:true},delay:i*.1});
+  });
+
+  /* zone image parallax */
+  gsap.to('#zoneImg img',{yPercent:-12,ease:'none',scrollTrigger:{trigger:'#zoneImg',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* zone cities */
+  gsap.utils.toArray('.zone-city').forEach((c,i)=>{
+    gsap.from(c,{opacity:0,x:-20,duration:.6,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 92%',once:true},delay:i*.05});
+  });
+})();
+</script>
+</body>
+</html>

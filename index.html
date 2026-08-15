@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucian Cebuc · Web Development Timișoara | Creare Site Web</title>
+<meta name="description" content="Web developer freelance în Timișoara. Creare site de prezentare, magazin online și aplicații web custom. Prețuri fixe, fără taxe lunare, livrare rapidă.">
+<meta name="keywords" content="web developer timisoara, creare site timisoara, web design timisoara, magazin online timisoara, site prezentare timisoara, developer freelance timisoara, lucian cebuc">
+<meta name="author" content="Lucian Cebuc">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://cebuclucian.pages.dev/">
+<meta name="google-site-verification" content="QFIhaHEF62Niy44HWitE0JfGYuNm_C9kdIh31BLqT2s" />
+
+<!-- Geo / Local SEO -->
+<meta name="geo.region" content="RO-TM">
+<meta name="geo.placename" content="Timișoara">
+<meta name="geo.position" content="45.7489;21.2087">
+<meta name="ICBM" content="45.7489, 21.2087">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cebuclucian.pages.dev/">
+<meta property="og:title" content="Lucian Cebuc · Web Development Timișoara">
+<meta property="og:description" content="Site-uri web profesionale pentru afaceri locale din Timișoara. Prezentări, magazine online, aplicații custom. Prețuri fixe, fără taxe lunare.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=85">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:site_name" content="Lucian Cebuc Web Development">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lucian Cebuc · Web Development Timișoara">
+<meta name="twitter:description" content="Creare site web în Timișoara. Prețuri fixe, fără taxe lunare.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=85">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Lucian Cebuc Web Development",
+  "alternateName": "Cebuc Lucian PFA",
+  "description": "Web developer freelance în Timișoara. Creare site de prezentare, magazin online, aplicații web custom React + Supabase. Prețuri fixe, fără taxe lunare.",
+  "url": "https://cebuclucian.pages.dev",
+  "telephone": "+40",
+  "email": "lucian.cebuc@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Strada Diaconu Coresi 3/A",
+    "addressLocality": "Timișoara",
+    "addressRegion": "Timiș",
+    "postalCode": "300000",
+    "addressCountry": "RO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.7489,
+    "longitude": 21.2087
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Timișoara"
+  },
+  "serviceType": [
+    "Creare site web",
+    "Web design",
+    "Magazin online",
+    "Aplicații web custom",
+    "Web development freelance"
+  ],
+  "priceRange": "2500-20000 RON",
+  "currenciesAccepted": "RON",
+  "paymentAccepted": "Transfer bancar, card",
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "sameAs": []
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:   #0A0A0D;
+  --ink2:  #050508;
+  --stone: #E4E5E8;
+  --lime:  #C8FF00;
+  --od:    #A8AAB5;
+  --ods:   #E2E4EE;
+  --ol:    #18181E;
+  --ols:   #0A0A0D;
+  --mdk:   #505260;
+  --mlt:   #888A96;
+  --ldk:   rgba(255,255,255,0.07);
+  --llt:   rgba(0,0,0,0.09);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;overscroll-behavior:none}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-weight:300;
+  background:var(--ink);
+  color:var(--od);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  cursor:none;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* ── CURSOR ───────────────────────── */
+#cur,#curR{
+  position:fixed;top:0;left:0;
+  pointer-events:none;z-index:9999;
+  border-radius:50%;will-change:transform;
+  transform:translate(-200px,-200px);
+  transition:width .28s,height .28s,border-color .28s;
+}
+#cur{width:8px;height:8px;background:var(--lime)}
+#curR{width:38px;height:38px;border:1px solid rgba(200,255,0,.35);z-index:9998}
+.cur-big #cur{width:14px;height:14px}
+.cur-big #curR{width:54px;height:54px;border-color:rgba(200,255,0,.5)}
+@media(max-width:768px){#cur,#curR{display:none}body{cursor:auto}}
+
+/* ── NAV ──────────────────────────── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:1.4rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  /* starea 1: black glass inițial (vizibil chiar de la top) */
+  background:rgba(10,10,13,0.65);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  transition:background .55s ease, backdrop-filter .55s ease,
+             border-color .55s ease, color .35s ease;
+}
+/* starea 2: dark glass mai pronunțat (scroll > ~100px, secțiuni dark) */
+#nav.on{
+  background:rgba(10,10,13,0.93);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--ldk);
+}
+/* starea 3: lime glass invers (secțiuni deschise sub nav) */
+#nav.inv{
+  background:rgba(186,240,0,0.82);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(200,255,0,0.2);
+}
+#nav.inv .nav-logo{ color:var(--ink) }
+#nav.inv .nav-btn{
+  background:var(--ink);color:var(--lime);
+}
+#nav.inv .nav-btn:hover{ background:#16161E }
+.nav-logo{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ods);transition:color .35s ease;
+}
+.nav-btn{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);background:var(--lime);padding:.7rem 1.6rem;
+  transition:background .3s ease, color .3s ease;cursor:none;
+}
+.nav-btn:hover{background:#DEFF00}
+
+/* ── HERO ─────────────────────────── */
+#hero{
+  position:relative;min-height:100dvh;
+  display:flex;flex-direction:column;
+  align-items:flex-start;justify-content:flex-end;
+  padding:6rem 3rem 5rem;overflow:hidden;
+}
+.h-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1920&q=85') center/cover no-repeat;
+  will-change:transform;
+}
+.h-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(12,10,7,.55) 0%,rgba(12,10,7,.82) 100%);
+}
+.h-inner{position:relative;z-index:2;max-width:1180px;width:100%}
+.h-tag{
+  display:inline-block;overflow:hidden;margin-bottom:2rem;
+  font-family:'Syne',sans-serif;font-size:.68rem;
+  font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--lime);
+}
+.h-tag span{display:inline-block;transform:translateY(120%)}
+
+.h-h1{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(4rem,11vw,10.5rem);line-height:.9;
+  color:var(--ods);margin-bottom:3.5rem;
+}
+.h-h1 .lw{display:block;overflow:hidden}
+.h-h1 .li{display:block;transform:translateY(110%)}
+.h-h1 em{font-style:italic;color:var(--lime)}
+
+.h-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.h-sub{
+  font-size:1rem;font-weight:300;line-height:1.8;
+  color:rgba(237,232,222,.72);max-width:380px;
+  opacity:0;transform:translateY(28px);
+}
+.h-cta-w{opacity:0;transform:translateY(28px)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.8rem;
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);background:var(--lime);padding:1.1rem 2.6rem;
+  transition:background .2s,transform .2s;cursor:none;
+}
+.btn:hover{background:#DEFF00;transform:translateY(-2px)}
+.btn svg{transition:transform .2s}
+.btn:hover svg{transform:translateX(5px)}
+
+.h-scr{
+  position:absolute;bottom:2.5rem;right:3rem;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  opacity:0;z-index:2;
+}
+.h-scr span{
+  font-family:'Syne',sans-serif;font-size:.58rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(200,195,184,.55);writing-mode:vertical-rl;
+}
+.scr-ln{
+  width:1px;height:50px;
+  background:linear-gradient(to bottom,var(--lime),transparent);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%  {transform:scaleY(0);transform-origin:top}
+  50% {transform:scaleY(1);transform-origin:top}
+  51% {transform:scaleY(1);transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom}
+}
+
+/* ── FULL-BLEED DIVIDER ───────────── */
+.fb-img{height:55vh;min-height:300px;overflow:hidden;position:relative}
+.fb-img img{width:100%;height:125%;object-fit:cover;object-position:center 35%;will-change:transform}
+
+/* ── MARQUEE ──────────────────────── */
+.mq-wrap{
+  overflow:hidden;padding:1.1rem 0;
+  border-top:1px solid var(--ldk);border-bottom:1px solid var(--ldk);
+  background:var(--ink);
+}
+.mq{display:flex;white-space:nowrap}
+.mq-inner{
+  display:flex;flex-shrink:0;
+  animation:mq 28s linear infinite;
+}
+.mq-r .mq-inner{animation:mqr 28s linear infinite}
+@keyframes mq {from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mqr{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.mq-item{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:clamp(1rem,2vw,1.5rem);
+  color:var(--ods);padding:0 1.75rem;
+  display:flex;align-items:center;gap:1.75rem;
+}
+.mq-item::after{content:'·';color:var(--lime)}
+.mq-item.dim{color:var(--mdk)}
+
+/* ── LAYOUT ───────────────────────── */
+.wrap{max-width:1180px;margin:0 auto;padding:0 3rem}
+.s-dk{background:var(--ink);color:var(--od)}
+.s-lt{background:var(--stone);color:var(--ol)}
+.pad{padding:8rem 0}
+.pad-sm{padding:5rem 0}
+
+/* ── SECTION HEADER ───────────────── */
+.sh{display:grid;grid-template-columns:auto 1fr;gap:0 2rem;align-items:end;margin-bottom:5rem}
+.sh-n{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(5.5rem,9vw,8.5rem);line-height:.75;
+  color:var(--lime);user-select:none;padding-bottom:.12em;
+  opacity:0;
+}
+.sh-label{
+  display:block;font-family:'Syne',sans-serif;font-size:.68rem;
+  font-weight:400;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:.7rem;opacity:0;transform:translateY(18px);
+}
+.sh-title{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;
+}
+.sh-title .lw{display:block;overflow:hidden}
+.sh-title .li{display:block}
+.s-dk .sh-title{color:var(--ods)}
+.s-lt .sh-title{color:var(--ols)}
+
+/* ── DE CE EU ─────────────────────── */
+.diff-lay{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.diff-pic{overflow:hidden;aspect-ratio:3/4;position:relative}
+.diff-pic img{width:100%;height:120%;object-fit:cover;will-change:transform}
+.diff-rows{display:flex;flex-direction:column}
+.diff-row{
+  display:grid;grid-template-columns:2.5rem 1fr;gap:0 1.5rem;
+  padding:2.25rem 0;border-bottom:1px solid var(--llt);align-items:start;
+}
+.diff-row:first-child{border-top:1px solid var(--llt)}
+.diff-rn{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:1.1rem;color:var(--lime);opacity:.55;padding-top:.1em;
+}
+.diff-name{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1rem;color:var(--ols);margin-bottom:.45rem;
+}
+.diff-desc{font-size:.875rem;color:var(--mlt);line-height:1.78}
+
+/* ── PACKAGES ─────────────────────── */
+.pkg-banner{
+  width:100%;height:32vh;min-height:180px;
+  overflow:hidden;margin-bottom:3rem;
+}
+.pkg-banner img{
+  width:100%;height:130%;object-fit:cover;object-position:center 40%;
+  will-change:transform;filter:brightness(.5) saturate(.55);
+}
+.pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.pkg-card{
+  padding:2.5rem 2.25rem;border:1px solid var(--ldk);
+  display:flex;flex-direction:column;gap:1.1rem;
+  position:relative;overflow:hidden;transition:border-color .3s;
+}
+.pkg-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--lime);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.7,0,.3,1);
+}
+.pkg-card:hover::after{transform:scaleX(1)}
+.pkg-card:hover{border-color:rgba(200,255,0,.18)}
+.pkg-tag{
+  display:inline-block;font-family:'Syne',sans-serif;
+  font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--lime);border:1px solid rgba(200,255,0,.28);
+  padding:.2rem .55rem;align-self:flex-start;
+}
+.pkg-name{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:1.6rem;color:var(--ods);line-height:1.15;
+}
+.pkg-price{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--lime)}
+.pkg-price small{font-size:.68rem;font-weight:400;color:var(--mdk);margin-left:.3rem}
+.pkg-desc{font-size:.875rem;color:var(--od);line-height:1.78}
+
+.fl{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin-top:auto;padding-top:1.1rem}
+.pkg-cta{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--lime);border-bottom:1px solid rgba(200,255,0,.3);
+  padding-bottom:.18rem;align-self:flex-start;
+  transition:border-color .25s;cursor:none;margin-top:.2rem;
+}
+.pkg-cta:hover{border-color:var(--lime)}
+.fl-dk{border-top:1px solid var(--ldk)}
+.fl-lt{border-top:1px solid var(--llt)}
+.fl li{font-size:.82rem;display:flex;align-items:flex-start;gap:.5rem;line-height:1.55}
+.fl li::before{content:'→';color:var(--lime);flex-shrink:0}
+.s-dk .fl li{color:var(--od)}
+.s-lt .fl li{color:var(--ol)}
+
+/* ── MAINTENANCE ──────────────────── */
+.mt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.mt-card{
+  padding:3rem 2.5rem;border:1px solid var(--llt);
+  background:rgba(255,255,255,.35);
+  display:flex;flex-direction:column;gap:1.1rem;
+}
+.mt-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.8rem;color:var(--ols);line-height:1.15}
+.mt-price{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--lime)}
+.mt-desc{font-size:.875rem;color:var(--mlt);line-height:1.78}
+
+/* ── PORTFOLIO ────────────────────── */
+.port-list{display:flex;flex-direction:column;gap:2px}
+.port-item{
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;min-height:380px;
+}
+.port-item:nth-child(even) .port-meta{order:2}
+.port-item:nth-child(even) .port-pic {order:1}
+.port-meta{
+  padding:3rem 2.5rem;border:1px solid var(--ldk);
+  display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;
+}
+.port-type{
+  font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--lime);
+}
+.port-name{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(1.8rem,3vw,2.8rem);color:var(--ods);line-height:1.05;
+}
+.port-desc{font-size:.875rem;color:var(--mdk);line-height:1.72}
+.port-lnk{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ods);border-bottom:1px solid var(--lime);
+  padding-bottom:.2rem;transition:color .2s;cursor:none;align-self:flex-start;
+}
+.port-lnk:hover{color:var(--lime)}
+.port-pic{overflow:hidden;position:relative}
+.port-pic img{
+  width:100%;height:120%;object-fit:cover;object-position:center top;
+  will-change:transform;
+  filter:saturate(.6) brightness(.7);
+  transition:filter .6s;
+}
+.port-item:hover .port-pic img{filter:saturate(.95) brightness(.82)}
+
+/* ── PROCESS ──────────────────────── */
+.proc-list{display:flex;flex-direction:column}
+.proc-step{
+  display:grid;grid-template-columns:5rem 1fr;gap:0 2rem;
+  padding:2.75rem 0;border-bottom:1px solid var(--llt);align-items:start;
+}
+.proc-step:first-child{border-top:1px solid var(--llt)}
+.proc-n{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:2rem;color:var(--lime);opacity:.5;line-height:1.5;
+}
+.proc-ttl{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--ols);margin-bottom:.45rem}
+.proc-desc{font-size:.875rem;color:var(--mlt);line-height:1.78;max-width:55ch}
+
+/* ── ABOUT ────────────────────────── */
+.about-split{display:grid;grid-template-columns:1.1fr .9fr;min-height:85vh}
+.about-pic{overflow:hidden;position:relative}
+.about-pic img{
+  width:100%;height:120%;object-fit:cover;
+  will-change:transform;filter:grayscale(20%) brightness(.78);
+}
+.about-txt{
+  padding:5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;gap:1.75rem;
+  background:var(--ink);
+}
+.stat-n{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:5.5rem;color:var(--lime);line-height:1;
+}
+.stat-lbl{
+  font-family:'Syne',sans-serif;font-size:.62rem;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mdk);
+}
+.about-p{font-size:.95rem;color:var(--od);line-height:1.88}
+
+/* ── CONTACT ──────────────────────── */
+.ct-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:5rem;align-items:start}
+.ct-lead{font-size:1rem;color:var(--mlt);line-height:1.82;max-width:34ch;margin-bottom:2.5rem}
+.ci{margin-bottom:1.5rem}
+.ci-lbl{
+  font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--lime);margin-bottom:.3rem;
+}
+.ci-val{font-size:.95rem;color:var(--ols);transition:color .2s}
+.ci-val:hover{color:var(--lime)}
+.c-form{display:flex;flex-direction:column;gap:1.2rem}
+.cg{display:flex;flex-direction:column;gap:.35rem}
+.cl{
+  font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--mlt);
+}
+.ci-in,.ci-ta{
+  width:100%;padding:.9rem 1rem;
+  background:transparent;border:1px solid var(--llt);
+  color:var(--ols);font-family:'DM Sans',sans-serif;
+  font-size:.9rem;font-weight:300;outline:none;
+  transition:border-color .2s;-webkit-appearance:none;
+}
+.ci-in:focus,.ci-ta:focus{border-color:var(--lime)}
+.ci-ta{resize:vertical;min-height:130px}
+.c-sub{
+  display:inline-flex;align-items:center;gap:.75rem;
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#fff;background:var(--ink);border:none;
+  padding:1rem 2rem;cursor:none;
+  transition:background .2s,transform .2s;align-self:flex-start;
+}
+.c-sub:hover{background:#3C6B00;transform:translateY(-2px)}
+.c-sub svg{transition:transform .2s}
+.c-sub:hover svg{transform:translateX(4px)}
+
+/* ── FOOTER ───────────────────────── */
+footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
+.ft-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.ft-brand{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ods);
+}
+.ft-meta{font-size:.75rem;color:var(--mdk);line-height:1.7;text-align:center}
+.ft-meta a{color:var(--mdk);transition:color .2s}
+.ft-meta a:hover{color:var(--lime)}
+
+/* ── DEMO SECTION ─────────────────── */
+.demo-lead{
+  font-size:.95rem;color:var(--od);line-height:1.82;
+  max-width:62ch;margin-bottom:4rem;
+}
+.demo-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1.5rem;margin-bottom:3.5rem;
+}
+.demo-card{
+  border:1px solid var(--ldk);display:flex;flex-direction:column;
+  overflow:hidden;transition:border-color .35s;
+}
+.demo-card:hover{border-color:rgba(200,255,0,.3)}
+
+/* device frame */
+.df-wrap{background:#12121A;padding:14px 14px 0;flex-shrink:0}
+.df-laptop{
+  background:#1C1C28;border:1.5px solid #2A2A3C;
+  border-bottom:none;border-radius:7px 7px 0 0;overflow:hidden;
+}
+.df-bar{
+  height:22px;background:#EDEDF2;
+  display:flex;align-items:center;padding:0 8px;gap:4px;
+}
+.df-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.df-url{
+  flex:1;height:11px;background:#D5D5DE;
+  border-radius:6px;margin:0 6px;
+}
+.df-screen{aspect-ratio:16/9;overflow:hidden}
+.df-screen img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  display:block;transition:transform .7s ease;
+}
+.demo-card:hover .df-screen img{transform:scale(1.05)}
+.df-chin{
+  height:10px;background:#18182A;
+  border:1.5px solid #2A2A3C;border-top:none;
+  border-radius:0 0 5px 5px;
+}
+.df-stand{
+  width:38%;height:4px;margin:0 auto;
+  background:#10101A;border-radius:0 0 4px 4px;
+}
+
+/* card body */
+.demo-body{
+  padding:1.75rem 2rem;display:flex;flex-direction:column;gap:.9rem;flex:1;
+}
+.demo-vert{
+  font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--lime);
+}
+.demo-name{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:1.35rem;color:var(--ods);line-height:1.2;
+}
+.demo-feats{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.demo-feats li{
+  font-size:.82rem;color:var(--od);
+  display:flex;align-items:flex-start;gap:.5rem;line-height:1.55;
+}
+.demo-feats li::before{content:'→';color:var(--lime);flex-shrink:0}
+.demo-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--od);border:1px solid var(--ldk);
+  padding:.6rem 1.2rem;margin-top:.4rem;align-self:flex-start;
+  transition:border-color .2s,color .2s;cursor:none;
+}
+.demo-btn:hover{border-color:var(--lime);color:var(--lime)}
+
+/* verticals row */
+.vert-row{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center}
+.vert-pre{
+  font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mdk);margin-right:.4rem;
+}
+.vtag{
+  font-family:'Syne',sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:.04em;color:var(--od);
+  border:1px solid var(--ldk);padding:.28rem .75rem;
+  border-radius:100px;transition:border-color .2s,color .2s;
+  white-space:nowrap;
+}
+.vtag:hover{border-color:var(--lime);color:var(--lime)}
+.vtag-hi{color:var(--lime);border-color:rgba(200,255,0,.32)}
+
+/* responsive */
+@media(max-width:640px){.demo-grid{grid-template-columns:1fr;gap:1rem}}
+
+/* ── LIGHT-SECTION ACCENT OVERRIDE ── */
+/* lime (#C8FF00) pe gri (#E4E5E8) = contrast slab → olive dark */
+.s-lt .sh-n,
+.s-lt .sh-label,
+.s-lt .diff-rn,
+.s-lt .proc-n,
+.s-lt .mt-price,
+.s-lt .ci-lbl { color:#3C6B00 }
+.s-lt .fl li::before { color:#3C6B00 }
+.s-lt .ci-in:focus,
+.s-lt .ci-ta:focus { border-color:#3C6B00 }
+.s-lt .c-sub { background:var(--ols) }
+.s-lt .c-sub:hover { background:#3C6B00 }
+
+/* ── RESPONSIVE ───────────────────── */
+@media(max-width:960px){
+  #nav{padding:1rem 1.5rem}
+  .wrap{padding:0 1.5rem}
+  #hero{padding:5rem 1.5rem 4rem}
+  .diff-lay{grid-template-columns:1fr}
+  .diff-pic{aspect-ratio:16/9}
+  .about-split{grid-template-columns:1fr;min-height:auto}
+  .about-pic{height:50vh}
+  .about-pic img{height:100%}
+  .about-txt{padding:3rem 2rem}
+  .ct-grid{grid-template-columns:1fr;gap:3rem}
+  .port-item{grid-template-columns:1fr;min-height:auto}
+  .port-item:nth-child(even) .port-meta,
+  .port-item:nth-child(even) .port-pic{order:unset}
+  .port-pic{height:260px}
+  .port-pic img{height:100%}
+}
+@media(max-width:640px){
+  .pad{padding:5rem 0}
+  .pad-sm{padding:4rem 0}
+  .h-h1{font-size:clamp(3rem,13vw,5rem)}
+  .h-foot{flex-direction:column;gap:1.5rem}
+  .h-scr{display:none}
+  .sh{grid-template-columns:1fr;gap:.5rem;margin-bottom:3rem}
+  .sh-n{font-size:3.5rem;margin-bottom:.5rem}
+  .pkg-grid{grid-template-columns:1fr}
+  .mt-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div id="cur"  aria-hidden="true"></div>
+<div id="curR" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Lucian Cebuc</a>
+  <a href="#contact" class="nav-btn">Cere o ofertă</a>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section id="hero">
+  <div class="h-bg" id="hBg"></div>
+  <div class="h-inner">
+    <p class="h-tag"><span>Web Development · Timișoara</span></p>
+    <h1 class="h-h1">
+      <span class="lw"><span class="li">Site-uri care</span></span>
+      <span class="lw"><span class="li"><em>lucrează</em></span></span>
+      <span class="lw"><span class="li">pentru tine.</span></span>
+    </h1>
+    <div class="h-foot">
+      <p class="h-sub">
+        De la prezentări elegante la magazine online și aplicații custom —
+        fără taxe lunare de server, optimizat pentru mobil, livrat rapid.
+      </p>
+      <div class="h-cta-w">
+        <a href="#contact" class="btn">
+          Cere o ofertă gratuită
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="h-scr" aria-hidden="true">
+    <div class="scr-ln"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════ FULL-BLEED IMAGE ═══════ -->
+<div class="fb-img" id="fb1">
+  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85"
+       alt="Open space de lucru modern" loading="eager">
+</div>
+
+<!-- ═══════ MARQUEE 1 ═══════ -->
+<div class="mq-wrap">
+  <div class="mq">
+    <div class="mq-inner">
+      <span class="mq-item">Web Development</span>
+      <span class="mq-item">Timișoara</span>
+      <span class="mq-item dim">Site-uri Rapide</span>
+      <span class="mq-item">Zero Costuri Lunare</span>
+      <span class="mq-item dim">Mobile First</span>
+      <span class="mq-item">React + Supabase</span>
+      <span class="mq-item dim">Magazine Online</span>
+      <span class="mq-item">Livrare Rapidă</span>
+      <span class="mq-item dim">SEO Optimizat</span>
+      <span class="mq-item">Web Development</span>
+      <span class="mq-item">Timișoara</span>
+      <span class="mq-item dim">Site-uri Rapide</span>
+      <span class="mq-item">Zero Costuri Lunare</span>
+      <span class="mq-item dim">Mobile First</span>
+      <span class="mq-item">React + Supabase</span>
+      <span class="mq-item dim">Magazine Online</span>
+      <span class="mq-item">Livrare Rapidă</span>
+      <span class="mq-item dim">SEO Optimizat</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ DE CE EU ═══════ -->
+<section class="s-lt pad" id="de-ce-eu">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">01</div>
+      <div>
+        <span class="sh-label">De ce să alegi</span>
+        <h2 class="sh-title">
+          <span class="lw"><span class="li">Viteză, calitate,</span></span>
+          <span class="lw"><span class="li">zero surprize.</span></span>
+        </h2>
+      </div>
+    </div>
+    <div class="diff-lay">
+      <div class="diff-pic" id="dp1">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=85"
+             alt="Dashboard analytics pe MacBook" loading="lazy">
+      </div>
+      <div class="diff-rows">
+        <div class="diff-row">
+          <span class="diff-rn">01</span>
+          <div>
+            <h3 class="diff-name">Livrare în 5–14 zile</h3>
+            <p class="diff-desc">Nu aștepți luni întregi. Procesul meu de lucru este structurat și transparent — de la brief la site live în cel mai scurt timp posibil.</p>
+          </div>
+        </div>
+        <div class="diff-row">
+          <span class="diff-rn">02</span>
+          <div>
+            <h3 class="diff-name">Zero costuri de hosting</h3>
+            <p class="diff-desc">Site-urile statice sunt hostate gratuit pe Cloudflare Pages. Nicio taxă lunară de server — plătești doar domeniul, o dată pe an.</p>
+          </div>
+        </div>
+        <div class="diff-row">
+          <span class="diff-rn">03</span>
+          <div>
+            <h3 class="diff-name">Optimizat pentru mobil</h3>
+            <p class="diff-desc">Peste 70% din trafic vine de pe telefon. Fiecare proiect este construit mobile-first — rapid și perfect pe orice ecran și browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MARQUEE 2 ═══════ -->
+<div class="mq-wrap">
+  <div class="mq mq-r">
+    <div class="mq-inner">
+      <span class="mq-item">santier.app</span>
+      <span class="mq-item dim">coursecopilot.app</span>
+      <span class="mq-item">maxbau.vercel.app</span>
+      <span class="mq-item dim">Aplicații Custom</span>
+      <span class="mq-item">Cloudflare Pages</span>
+      <span class="mq-item dim">FormSubmit.co</span>
+      <span class="mq-item">Design Responsiv</span>
+      <span class="mq-item dim">Formulare Contact</span>
+      <span class="mq-item">santier.app</span>
+      <span class="mq-item dim">coursecopilot.app</span>
+      <span class="mq-item">maxbau.vercel.app</span>
+      <span class="mq-item dim">Aplicații Custom</span>
+      <span class="mq-item">Cloudflare Pages</span>
+      <span class="mq-item dim">FormSubmit.co</span>
+      <span class="mq-item">Design Responsiv</span>
+      <span class="mq-item dim">Formulare Contact</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PACHETE ═══════ -->
+<section class="s-dk pad" id="pachete">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">02</div>
+      <div>
+        <span class="sh-label">Servicii &amp; Prețuri</span>
+        <h2 class="sh-title">
+          <span class="lw"><span class="li">Alege pachetul</span></span>
+          <span class="lw"><span class="li">potrivit afacerii tale.</span></span>
+        </h2>
+      </div>
+    </div>
+    <div class="pkg-banner" id="pb1">
+      <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1920&q=85"
+           alt="Workspace cu laptop și accesorii" loading="lazy">
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <span class="pkg-tag">Pachet 01</span>
+        <h3 class="pkg-name">Site de Prezentare</h3>
+        <div class="pkg-price">2.500 – 3.500 RON<small>preț unic</small></div>
+        <p class="pkg-desc">Perfect pentru firme care au nevoie de o prezență online elegantă. Rapid, modern, fără costuri de mentenanță obligatorii.</p>
+        <ul class="fl fl-dk">
+          <li>Design custom, complet responsive</li>
+          <li>Hosting gratuit pe Cloudflare Pages</li>
+          <li>Formular de contact integrat</li>
+          <li>Optimizare SEO de bază</li>
+          <li>Livrare în 5–7 zile lucrătoare</li>
+        </ul>
+        <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+      </div>
+      <div class="pkg-card">
+        <span class="pkg-tag">Pachet 02</span>
+        <h3 class="pkg-name">Catalog Produse</h3>
+        <div class="pkg-price">4.000 – 6.000 RON<small>preț unic</small></div>
+        <p class="pkg-desc">Afișezi produsele profesional cu filtre și categorii. O experiență vizuală de calitate — fără modul de plată online.</p>
+        <ul class="fl fl-dk">
+          <li>Catalog cu filtrare și categorii</li>
+          <li>Pagini individuale per produs</li>
+          <li>Galerie foto &amp; descrieri complete</li>
+          <li>Formular de cerere ofertă</li>
+          <li>Livrare în 7–10 zile lucrătoare</li>
+        </ul>
+        <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+      </div>
+      <div class="pkg-card">
+        <span class="pkg-tag">Pachet 03</span>
+        <h3 class="pkg-name">Magazin Online</h3>
+        <div class="pkg-price">6.000 – 12.000 RON<small>preț unic</small></div>
+        <p class="pkg-desc">Magazin complet cu coș, plată online și panou de administrare. Tot ce ai nevoie pentru a vinde pe internet.</p>
+        <ul class="fl fl-dk">
+          <li>Coș de cumpărături și checkout</li>
+          <li>Integrare plată online (card, ramburs)</li>
+          <li>Panou de administrare produse</li>
+          <li>Gestionare comenzi și stocuri</li>
+          <li>Livrare în 10–14 zile lucrătoare</li>
+        </ul>
+        <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+      </div>
+      <div class="pkg-card">
+        <span class="pkg-tag">Pachet 04</span>
+        <h3 class="pkg-name">Aplicație Web Custom</h3>
+        <div class="pkg-price">8.000 – 20.000 RON<small>preț unic</small></div>
+        <p class="pkg-desc">Când afacerea ta are nevoie de ceva unic — un portal, o platformă SaaS, un sistem intern. React + Supabase.</p>
+        <ul class="fl fl-dk">
+          <li>Arhitectură React + Supabase</li>
+          <li>Autentificare &amp; roluri utilizatori</li>
+          <li>Bază de date în timp real</li>
+          <li>API-uri custom și integrări externe</li>
+          <li>Termen stabilit în funcție de proiect</li>
+        </ul>
+        <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MENTENANȚĂ ═══════ -->
+<section class="s-lt pad-sm" id="mentenanta">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">03</div>
+      <div>
+        <span class="sh-label">Suport continuu</span>
+        <h2 class="sh-title">
+          <span class="lw"><span class="li">Mentenanță</span></span>
+          <span class="lw"><span class="li">după livrare.</span></span>
+        </h2>
+      </div>
+    </div>
+    <div class="mt-grid">
+      <div class="mt-card">
+        <h3 class="mt-name">Abonament Lunar</h3>
+        <div class="mt-price">150 – 250 RON / lună</div>
+        <p class="mt-desc">Actualizări de conținut, monitorizare, backup periodic și intervenții rapide. Știi că site-ul tău e pe mâini bune.</p>
+        <ul class="fl fl-lt">
+          <li>Actualizări conținut (text, imagini, prețuri)</li>
+          <li>Monitorizare disponibilitate</li>
+          <li>Backup lunar</li>
+          <li>Suport email prioritar</li>
+        </ul>
+      </div>
+      <div class="mt-card">
+        <h3 class="mt-name">Intervenții Punctuale</h3>
+        <div class="mt-price">200 – 400 RON / intervenție</div>
+        <p class="mt-desc">Ai nevoie de o modificare specifică? Fără abonament — plătești doar pentru ce ai nevoie, când ai nevoie.</p>
+        <ul class="fl fl-lt">
+          <li>Modificări de design sau funcționalitate</li>
+          <li>Adăugare pagini sau secțiuni noi</li>
+          <li>Rezolvare probleme și bug-uri</li>
+          <li>Termen de livrare 1–3 zile lucrătoare</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PORTOFOLIU ═══════ -->
+<section class="s-dk pad" id="portofoliu">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">04</div>
+      <div>
+        <span class="sh-label">Lucrări recente</span>
+        <h2 class="sh-title">
+          <span class="lw"><span class="li">Proiecte live,</span></span>
+          <span class="lw"><span class="li">nu mock-up-uri.</span></span>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="port-list">
+    <div class="port-item">
+      <div class="port-meta">
+        <div>
+          <p class="port-type">Aplicație Web · React + Supabase</p>
+          <h3 class="port-name">santier.app</h3>
+        </div>
+        <p class="port-desc">Platformă de management pentru șantiere și proiecte de construcții. Urmărire sarcini, echipe și documente în timp real.</p>
+        <a href="https://santier.app" target="_blank" rel="noopener noreferrer" class="port-lnk">
+          Vizitează site-ul
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="port-pic">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=85"
+             alt="Proiect de construcții — santier.app" loading="lazy">
+      </div>
+    </div>
+    <div class="port-item">
+      <div class="port-meta">
+        <div>
+          <p class="port-type">Aplicație Web · Educație &amp; AI</p>
+          <h3 class="port-name">coursecopilot.app</h3>
+        </div>
+        <p class="port-desc">Asistent AI pentru cursuri online — generează planuri de lecție, quiz-uri și materiale didactice automat.</p>
+        <a href="https://coursecopilot.app" target="_blank" rel="noopener noreferrer" class="port-lnk">
+          Vizitează site-ul
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="port-pic">
+        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&q=85"
+             alt="Educație online — coursecopilot.app" loading="lazy">
+      </div>
+    </div>
+    <div class="port-item">
+      <div class="port-meta">
+        <div>
+          <p class="port-type">Site Prezentare · Construcții</p>
+          <h3 class="port-name">maxbau.vercel.app</h3>
+        </div>
+        <p class="port-desc">Site de prezentare pentru firmă de construcții — servicii, portofoliu și formular de contact. Zero costuri de hosting.</p>
+        <a href="https://maxbau.vercel.app" target="_blank" rel="noopener noreferrer" class="port-lnk">
+          Vizitează site-ul
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="port-pic">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=85"
+             alt="Arhitectură modernă — maxbau.vercel.app" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ EXEMPLE ═══════ -->
+<section class="s-dk pad" id="exemple">
+  <div class="wrap">
+    <div class="sh" style="grid-template-columns:1fr;gap:0">
+      <div>
+        <span class="sh-label">Exemple practice</span>
+        <h2 class="sh-title">
+          <span class="lw"><span class="li">Câteva exemple</span></span>
+          <span class="lw"><span class="li">din ce pot construi.</span></span>
+        </h2>
+      </div>
+    </div>
+    <p class="demo-lead">
+      Fiecare afacere e unică. Acestea sunt doar câteva demo-uri — pot crea site-uri
+      pentru orice domeniu: magazine online, firme de construcții, cabinete, artiști,
+      muzicieni, restaurante, corporate, și multe altele.
+    </p>
+
+    <div class="demo-grid">
+
+      <!-- Card 1: Canisă -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80"
+                   alt="Preview site canisă — câine" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Canisă / Crescătorie</p>
+          <h3 class="demo-name">Site pentru afaceri cu animale</h3>
+          <ul class="demo-feats">
+            <li>Galerie cu rase disponibile și prețuri</li>
+            <li>Pagini dedicate fiecărei rase</li>
+            <li>Formular de rezervare și contact</li>
+          </ul>
+          <a href="kennel.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Instalații -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80"
+                   alt="Preview site firmă instalații" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Firmă de Instalații</p>
+          <h3 class="demo-name">Site pentru meșteri și firme tehnice</h3>
+          <ul class="demo-feats">
+            <li>Prezentare servicii și zone de acoperire</li>
+            <li>Galerie proiecte realizate</li>
+            <li>Formular cerere ofertă rapidă</li>
+          </ul>
+          <a href="instalatii.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Cabinet -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80"
+                   alt="Preview site cabinet medical" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Cabinet / Clinică</p>
+          <h3 class="demo-name">Site pentru profesioniști din sănătate</h3>
+          <ul class="demo-feats">
+            <li>Prezentare specialiști și tarife</li>
+            <li>Sistem de programare online</li>
+            <li>Pagini de servicii și investigații</li>
+          </ul>
+          <a href="cabinet.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Magazin Online -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80"
+                   alt="Preview magazin online fashion" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Magazin Online</p>
+          <h3 class="demo-name">Modă &amp; accesorii — e-commerce premium</h3>
+          <ul class="demo-feats">
+            <li>Grid produse cu filtre și căutare</li>
+            <li>Coș, checkout și plată online</li>
+            <li>Pagini colecții &amp; lookbook editorial</li>
+          </ul>
+          <a href="fashion.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /.demo-grid -->
+
+    <div class="vert-row">
+      <span class="vert-pre">Și pentru:</span>
+      <span class="vtag">Magazine online</span>
+      <span class="vtag">Corporate</span>
+      <span class="vtag">Restaurante</span>
+      <span class="vtag">HoReCa</span>
+      <span class="vtag">Artiști</span>
+      <span class="vtag">Muzicieni</span>
+      <span class="vtag">Freelanceri</span>
+      <span class="vtag">ONG-uri</span>
+      <span class="vtag">Showroom-uri</span>
+      <span class="vtag vtag-hi">+ Orice alt domeniu</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ PROCES ═══════ -->
+<section class="s-lt pad" id="proces">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">05</div>
+      <div>
+        <span class="sh-label">Cum colaborăm</span>
+        <h2 class="sh-title">
+          <span class="lw"><span class="li">Simplu de la</span></span>
+          <span class="lw"><span class="li">idee la lansare.</span></span>
+        </h2>
+      </div>
+    </div>
+    <div class="proc-list">
+      <div class="proc-step">
+        <span class="proc-n">01</span>
+        <div>
+          <h3 class="proc-ttl">Discuție și brief</h3>
+          <p class="proc-desc">Vorbim despre afacerea ta, obiective și ce vrei să transmită site-ul. Pe baza discuției, pregătesc o ofertă personalizată — gratuit, fără angajament.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <span class="proc-n">02</span>
+        <div>
+          <h3 class="proc-ttl">Design și aprobare</h3>
+          <p class="proc-desc">Creez un mock-up sau un demo funcțional. Aprob fiecare detaliu cu tine înainte să trecem mai departe — nicio surpriză neplăcută.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <span class="proc-n">03</span>
+        <div>
+          <h3 class="proc-ttl">Dezvoltare și teste</h3>
+          <p class="proc-desc">Construiesc site-ul, testez pe toate dispozitivele și browserele, optimizez viteza de încărcare. Primești un link de previzualizare pe parcurs.</p>
+        </div>
+      </div>
+      <div class="proc-step">
+        <span class="proc-n">04</span>
+        <div>
+          <h3 class="proc-ttl">Lansare și predare</h3>
+          <p class="proc-desc">Site-ul merge live pe domeniul tău. Îți explic tot ce trebuie să știi și rămân disponibil pentru orice întrebări după lansare.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DESPRE ═══════ -->
+<section id="despre">
+  <div class="about-split">
+    <div class="about-pic" id="aPic">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=85"
+           alt="Laptop cu cod — workspace Lucian Cebuc" loading="lazy">
+    </div>
+    <div class="about-txt s-dk">
+      <div class="sh" style="margin-bottom:2rem">
+        <div class="sh-n" aria-hidden="true">06</div>
+        <div>
+          <span class="sh-label">Despre mine</span>
+          <h2 class="sh-title">
+            <span class="lw"><span class="li">Un freelancer</span></span>
+            <span class="lw"><span class="li">cu experiență reală.</span></span>
+          </h2>
+        </div>
+      </div>
+      <div class="stat-n">10+</div>
+      <p class="stat-lbl">Ani creare website-uri</p>
+      <p class="about-p">Sunt Lucian Cebuc, freelancer web din Timișoara. Am peste 25 de ani de experiență în domeniul IT și construiesc site-uri și aplicații web de mai bine de un deceniu.</p>
+      <p class="about-p">Lucrez cu afaceri locale din toată România — de la antreprenori care vor prima lor prezență online, până la firme cu nevoi tehnice complexe.</p>
+      <p class="about-p">Livrez lucruri care chiar funcționează: site-uri rapide, bine construite, care aduc clienți. Fără cod umflat, fără costuri ascunse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT ═══════ -->
+<section class="s-lt pad" id="contact">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">07</div>
+      <div>
+        <span class="sh-label">Hai să vorbim</span>
+        <h2 class="sh-title">
+          <span class="lw"><span class="li">Îți răspund</span></span>
+          <span class="lw"><span class="li">în 24 de ore.</span></span>
+        </h2>
+      </div>
+    </div>
+    <div class="ct-grid">
+      <div>
+        <p class="ct-lead">Spune-mi ce vrei să construim. Câteva detalii despre proiect sunt de ajuns — îți pregătesc o ofertă personalizată fără niciun angajament.</p>
+        <div class="ci">
+          <p class="ci-lbl">Email</p>
+          <a href="mailto:lucian.cebuc@gmail.com" class="ci-val">lucian.cebuc@gmail.com</a>
+        </div>
+        <div class="ci">
+          <p class="ci-lbl">Locație</p>
+          <span class="ci-val">Timișoara, România</span>
+        </div>
+        <div class="ci">
+          <p class="ci-lbl">Disponibilitate</p>
+          <span class="ci-val">Lucrez cu clienți din toată România</span>
+        </div>
+      </div>
+      <form class="c-form" action="https://formsubmit.co/lucian.cebuc@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Ofertă nouă de pe site">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <div class="cg">
+          <label class="cl" for="f-name">Nume și prenume</label>
+          <input class="ci-in" type="text" id="f-name" name="name" required placeholder="Ion Popescu">
+        </div>
+        <div class="cg">
+          <label class="cl" for="f-email">Email</label>
+          <input class="ci-in" type="email" id="f-email" name="email" required placeholder="ion@firma.ro">
+        </div>
+        <div class="cg">
+          <label class="cl" for="f-tel">Telefon <span style="opacity:.5;font-weight:300">(opțional)</span></label>
+          <input class="ci-in" type="tel" id="f-tel" name="telefon" placeholder="07xx xxx xxx">
+        </div>
+        <div class="cg">
+          <label class="cl" for="f-msg">Ce ai nevoie?</label>
+          <textarea class="ci-ta" id="f-msg" name="mesaj" required placeholder="Descrie pe scurt proiectul tău — tipul de site, domeniu de activitate, orice detaliu util..."></textarea>
+        </div>
+        <button type="submit" class="c-sub">
+          Trimite mesajul
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft-row">
+      <span class="ft-brand">Lucian Cebuc</span>
+      <p class="ft-meta">Cebuc Lucian PFA · CIF 25267322<br>Strada Diaconu Coresi 3/A, Timișoara</p>
+      <p class="ft-meta" style="text-align:right">
+        <a href="mailto:lucian.cebuc@gmail.com">lucian.cebuc@gmail.com</a><br>
+        © 2024 Lucian Cebuc
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  /* ── CURSOR ─────────────────────── */
+  const cur  = document.getElementById('cur');
+  const curR = document.getElementById('curR');
+  let mx=-200,my=-200,rx=-200,ry=-200;
+
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    cur.style.transform=`translate(calc(${mx}px - 50%),calc(${my}px - 50%))`;
+  });
+  (function rl(){
+    rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+    curR.style.transform=`translate(calc(${rx}px - 50%),calc(${ry}px - 50%))`;
+    requestAnimationFrame(rl);
+  })();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-big'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-big'));
+  });
+
+  /* ── LENIS ──────────────────────── */
+  if(typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.35,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    /* re-calculează trigger-ele după ce fonturile+imaginile sunt gata */
+    setTimeout(()=>ScrollTrigger.refresh(),600);
+  }
+
+  /* ── GSAP ───────────────────────── */
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* nav — 3 stări: initial black glass → dark glass → lime glass invers */
+  const nav = document.getElementById('nav');
+  const LIGHT_IDS = ['de-ce-eu','mentenanta','proces','contact'];
+  const NAV_BOTTOM = 72; /* înălțimea aproximativă a nav-ului */
+
+  function updateNav() {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    /* sub 100px: stare 1 — black glass ușor */
+    if (scrollY < 100) {
+      nav.classList.remove('on','inv');
+      return;
+    }
+
+    /* activăm dark glass implicit */
+    nav.classList.add('on');
+
+    /* verificăm dacă o secțiune deschisă e sub nav */
+    let overLight = false;
+    for (const id of LIGHT_IDS) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      if (r.top <= NAV_BOTTOM && r.bottom > NAV_BOTTOM) {
+        overLight = true;
+        break;
+      }
+    }
+    nav.classList.toggle('inv', overLight);
+  }
+
+  /* rulăm la fiecare tick de scroll (Lenis declanșează native scroll) */
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  /* hero parallax */
+  gsap.to('#hBg',{
+    yPercent:28,ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}
+  });
+
+  /* hero entrance */
+  const htl=gsap.timeline({delay:.25});
+  htl
+    .to('.h-tag span',   {y:'0%',   duration:1,   ease:'expo.out'})
+    .to('.h-h1 .li',     {y:'0%',   duration:1.4, stagger:.22, ease:'expo.out'},'-=.65')
+    .to('.h-sub',        {opacity:1,y:0,duration:1, ease:'power3.out'},'-=.65')
+    .to('.h-cta-w',      {opacity:1,y:0,duration:.9,ease:'power3.out'},'-=.6')
+    .to('.h-scr',        {opacity:1,duration:.7},'-=.3');
+
+  /* full-bleed divider parallax */
+  gsap.to('#fb1 img',{
+    yPercent:-18,ease:'none',
+    scrollTrigger:{trigger:'#fb1',start:'top bottom',end:'bottom top',scrub:true}
+  });
+
+  /* section numbers */
+  gsap.utils.toArray('.sh-n').forEach(n=>{
+    gsap.fromTo(n,
+      {opacity:0,x:-50,scale:.8},
+      {opacity:1,x:0,scale:1,duration:1.3,ease:'expo.out',
+       scrollTrigger:{trigger:n,start:'top 90%',once:true}}
+    );
+  });
+
+  /* section labels */
+  gsap.utils.toArray('.sh-label').forEach(el=>{
+    gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+  });
+
+  /* section title line reveals */
+  gsap.utils.toArray('.sh-title').forEach(t=>{
+    gsap.fromTo(t.querySelectorAll('.li'),
+      {y:'110%'},
+      {y:'0%',duration:1.4,stagger:.2,ease:'expo.out',
+       scrollTrigger:{trigger:t,start:'top 88%',once:true}}
+    );
+  });
+
+  /* diff image parallax */
+  gsap.to('#dp1 img',{
+    yPercent:-12,ease:'none',
+    scrollTrigger:{trigger:'#dp1',start:'top bottom',end:'bottom top',scrub:true}
+  });
+
+  /* diff rows stagger */
+  gsap.fromTo('.diff-row',
+    {opacity:0,x:-35},
+    {opacity:1,x:0,stagger:.18,duration:1.1,ease:'expo.out',
+     scrollTrigger:{trigger:'.diff-rows',start:'top 80%',once:true}}
+  );
+
+  /* pkg banner parallax */
+  gsap.to('#pb1 img',{
+    yPercent:-18,ease:'none',
+    scrollTrigger:{trigger:'#pb1',start:'top bottom',end:'bottom top',scrub:true}
+  });
+
+  /* pkg cards */
+  gsap.fromTo('.pkg-card',
+    {opacity:0,y:90,scale:.96},
+    {opacity:1,y:0,scale:1,stagger:.14,duration:1.2,ease:'expo.out',
+     scrollTrigger:{trigger:'.pkg-grid',start:'top 78%',once:true}}
+  );
+
+  /* maintenance cards */
+  gsap.fromTo('.mt-card',
+    {opacity:0,y:70},
+    {opacity:1,y:0,stagger:.18,duration:1.1,ease:'expo.out',
+     scrollTrigger:{trigger:'.mt-grid',start:'top 80%',once:true}}
+  );
+
+  /* portfolio — alternating slide in */
+  gsap.utils.toArray('.port-item').forEach((item,i)=>{
+    const meta=item.querySelector('.port-meta');
+    const pic =item.querySelector('.port-pic');
+    const dir =i%2===0?1:-1;
+    gsap.fromTo(meta,{opacity:0,x:-55*dir},{opacity:1,x:0,duration:1.3,ease:'expo.out',
+      scrollTrigger:{trigger:item,start:'top 82%',once:true}});
+    gsap.fromTo(pic, {opacity:0,x: 55*dir},{opacity:1,x:0,duration:1.3,ease:'expo.out',
+      scrollTrigger:{trigger:item,start:'top 82%',once:true}});
+  });
+
+  /* portfolio image parallax */
+  gsap.utils.toArray('.port-pic img').forEach(img=>{
+    gsap.to(img,{yPercent:-12,ease:'none',
+      scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+
+  /* process steps */
+  gsap.fromTo('.proc-step',
+    {opacity:0,y:45},
+    {opacity:1,y:0,stagger:.16,duration:1,ease:'expo.out',
+     scrollTrigger:{trigger:'.proc-list',start:'top 78%',once:true}}
+  );
+
+  /* about image parallax */
+  gsap.to('#aPic img',{
+    yPercent:-14,ease:'none',
+    scrollTrigger:{trigger:'#aPic',start:'top bottom',end:'bottom top',scrub:true}
+  });
+
+  /* about text reveal */
+  gsap.fromTo('.about-txt > *',
+    {opacity:0,y:45},
+    {opacity:1,y:0,stagger:.1,duration:1.1,ease:'expo.out',
+     scrollTrigger:{trigger:'.about-txt',start:'top 80%',once:true}}
+  );
+
+  /* demo section */
+  gsap.fromTo('.demo-lead',
+    {opacity:0,y:35},
+    {opacity:1,y:0,duration:1,ease:'power3.out',
+     scrollTrigger:{trigger:'.demo-lead',start:'top 88%',once:true}}
+  );
+  gsap.fromTo('.demo-card',
+    {opacity:0,y:70,scale:.97},
+    {opacity:1,y:0,scale:1,stagger:.16,duration:1.2,ease:'expo.out',
+     scrollTrigger:{trigger:'.demo-grid',start:'top 80%',once:true}}
+  );
+  gsap.fromTo('.vert-row',
+    {opacity:0,y:30},
+    {opacity:1,y:0,duration:.9,ease:'power3.out',
+     scrollTrigger:{trigger:'.vert-row',start:'top 90%',once:true}}
+  );
+
+  /* contact */
+  gsap.fromTo('.ct-lead,.ci,.c-form',
+    {opacity:0,y:40},
+    {opacity:1,y:0,stagger:.09,duration:1,ease:'power3.out',
+     scrollTrigger:{trigger:'.ct-grid',start:'top 80%',once:true}}
+  );
+
+})();
+</script>
+</body>
+</html>

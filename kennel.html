@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Paws · Crescătorie Câini de Rasă Pură</title>
+<meta name="description" content="Crescătorie autorizată de câini de rasă pură în Timișoara. Pui sănătoși, cu pedigree, din părinți testați genetic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FAF6EE;--green:#1E3A2F;--green2:#2D5441;--gold:#C8962E;--gold2:#E0A830;--ink:#1A1A14;--muted:#7A7A6A;--light:#F0EBE0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;overscroll-behavior:none}
+body{font-family:'Nunito',system-ui,sans-serif;font-weight:300;background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* CURSOR */
+#cur,#curR{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;will-change:transform;transform:translate(-200px,-200px)}
+#cur{width:8px;height:8px;background:var(--gold)}
+#curR{width:36px;height:36px;border:1.5px solid rgba(200,150,46,.35);z-index:9998;transition:width .25s,height .25s,border-color .25s}
+.cur-big #curR{width:52px;height:52px;border-color:rgba(200,150,46,.6)}
+@media(max-width:768px){#cur,#curR{display:none}body{cursor:auto}}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:background .45s,box-shadow .45s}
+#nav.on{background:rgba(250,246,238,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(200,150,46,.15)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--cream);transition:color .4s}
+#nav.on .nav-logo{color:var(--green)}
+.nav-logo em{font-style:italic;color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:rgba(250,246,238,.75);transition:color .3s}
+#nav.on .nav-links a{color:rgba(30,58,47,.6)}
+.nav-links a:hover,.nav-links a:hover{color:var(--gold)!important}
+.nav-cta{font-family:'Nunito',sans-serif;font-weight:700;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:.65rem 1.5rem;transition:background .25s;cursor:none}
+.nav-cta:hover{background:var(--gold2)}
+
+/* HERO */
+#hero{position:relative;height:100dvh;display:flex;align-items:flex-end;overflow:hidden}
+.h-bg{position:absolute;inset:0;will-change:transform}
+.h-bg img{width:100%;height:115%;object-fit:cover;object-position:center 20%}
+.h-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,12,.9) 0%,rgba(10,18,12,.35) 55%,rgba(10,18,12,.1) 100%)}
+.h-inner{position:relative;z-index:2;padding:0 3rem 5.5rem;max-width:1200px;width:100%}
+.h-badge{display:inline-flex;align-items:center;gap:.55rem;background:rgba(200,150,46,.12);border:1px solid rgba(200,150,46,.4);padding:.4rem 1rem;margin-bottom:1.8rem;opacity:0;transform:translateY(18px)}
+.h-badge span{font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.h-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:blink 2s ease-in-out infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.h-h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(3.2rem,9vw,9rem);line-height:.88;color:#FAF6EE;margin-bottom:2rem}
+.h-h1 .lw{display:block;overflow:hidden}
+.h-h1 .li{display:block;transform:translateY(110%)}
+.h-h1 em{font-style:italic;color:var(--gold)}
+.h-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;opacity:0;transform:translateY(20px)}
+.h-desc{font-size:.97rem;line-height:1.78;color:rgba(240,235,224,.72);max-width:400px}
+.h-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn-g{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.95rem 2rem;transition:background .2s;cursor:none}
+.btn-g:hover{background:var(--gold2)}
+.btn-gs{display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid rgba(240,235,224,.35);color:var(--cream);font-family:'Nunito',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.95rem 2rem;transition:border-color .2s,color .2s;cursor:none}
+.btn-gs:hover{border-color:var(--gold);color:var(--gold)}
+
+/* STATS BAND */
+#stats{background:var(--green);display:flex;justify-content:center}
+.stat-item{flex:1;max-width:240px;text-align:center;padding:2.2rem 1.5rem;position:relative}
+.stat-item+.stat-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);height:35%;width:1px;background:rgba(255,255,255,.1)}
+.stat-n{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--gold);line-height:1}
+.stat-lbl{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,246,238,.5);margin-top:.35rem;font-weight:600}
+
+/* RASE SECTION */
+#rase{padding:7rem 3rem;background:var(--cream)}
+.sec-label{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:1rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4.2rem);line-height:1.06;color:var(--green)}
+.sec-title em{font-style:italic}
+.sec-sub{color:var(--muted);font-size:.97rem;line-height:1.72;max-width:520px;margin-top:.8rem;margin-bottom:4rem}
+.breed-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;background:rgba(30,58,47,.08)}
+.breed-card{background:var(--cream);overflow:hidden;cursor:none}
+.bc-img{aspect-ratio:16/10;overflow:hidden}
+.bc-img img{width:100%;height:100%;object-fit:cover;transition:transform .75s cubic-bezier(.25,.46,.45,.94)}
+.breed-card:hover .bc-img img{transform:scale(1.06)}
+.bc-body{padding:2rem 2.2rem 2.4rem}
+.bc-tag{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.5rem}
+.bc-name{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:700;color:var(--green);margin-bottom:.6rem}
+.bc-desc{font-size:.88rem;line-height:1.68;color:var(--muted);margin-bottom:1.3rem}
+.bc-traits{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.5rem}
+.bc-trait{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:.28rem .75rem;border:1px solid rgba(30,58,47,.2);color:var(--green2)}
+.bc-price{padding-top:1.4rem;border-top:1px solid var(--light);display:flex;align-items:center;justify-content:space-between}
+.bc-price-n{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gold);font-weight:700;line-height:1}
+.bc-price-lbl{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.bc-btn{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--green);border-bottom:1.5px solid var(--gold);padding-bottom:.2rem;transition:color .2s}
+.bc-btn:hover{color:var(--gold)}
+
+/* DIVIDER */
+.div-img{height:52vh;min-height:320px;overflow:hidden;position:relative}
+.div-img img{width:100%;height:125%;object-fit:cover;object-position:center 45%;will-change:transform}
+.div-img::after{content:'';position:absolute;inset:0;background:rgba(20,50,35,.25)}
+
+/* GALLERY */
+#galerie{padding:7rem 3rem;background:var(--light)}
+.gal-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;gap:2rem;flex-wrap:wrap}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.gal-item{overflow:hidden;cursor:none}
+.gal-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+.gal-item:nth-child(n+2){aspect-ratio:4/3}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .75s cubic-bezier(.25,.46,.45,.94)}
+.gal-item:hover img{transform:scale(1.05)}
+
+/* DE CE NOI */
+#de-ce{padding:7rem 3rem;background:var(--green)}
+.dec-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.dec-img-box{position:relative}
+.dec-img-box img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;position:relative;z-index:1}
+.dec-img-box::before{content:'';position:absolute;top:-1.5rem;left:-1.5rem;right:1.5rem;bottom:1.5rem;border:1.5px solid rgba(200,150,46,.3);z-index:0}
+.dec-list{list-style:none;margin-top:2.5rem}
+.dec-li{padding:1.5rem 0;border-bottom:1px solid rgba(250,246,238,.1);display:flex;gap:1.2rem;align-items:flex-start}
+.dec-li:first-child{border-top:1px solid rgba(250,246,238,.1)}
+.dec-icon{width:34px;height:34px;border-radius:50%;background:rgba(200,150,46,.12);border:1px solid rgba(200,150,46,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem}
+.dec-icon svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2}
+.dec-it-t{font-weight:700;font-size:.92rem;color:var(--cream);margin-bottom:.25rem}
+.dec-it-d{font-size:.86rem;line-height:1.62;color:rgba(250,246,238,.55)}
+
+/* CONTACT */
+#contact{padding:7rem 3rem;background:var(--cream)}
+.ct-wrap{max-width:680px;margin:0 auto;text-align:center}
+.ct-form{margin-top:3.5rem;display:grid;gap:1.1rem;text-align:left}
+.ct-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.ct-in,.ct-sel,.ct-ta{width:100%;padding:.95rem 1.1rem;border:1.5px solid rgba(30,58,47,.2);background:transparent;font-family:'Nunito',sans-serif;font-size:.92rem;color:var(--ink);outline:none;transition:border-color .25s;cursor:auto;-webkit-appearance:none;appearance:none;border-radius:0}
+.ct-in:focus,.ct-sel:focus,.ct-ta:focus{border-color:var(--gold)}
+.ct-ta{resize:vertical;min-height:120px}
+.ct-sel{background:var(--cream)}
+.ct-sub{width:100%;padding:1.1rem;background:var(--green);color:var(--cream);font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:none;transition:background .25s}
+.ct-sub:hover{background:var(--green2)}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(250,246,238,.42);padding:2.2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.ft-brand{font-family:'Playfair Display',serif;font-size:.95rem;color:rgba(250,246,238,.85)}
+.ft-brand em{font-style:italic;color:var(--gold)}
+footer small{font-size:.73rem}
+footer a{color:var(--gold);border-bottom:1px solid rgba(200,150,46,.25);transition:border-color .2s}
+footer a:hover{border-color:var(--gold)}
+
+@media(max-width:960px){
+  #nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  #hero .h-inner{padding:0 1.5rem 4.5rem}
+  #stats{flex-wrap:wrap}
+  .stat-item{min-width:130px}
+  #rase,#galerie,#de-ce,#contact{padding:5rem 1.5rem}
+  .breed-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:1fr 1fr}
+  .gal-item:first-child{grid-column:span 2;aspect-ratio:16/9}
+  .dec-wrap{grid-template-columns:1fr}
+  .dec-img-box{display:none}
+  .ct-row{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Golden<em>Paws</em></a>
+  <ul class="nav-links">
+    <li><a href="#rase">Rase</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#de-ce">Despre noi</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Rezervă un pui</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-bg" id="hBg">
+    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=1920&q=85" alt="Golden Retriever" loading="eager">
+  </div>
+  <div class="h-inner">
+    <div class="h-badge"><div class="h-dot"></div><span>Crescătorie autorizată · Timișoara</span></div>
+    <h1 class="h-h1">
+      <span class="lw"><span class="li">Rase Pure.</span></span>
+      <span class="lw"><span class="li">Caracter <em>Autentic.</em></span></span>
+    </h1>
+    <div class="h-foot">
+      <p class="h-desc">Pui sănătoși, cu pedigree și testați genetic, crescuți cu dragoste în familie. Nu vindem câini — potrivim prieteni.</p>
+      <div class="h-btns">
+        <a href="#rase" class="btn-g">Vezi rasele <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="btn-gs">Programează o vizită</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stat-item"><div class="stat-n" data-target="12">0</div><div class="stat-lbl">Rase disponibile</div></div>
+  <div class="stat-item"><div class="stat-n" data-target="8">0</div><div class="stat-lbl">Ani experiență</div></div>
+  <div class="stat-item"><div class="stat-n" data-target="340">0</div><div class="stat-lbl">Pui adoptați</div></div>
+  <div class="stat-item"><div class="stat-n" data-target="5">0</div><div class="stat-lbl">Stele Google</div></div>
+</div>
+
+<!-- RASE -->
+<section id="rase">
+  <div style="max-width:1200px;margin:0 auto">
+    <p class="sec-label">Rasele noastre</p>
+    <h2 class="sec-title">Câini cu <em>pedigree</em><br>din părinți testați</h2>
+    <p class="sec-sub">Fiecare rasă are părinți certificați genetic, nutriție premium și socializare timpurie în familie — nu în cuști.</p>
+  </div>
+  <div class="breed-grid" style="max-width:1200px;margin:0 auto">
+    <div class="breed-card">
+      <div class="bc-img"><img src="https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=800&q=80" alt="Golden Retriever" loading="lazy"></div>
+      <div class="bc-body">
+        <p class="bc-tag">Cel mai popular</p>
+        <h3 class="bc-name">Golden Retriever</h3>
+        <p class="bc-desc">Blând, răbdător și extraordinar de inteligent. Perfect pentru familii cu copii și terapie. Se antrenează ușor și iubește apa.</p>
+        <div class="bc-traits"><span class="bc-trait">Familial</span><span class="bc-trait">Inteligent</span><span class="bc-trait">Activ</span><span class="bc-trait">Blând</span></div>
+        <div class="bc-price">
+          <div><div class="bc-price-n">de la 2.500 lei</div><div class="bc-price-lbl">pui cu pedigree FCI</div></div>
+          <a href="#contact" class="bc-btn">Rezervă →</a>
+        </div>
+      </div>
+    </div>
+    <div class="breed-card">
+      <div class="bc-img"><img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=800&q=80" alt="Labrador Retriever" loading="lazy"></div>
+      <div class="bc-body">
+        <p class="bc-tag">Recomandat pentru copii</p>
+        <h3 class="bc-name">Labrador Retriever</h3>
+        <p class="bc-desc">Vesel, loial și adaptabil la orice stil de viață. Unul dintre cei mai populari câini de familie din lume, și pe bună dreptate.</p>
+        <div class="bc-traits"><span class="bc-trait">Loial</span><span class="bc-trait">Jovial</span><span class="bc-trait">Adaptabil</span><span class="bc-trait">Prietenos</span></div>
+        <div class="bc-price">
+          <div><div class="bc-price-n">de la 2.200 lei</div><div class="bc-price-lbl">pui cu pedigree FCI</div></div>
+          <a href="#contact" class="bc-btn">Rezervă →</a>
+        </div>
+      </div>
+    </div>
+    <div class="breed-card">
+      <div class="bc-img"><img src="https://images.unsplash.com/photo-1605568427561-40dd23c2acea?w=800&q=80" alt="Siberian Husky" loading="lazy"></div>
+      <div class="bc-body">
+        <p class="bc-tag">Caracter puternic</p>
+        <h3 class="bc-name">Siberian Husky</h3>
+        <p class="bc-desc">Sălbatic ca un lup, tandru ca un prieten. Husky-ul necesită mult sport și spațiu — îți va răsplăti cu loialitate absolută.</p>
+        <div class="bc-traits"><span class="bc-trait">Energic</span><span class="bc-trait">Liber</span><span class="bc-trait">Dramatic</span><span class="bc-trait">Frumos</span></div>
+        <div class="bc-price">
+          <div><div class="bc-price-n">de la 2.800 lei</div><div class="bc-price-lbl">pui cu pedigree FCI</div></div>
+          <a href="#contact" class="bc-btn">Rezervă →</a>
+        </div>
+      </div>
+    </div>
+    <div class="breed-card">
+      <div class="bc-img"><img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=800&q=80" alt="Border Collie" loading="lazy"></div>
+      <div class="bc-body">
+        <p class="bc-tag">Cel mai inteligent</p>
+        <h3 class="bc-name">Border Collie</h3>
+        <p class="bc-desc">Geniu în blană. Rasa cu cel mai înalt IQ canin — iubește agility, frisbee și orice provocare mentală. Partenerul ideal pentru sport.</p>
+        <div class="bc-traits"><span class="bc-trait">Geniu</span><span class="bc-trait">Agil</span><span class="bc-trait">Sensibil</span><span class="bc-trait">Muncitor</span></div>
+        <div class="bc-price">
+          <div><div class="bc-price-n">de la 3.000 lei</div><div class="bc-price-lbl">pui cu pedigree FCI</div></div>
+          <a href="#contact" class="bc-btn">Rezervă →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="div-img" id="divImg">
+  <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1920&q=85" alt="" loading="lazy">
+</div>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="gal-header">
+      <div>
+        <p class="sec-label">Viața la crescătorie</p>
+        <h2 class="sec-title" style="margin-bottom:0">Din <em>inima</em> familiei</h2>
+      </div>
+      <a href="#contact" class="btn-g" style="flex-shrink:0">Programează o vizită</a>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=80" alt="" loading="lazy"></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=600&q=80" alt="" loading="lazy"></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=600&q=80" alt="" loading="lazy"></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&q=80" alt="" loading="lazy"></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1529429617124-95b109e86bb8?w=600&q=80" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DE CE NOI -->
+<section id="de-ce">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="dec-wrap">
+      <div class="dec-img-box">
+        <img src="https://images.unsplash.com/photo-1534361960057-19f4434a6b6e?w=800&q=80" alt="Crescătorie câini" loading="lazy">
+      </div>
+      <div>
+        <p class="sec-label" style="color:rgba(200,150,46,.85)">De ce Golden Paws</p>
+        <h2 class="sec-title" style="color:var(--cream)">Nu vindem câini.<br><em>Facem familii.</em></h2>
+        <ul class="dec-list">
+          <li class="dec-li">
+            <div class="dec-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><div class="dec-it-t">Teste genetice obligatorii</div><div class="dec-it-d">Toți reproducătorii sunt testați pentru displazii și boli ereditare. Garanție în scris 12 luni.</div></div>
+          </li>
+          <li class="dec-li">
+            <div class="dec-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><div class="dec-it-t">Pedigree FCI internațional</div><div class="dec-it-d">Fiecare pui pleacă cu carnet de sănătate, vaccinări la zi și pedigree recunoscut internațional.</div></div>
+          </li>
+          <li class="dec-li">
+            <div class="dec-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><div class="dec-it-t">Socializare în familie</div><div class="dec-it-d">Puii cresc în casă, alături de oameni și alte animale. Tranziția la noua familie este blândă și sigură.</div></div>
+          </li>
+          <li class="dec-li">
+            <div class="dec-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><div class="dec-it-t">Suport după adopție</div><div class="dec-it-d">Ești cu noi pe viață. Sfaturi de nutriție, dresaj și sănătate — oricând, prin WhatsApp sau telefon.</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-wrap">
+    <p class="sec-label" style="text-align:center">Rezervare &amp; Contact</p>
+    <h2 class="sec-title" style="text-align:center;color:var(--green)">Primul pas spre<br><em>prietenul tău</em></h2>
+    <p style="color:var(--muted);line-height:1.72;margin-top:1rem;font-size:.93rem">Completează formularul și te contactăm în maxim 24h. Vizitele la crescătorie se fac pe bază de programare.</p>
+    <form class="ct-form" action="https://formsubmit.co/lucian.cebuc@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Rezervare pui · Golden Paws">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="ct-row">
+        <input type="text" name="nume" placeholder="Numele tău" class="ct-in" required>
+        <input type="tel" name="telefon" placeholder="Telefon" class="ct-in" required>
+      </div>
+      <select name="rasa" class="ct-sel">
+        <option value="">— Alege rasa de interes —</option>
+        <option>Golden Retriever</option>
+        <option>Labrador Retriever</option>
+        <option>Siberian Husky</option>
+        <option>Border Collie</option>
+        <option>Altă rasă / Nu știu încă</option>
+      </select>
+      <textarea name="mesaj" placeholder="Câteva cuvinte despre tine și stilul tău de viață (opțional)" class="ct-ta"></textarea>
+      <button type="submit" class="ct-sub">Trimite cererea de rezervare →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-brand">Golden<em>Paws</em> Kennel · Timișoara</div>
+  <small>© 2025 · Crescătorie autorizată · Toate drepturile rezervate</small>
+  <small>Site realizat de <a href="https://cebuclucian.pages.dev">Lucian Cebuc</a></small>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  /* cursor */
+  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-4}px,${my-4}px)`;});
+  (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;curR.style.transform=`translate(${rx-18}px,${ry-18}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-big'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-big'));
+  });
+
+  /* nav */
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('on',window.scrollY>80);},{passive:true});
+
+  /* lenis */
+  if(typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.25,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    setTimeout(()=>ScrollTrigger.refresh(),600);
+  }
+
+  /* hero parallax */
+  gsap.to('#hBg img',{yPercent:22,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* hero entrance */
+  const tl=gsap.timeline({delay:.25});
+  tl.to('.h-badge',{opacity:1,y:0,duration:.8,ease:'power3.out'})
+    .to('.h-h1 .li',{y:'0%',duration:1.3,stagger:.2,ease:'expo.out'},'-=.45')
+    .to('.h-foot',{opacity:1,y:0,duration:1,ease:'power3.out'},'-=.7');
+
+  /* counters */
+  document.querySelectorAll('.stat-n[data-target]').forEach(el=>{
+    const end=+el.dataset.target;
+    ScrollTrigger.create({trigger:'#stats',start:'top 85%',once:true,onEnter:()=>{
+      gsap.to({v:0},{v:end,duration:1.8,ease:'power2.out',onUpdate:function(){
+        el.textContent=Math.round(this.targets()[0].v)+(end>=10?'+':'');
+      }});
+    }});
+  });
+
+  /* divider parallax */
+  gsap.to('#divImg img',{yPercent:-18,ease:'none',scrollTrigger:{trigger:'#divImg',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* breed cards */
+  gsap.utils.toArray('.breed-card').forEach((c,i)=>{
+    gsap.from(c,{opacity:0,y:55,duration:.9,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 90%',once:true},delay:i%2*.15});
+  });
+
+  /* gallery */
+  gsap.utils.toArray('.gal-item').forEach((g,i)=>{
+    gsap.from(g,{opacity:0,y:40,duration:.85,ease:'power3.out',
+      scrollTrigger:{trigger:g,start:'top 92%',once:true},delay:i*.07});
+  });
+
+  /* de-ce list */
+  gsap.utils.toArray('.dec-li').forEach((li,i)=>{
+    gsap.from(li,{opacity:0,x:-28,duration:.75,ease:'power3.out',
+      scrollTrigger:{trigger:li,start:'top 88%',once:true},delay:i*.1});
+  });
+
+  /* contact section */
+  gsap.from('.ct-wrap',{opacity:0,y:40,duration:1,ease:'power3.out',
+    scrollTrigger:{trigger:'#contact',start:'top 82%',once:true}});
+})();
+</script>
+</body>
+</html>

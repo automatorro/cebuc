@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinica Serenitas · Medicină Privată Timișoara</title>
+<meta name="description" content="Cabinet medical privat în Timișoara. Consultații, investigații și programări online. Specialiști de top, timp de așteptare minim.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#F8F6F1;--sage:#4A7C6F;--sage2:#3A6459;--blush:#E8C4B0;--blush2:#D4A891;--ink:#1C2520;--muted:#7A8880;--soft:#EEF0ED;--line:rgba(28,37,32,.1);--white:#FFFFFF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;overscroll-behavior:none}
+body{font-family:'Outfit',system-ui,sans-serif;font-weight:300;background:var(--ivory);color:var(--muted);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* CURSOR */
+#cur,#curR{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;will-change:transform;transform:translate(-200px,-200px)}
+#cur{width:6px;height:6px;background:var(--sage)}
+#curR{width:32px;height:32px;border:1px solid rgba(74,124,111,.35);z-index:9998;transition:width .3s,height .3s,border-color .3s}
+.cur-big #curR{width:48px;height:48px;border-color:rgba(74,124,111,.55)}
+@media(max-width:768px){#cur,#curR{display:none}body{cursor:auto}}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.4rem 3.5rem;display:flex;align-items:center;justify-content:space-between;transition:background .5s,box-shadow .5s}
+#nav.on{background:rgba(248,246,241,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.nav-logo em{font-style:italic;color:var(--sage)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--muted);transition:color .25s}
+.nav-links a:hover{color:var(--sage)}
+.nav-cta{font-family:'Outfit',sans-serif;font-weight:500;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--sage);color:var(--white);padding:.7rem 1.7rem;border-radius:2rem;transition:background .25s;cursor:none}
+.nav-cta:hover{background:var(--sage2)}
+
+/* HERO — split layout */
+#hero{display:grid;grid-template-columns:1fr 1fr;min-height:100dvh}
+.h-left{background:var(--ivory);display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 5rem 3.5rem;position:relative}
+.h-left::after{content:'';position:absolute;bottom:0;left:3.5rem;right:4rem;height:1px;background:var(--line)}
+.h-pretitle{display:flex;align-items:center;gap:.8rem;margin-bottom:2.5rem;opacity:0;transform:translateY(16px)}
+.h-pretitle::before{content:'';width:24px;height:1px;background:var(--sage)}
+.h-pretitle span{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage);font-weight:500}
+.h-h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.8rem,5vw,5.5rem);line-height:1.05;color:var(--ink);margin-bottom:2rem}
+.h-h1 .lw{display:block;overflow:hidden}
+.h-h1 .li{display:block;transform:translateY(110%)}
+.h-h1 em{font-style:italic;color:var(--sage)}
+.h-desc{font-size:1rem;line-height:1.8;color:var(--muted);max-width:400px;margin-bottom:3rem;opacity:0;transform:translateY(16px)}
+.h-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;opacity:0;transform:translateY(16px)}
+.btn-sage{display:inline-flex;align-items:center;gap:.65rem;background:var(--sage);color:var(--white);font-family:'Outfit',sans-serif;font-weight:500;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.95rem 2rem;border-radius:2rem;transition:background .25s;cursor:none}
+.btn-sage:hover{background:var(--sage2)}
+.btn-sage-o{display:inline-flex;align-items:center;gap:.65rem;border:1.5px solid var(--line);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:500;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.95rem 2rem;border-radius:2rem;transition:border-color .25s,color .25s;cursor:none}
+.btn-sage-o:hover{border-color:var(--sage);color:var(--sage)}
+.h-trust{display:flex;align-items:center;gap:1.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line);opacity:0}
+.h-trust-item{text-align:center}
+.h-trust-n{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--sage);line-height:1}
+.h-trust-l{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.h-trust-div{width:1px;height:30px;background:var(--line)}
+
+.h-right{position:relative;overflow:hidden}
+.h-right-img{position:absolute;inset:0;will-change:transform}
+.h-right-img img{width:100%;height:115%;object-fit:cover;object-position:center top}
+.h-right::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(248,246,241,.12) 0%,transparent 50%);z-index:1}
+/* Floating badge on image */
+.h-float{position:absolute;bottom:3rem;left:-2.5rem;z-index:2;background:var(--white);padding:1.4rem 1.8rem;box-shadow:0 20px 60px rgba(28,37,32,.12);max-width:220px;opacity:0;transform:translateX(-20px)}
+.h-float-icon{width:36px;height:36px;background:rgba(74,124,111,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem}
+.h-float-icon svg{width:18px;height:18px;stroke:var(--sage);fill:none;stroke-width:1.8}
+.h-float-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.2rem}
+.h-float-sub{font-size:.72rem;line-height:1.5;color:var(--muted)}
+
+/* SERVICII */
+#servicii{padding:7rem 3.5rem;background:var(--soft)}
+.wrap{max-width:1180px;margin:0 auto}
+.sec-chip{display:inline-block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage);font-weight:500;border:1px solid rgba(74,124,111,.3);padding:.3rem .85rem;border-radius:2rem;margin-bottom:1.2rem}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.8rem);font-weight:600;color:var(--ink);line-height:1.1}
+.sec-title em{font-style:italic;color:var(--sage)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;margin-top:4rem;background:rgba(74,124,111,.08)}
+.srv-card{background:var(--soft);padding:2.8rem 2.5rem;cursor:none;transition:background .35s,transform .35s;position:relative}
+.srv-card:hover{background:var(--white);transform:translateY(-3px);box-shadow:0 24px 48px rgba(28,37,32,.06)}
+.srv-icon{width:52px;height:52px;background:rgba(74,124,111,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.8rem;transition:background .35s}
+.srv-card:hover .srv-icon{background:rgba(74,124,111,.14)}
+.srv-icon svg{width:22px;height:22px;stroke:var(--sage);fill:none;stroke-width:1.6}
+.srv-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--ink);margin-bottom:.7rem}
+.srv-desc{font-size:.87rem;line-height:1.72;color:var(--muted);margin-bottom:1.5rem}
+.srv-link{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--sage);display:flex;align-items:center;gap:.4rem;transition:gap .2s}
+.srv-card:hover .srv-link{gap:.7rem}
+
+/* SPECIALISTI */
+#specialisti{padding:7rem 3.5rem;background:var(--ivory)}
+.spec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;gap:2rem;flex-wrap:wrap}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.spec-card{cursor:none}
+.spec-img-wrap{position:relative;margin-bottom:1.5rem;overflow:hidden}
+.spec-img-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,rgba(28,37,32,.35),transparent);transition:opacity .4s}
+.spec-card:hover .spec-img-wrap::after{opacity:0}
+.spec-img-wrap img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.spec-card:hover .spec-img-wrap img{transform:scale(1.04)}
+.spec-spec{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:.4rem}
+.spec-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--ink);margin-bottom:.5rem}
+.spec-bio{font-size:.85rem;line-height:1.68;color:var(--muted)}
+.spec-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.9rem}
+.spec-tag{font-size:.6rem;letter-spacing:.07em;background:rgba(74,124,111,.08);color:var(--sage);padding:.28rem .7rem;border-radius:2rem}
+
+/* FULL BLEED */
+.fb{height:48vh;min-height:300px;overflow:hidden;position:relative}
+.fb img{width:100%;height:125%;object-fit:cover;object-position:center 55%;will-change:transform}
+.fb::after{content:'';position:absolute;inset:0;background:rgba(28,37,32,.18)}
+.fb-quote{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;text-align:center;padding:2rem}
+.fb-q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,3.2rem);font-style:italic;font-weight:400;color:var(--white);max-width:820px;line-height:1.35;text-shadow:0 2px 30px rgba(0,0,0,.2)}
+.fb-q-author{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:1.2rem;font-family:'Outfit',sans-serif;font-weight:500}
+
+/* PROGRAMARE */
+#programare{padding:7rem 3.5rem;background:var(--soft)}
+.prog-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.prog-info{}
+.prog-steps{list-style:none;margin-top:2.5rem}
+.prog-step{display:flex;gap:1.2rem;padding:1.3rem 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.prog-step:first-child{border-top:1px solid var(--line)}
+.prog-sn{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:rgba(74,124,111,.2);line-height:1;flex-shrink:0;width:2rem;text-align:right}
+.prog-st{font-weight:500;font-size:.9rem;color:var(--ink);margin-bottom:.2rem}
+.prog-sd{font-size:.83rem;line-height:1.6;color:var(--muted)}
+
+.prog-form{background:var(--white);padding:3rem;box-shadow:0 24px 64px rgba(28,37,32,.06)}
+.prog-form-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.prog-form-sub{font-size:.83rem;color:var(--muted);margin-bottom:2rem}
+.f-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--ink);margin-bottom:.4rem;display:block}
+.f-group{margin-bottom:1.2rem}
+.f-in,.f-sel,.f-ta{width:100%;padding:.85rem 1rem;border:1.5px solid var(--line);background:transparent;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--ink);outline:none;transition:border-color .25s;cursor:auto;-webkit-appearance:none;appearance:none;border-radius:0}
+.f-in:focus,.f-sel:focus,.f-ta:focus{border-color:var(--sage)}
+.f-in::placeholder,.f-ta::placeholder{color:var(--muted)}
+.f-ta{resize:vertical;min-height:100px}
+.f-sel{background:var(--white)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.f-sub{width:100%;padding:1.05rem;background:var(--sage);color:var(--white);font-family:'Outfit',sans-serif;font-weight:500;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:none;transition:background .25s;border-radius:2rem;margin-top:.5rem}
+.f-sub:hover{background:var(--sage2)}
+.f-note{font-size:.72rem;color:var(--muted);text-align:center;margin-top:.8rem;line-height:1.5}
+
+/* TESTIMONIALE */
+#testimoniale{padding:7rem 3.5rem;background:var(--ivory)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.test-card{background:var(--soft);padding:2.2rem;border-radius:2px}
+.test-stars{display:flex;gap:.2rem;margin-bottom:1rem}
+.test-star{width:12px;height:12px;fill:var(--blush);stroke:var(--blush2);stroke-width:1}
+.test-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--ink);line-height:1.65;margin-bottom:1.2rem}
+.test-author{display:flex;align-items:center;gap:.8rem}
+.test-av{width:36px;height:36px;border-radius:50%;background:rgba(74,124,111,.12);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--sage);flex-shrink:0}
+.test-name{font-size:.82rem;font-weight:500;color:var(--ink)}
+.test-date{font-size:.7rem;color:var(--muted)}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(238,240,237,.35);padding:4rem 3.5rem 2.5rem}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:rgba(238,240,237,.85);margin-bottom:1rem}
+.ft-brand em{font-style:italic;color:var(--blush)}
+.ft-tagline{font-size:.82rem;line-height:1.65;color:rgba(238,240,237,.38);max-width:260px}
+.ft-col-title{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:rgba(238,240,237,.5);margin-bottom:1.2rem}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.ft-links a{font-size:.82rem;color:rgba(238,240,237,.38);transition:color .2s}
+.ft-links a:hover{color:var(--blush)}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;flex-wrap:wrap;gap:1rem}
+footer small{font-size:.72rem}
+footer a.credit{color:var(--blush);opacity:.7;transition:opacity .2s}
+footer a.credit:hover{opacity:1}
+
+@media(max-width:960px){
+  #nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  #hero{grid-template-columns:1fr;min-height:auto}
+  .h-left{padding:7rem 1.5rem 4rem}
+  .h-right{height:55vw;min-height:320px}
+  .h-float{display:none}
+  #servicii,#specialisti,#programare,#testimoniale{padding:5rem 1.5rem}
+  .srv-grid{grid-template-columns:1fr}
+  .spec-grid{grid-template-columns:1fr}
+  .prog-wrap{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr;gap:2.5rem}
+  footer{padding:3rem 1.5rem 2rem}
+  .ft-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo"><em>Serenitas</em> Clinică</a>
+  <ul class="nav-links">
+    <li><a href="#servicii">Servicii</a></li>
+    <li><a href="#specialisti">Specialiști</a></li>
+    <li><a href="#programare">Programări</a></li>
+    <li><a href="#testimoniale">Recenzii</a></li>
+  </ul>
+  <a href="#programare" class="nav-cta">Programare online</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-left">
+    <div class="h-pretitle"><span>Medicină privată · Timișoara</span></div>
+    <h1 class="h-h1">
+      <span class="lw"><span class="li">Sănătate.</span></span>
+      <span class="lw"><span class="li">Grijă.</span></span>
+      <span class="lw"><span class="li"><em>Profesionalism.</em></span></span>
+    </h1>
+    <p class="h-desc">Consultații specializate, investigații moderne și programare rapidă online. Specialiști de top — timp de așteptare minim.</p>
+    <div class="h-actions">
+      <a href="#programare" class="btn-sage">Programează-te acum <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#servicii" class="btn-sage-o">Vezi serviciile</a>
+    </div>
+    <div class="h-trust">
+      <div class="h-trust-item"><div class="h-trust-n">12+</div><div class="h-trust-l">Specialități</div></div>
+      <div class="h-trust-div"></div>
+      <div class="h-trust-item"><div class="h-trust-n">8</div><div class="h-trust-l">Specialiști</div></div>
+      <div class="h-trust-div"></div>
+      <div class="h-trust-item"><div class="h-trust-n">4.9★</div><div class="h-trust-l">Google Maps</div></div>
+      <div class="h-trust-div"></div>
+      <div class="h-trust-item"><div class="h-trust-n">&lt;24h</div><div class="h-trust-l">Timp programare</div></div>
+    </div>
+  </div>
+  <div class="h-right">
+    <div class="h-right-img" id="hBg">
+      <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=960&q=85" alt="Clinică modernă" loading="eager">
+    </div>
+    <div class="h-float" id="hFloat">
+      <div class="h-float-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div class="h-float-title">Programare rapidă</div>
+      <div class="h-float-sub">Confirmare în mai puțin de 2 ore de la solicitare</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICII -->
+<section id="servicii">
+  <div class="wrap">
+    <div style="max-width:640px">
+      <span class="sec-chip">Specialități medicale</span>
+      <h2 class="sec-title">Îngrijire completă,<br>sub un singur <em>acoperiș</em></h2>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <h3 class="srv-name">Cardiologie</h3>
+        <p class="srv-desc">EKG, ecografie cardiacă, monitorizare Holter, consultații preventive și de follow-up pentru afecțiuni cardiovasculare.</p>
+        <div class="srv-link">Află mai mult <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3 class="srv-name">Medicină Internă</h3>
+        <p class="srv-desc">Consultații complete, analize de laborator, diagnostic și tratament pentru afecțiuni interne. Medicina preventivă integrată.</p>
+        <div class="srv-link">Află mai mult <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3 class="srv-name">Pediatrie</h3>
+        <p class="srv-desc">Consultații pentru copii și adolescenți, vaccinuri, dezvoltare fizică și neurologică. Medici cu răbdare și experiență.</p>
+        <div class="srv-link">Află mai mult <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16"/><path d="M16 6v16"/></svg></div>
+        <h3 class="srv-name">Neurologie</h3>
+        <p class="srv-desc">Consultații neurologice, EEG, tratament migrene, tulburări de somn, neuropatii periferice și accidente vasculare cerebrale.</p>
+        <div class="srv-link">Află mai mult <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+        <h3 class="srv-name">Dermatologie</h3>
+        <p class="srv-desc">Consultații, dermoscopie digitală, tratamente estetice și diagnosticul leziunilor cutanate. Screening cancer de piele.</p>
+        <div class="srv-link">Află mai mult <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3 class="srv-name">Recuperare Medicală</h3>
+        <p class="srv-desc">Kinetoterapie, fizioterapie, tratament electrostimulare, ultrasunete și masaj terapeutic. Recuperare post-operatorie.</p>
+        <div class="srv-link">Află mai mult <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALISTI -->
+<section id="specialisti">
+  <div class="wrap">
+    <div class="spec-head">
+      <div>
+        <span class="sec-chip">Echipa noastră</span>
+        <h2 class="sec-title">Specialiști cu<br>experiență <em>dovedită</em></h2>
+      </div>
+      <a href="#programare" class="btn-sage" style="flex-shrink:0">Programează o consultație</a>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="spec-img-wrap">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80" alt="Dr. Ionescu" loading="lazy">
+        </div>
+        <p class="spec-spec">Cardiologie</p>
+        <h3 class="spec-name">Dr. Mihai Ionescu</h3>
+        <p class="spec-bio">Medic primar cardiolog cu 18 ani de experiență clinică. Profesor asociat UMF Timișoara. Specializare în cardiologie intervențională.</p>
+        <div class="spec-tags"><span class="spec-tag">EKG</span><span class="spec-tag">Ecografie cardiacă</span><span class="spec-tag">Holter</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-img-wrap">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80" alt="Dr. Popescu" loading="lazy">
+        </div>
+        <p class="spec-spec">Medicină Internă</p>
+        <h3 class="spec-name">Dr. Ana Popescu</h3>
+        <p class="spec-bio">Specialist medicină internă și geriatrie. 12 ani de activitate în clinici private și de stat. Abordare holistică și preventivă.</p>
+        <div class="spec-tags"><span class="spec-tag">Diagnostic</span><span class="spec-tag">Preventiv</span><span class="spec-tag">Geriatrie</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-img-wrap">
+          <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&q=80" alt="Dr. Marian" loading="lazy">
+        </div>
+        <p class="spec-spec">Neurologie</p>
+        <h3 class="spec-name">Dr. Cristian Marian</h3>
+        <p class="spec-bio">Neurolog cu experiență în tratamentul migrenelor cronice, epilepsie și accidente vasculare. Formare la Clinica Charité Berlin.</p>
+        <div class="spec-tags"><span class="spec-tag">Migrene</span><span class="spec-tag">EEG</span><span class="spec-tag">Neuropatii</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL BLEED QUOTE -->
+<div class="fb" id="fbQuote">
+  <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1920&q=85" alt="" loading="lazy">
+  <div class="fb-quote">
+    <div>
+      <p class="fb-q-text">„Sănătatea nu este totul, dar fără sănătate, totul nu este nimic."</p>
+      <p class="fb-q-author">Arthur Schopenhauer</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMARE -->
+<section id="programare">
+  <div class="wrap">
+    <div class="prog-wrap">
+      <div class="prog-info">
+        <span class="sec-chip">Programare online</span>
+        <h2 class="sec-title">Simplu.<br><em>Rapid.</em> Sigur.</h2>
+        <p style="font-size:.95rem;line-height:1.75;color:var(--muted);margin-top:1rem">Programează-te în 3 pași simpli — confirmare în mai puțin de 2 ore.</p>
+        <ol class="prog-steps">
+          <li class="prog-step">
+            <span class="prog-sn">1</span>
+            <div><div class="prog-st">Completează formularul</div><div class="prog-sd">Alege specialitatea, medicul preferat și intervalul orar convenabil.</div></div>
+          </li>
+          <li class="prog-step">
+            <span class="prog-sn">2</span>
+            <div><div class="prog-st">Confirmare prin SMS / email</div><div class="prog-sd">Primești confirmarea și detaliile programării în mai puțin de 2 ore.</div></div>
+          </li>
+          <li class="prog-step">
+            <span class="prog-sn">3</span>
+            <div><div class="prog-st">Vin la consultație</div><div class="prog-sd">Te așteptăm la timp, fără cozi. Timp de așteptare maxim 10 minute.</div></div>
+          </li>
+        </ol>
+      </div>
+      <div class="prog-form">
+        <h3 class="prog-form-title">Rezervă o programare</h3>
+        <p class="prog-form-sub">Gratuit, fără cont. Confirmare rapidă.</p>
+        <form action="https://formsubmit.co/lucian.cebuc@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Programare online · Serenitas">
+          <input type="hidden" name="_captcha" value="false">
+          <div class="f-row">
+            <div class="f-group">
+              <label class="f-label">Prenume și nume</label>
+              <input type="text" name="nume" placeholder="ex. Ana Ionescu" class="f-in" required>
+            </div>
+            <div class="f-group">
+              <label class="f-label">Telefon</label>
+              <input type="tel" name="telefon" placeholder="07XX XXX XXX" class="f-in" required>
+            </div>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Specialitate</label>
+            <select name="specialitate" class="f-sel">
+              <option value="">— Alege specialitatea —</option>
+              <option>Cardiologie</option>
+              <option>Medicină Internă</option>
+              <option>Pediatrie</option>
+              <option>Neurologie</option>
+              <option>Dermatologie</option>
+              <option>Recuperare Medicală</option>
+              <option>Altă specialitate</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Interval preferat</label>
+            <select name="interval" class="f-sel">
+              <option value="">— Alege intervalul orar —</option>
+              <option>Dimineața (08:00 – 12:00)</option>
+              <option>Prânz (12:00 – 15:00)</option>
+              <option>După-amiază (15:00 – 18:00)</option>
+              <option>Oricând disponibil</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Motivul consultației (opțional)</label>
+            <textarea name="motiv" placeholder="Descrie pe scurt simptomele sau motivul vizitei..." class="f-ta"></textarea>
+          </div>
+          <button type="submit" class="f-sub">Trimite cererea de programare →</button>
+          <p class="f-note">Prin trimiterea formularului, ești de acord cu <a href="#" style="color:var(--sage)">politica de confidențialitate</a>. Nu stocăm date medicale sensibile.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALE -->
+<section id="testimoniale">
+  <div class="wrap">
+    <div style="text-align:center;max-width:540px;margin:0 auto">
+      <span class="sec-chip">Recenzii pacienți</span>
+      <h2 class="sec-title">Ce spun <em>pacienții</em> noștri</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-stars">
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="test-text">„Prima clinică privată unde nu am simțit că sunt tratat ca un număr. Dr. Ionescu a explicat totul cu răbdare. Mă voi întoarce cu siguranță."</p>
+        <div class="test-author"><div class="test-av">RM</div><div><div class="test-name">Radu Moldovan</div><div class="test-date">Cardiologie · Mai 2025</div></div></div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="test-text">„Am programat consultație pentru fetița mea de 4 ani. Dr. Popescu a fost minunată — copilul nu a plâns deloc. Recomand cu toată inima."</p>
+        <div class="test-author"><div class="test-av">LD</div><div><div class="test-name">Larisa Dima</div><div class="test-date">Pediatrie · Iunie 2025</div></div></div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="test-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="test-text">„Am programat online la ora 21:00, am primit confirmare a doua zi dimineață la 8:30. Consultația a început exact la ora stabilită. Wow."</p>
+        <div class="test-author"><div class="test-av">AC</div><div><div class="test-name">Alexandru Constantin</div><div class="test-date">Neurologie · Iulie 2025</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand"><em>Serenitas</em> Clinică Medicală</div>
+        <p class="ft-tagline">Medicină privată de calitate, accesibilă și centrată pe pacient. Timișoara, România.</p>
+      </div>
+      <div>
+        <p class="ft-col-title">Navigare</p>
+        <ul class="ft-links">
+          <li><a href="#servicii">Servicii</a></li>
+          <li><a href="#specialisti">Specialiști</a></li>
+          <li><a href="#programare">Programare</a></li>
+          <li><a href="#testimoniale">Recenzii</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="ft-col-title">Contact</p>
+        <ul class="ft-links">
+          <li><a href="tel:+40700000000">0700 000 000</a></li>
+          <li><a href="mailto:contact@serenitas.ro">contact@serenitas.ro</a></li>
+          <li><a href="#">Str. Medicinei 8, Timișoara</a></li>
+          <li><a href="#">Lun–Vin: 08:00–19:00</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <small>© 2025 Serenitas Clinică Medicală · Toate drepturile rezervate</small>
+      <small>Site realizat de <a href="https://cebuclucian.pages.dev" class="credit">Lucian Cebuc</a></small>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  /* cursor */
+  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-3}px,${my-3}px)`;});
+  (function loop(){rx+=(mx-rx)*.09;ry+=(my-ry)*.09;curR.style.transform=`translate(${rx-16}px,${ry-16}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-big'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-big'));
+  });
+
+  /* nav */
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('on',window.scrollY>80);},{passive:true});
+
+  /* lenis */
+  if(typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.3,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    setTimeout(()=>ScrollTrigger.refresh(),600);
+  }
+
+  /* hero right parallax */
+  gsap.to('#hBg img',{yPercent:15,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* hero entrance */
+  const tl=gsap.timeline({delay:.2});
+  tl.to('.h-pretitle',{opacity:1,y:0,duration:.75,ease:'power3.out'})
+    .to('.h-h1 .li',{y:'0%',duration:1.3,stagger:.22,ease:'expo.out'},'-=.4')
+    .to('.h-desc',{opacity:1,y:0,duration:.9,ease:'power3.out'},'-=.6')
+    .to('.h-actions',{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.55')
+    .to('.h-trust',{opacity:1,duration:.7,ease:'power2.out'},'-=.4')
+    .to('#hFloat',{opacity:1,x:0,duration:.9,ease:'power3.out'},'-=.3');
+
+  /* fb parallax */
+  gsap.to('#fbQuote img',{yPercent:-18,ease:'none',scrollTrigger:{trigger:'#fbQuote',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* service cards */
+  gsap.utils.toArray('.srv-card').forEach((c,i)=>{
+    gsap.from(c,{opacity:0,y:40,duration:.85,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 90%',once:true},delay:i%3*.1});
+  });
+
+  /* specialist cards */
+  gsap.utils.toArray('.spec-card').forEach((c,i)=>{
+    gsap.from(c,{opacity:0,y:50,duration:.9,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 88%',once:true},delay:i*.15});
+  });
+
+  /* prog steps */
+  gsap.utils.toArray('.prog-step').forEach((s,i)=>{
+    gsap.from(s,{opacity:0,x:-25,duration:.7,ease:'power3.out',
+      scrollTrigger:{trigger:s,start:'top 88%',once:true},delay:i*.12});
+  });
+
+  /* prog form */
+  gsap.from('.prog-form',{opacity:0,y:30,duration:1,ease:'power3.out',
+    scrollTrigger:{trigger:'.prog-form',start:'top 85%',once:true}});
+
+  /* testimoniale */
+  gsap.utils.toArray('.test-card').forEach((c,i)=>{
+    gsap.from(c,{opacity:0,y:30,duration:.8,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 90%',once:true},delay:i*.12});
+  });
+})();
+</script>
+</body>
+</html>

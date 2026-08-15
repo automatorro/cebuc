@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SÉVRA · Modă & Accesorii Premium</title>
+<meta name="description" content="Modă și accesorii premium pentru femeia modernă. Colecții editoriale, livrare gratuită peste 500 lei.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0A0A0A;--white:#FFFFFF;--ivory:#F5F2EC;--sand:#C8B49A;--sand2:#B09A80;--gold:#B8965A;--gold2:#CCA86A;--muted:#888070;--line:rgba(10,10,10,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;overscroll-behavior:none}
+body{font-family:'Raleway',system-ui,sans-serif;font-weight:300;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* CURSOR */
+#cur,#curR{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;will-change:transform;transform:translate(-200px,-200px)}
+#cur{width:5px;height:5px;background:var(--black)}
+#curR{width:30px;height:30px;border:1px solid rgba(10,10,10,.3);z-index:9998;transition:width .3s,height .3s,border-color .3s,background .3s}
+.cur-big #curR{width:44px;height:44px;border-color:rgba(10,10,10,.5)}
+.cur-inv #cur{background:var(--white)}
+.cur-inv #curR{border-color:rgba(255,255,255,.5)}
+@media(max-width:768px){#cur,#curR{display:none}body{cursor:auto}}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 3rem;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid transparent;transition:background .4s,border-color .4s,backdrop-filter .4s}
+#nav.on{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+#nav.dark:not(.on){background:transparent;border-color:rgba(255,255,255,.12)}
+#nav.dark:not(.on) .nav-logo{color:var(--white)}
+#nav.dark:not(.on) .nav-links a{color:rgba(255,255,255,.7)}
+#nav.dark:not(.on) .nav-links a:hover{color:var(--white)}
+#nav.dark:not(.on) .nav-r svg{stroke:var(--white)}
+#nav.dark:not(.on) .nav-r span{color:rgba(255,255,255,.8)}
+.nav-links{display:flex;gap:2rem;list-style:none;justify-content:flex-start}
+.nav-links a{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:rgba(10,10,10,.55);transition:color .25s}
+.nav-links a:hover{color:var(--black)}
+.nav-logo{font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;text-align:center;color:var(--black);transition:color .3s;cursor:none}
+.nav-r{display:flex;align-items:center;justify-content:flex-end;gap:1.5rem}
+.nav-r a{cursor:none;display:flex;align-items:center;gap:.35rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:rgba(10,10,10,.55);transition:color .25s}
+.nav-r a:hover{color:var(--black)}
+.nav-r svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;transition:stroke .3s}
+.nav-cart-count{background:var(--black);color:var(--white);width:14px;height:14px;border-radius:50%;font-size:.55rem;display:flex;align-items:center;justify-content:center;margin-left:-.2rem;margin-top:-.8rem}
+
+/* HERO */
+#hero{position:relative;height:100dvh;overflow:hidden;display:flex;align-items:flex-end}
+.h-bg{position:absolute;inset:0;will-change:transform}
+.h-bg img{width:100%;height:115%;object-fit:cover;object-position:center 15%;will-change:transform}
+.h-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.7) 0%,rgba(5,5,5,.1) 50%,transparent 100%)}
+.h-inner{position:relative;z-index:2;padding:0 3rem 5rem;width:100%;max-width:1400px}
+.h-season{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500;margin-bottom:1.4rem;opacity:0;transform:translateY(14px)}
+.h-h1{font-family:'EB Garamond',serif;font-size:clamp(3rem,7vw,7.5rem);font-weight:400;line-height:.92;color:var(--white);margin-bottom:2rem}
+.h-h1 .lw{display:block;overflow:hidden}
+.h-h1 .li{display:block;transform:translateY(110%)}
+.h-h1 em{font-style:italic}
+.h-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;opacity:0;transform:translateY(18px)}
+.h-tagline{font-family:'EB Garamond',serif;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.6);max-width:360px;line-height:1.5}
+.btn-blk{display:inline-flex;align-items:center;gap:.7rem;background:var(--white);color:var(--black);font-family:'Raleway',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.9rem 2.2rem;transition:background .2s,color .2s;cursor:none}
+.btn-blk:hover{background:var(--ivory)}
+.btn-blk-o{display:inline-flex;align-items:center;gap:.7rem;border:1px solid rgba(255,255,255,.45);color:var(--white);font-family:'Raleway',sans-serif;font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.9rem 2.2rem;transition:border-color .2s;cursor:none}
+.btn-blk-o:hover{border-color:var(--white)}
+/* scroll indicator */
+.h-scroll{position:absolute;bottom:2.5rem;right:3rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;opacity:0}
+.h-scroll span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);writing-mode:vertical-rl}
+.h-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scrollpulse 2.2s ease-in-out infinite}
+@keyframes scrollpulse{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* MARQUEE */
+.mq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.75rem 0;background:var(--ivory)}
+.mq-inner{display:flex;gap:0;white-space:nowrap;animation:mq 30s linear infinite}
+.mq-item{font-family:'EB Garamond',serif;font-size:.85rem;font-style:italic;color:var(--muted);letter-spacing:.06em;padding:0 2.5rem}
+.mq-sep{color:var(--sand)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* COLECȚII FEATURED */
+#colectii{display:grid;grid-template-columns:1fr 1fr;background:var(--white)}
+.col-item{position:relative;overflow:hidden;cursor:none;aspect-ratio:3/4}
+.col-item:first-child{aspect-ratio:4/5}
+.col-img{position:absolute;inset:0;will-change:transform}
+.col-img img{width:100%;height:115%;object-fit:cover;object-position:center 10%;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.col-item:hover .col-img img{transform:scale(1.04)}
+.col-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.62) 0%,rgba(5,5,5,.05) 55%)}
+.col-info{position:absolute;bottom:0;left:0;right:0;padding:2.5rem;z-index:1}
+.col-season{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.5rem;font-weight:500}
+.col-name{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;color:var(--white);margin-bottom:1rem;line-height:1.1}
+.col-name em{font-style:italic}
+.col-link{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;display:flex;align-items:center;gap:.5rem;transition:color .2s}
+.col-item:hover .col-link{color:var(--white)}
+.col-link::after{content:'';width:20px;height:1px;background:currentColor;transition:width .3s}
+.col-item:hover .col-link::after{width:34px}
+
+/* NOUTĂȚI — PRODUCT GRID */
+#noutati{padding:6rem 3rem;background:var(--white)}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;gap:2rem;flex-wrap:wrap}
+.sec-eyebrow{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sand2);font-weight:600;margin-bottom:.6rem}
+.sec-title{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:400;line-height:1.05;color:var(--black)}
+.sec-title em{font-style:italic;color:var(--muted)}
+.view-all{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--black);border-bottom:1px solid var(--line);padding-bottom:.2rem;transition:border-color .2s;flex-shrink:0}
+.view-all:hover{border-color:var(--black)}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.prod-card{cursor:none}
+.prod-img-wrap{position:relative;overflow:hidden;aspect-ratio:3/4;margin-bottom:1.1rem;background:var(--ivory)}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .75s cubic-bezier(.25,.46,.45,.94)}
+.prod-card:hover .prod-img-wrap img{transform:scale(1.05)}
+.prod-overlay{position:absolute;inset:0;background:rgba(10,10,10,.18);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:1.2rem}
+.prod-card:hover .prod-overlay{opacity:1}
+.prod-add{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;background:var(--white);color:var(--black);padding:.6rem 1.2rem;transform:translateY(8px);opacity:0;transition:transform .35s,opacity .35s;cursor:none}
+.prod-card:hover .prod-add{transform:translateY(0);opacity:1}
+.prod-tag{position:absolute;top:.9rem;left:.9rem;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:.25rem .6rem}
+.prod-tag.new{background:var(--black);color:var(--white)}
+.prod-tag.sale{background:var(--gold);color:var(--white)}
+.prod-brand{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.prod-name{font-family:'EB Garamond',serif;font-size:1.1rem;color:var(--black);margin-bottom:.4rem;line-height:1.2}
+.prod-price-row{display:flex;align-items:center;gap:.7rem}
+.prod-price{font-size:.88rem;font-weight:500;color:var(--black)}
+.prod-old{font-size:.8rem;color:var(--muted);text-decoration:line-through}
+.prod-colors{display:flex;gap:.35rem;margin-top:.6rem}
+.prod-color{width:14px;height:14px;border-radius:50%;border:1.5px solid transparent;cursor:none;transition:border-color .2s}
+.prod-color:hover{border-color:var(--black)}
+
+/* LOOKBOOK STRIP */
+#lookbook{padding:6rem 3rem;background:var(--ivory)}
+.lb-header{text-align:center;margin-bottom:4rem}
+.lb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.lb-item{overflow:hidden;position:relative;cursor:none}
+.lb-item:first-child{grid-row:span 2}
+.lb-item:nth-child(4){grid-row:span 2}
+.lb-item img{width:100%;height:100%;min-height:280px;object-fit:cover;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.lb-item:hover img{transform:scale(1.05)}
+
+/* EDITORIAL BANNER */
+#editorial{position:relative;height:72vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ed-bg{position:absolute;inset:0;will-change:transform}
+.ed-bg img{width:100%;height:120%;object-fit:cover;object-position:center 20%;will-change:transform}
+.ed-bg::after{content:'';position:absolute;inset:0;background:rgba(5,5,5,.38)}
+.ed-inner{position:relative;z-index:2;text-align:center;padding:2rem}
+.ed-quote{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(1.8rem,4vw,4rem);color:var(--white);line-height:1.25;max-width:900px;font-weight:400}
+.ed-cta{margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;opacity:0;transform:translateY(18px)}
+
+/* BRAND VALUES */
+#values{padding:5rem 3rem;background:var(--white);border-top:1px solid var(--line)}
+.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1200px;margin:0 auto}
+.val-item{padding:2.5rem 2rem;text-align:center;border-right:1px solid var(--line)}
+.val-item:last-child{border-right:none}
+.val-icon{width:40px;height:40px;margin:0 auto 1rem;opacity:.35}
+.val-icon svg{width:100%;height:100%;stroke:var(--black);fill:none;stroke-width:1.2}
+.val-name{font-family:'EB Garamond',serif;font-size:1rem;font-weight:500;color:var(--black);margin-bottom:.4rem}
+.val-desc{font-size:.78rem;line-height:1.65;color:var(--muted)}
+
+/* NEWSLETTER */
+#newsletter{padding:6rem 3rem;background:var(--black)}
+.nl-wrap{max-width:620px;margin:0 auto;text-align:center}
+.nl-title{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:400;color:var(--white);margin-bottom:.8rem;line-height:1.1}
+.nl-title em{font-style:italic;color:var(--sand)}
+.nl-sub{font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:2.5rem}
+.nl-form{display:flex;gap:0;max-width:440px;margin:0 auto}
+.nl-in{flex:1;padding:.9rem 1.2rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);font-family:'Raleway',sans-serif;font-size:.85rem;color:var(--white);outline:none;transition:border-color .25s;cursor:auto}
+.nl-in::placeholder{color:rgba(255,255,255,.3)}
+.nl-in:focus{border-color:rgba(255,255,255,.4)}
+.nl-btn{padding:.9rem 1.8rem;background:var(--white);color:var(--black);font-family:'Raleway',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:none;transition:background .2s;white-space:nowrap;flex-shrink:0}
+.nl-btn:hover{background:var(--ivory)}
+.nl-note{font-size:.7rem;color:rgba(255,255,255,.25);margin-top:1rem}
+
+/* FOOTER */
+footer{background:var(--black);border-top:1px solid rgba(255,255,255,.07);padding:4rem 3rem 2.5rem}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-brand{font-family:'EB Garamond',serif;font-size:1.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--white);margin-bottom:1rem}
+.ft-tagline{font-size:.8rem;line-height:1.65;color:rgba(255,255,255,.3);max-width:240px}
+.ft-social{display:flex;gap:.8rem;margin-top:1.5rem}
+.ft-social a{width:32px;height:32px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;cursor:none;transition:border-color .2s}
+.ft-social a:hover{border-color:rgba(255,255,255,.4)}
+.ft-social svg{width:14px;height:14px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.5;transition:stroke .2s}
+.ft-social a:hover svg{stroke:rgba(255,255,255,.85)}
+.ft-col-title{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.4);margin-bottom:1.3rem}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.ft-links a{font-size:.82rem;color:rgba(255,255,255,.3);transition:color .2s}
+.ft-links a:hover{color:rgba(255,255,255,.75)}
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;flex-wrap:wrap;gap:1rem}
+.ft-legal{font-size:.7rem;color:rgba(255,255,255,.2)}
+.ft-legal a{color:rgba(255,255,255,.35);transition:color .2s}
+.ft-legal a:hover{color:rgba(255,255,255,.6)}
+.ft-credit{font-size:.7rem;color:rgba(255,255,255,.2)}
+.ft-credit a{color:var(--sand);opacity:.7;transition:opacity .2s}
+.ft-credit a:hover{opacity:1}
+
+/* ─── TOAST ──────────────────────────────────── */
+#toast{position:fixed;bottom:2rem;right:2rem;z-index:8000;background:var(--black);color:var(--white);padding:.7rem 1.4rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap}
+#toast.show{opacity:1;transform:translateY(0)}
+
+/* ─── CART DRAWER ─────────────────────────────── */
+.cart-overlay{position:fixed;inset:0;background:rgba(10,10,10,.3);z-index:5000;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;background:var(--white);z-index:5001;transform:translateX(105%);transition:transform .48s cubic-bezier(.77,0,.18,1);display:flex;flex-direction:column;box-shadow:-24px 0 60px rgba(0,0,0,.07)}
+.cart-drawer.open{transform:translateX(0)}
+.cd-head{padding:1.7rem 2rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.cd-title{font-family:'EB Garamond',serif;font-size:1.25rem;font-weight:500}
+.cd-close{background:none;border:none;cursor:none;color:var(--muted);font-size:1.5rem;line-height:1;padding:.2rem;transition:color .2s;display:flex;align-items:center;justify-content:center}
+.cd-close:hover{color:var(--black)}
+.cd-items{flex:1;overflow-y:auto;padding:0 2rem}
+.cd-empty{text-align:center;padding:4rem 1rem}
+.cd-empty-icon{font-size:2.2rem;opacity:.2;margin-bottom:1rem}
+.cd-empty p{font-size:.85rem;color:var(--muted);line-height:1.65}
+.cd-item{display:grid;grid-template-columns:68px 1fr auto;gap:1rem;padding:1.3rem 0;border-bottom:1px solid var(--line);align-items:start}
+.cd-item:first-child{border-top:1px solid var(--line);margin-top:1rem}
+.cd-img{width:68px;height:85px;object-fit:cover;object-position:top;background:var(--ivory)}
+.cd-item-brand{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.cd-item-name{font-family:'EB Garamond',serif;font-size:.95rem;color:var(--black);line-height:1.2;margin-bottom:.55rem}
+.cd-item-price{font-size:.85rem;font-weight:500;color:var(--black)}
+.cd-qty{display:flex;align-items:center;gap:.55rem;margin-top:.55rem}
+.cd-qbtn{width:22px;height:22px;border:1px solid var(--line);background:none;cursor:none;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--black);transition:border-color .2s,background .2s;line-height:1;flex-shrink:0}
+.cd-qbtn:hover{border-color:var(--black);background:var(--black);color:var(--white)}
+.cd-qn{font-size:.8rem;font-weight:500;min-width:16px;text-align:center}
+.cd-rm{background:none;border:none;cursor:none;color:var(--muted);font-size:.75rem;padding:.15rem;transition:color .2s;margin-top:.1rem;line-height:1}
+.cd-rm:hover{color:var(--black)}
+.cd-foot{padding:1.4rem 2rem 2rem;border-top:1px solid var(--line);flex-shrink:0}
+.cd-row{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-bottom:.5rem}
+.cd-row-grand{display:flex;justify-content:space-between;font-size:1rem;font-weight:500;color:var(--black);padding-top:.8rem;margin-top:.3rem;border-top:1px solid var(--line)}
+.cd-row-grand span:last-child{font-family:'EB Garamond',serif;font-size:1.1rem}
+.cd-free{color:#2A7A4B;font-weight:500}
+.cd-checkout-btn{width:100%;margin-top:1.4rem;padding:1.05rem;background:var(--black);color:var(--white);font-family:'Raleway',sans-serif;font-weight:600;font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:none;transition:background .2s}
+.cd-checkout-btn:hover{background:#1c1c1c}
+.cd-checkout-btn:disabled{opacity:.35}
+.cd-cont-btn{width:100%;margin-top:.65rem;background:none;border:none;color:var(--muted);font-family:'Raleway',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:none;padding:.7rem;transition:color .2s}
+.cd-cont-btn:hover{color:var(--black)}
+
+/* ─── CHECKOUT OVERLAY ────────────────────────── */
+.co{position:fixed;inset:0;background:var(--white);z-index:6000;opacity:0;pointer-events:none;transition:opacity .38s;overflow-y:auto;display:flex;flex-direction:column}
+.co.open{opacity:1;pointer-events:all}
+.co-nav{padding:1.3rem 3rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.co-logo{font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.co-x{background:none;border:none;cursor:none;font-family:'Raleway',sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:.4rem;transition:color .2s}
+.co-x:hover{color:var(--black)}
+.co-x svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* steps */
+.co-steps{display:flex;align-items:center;justify-content:center;padding:1.8rem 3rem;border-bottom:1px solid var(--line);flex-shrink:0}
+.co-step{display:flex;align-items:center;gap:.55rem;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:rgba(10,10,10,.22);transition:color .35s;white-space:nowrap}
+.co-step.active,.co-step.done{color:var(--black)}
+.co-step.done{color:var(--sand2)}
+.co-step-n{width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.56rem;flex-shrink:0}
+.co-step.active .co-step-n{background:var(--black);border-color:var(--black);color:var(--white)}
+.co-step.done .co-step-n{background:var(--sand2);border-color:var(--sand2);color:var(--white)}
+.co-div{width:35px;height:1px;background:var(--line);margin:0 .7rem;flex-shrink:0}
+.co-body{flex:1;padding:3rem;display:flex;justify-content:center}
+.co-inner{width:100%;max-width:780px}
+.co-panel{display:none}
+.co-panel.active{display:block}
+.co-sec-title{font-family:'EB Garamond',serif;font-size:1.55rem;font-weight:500;margin-bottom:2rem}
+
+/* order summary */
+.os-item{display:grid;grid-template-columns:60px 1fr auto;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px solid var(--line)}
+.os-img{width:60px;height:75px;object-fit:cover;object-position:top;background:var(--ivory)}
+.os-brand{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.os-name{font-family:'EB Garamond',serif;font-size:.92rem;color:var(--black)}
+.os-qty{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+.os-price{font-size:.88rem;font-weight:500;white-space:nowrap}
+.os-totals{margin-top:1.2rem;display:flex;flex-direction:column;gap:.5rem}
+.os-row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted)}
+.os-grand{font-size:1rem;font-weight:500;color:var(--black);padding-top:.8rem;border-top:1px solid var(--line);margin-top:.4rem}
+.os-grand span:last-child{font-family:'EB Garamond',serif;font-size:1.1rem}
+
+/* delivery form */
+.co-form{display:grid;gap:1.1rem}
+.co-form-2{grid-template-columns:1fr 1fr;display:grid;gap:1.1rem}
+.co-label{display:block;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:.45rem}
+.co-in,.co-sel{width:100%;padding:.82rem 1rem;border:1.5px solid var(--line);background:transparent;font-family:'Raleway',sans-serif;font-size:.9rem;color:var(--black);outline:none;transition:border-color .25s;-webkit-appearance:none;border-radius:0}
+.co-in:focus,.co-sel:focus{border-color:var(--black)}
+.co-in::placeholder{color:rgba(10,10,10,.22)}
+.co-sel{background:var(--white)}
+
+/* credit card */
+.card-scene{width:320px;height:190px;perspective:1200px;margin:0 auto 2.5rem}
+.card-3d{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1)}
+.card-3d.flipped{transform:rotateY(180deg)}
+.card-face,.card-back-face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:1.5rem 1.7rem;display:flex;flex-direction:column;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 45%,#0f3460 100%);color:var(--white);box-shadow:0 16px 48px rgba(0,0,0,.28)}
+.card-back-face{transform:rotateY(180deg)}
+.card-chip{width:32px;height:24px;background:linear-gradient(135deg,#d4a843,#f0c878);border-radius:3px;margin-bottom:.9rem;display:flex;flex-direction:column;justify-content:space-evenly;padding:4px 5px}
+.card-chip-l{height:1.5px;background:rgba(0,0,0,.3);border-radius:1px}
+.card-chip-l.short{width:55%}
+.card-num{font-size:.95rem;letter-spacing:.2em;margin-bottom:1.1rem;font-weight:300;opacity:.9;font-family:'EB Garamond',serif}
+.card-bot{display:flex;justify-content:space-between;align-items:flex-end}
+.card-lbl{font-size:.48rem;letter-spacing:.13em;text-transform:uppercase;opacity:.5;margin-bottom:.18rem}
+.card-val{font-size:.78rem;letter-spacing:.04em}
+.card-logo-txt{font-family:'EB Garamond',serif;font-size:1.1rem;font-style:italic;opacity:.55}
+.card-strip{height:40px;background:rgba(0,0,0,.68);margin:-1.5rem -1.7rem 1rem;border-radius:14px 14px 0 0;width:calc(100% + 3.4rem)}
+.card-cvv-lbl{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;opacity:.5;margin-bottom:.3rem;text-align:right}
+.card-cvv-box{background:rgba(255,255,255,.88);border-radius:3px;padding:.4rem .7rem;color:#0f3460;font-size:.85rem;letter-spacing:.2em;font-weight:600;display:block;text-align:right;min-width:48px}
+.pay-form{display:grid;gap:1.1rem}
+.pay-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+
+/* buttons */
+.co-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;background:var(--black);color:var(--white);font-family:'Raleway',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.4rem;border:none;cursor:none;transition:background .2s;margin-top:2rem}
+.co-btn:hover{background:#1c1c1c}
+.co-btn-o{background:transparent;color:var(--muted);border:1.5px solid var(--line);margin-right:.8rem}
+.co-btn-o:hover{background:transparent;color:var(--black);border-color:var(--black)}
+
+/* success */
+.co-success{text-align:center;padding:4rem 2rem;max-width:520px;margin:0 auto}
+.succ-ring{width:70px;height:70px;border-radius:50%;border:2px solid var(--sand2);display:flex;align-items:center;justify-content:center;margin:0 auto 2rem}
+.succ-ring svg{width:32px;height:32px;stroke:var(--sand2);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:80;stroke-dashoffset:80;transition:stroke-dashoffset .8s .15s ease}
+.succ-ring.anim svg{stroke-dashoffset:0}
+.co-success h2{font-family:'EB Garamond',serif;font-size:2.1rem;font-weight:500;margin-bottom:.7rem}
+.co-success h2 em{font-style:italic;color:var(--sand2)}
+.co-success p{font-size:.88rem;line-height:1.78;color:var(--muted)}
+.co-order-nr{font-size:.82rem;color:var(--muted);margin:1.2rem 0;letter-spacing:.04em}
+.co-order-nr strong{color:var(--black);font-weight:500}
+.succ-back{background:none;border:none;border-bottom:1px solid var(--line);padding-bottom:.2rem;font-family:'Raleway',sans-serif;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;cursor:none;color:var(--black);margin-top:2rem;transition:border-color .2s;display:inline-block}
+.succ-back:hover{border-color:var(--black)}
+
+@media(max-width:640px){
+  .cart-drawer{width:100vw}
+  .co-steps{padding:1.4rem 1rem}
+  .co-step span.co-step-lbl{display:none}
+  .co-body{padding:2rem 1.5rem}
+  .co-form-2,.pay-row{grid-template-columns:1fr}
+  .card-scene{width:100%;max-width:290px}
+  .co-nav{padding:1rem 1.5rem}
+}
+
+@media(max-width:960px){
+  #nav{padding:0 1.5rem;grid-template-columns:auto 1fr auto}
+  .nav-links{display:none}
+  #hero .h-inner{padding:0 1.5rem 4.5rem}
+  #colectii{grid-template-columns:1fr}
+  .col-item,.col-item:first-child{aspect-ratio:4/5}
+  #noutati,#lookbook,#editorial,#values,#newsletter{padding:5rem 1.5rem}
+  .prod-grid{grid-template-columns:1fr 1fr}
+  .lb-grid{grid-template-columns:1fr 1fr}
+  .lb-item:first-child,.lb-item:nth-child(4){grid-row:span 1}
+  .val-grid{grid-template-columns:1fr 1fr}
+  .val-item:nth-child(2){border-right:none}
+  .val-item:nth-child(2),.val-item:nth-child(4){border-top:1px solid var(--line)}
+  .ft-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+  footer{padding:3rem 1.5rem 2rem}
+  .ft-bottom{flex-direction:column;text-align:center}
+  .nl-form{flex-direction:column}
+  .nl-btn{padding:.85rem}
+}
+@media(max-width:480px){
+  .prod-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+
+<nav id="nav" class="dark">
+  <ul class="nav-links">
+    <li><a href="#colectii">Colecții</a></li>
+    <li><a href="#noutati">Noutăți</a></li>
+    <li><a href="#lookbook">Lookbook</a></li>
+    <li><a href="#newsletter">Despre</a></li>
+  </ul>
+  <a href="#" class="nav-logo">SÉVRA</a>
+  <div class="nav-r">
+    <a href="#"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></a>
+    <button id="navCartBtn" style="background:none;border:none;cursor:none;display:flex;align-items:center;position:relative;padding:0;color:inherit">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span id="navCartCount" class="nav-cart-count" style="display:none">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-bg" id="hBg">
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=85" alt="" loading="eager">
+  </div>
+  <div class="h-inner">
+    <p class="h-season">Toamnă · Iarnă 2025</p>
+    <h1 class="h-h1">
+      <span class="lw"><span class="li">Eleganță</span></span>
+      <span class="lw"><span class="li"><em>fără efort.</em></span></span>
+    </h1>
+    <div class="h-foot">
+      <p class="h-tagline">Colecția care redefinește feminitatea modernă — piesele-cheie ale acestui sezon.</p>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+        <a href="#colectii" class="btn-blk">Descoperă colecția <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#lookbook" class="btn-blk-o">Vezi lookbook</a>
+      </div>
+    </div>
+  </div>
+  <div class="h-scroll">
+    <span>Scroll</span>
+    <div class="h-scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-inner">
+    <span class="mq-item">Toamnă · Iarnă 2025</span><span class="mq-sep"> · </span>
+    <span class="mq-item">Livrare Gratuită Peste 500 Lei</span><span class="mq-sep"> · </span>
+    <span class="mq-item"><em>New Arrivals</em></span><span class="mq-sep"> · </span>
+    <span class="mq-item">Retur 30 de Zile</span><span class="mq-sep"> · </span>
+    <span class="mq-item">Materiale Premium</span><span class="mq-sep"> · </span>
+    <span class="mq-item">Plată în Rate fără Dobândă</span><span class="mq-sep"> · </span>
+    <span class="mq-item">Toamnă · Iarnă 2025</span><span class="mq-sep"> · </span>
+    <span class="mq-item">Livrare Gratuită Peste 500 Lei</span><span class="mq-sep"> · </span>
+    <span class="mq-item"><em>New Arrivals</em></span><span class="mq-sep"> · </span>
+    <span class="mq-item">Retur 30 de Zile</span><span class="mq-sep"> · </span>
+    <span class="mq-item">Materiale Premium</span><span class="mq-sep"> · </span>
+    <span class="mq-item">Plată în Rate fără Dobândă</span><span class="mq-sep"> · </span>
+  </div>
+</div>
+
+<!-- COLECȚII FEATURED -->
+<section id="colectii">
+  <div class="col-item">
+    <div class="col-img" id="ci1"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=85" alt="Colecție de zi" loading="lazy"></div>
+    <div class="col-info">
+      <p class="col-season">Zi · Casual Edit</p>
+      <h2 class="col-name">The <em>Effortless</em><br>Wardrobe</h2>
+      <span class="col-link">Cumpără acum</span>
+    </div>
+  </div>
+  <div class="col-item">
+    <div class="col-img" id="ci2"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1200&q=85" alt="Colecție seară" loading="lazy"></div>
+    <div class="col-info">
+      <p class="col-season">Seară · Evening Edit</p>
+      <h2 class="col-name">The <em>After Dark</em><br>Collection</h2>
+      <span class="col-link">Cumpără acum</span>
+    </div>
+  </div>
+</section>
+
+<!-- NOUTĂȚI -->
+<section id="noutati">
+  <div style="max-width:1300px;margin:0 auto">
+    <div class="sec-header">
+      <div>
+        <p class="sec-eyebrow">Nou în colecție</p>
+        <h2 class="sec-title">Noutăți &amp; <em>Best-sellers</em></h2>
+      </div>
+      <a href="#" class="view-all">Vezi toate produsele →</a>
+    </div>
+    <div class="prod-grid">
+
+      <!-- Produs 1 -->
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Rochie midi" loading="lazy">
+          <span class="prod-tag new">Nou</span>
+          <div class="prod-overlay"><button class="prod-add" data-id="1" data-name="Rochie Midi Structurată" data-brand="SÉVRA Essentials" data-price="689" data-img="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80">+ Adaugă în coș</button></div>
+        </div>
+        <p class="prod-brand">SÉVRA Essentials</p>
+        <h3 class="prod-name">Rochie Midi Structurată</h3>
+        <div class="prod-price-row"><span class="prod-price">689 lei</span></div>
+        <div class="prod-colors">
+          <div class="prod-color" style="background:#1A1A1A" title="Negru"></div>
+          <div class="prod-color" style="background:#C8B49A" title="Sand"></div>
+          <div class="prod-color" style="background:#4A3728" title="Tobacco"></div>
+        </div>
+      </div>
+
+      <!-- Produs 2 -->
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80" alt="Sacou oversize" loading="lazy">
+          <span class="prod-tag new">Nou</span>
+          <div class="prod-overlay"><button class="prod-add" data-id="2" data-name="Sacou Oversize Lână" data-brand="SÉVRA Studio" data-price="1290" data-img="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80">+ Adaugă în coș</button></div>
+        </div>
+        <p class="prod-brand">SÉVRA Studio</p>
+        <h3 class="prod-name">Sacou Oversize Lână</h3>
+        <div class="prod-price-row"><span class="prod-price">1.290 lei</span></div>
+        <div class="prod-colors">
+          <div class="prod-color" style="background:#F0EDE8" title="Ivory"></div>
+          <div class="prod-color" style="background:#1A1A1A" title="Negru"></div>
+          <div class="prod-color" style="background:#8A7060" title="Camel"></div>
+        </div>
+      </div>
+
+      <!-- Produs 3 -->
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Geantă piele" loading="lazy">
+          <div class="prod-overlay"><button class="prod-add" data-id="3" data-name="Geantă Mini Piele Naturală" data-brand="SÉVRA Atelier" data-price="890" data-img="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80">+ Adaugă în coș</button></div>
+        </div>
+        <p class="prod-brand">SÉVRA Atelier</p>
+        <h3 class="prod-name">Geantă Mini Piele Naturală</h3>
+        <div class="prod-price-row"><span class="prod-price">890 lei</span></div>
+        <div class="prod-colors">
+          <div class="prod-color" style="background:#C8B49A" title="Sand"></div>
+          <div class="prod-color" style="background:#1A1A1A" title="Negru"></div>
+          <div class="prod-color" style="background:#8B2020" title="Bordeaux"></div>
+        </div>
+      </div>
+
+      <!-- Produs 4 -->
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&q=80" alt="Palton camel" loading="lazy">
+          <span class="prod-tag sale">−30%</span>
+          <div class="prod-overlay"><button class="prod-add" data-id="4" data-name="Palton Camel Classic" data-brand="SÉVRA Studio" data-price="1540" data-img="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&q=80">+ Adaugă în coș</button></div>
+        </div>
+        <p class="prod-brand">SÉVRA Studio</p>
+        <h3 class="prod-name">Palton Camel Classic</h3>
+        <div class="prod-price-row"><span class="prod-price">1.540 lei</span><span class="prod-old">2.200 lei</span></div>
+        <div class="prod-colors">
+          <div class="prod-color" style="background:#8A7060" title="Camel"></div>
+          <div class="prod-color" style="background:#1A1A1A" title="Negru"></div>
+        </div>
+      </div>
+
+      <!-- Produs 5 -->
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80" alt="Ochelari" loading="lazy">
+          <span class="prod-tag new">Nou</span>
+          <div class="prod-overlay"><button class="prod-add" data-id="5" data-name="Ochelari Cat-Eye Gold" data-brand="SÉVRA Eyewear" data-price="450" data-img="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80">+ Adaugă în coș</button></div>
+        </div>
+        <p class="prod-brand">SÉVRA Eyewear</p>
+        <h3 class="prod-name">Ochelari Cat-Eye Gold</h3>
+        <div class="prod-price-row"><span class="prod-price">450 lei</span></div>
+        <div class="prod-colors">
+          <div class="prod-color" style="background:#B8965A" title="Gold"></div>
+          <div class="prod-color" style="background:#1A1A1A" title="Negru"></div>
+        </div>
+      </div>
+
+      <!-- Produs 6 -->
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=600&q=80" alt="Ceas" loading="lazy">
+          <div class="prod-overlay"><button class="prod-add" data-id="6" data-name="Ceas Minimalist Rose Gold" data-brand="SÉVRA Time" data-price="1120" data-img="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=600&q=80">+ Adaugă în coș</button></div>
+        </div>
+        <p class="prod-brand">SÉVRA Time</p>
+        <h3 class="prod-name">Ceas Minimalist Rose Gold</h3>
+        <div class="prod-price-row"><span class="prod-price">1.120 lei</span></div>
+        <div class="prod-colors">
+          <div class="prod-color" style="background:#D4A882" title="Rose Gold"></div>
+          <div class="prod-color" style="background:#C0C0C0" title="Silver"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOOKBOOK -->
+<section id="lookbook">
+  <div style="max-width:1300px;margin:0 auto">
+    <div class="lb-header">
+      <p class="sec-eyebrow">Editorial</p>
+      <h2 class="sec-title">Lookbook <em>Toamnă 2025</em></h2>
+    </div>
+    <div class="lb-grid">
+      <div class="lb-item"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt="" loading="lazy"></div>
+      <div class="lb-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="" loading="lazy"></div>
+      <div class="lb-item"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80" alt="" loading="lazy"></div>
+      <div class="lb-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL BANNER -->
+<section id="editorial">
+  <div class="ed-bg" id="edBg">
+    <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1920&q=85" alt="" loading="lazy">
+  </div>
+  <div class="ed-inner">
+    <p class="ed-quote">„Moda trece. Stilul rămâne."</p>
+    <p style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:1rem;font-family:'Raleway',sans-serif">— Coco Chanel</p>
+    <div class="ed-cta">
+      <a href="#colectii" class="btn-blk">Explorează colecțiile</a>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND VALUES -->
+<section id="values">
+  <div class="val-grid">
+    <div class="val-item">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="val-name">Livrare Gratuită</div>
+      <div class="val-desc">Peste 500 lei, livrare gratuită în toată România în 24–48h</div>
+    </div>
+    <div class="val-item">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg></div>
+      <div class="val-name">Retur 30 Zile</div>
+      <div class="val-desc">Returnezi orice produs în 30 de zile, fără explicații</div>
+    </div>
+    <div class="val-item">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="val-name">Calitate Garantată</div>
+      <div class="val-desc">Materiale premium, testate pentru durabilitate și confort</div>
+    </div>
+    <div class="val-item">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+      <div class="val-name">Plată în Rate</div>
+      <div class="val-desc">Plătești în 3 sau 6 rate, fără dobândă, cu orice card</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="nl-wrap">
+    <h2 class="nl-title">Primul care<br><em>află noutățile.</em></h2>
+    <p class="nl-sub">Abonează-te și primești 10% reducere la prima comandă + acces early la colecțiile noi.</p>
+    <form class="nl-form" onsubmit="return false">
+      <input type="email" placeholder="adresa ta de email" class="nl-in">
+      <button type="submit" class="nl-btn">Abonare</button>
+    </form>
+    <p class="nl-note">Fără spam. Dezabonare oricând, cu un singur click.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="max-width:1300px;margin:0 auto">
+    <div class="ft-top">
+      <div>
+        <div class="ft-brand">SÉVRA</div>
+        <p class="ft-tagline">Modă și accesorii premium pentru femeia modernă. Calitate fără compromis, stil fără efort.</p>
+        <div class="ft-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.23-5.22 1.23-5.22s-.31-.63-.31-1.57c0-1.47.85-2.57 1.91-2.57.9 0 1.34.68 1.34 1.49 0 .91-.58 2.27-.88 3.53-.25 1.05.52 1.91 1.55 1.91 1.86 0 3.11-2.39 3.11-5.22 0-2.15-1.45-3.66-3.53-3.66-2.4 0-3.81 1.8-3.81 3.67 0 .73.28 1.51.63 1.93a.25.25 0 01.06.24c-.06.26-.21.84-.24.96-.04.16-.13.19-.3.11-1.12-.52-1.82-2.16-1.82-3.48 0-2.83 2.06-5.43 5.93-5.43 3.12 0 5.54 2.22 5.54 5.19 0 3.09-1.95 5.58-4.65 5.58-.91 0-1.77-.47-2.06-1.03l-.56 2.09c-.2.78-.75 1.76-1.12 2.35.85.26 1.75.4 2.68.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <p class="ft-col-title">Colecții</p>
+        <ul class="ft-links">
+          <li><a href="#">Noutăți</a></li>
+          <li><a href="#">Ținute de zi</a></li>
+          <li><a href="#">Evening Edit</a></li>
+          <li><a href="#">Accesorii</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="ft-col-title">Servicii</p>
+        <ul class="ft-links">
+          <li><a href="#">Ghid mărimi</a></li>
+          <li><a href="#">Livrare &amp; retur</a></li>
+          <li><a href="#">Plată în rate</a></li>
+          <li><a href="#">Urmărire comandă</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="ft-col-title">Informații</p>
+        <ul class="ft-links">
+          <li><a href="#">Despre SÉVRA</a></li>
+          <li><a href="#">Sustenabilitate</a></li>
+          <li><a href="#">Cariere</a></li>
+          <li><a href="#">Blog editorial</a></li>
+          <li><a href="#">Politică cookie</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-legal">© 2025 SÉVRA · <a href="#">Termeni</a> · <a href="#">Confidențialitate</a> · <a href="#">ANPC</a></span>
+      <span class="ft-credit">Site realizat de <a href="https://cebuclucian.pages.dev">Lucian Cebuc</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  /* cursor */
+  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-2.5}px,${my-2.5}px)`;});
+  (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.transform=`translate(${rx-15}px,${ry-15}px)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-big'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-big'));
+  });
+  /* invert cursor on dark sections */
+  const darkSections=['#hero','#editorial','#newsletter','footer'];
+  darkSections.forEach(sel=>{
+    const el=document.querySelector(sel);
+    if(!el)return;
+    ScrollTrigger.create({trigger:el,start:'top center',end:'bottom center',
+      onEnter:()=>document.body.classList.add('cur-inv'),
+      onLeave:()=>document.body.classList.remove('cur-inv'),
+      onEnterBack:()=>document.body.classList.add('cur-inv'),
+      onLeaveBack:()=>document.body.classList.remove('cur-inv')});
+  });
+
+  /* nav */
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('on',window.scrollY>80);},{passive:true});
+
+  /* lenis */
+  if(typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.3,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+    setTimeout(()=>ScrollTrigger.refresh(),600);
+  }
+
+  /* hero parallax */
+  gsap.to('#hBg img',{yPercent:20,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* hero entrance */
+  const tl=gsap.timeline({delay:.15});
+  tl.to('.h-season',{opacity:1,y:0,duration:.75,ease:'power3.out'})
+    .to('.h-h1 .li',{y:'0%',duration:1.3,stagger:.2,ease:'expo.out'},'-=.45')
+    .to('.h-foot',{opacity:1,y:0,duration:1,ease:'power3.out'},'-=.7')
+    .to('.h-scroll',{opacity:1,duration:.7},'-=.3');
+
+  /* featured collections parallax */
+  gsap.to('#ci1 img',{yPercent:14,ease:'none',scrollTrigger:{trigger:'#colectii',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('#ci2 img',{yPercent:10,ease:'none',scrollTrigger:{trigger:'#colectii',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* product cards reveal */
+  gsap.utils.toArray('.prod-card').forEach((c,i)=>{
+    gsap.from(c,{opacity:0,y:45,duration:.85,ease:'power3.out',
+      scrollTrigger:{trigger:c,start:'top 90%',once:true},delay:i%3*.1});
+  });
+
+  /* lookbook reveal */
+  gsap.utils.toArray('.lb-item').forEach((l,i)=>{
+    gsap.from(l,{opacity:0,y:35,duration:.8,ease:'power3.out',
+      scrollTrigger:{trigger:l,start:'top 92%',once:true},delay:i*.08});
+  });
+
+  /* editorial parallax */
+  gsap.to('#edBg img',{yPercent:-16,ease:'none',scrollTrigger:{trigger:'#editorial',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.to('.ed-cta',{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'#editorial',start:'top 65%',once:true}});
+
+  /* values */
+  gsap.utils.toArray('.val-item').forEach((v,i)=>{
+    gsap.from(v,{opacity:0,y:25,duration:.7,ease:'power3.out',
+      scrollTrigger:{trigger:v,start:'top 88%',once:true},delay:i*.08});
+  });
+})();
+</script>
+
+<!-- ═══════════════════════════════════════
+     CART SYSTEM
+════════════════════════════════════════ -->
+
+<!-- Toast -->
+<div id="toast">Adăugat în coș ✓</div>
+
+<!-- Cart overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Cart drawer -->
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cd-head">
+    <span class="cd-title">Coșul meu</span>
+    <button class="cd-close" id="cartClose">×</button>
+  </div>
+  <div class="cd-items" id="cdItems">
+    <div class="cd-empty" id="cdEmpty">
+      <div class="cd-empty-icon">🛍</div>
+      <p>Coșul tău este gol.<br>Descoperă noua colecție.</p>
+    </div>
+  </div>
+  <div class="cd-foot" id="cdFoot" style="display:none">
+    <div class="cd-row"><span>Subtotal</span><span id="cdSubtotal">0 lei</span></div>
+    <div class="cd-row"><span>Livrare</span><span class="cd-free" id="cdShipping">Gratuită</span></div>
+    <div class="cd-row-grand"><span>Total</span><span id="cdTotal">0 lei</span></div>
+    <button class="cd-checkout-btn" id="cdCheckoutBtn">Spre checkout →</button>
+    <button class="cd-cont-btn" id="cdContBtn">Continuă cumpărăturile</button>
+  </div>
+</aside>
+
+<!-- Checkout overlay -->
+<div class="co" id="co">
+  <div class="co-nav">
+    <span class="co-logo">SÉVRA</span>
+    <button class="co-x" id="coClose">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      Închide
+    </button>
+  </div>
+
+  <div class="co-steps" id="coSteps">
+    <div class="co-step active" data-step="1">
+      <span class="co-step-n">1</span><span class="co-step-lbl">Coș</span>
+    </div>
+    <div class="co-div"></div>
+    <div class="co-step" data-step="2">
+      <span class="co-step-n">2</span><span class="co-step-lbl">Livrare</span>
+    </div>
+    <div class="co-div"></div>
+    <div class="co-step" data-step="3">
+      <span class="co-step-n">3</span><span class="co-step-lbl">Plată</span>
+    </div>
+    <div class="co-div"></div>
+    <div class="co-step" data-step="4">
+      <span class="co-step-n">✓</span><span class="co-step-lbl">Confirmare</span>
+    </div>
+  </div>
+
+  <div class="co-body">
+    <div class="co-inner">
+
+      <!-- STEP 1: Order summary -->
+      <div class="co-panel active" id="coPanel1">
+        <h2 class="co-sec-title">Sumar comandă</h2>
+        <div id="coSummary"></div>
+        <div class="os-totals" id="coTotals"></div>
+        <div>
+          <button class="co-btn co-btn-o" id="coBack1">← Înapoi la coș</button>
+          <button class="co-btn" id="coNext1">Continuă → Livrare</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Delivery -->
+      <div class="co-panel" id="coPanel2">
+        <h2 class="co-sec-title">Date de livrare</h2>
+        <div class="co-form" id="coDelForm">
+          <div class="co-form-2">
+            <div><label class="co-label">Prenume</label><input class="co-in" placeholder="Maria" id="fFirst"></div>
+            <div><label class="co-label">Nume</label><input class="co-in" placeholder="Ionescu" id="fLast"></div>
+          </div>
+          <div><label class="co-label">Email</label><input class="co-in" type="email" placeholder="maria@email.com" id="fEmail"></div>
+          <div><label class="co-label">Telefon</label><input class="co-in" placeholder="+40 7XX XXX XXX" id="fPhone"></div>
+          <div><label class="co-label">Adresă</label><input class="co-in" placeholder="Str. Florilor nr. 12, ap. 3" id="fAddr"></div>
+          <div class="co-form-2">
+            <div><label class="co-label">Oraș</label><input class="co-in" placeholder="Timișoara" id="fCity"></div>
+            <div><label class="co-label">Județ</label>
+              <select class="co-sel" id="fCounty">
+                <option value="">Selectează județul</option>
+                <option>Alba</option><option>Arad</option><option>Argeș</option><option>Bacău</option>
+                <option>Bihor</option><option>Bistrița-Năsăud</option><option>Botoșani</option>
+                <option>Brăila</option><option>Brașov</option><option>București</option>
+                <option>Buzău</option><option>Călărași</option><option>Caraș-Severin</option>
+                <option>Cluj</option><option>Constanța</option><option>Covasna</option>
+                <option>Dâmbovița</option><option>Dolj</option><option>Galați</option>
+                <option>Giurgiu</option><option>Gorj</option><option>Harghita</option>
+                <option>Hunedoara</option><option>Ialomița</option><option>Iași</option>
+                <option>Ilfov</option><option>Maramureș</option><option>Mehedinți</option>
+                <option>Mureș</option><option>Neamț</option><option>Olt</option>
+                <option>Prahova</option><option>Sălaj</option><option>Satu Mare</option>
+                <option>Sibiu</option><option>Suceava</option><option>Teleorman</option>
+                <option selected>Timiș</option><option>Tulcea</option><option>Vâlcea</option>
+                <option>Vaslui</option><option>Vrancea</option>
+              </select>
+            </div>
+          </div>
+          <div><label class="co-label">Cod poștal</label><input class="co-in" placeholder="300001" id="fZip"></div>
+        </div>
+        <div>
+          <button class="co-btn co-btn-o" id="coBack2">← Coș</button>
+          <button class="co-btn" id="coNext2">Continuă → Plată</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Payment -->
+      <div class="co-panel" id="coPanel3">
+        <h2 class="co-sec-title">Detalii plată</h2>
+
+        <!-- 3D card preview -->
+        <div class="card-scene">
+          <div class="card-3d" id="card3d">
+            <!-- Front -->
+            <div class="card-face">
+              <div class="card-chip">
+                <div class="card-chip-l"></div>
+                <div class="card-chip-l short"></div>
+                <div class="card-chip-l"></div>
+              </div>
+              <div class="card-num" id="cardNumDisp">•••• •••• •••• ••••</div>
+              <div class="card-bot">
+                <div>
+                  <div class="card-lbl">Titular</div>
+                  <div class="card-val" id="cardNameDisp">NUMELE TĂU</div>
+                </div>
+                <div>
+                  <div class="card-lbl">Expiră</div>
+                  <div class="card-val" id="cardExpDisp">MM/AA</div>
+                </div>
+                <div class="card-logo-txt">SÉVRA</div>
+              </div>
+            </div>
+            <!-- Back -->
+            <div class="card-back-face">
+              <div class="card-strip"></div>
+              <div class="card-cvv-lbl">CVV</div>
+              <div class="card-cvv-box" id="cardCvvDisp">•••</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pay-form">
+          <div><label class="co-label">Număr card</label>
+            <input class="co-in" id="payNum" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number">
+          </div>
+          <div><label class="co-label">Titular card</label>
+            <input class="co-in" id="payName" placeholder="MARIA IONESCU" autocomplete="cc-name">
+          </div>
+          <div class="pay-row">
+            <div><label class="co-label">Data expirării</label>
+              <input class="co-in" id="payExp" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp">
+            </div>
+            <div><label class="co-label">CVV</label>
+              <input class="co-in" id="payCvv" placeholder="•••" maxlength="3" autocomplete="cc-csc">
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:.8rem;display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--muted)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Plată securizată SSL · Demo — nicio tranzacție reală
+        </div>
+
+        <div>
+          <button class="co-btn co-btn-o" id="coBack3">← Livrare</button>
+          <button class="co-btn" id="coPlaceOrder">Plasează comanda →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Success -->
+      <div class="co-panel" id="coPanel4">
+        <div class="co-success">
+          <div class="succ-ring" id="succRing">
+            <svg viewBox="0 0 36 36"><polyline points="6 18 14 26 30 10"/></svg>
+          </div>
+          <h2>Mulțumim, <em>Maria!</em></h2>
+          <p>Comanda ta a fost plasată cu succes și este în curs de procesare.<br>Vei primi un email de confirmare în câteva momente.</p>
+          <p class="co-order-nr">Număr comandă: <strong id="coOrderNr">#SEVRA-0000</strong></p>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">Livrare estimată: <strong style="color:var(--black)">3–5 zile lucrătoare</strong></p>
+          <button class="succ-back" id="succBack">← Înapoi la colecție</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   CART ENGINE
+══════════════════════════════════════════ */
+(function(){
+  /* state */
+  let cart = [];
+
+  /* dom refs */
+  const overlay   = document.getElementById('cartOverlay');
+  const drawer    = document.getElementById('cartDrawer');
+  const cdItems   = document.getElementById('cdItems');
+  const cdEmpty   = document.getElementById('cdEmpty');
+  const cdFoot    = document.getElementById('cdFoot');
+  const cdSubtot  = document.getElementById('cdSubtotal');
+  const cdTot     = document.getElementById('cdTotal');
+  const navCount  = document.getElementById('navCartCount');
+  const toast     = document.getElementById('toast');
+  const co        = document.getElementById('co');
+
+  /* helpers */
+  const fmt = n => n.toLocaleString('ro-RO') + ' lei';
+
+  function totalQty(){ return cart.reduce((s,i)=>s+i.qty,0); }
+  function subtotal(){ return cart.reduce((s,i)=>s+i.price*i.qty,0); }
+
+  /* nav badge */
+  function updateBadge(){
+    const q = totalQty();
+    navCount.textContent = q;
+    navCount.style.display = q ? 'flex' : 'none';
+  }
+
+  /* toast */
+  let toastTimer;
+  function showToast(){
+    clearTimeout(toastTimer);
+    toast.classList.add('show');
+    toastTimer = setTimeout(()=>toast.classList.remove('show'),2400);
+  }
+
+  /* add to cart */
+  document.querySelectorAll('.prod-add').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const {id,name,brand,price,img} = btn.dataset;
+      const pid = parseInt(id);
+      const existing = cart.find(i=>i.id===pid);
+      if(existing){ existing.qty++; }
+      else { cart.push({id:pid,name,brand,price:parseInt(price),img,qty:1}); }
+      updateBadge();
+      renderDrawer();
+      showToast();
+    });
+  });
+
+  /* render drawer */
+  function renderDrawer(){
+    if(cart.length===0){
+      cdEmpty.style.display='';
+      cdFoot.style.display='none';
+      cdItems.innerHTML='';
+      cdItems.appendChild(cdEmpty);
+    } else {
+      cdEmpty.style.display='none';
+      cdFoot.style.display='';
+      let html='';
+      cart.forEach(item=>{
+        html+=`
+          <div class="cd-item" data-id="${item.id}">
+            <img class="cd-img" src="${item.img}" alt="${item.name}">
+            <div>
+              <p class="cd-item-brand">${item.brand}</p>
+              <p class="cd-item-name">${item.name}</p>
+              <p class="cd-item-price">${fmt(item.price)}</p>
+              <div class="cd-qty">
+                <button class="cd-qbtn" data-action="dec" data-id="${item.id}">−</button>
+                <span class="cd-qn">${item.qty}</span>
+                <button class="cd-qbtn" data-action="inc" data-id="${item.id}">+</button>
+              </div>
+            </div>
+            <button class="cd-rm" data-id="${item.id}" title="Elimină">×</button>
+          </div>`;
+      });
+      cdItems.innerHTML=html;
+
+      /* qty buttons */
+      cdItems.querySelectorAll('.cd-qbtn').forEach(b=>{
+        b.addEventListener('click',()=>{
+          const id=parseInt(b.dataset.id);
+          const it=cart.find(i=>i.id===id);
+          if(!it) return;
+          if(b.dataset.action==='inc') it.qty++;
+          else { it.qty--; if(it.qty<=0) cart=cart.filter(i=>i.id!==id); }
+          updateBadge();
+          renderDrawer();
+        });
+      });
+      /* remove buttons */
+      cdItems.querySelectorAll('.cd-rm').forEach(b=>{
+        b.addEventListener('click',()=>{
+          const id=parseInt(b.dataset.id);
+          cart=cart.filter(i=>i.id!==id);
+          updateBadge();
+          renderDrawer();
+        });
+      });
+
+      const sub=subtotal();
+      cdSubtot.textContent=fmt(sub);
+      cdTot.textContent=fmt(sub);
+    }
+  }
+
+  /* open / close drawer */
+  function openDrawer(){
+    renderDrawer();
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeDrawer(){
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  document.getElementById('navCartBtn').addEventListener('click',openDrawer);
+  document.getElementById('cartClose').addEventListener('click',closeDrawer);
+  document.getElementById('cdContBtn').addEventListener('click',closeDrawer);
+  overlay.addEventListener('click',closeDrawer);
+
+  /* ── CHECKOUT ────────────────────────── */
+  let coStep=1;
+  const panels   = [null,
+    document.getElementById('coPanel1'),
+    document.getElementById('coPanel2'),
+    document.getElementById('coPanel3'),
+    document.getElementById('coPanel4')
+  ];
+  const stepEls  = document.querySelectorAll('.co-step');
+
+  function goTo(n){
+    coStep=n;
+    panels.forEach((p,i)=>{ if(p) p.classList.toggle('active',i===n); });
+    stepEls.forEach(s=>{
+      const sn=parseInt(s.dataset.step);
+      s.classList.toggle('active', sn===n);
+      s.classList.toggle('done',   sn<n);
+    });
+    co.scrollTo(0,0);
+    if(n===1) renderCoSummary();
+    if(n===4) triggerSuccess();
+  }
+
+  function openCheckout(){
+    closeDrawer();
+    if(cart.length===0) return;
+    goTo(1);
+    co.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeCheckout(){
+    co.classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  document.getElementById('cdCheckoutBtn').addEventListener('click',openCheckout);
+  document.getElementById('coClose').addEventListener('click',closeCheckout);
+
+  /* step 1 summary */
+  function renderCoSummary(){
+    const sumEl=document.getElementById('coSummary');
+    const totEl=document.getElementById('coTotals');
+    let html='';
+    cart.forEach(item=>{
+      html+=`
+        <div class="os-item">
+          <img class="os-img" src="${item.img}" alt="${item.name}">
+          <div>
+            <p class="os-brand">${item.brand}</p>
+            <p class="os-name">${item.name}</p>
+            <p class="os-qty">Cantitate: ${item.qty}</p>
+          </div>
+          <span class="os-price">${fmt(item.price*item.qty)}</span>
+        </div>`;
+    });
+    sumEl.innerHTML=html;
+    const sub=subtotal();
+    totEl.innerHTML=`
+      <div class="os-row"><span>Subtotal</span><span>${fmt(sub)}</span></div>
+      <div class="os-row"><span>Livrare</span><span style="color:#2A7A4B;font-weight:500">Gratuită</span></div>
+      <div class="os-row os-grand"><span>Total</span><span>${fmt(sub)}</span></div>`;
+  }
+
+  document.getElementById('coBack1').addEventListener('click',()=>{
+    closeCheckout();
+    openDrawer();
+  });
+  document.getElementById('coNext1').addEventListener('click',()=>goTo(2));
+  document.getElementById('coBack2').addEventListener('click',()=>goTo(1));
+  document.getElementById('coNext2').addEventListener('click',()=>goTo(3));
+  document.getElementById('coBack3').addEventListener('click',()=>goTo(2));
+  document.getElementById('coPlaceOrder').addEventListener('click',()=>goTo(4));
+  document.getElementById('succBack').addEventListener('click',()=>{
+    closeCheckout();
+    cart=[];
+    updateBadge();
+    renderDrawer();
+  });
+
+  /* ── 3D CARD ─────────────────────────── */
+  const card3d = document.getElementById('card3d');
+
+  document.getElementById('payNum').addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'').slice(0,16);
+    this.value=v.replace(/(.{4})/g,'$1 ').trim();
+    const disp=v.padEnd(16,'•').replace(/(.{4})/g,'$1 ').trim();
+    document.getElementById('cardNumDisp').textContent=disp;
+  });
+
+  document.getElementById('payName').addEventListener('input',function(){
+    const v=this.value.toUpperCase()||'NUMELE TĂU';
+    document.getElementById('cardNameDisp').textContent=v;
+  });
+
+  document.getElementById('payExp').addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'').slice(0,4);
+    if(v.length>=3) v=v.slice(0,2)+'/'+v.slice(2);
+    this.value=v;
+    document.getElementById('cardExpDisp').textContent=v||'MM/AA';
+  });
+
+  document.getElementById('payCvv').addEventListener('input',function(){
+    const v=this.value.replace(/\D/g,'').slice(0,3);
+    this.value=v;
+    document.getElementById('cardCvvDisp').textContent=v.padEnd(3,'•');
+  });
+  document.getElementById('payCvv').addEventListener('focus',()=>card3d.classList.add('flipped'));
+  document.getElementById('payCvv').addEventListener('blur',()=>card3d.classList.remove('flipped'));
+
+  /* ── SUCCESS ─────────────────────────── */
+  function triggerSuccess(){
+    /* randomise name from delivery form */
+    const fname=document.getElementById('fFirst').value.trim()||'Maria';
+    co.querySelector('.co-success h2').innerHTML=`Mulțumim, <em>${fname}!</em>`;
+    /* random order number */
+    const nr='#SEVRA-'+Math.random().toString(36).slice(2,8).toUpperCase();
+    document.getElementById('coOrderNr').textContent=nr;
+    /* animate checkmark */
+    const ring=document.getElementById('succRing');
+    ring.classList.remove('anim');
+    setTimeout(()=>ring.classList.add('anim'),80);
+  }
+
+})();
+</script>
+</body>
+</html>
