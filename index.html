@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lucian Cebuc · Web Development Timișoara | Creare Site Web</title>
-<meta name="description" content="Web developer freelance în Timișoara. Creare site de prezentare, magazin online și aplicații web custom. Prețuri fixe, fără taxe lunare, livrare rapidă.">
+<meta name="description" content="Web developer freelance în Timișoara. Creare site de prezentare, magazin online și aplicații web custom. Prețuri fixe, costuri de hosting explicate din start, livrare rapidă.">
 <meta name="keywords" content="web developer timisoara, creare site timisoara, web design timisoara, magazin online timisoara, site prezentare timisoara, developer freelance timisoara, lucian cebuc">
 <meta name="author" content="Lucian Cebuc">
 <meta name="robots" content="index, follow">
@@ -21,7 +21,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cebuclucian.pages.dev/">
 <meta property="og:title" content="Lucian Cebuc · Web Development Timișoara">
-<meta property="og:description" content="Site-uri web profesionale pentru afaceri locale din Timișoara. Prezentări, magazine online, aplicații custom. Prețuri fixe, fără taxe lunare.">
+<meta property="og:description" content="Site-uri web profesionale pentru afaceri locale din Timișoara. Prezentări, magazine online, aplicații custom. Prețuri fixe și costuri clare de la început.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=85">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:site_name" content="Lucian Cebuc Web Development">
@@ -29,7 +29,7 @@
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lucian Cebuc · Web Development Timișoara">
-<meta name="twitter:description" content="Creare site web în Timișoara. Prețuri fixe, fără taxe lunare.">
+<meta name="twitter:description" content="Creare site web în Timișoara. Prețuri fixe, costuri clare.">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=85">
 
 <!-- JSON-LD Structured Data -->
@@ -39,7 +39,7 @@
   "@type": "ProfessionalService",
   "name": "Lucian Cebuc Web Development",
   "alternateName": "Cebuc Lucian PFA",
-  "description": "Web developer freelance în Timișoara. Creare site de prezentare, magazin online, aplicații web custom React + Supabase. Prețuri fixe, fără taxe lunare.",
+  "description": "Web developer freelance în Timișoara. Creare site de prezentare, magazin online, aplicații web custom React + Supabase. Prețuri fixe și costuri clare de la început.",
   "url": "https://cebuclucian.pages.dev",
   "telephone": "+40",
   "email": "lucian.cebuc@gmail.com",
@@ -547,6 +547,25 @@ a{color:inherit;text-decoration:none}
 }
 .pf-card:hover .pf-name{font-variation-settings:'wght' 400;color:var(--lime)}
 .pf-desc{font-size:.875rem;color:var(--mdk);line-height:1.72;max-width:46ch;margin-top:.9rem}
+.pf-side{display:flex;flex-direction:column;align-items:flex-end;gap:.85rem}
+/* eticheta care leagă exemplele și proiectele de pachetul din care fac parte */
+.pkg-link{
+  font-family:'Syne',sans-serif;font-size:.6rem;
+  font-variation-settings:'wght' 700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mdk);white-space:nowrap;
+  display:inline-flex;align-items:center;gap:.5rem;
+  transition:color .35s ease;
+}
+.pkg-link::before{
+  content:'';width:1.1rem;height:1px;background:currentColor;flex-shrink:0;
+}
+.demo-card:hover .pkg-link,
+.pf-card:hover .pkg-link{color:var(--lime)}
+.pkg-lead{
+  font-size:.95rem;color:var(--od);line-height:1.82;
+  max-width:56ch;margin:-3rem 0 3rem;
+}
 .pf-go{
   display:inline-flex;align-items:center;gap:.6rem;
   font-family:'Syne',sans-serif;font-size:.7rem;
@@ -752,6 +771,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 .df-stand{width:38%;height:4px;margin:0 auto;background:#10101A;border-radius:0 0 4px 4px}
 
 .demo-body{padding:1.75rem 2rem;display:flex;flex-direction:column;gap:.9rem;flex:1}
+.demo-body .pkg-link{margin-top:auto;padding-top:.4rem}
 .demo-vert{
   font-family:'Syne',sans-serif;font-size:.62rem;
   font-variation-settings:'wght' 700;
@@ -826,6 +846,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
   /* pe mobil păstrăm raportul capturii: mai bine mică și întreagă
      decât decupată la jumătate de cuvânt */
   .pf-meta{grid-template-columns:1fr;align-items:start}
+  .pf-side{align-items:flex-start}
 }
 @media(max-width:640px){
   .pad{padding:5rem 0}
@@ -839,6 +860,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
   .mt-grid{grid-template-columns:1fr}
   .demo-grid{grid-template-columns:1fr;gap:1rem}
   .obj-lead{margin:-1.5rem 0 2.5rem}
+  .pkg-lead{margin:-1.5rem 0 2.5rem}
   .obj-head{gap:1rem;padding:1.6rem 0}
   .obj-num{display:none}
   .obj-ico{width:2.1rem;height:2.1rem}
@@ -888,7 +910,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
     <div class="h-foot">
       <p class="h-sub">
         De la prezentări elegante la magazine online și aplicații custom —
-        fără taxe lunare de server, optimizat pentru mobil, livrat rapid.
+        cu toate costurile spuse de la început, optimizat pentru mobil, livrat rapid.
       </p>
       <div class="h-cta-w">
         <a href="#contact" class="btn">
@@ -1007,7 +1029,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       <span class="mq-item">Web Development</span>
       <span class="mq-item">Timișoara</span>
       <span class="mq-item dim">Site-uri Rapide</span>
-      <span class="mq-item">Zero Costuri Lunare</span>
+      <span class="mq-item">Costuri Transparente</span>
       <span class="mq-item dim">Mobile First</span>
       <span class="mq-item">React + Supabase</span>
       <span class="mq-item dim">Magazine Online</span>
@@ -1046,8 +1068,8 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
         <div class="diff-row">
           <span class="diff-rn">02</span>
           <div>
-            <h3 class="diff-name">Zero costuri de hosting</h3>
-            <p class="diff-desc">Site-urile statice sunt hostate gratuit pe Cloudflare Pages. Nicio taxă lunară de server — plătești doar domeniul, o dată pe an.</p>
+            <h3 class="diff-name">Hosting pe măsura proiectului</h3>
+            <p class="diff-desc">Un site static poate sta gratuit pe Cloudflare Pages, cu domeniul ca singur cost anual. Un magazin pe GoMag are abonamentul lui, iar o aplicație cu bază de date are costurile ei. Îți spun de la prima discuție ce presupune varianta potrivită ție.</p>
           </div>
         </div>
         <div class="diff-row">
@@ -1062,11 +1084,306 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
   </div>
 </section>
 
-<!-- ═══════ 4. PACHETE ═══════ -->
-<section class="s-dk pad" id="pachete">
+<!-- ═══════ 4. EXEMPLE DE SITE-URI ═══════ -->
+<section class="s-dk pad" id="exemple">
   <div class="wrap">
     <div class="sh">
       <div class="sh-n" aria-hidden="true">03</div>
+      <div>
+        <span class="sh-label">Exemple practice</span>
+        <h2 class="sh-title vf">
+          <span class="lw"><span class="li">Câteva exemple</span></span>
+          <span class="lw"><span class="li">din ce pot construi.</span></span>
+        </h2>
+      </div>
+    </div>
+    <p class="demo-lead">
+      Fiecare afacere e unică. Acestea sunt doar câteva demo-uri funcționale — pot crea site-uri
+      pentru orice domeniu: magazine online, firme de construcții, cabinete, artiști,
+      muzicieni, restaurante, corporate, și multe altele.
+    </p>
+
+    <div class="demo-grid">
+
+      <!-- Card 1: Canisă -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80"
+                   alt="Preview site canisă — câine" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Canisă / Crescătorie</p>
+          <h3 class="demo-name">Site pentru afaceri cu animale</h3>
+          <ul class="demo-feats">
+            <li>Galerie cu rase disponibile și prețuri</li>
+            <li>Pagini dedicate fiecărei rase</li>
+            <li>Formular de rezervare și contact</li>
+          </ul>
+          <span class="pkg-link">Pachet 02 · Catalog produse</span>
+          <a href="kennel.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Instalații -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80"
+                   alt="Preview site firmă instalații" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Firmă de Instalații</p>
+          <h3 class="demo-name">Site pentru meșteri și firme tehnice</h3>
+          <ul class="demo-feats">
+            <li>Prezentare servicii și zone de acoperire</li>
+            <li>Galerie proiecte realizate</li>
+            <li>Formular cerere ofertă rapidă</li>
+          </ul>
+          <span class="pkg-link">Pachet 01 · Site de prezentare</span>
+          <a href="instalatii.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Cabinet -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80"
+                   alt="Preview site cabinet medical" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Cabinet / Clinică</p>
+          <h3 class="demo-name">Site pentru profesioniști din sănătate</h3>
+          <ul class="demo-feats">
+            <li>Prezentare specialiști și tarife</li>
+            <li>Sistem de programare online</li>
+            <li>Pagini de servicii și investigații</li>
+          </ul>
+          <span class="pkg-link">Pachet 01 · Site de prezentare</span>
+          <a href="cabinet.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Magazin Online -->
+      <div class="demo-card">
+        <div class="df-wrap">
+          <div class="df-laptop">
+            <div class="df-bar">
+              <span class="df-dot" style="background:#FF5F57"></span>
+              <span class="df-dot" style="background:#FFBD2E"></span>
+              <span class="df-dot" style="background:#28C840"></span>
+              <div class="df-url"></div>
+            </div>
+            <div class="df-screen">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80"
+                   alt="Preview magazin online fashion" loading="lazy">
+            </div>
+          </div>
+          <div class="df-chin"></div>
+          <div class="df-stand"></div>
+        </div>
+        <div class="demo-body">
+          <p class="demo-vert">Magazin Online</p>
+          <h3 class="demo-name">Modă &amp; accesorii — e-commerce premium</h3>
+          <ul class="demo-feats">
+            <li>Grid produse cu filtre și căutare</li>
+            <li>Coș, checkout și plată online</li>
+            <li>Pagini colecții &amp; lookbook editorial</li>
+          </ul>
+          <span class="pkg-link">Pachet 03 · Magazin online</span>
+          <a href="fashion.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
+            Vezi demo live
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /.demo-grid -->
+
+    <div class="vert-row">
+      <span class="vert-pre">Și altele:</span>
+      <span class="vtag">Magazine online</span>
+      <span class="vtag">Corporate</span>
+      <span class="vtag">Restaurante</span>
+      <span class="vtag">HoReCa</span>
+      <span class="vtag">Artiști</span>
+      <span class="vtag">Muzicieni</span>
+      <span class="vtag">Freelanceri</span>
+      <span class="vtag">ONG-uri</span>
+      <span class="vtag">Showroom-uri</span>
+      <span class="vtag vtag-hi">+ Orice alt domeniu</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ MARQUEE 2 ═══════ -->
+<div class="mq-wrap">
+  <div class="mq" data-dir="-1">
+    <div class="mq-inner">
+      <span class="mq-item">santier.app</span>
+      <span class="mq-item dim">coursecopilot.app</span>
+      <span class="mq-item">maxbau.vercel.app</span>
+      <span class="mq-item dim">Aplicații Custom</span>
+      <span class="mq-item">Cloudflare Pages</span>
+      <span class="mq-item dim">FormSubmit.co</span>
+      <span class="mq-item">Design Responsiv</span>
+      <span class="mq-item dim">Formulare Contact</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 5. PORTOFOLIU ═══════ -->
+<section class="s-dk pad" id="portofoliu">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">04</div>
+      <div>
+        <span class="sh-label">Aplicații în producție</span>
+        <h2 class="sh-title vf">
+          <span class="lw"><span class="li">Și aplicații web</span></span>
+          <span class="lw"><span class="li">complexe, folosite zilnic.</span></span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="pf-list">
+
+      <a class="pf-card" href="https://santier.app" target="_blank" rel="noopener noreferrer" data-work>
+        <div class="pf-media">
+          <img src="images/santier.webp"
+               alt="Pagina principală santier.app — management de șantiere cu asistent AI pentru devize" loading="lazy">
+        </div>
+        <div class="pf-meta">
+          <div>
+            <p class="pf-type">Aplicație Web · React + Supabase</p>
+            <h3 class="pf-name">santier.app</h3>
+            <p class="pf-desc">Management de șantiere cu bugete, echipe și jurnale. Calculează materialele din planuri, transformă pozele de facturi în cheltuieli și găsește normele de deviz pornind de la o descriere în limbaj obișnuit — peste 1.100 de norme românești.</p>
+          </div>
+          <div class="pf-side">
+            <span class="pkg-link">Pachet 04 · Aplicație web custom</span>
+            <span class="pf-go">
+            Vizitează site-ul
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="pf-card" href="https://coursecopilot.app" target="_blank" rel="noopener noreferrer" data-work>
+        <div class="pf-media">
+          <img src="images/coursecopilot.webp"
+               alt="Pagina principală coursecopilot.app — generare de cursuri pentru traineri" loading="lazy">
+        </div>
+        <div class="pf-meta">
+          <div>
+            <p class="pf-type">Aplicație Web · Educație &amp; AI</p>
+            <h3 class="pf-name">coursecopilot.app</h3>
+            <p class="pf-desc">Pentru traineri care își construiesc singuri cursurile, nu le asamblează din bucăți. Îi dai subiectul, publicul și vocea ta, iar aplicația întoarce un curs complet — de la o oră la o zi întreagă, în tonul tău.</p>
+          </div>
+          <div class="pf-side">
+            <span class="pkg-link">Pachet 04 · Aplicație web custom</span>
+            <span class="pf-go">
+            Vizitează site-ul
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="pf-card" href="https://maxbau.vercel.app" target="_blank" rel="noopener noreferrer" data-work>
+        <div class="pf-media">
+          <img src="images/maxbau.webp"
+               alt="Configurator de rețete și sisteme din dashboard-ul Max Bau" loading="lazy">
+        </div>
+        <div class="pf-meta">
+          <div>
+            <p class="pf-type">Aplicație Web · Materiale de construcții</p>
+            <h3 class="pf-name">maxbau.vercel.app</h3>
+            <p class="pf-desc">Dashboard pentru un depozit de materiale: catalog, import de antemăsurători din Excel și OCR, plus un configurator care generează oferta automat, cu variante echivalente și calcul de ambalare.</p>
+          </div>
+          <div class="pf-side">
+            <span class="pkg-link">Pachet 04 · Aplicație web custom</span>
+            <span class="pf-go">
+            Vizitează site-ul
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FULL-BLEED IMAGE ═══════ -->
+<div class="fb-img" id="fb1">
+  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85"
+       alt="Open space de lucru modern" loading="lazy">
+</div>
+
+<!-- ═══════ 6. PACHETE ═══════ -->
+<section class="s-dk pad" id="pachete">
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-n" aria-hidden="true">05</div>
       <div>
         <span class="sh-label">Servicii &amp; Prețuri</span>
         <h2 class="sh-title vf">
@@ -1075,6 +1392,10 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
         </h2>
       </div>
     </div>
+    <p class="pkg-lead">
+      Fiecare exemplu și fiecare proiect de mai sus e etichetat cu pachetul din
+      care face parte. Mai jos e ce presupune fiecare.
+    </p>
     <div class="pkg-grid">
       <div class="pkg-card">
         <span class="pkg-tag">Pachet 01</span>
@@ -1136,197 +1457,11 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
   </div>
 </section>
 
-<!-- ═══════ FULL-BLEED IMAGE ═══════ -->
-<div class="fb-img" id="fb1">
-  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85"
-       alt="Open space de lucru modern" loading="lazy">
-</div>
-
-<!-- ═══════ 5. EXEMPLE DE SITE-URI ═══════ -->
-<section class="s-dk pad" id="exemple">
-  <div class="wrap">
-    <div class="sh">
-      <div class="sh-n" aria-hidden="true">04</div>
-      <div>
-        <span class="sh-label">Exemple practice</span>
-        <h2 class="sh-title vf">
-          <span class="lw"><span class="li">Câteva exemple</span></span>
-          <span class="lw"><span class="li">din ce pot construi.</span></span>
-        </h2>
-      </div>
-    </div>
-    <p class="demo-lead">
-      Fiecare afacere e unică. Acestea sunt doar câteva demo-uri funcționale — pot crea site-uri
-      pentru orice domeniu: magazine online, firme de construcții, cabinete, artiști,
-      muzicieni, restaurante, corporate, și multe altele.
-    </p>
-
-    <div class="demo-grid">
-
-      <!-- Card 1: Canisă -->
-      <div class="demo-card">
-        <div class="df-wrap">
-          <div class="df-laptop">
-            <div class="df-bar">
-              <span class="df-dot" style="background:#FF5F57"></span>
-              <span class="df-dot" style="background:#FFBD2E"></span>
-              <span class="df-dot" style="background:#28C840"></span>
-              <div class="df-url"></div>
-            </div>
-            <div class="df-screen">
-              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80"
-                   alt="Preview site canisă — câine" loading="lazy">
-            </div>
-          </div>
-          <div class="df-chin"></div>
-          <div class="df-stand"></div>
-        </div>
-        <div class="demo-body">
-          <p class="demo-vert">Canisă / Crescătorie</p>
-          <h3 class="demo-name">Site pentru afaceri cu animale</h3>
-          <ul class="demo-feats">
-            <li>Galerie cu rase disponibile și prețuri</li>
-            <li>Pagini dedicate fiecărei rase</li>
-            <li>Formular de rezervare și contact</li>
-          </ul>
-          <a href="kennel.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
-            Vezi demo live
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 2: Instalații -->
-      <div class="demo-card">
-        <div class="df-wrap">
-          <div class="df-laptop">
-            <div class="df-bar">
-              <span class="df-dot" style="background:#FF5F57"></span>
-              <span class="df-dot" style="background:#FFBD2E"></span>
-              <span class="df-dot" style="background:#28C840"></span>
-              <div class="df-url"></div>
-            </div>
-            <div class="df-screen">
-              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80"
-                   alt="Preview site firmă instalații" loading="lazy">
-            </div>
-          </div>
-          <div class="df-chin"></div>
-          <div class="df-stand"></div>
-        </div>
-        <div class="demo-body">
-          <p class="demo-vert">Firmă de Instalații</p>
-          <h3 class="demo-name">Site pentru meșteri și firme tehnice</h3>
-          <ul class="demo-feats">
-            <li>Prezentare servicii și zone de acoperire</li>
-            <li>Galerie proiecte realizate</li>
-            <li>Formular cerere ofertă rapidă</li>
-          </ul>
-          <a href="instalatii.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
-            Vezi demo live
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 3: Cabinet -->
-      <div class="demo-card">
-        <div class="df-wrap">
-          <div class="df-laptop">
-            <div class="df-bar">
-              <span class="df-dot" style="background:#FF5F57"></span>
-              <span class="df-dot" style="background:#FFBD2E"></span>
-              <span class="df-dot" style="background:#28C840"></span>
-              <div class="df-url"></div>
-            </div>
-            <div class="df-screen">
-              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80"
-                   alt="Preview site cabinet medical" loading="lazy">
-            </div>
-          </div>
-          <div class="df-chin"></div>
-          <div class="df-stand"></div>
-        </div>
-        <div class="demo-body">
-          <p class="demo-vert">Cabinet / Clinică</p>
-          <h3 class="demo-name">Site pentru profesioniști din sănătate</h3>
-          <ul class="demo-feats">
-            <li>Prezentare specialiști și tarife</li>
-            <li>Sistem de programare online</li>
-            <li>Pagini de servicii și investigații</li>
-          </ul>
-          <a href="cabinet.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
-            Vezi demo live
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 4: Magazin Online -->
-      <div class="demo-card">
-        <div class="df-wrap">
-          <div class="df-laptop">
-            <div class="df-bar">
-              <span class="df-dot" style="background:#FF5F57"></span>
-              <span class="df-dot" style="background:#FFBD2E"></span>
-              <span class="df-dot" style="background:#28C840"></span>
-              <div class="df-url"></div>
-            </div>
-            <div class="df-screen">
-              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80"
-                   alt="Preview magazin online fashion" loading="lazy">
-            </div>
-          </div>
-          <div class="df-chin"></div>
-          <div class="df-stand"></div>
-        </div>
-        <div class="demo-body">
-          <p class="demo-vert">Magazin Online</p>
-          <h3 class="demo-name">Modă &amp; accesorii — e-commerce premium</h3>
-          <ul class="demo-feats">
-            <li>Grid produse cu filtre și căutare</li>
-            <li>Coș, checkout și plată online</li>
-            <li>Pagini colecții &amp; lookbook editorial</li>
-          </ul>
-          <a href="fashion.html" class="demo-btn" target="_blank" rel="noopener noreferrer">
-            Vezi demo live
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-    </div><!-- /.demo-grid -->
-
-    <div class="vert-row">
-      <span class="vert-pre">Și altele:</span>
-      <span class="vtag">Magazine online</span>
-      <span class="vtag">Corporate</span>
-      <span class="vtag">Restaurante</span>
-      <span class="vtag">HoReCa</span>
-      <span class="vtag">Artiști</span>
-      <span class="vtag">Muzicieni</span>
-      <span class="vtag">Freelanceri</span>
-      <span class="vtag">ONG-uri</span>
-      <span class="vtag">Showroom-uri</span>
-      <span class="vtag vtag-hi">+ Orice alt domeniu</span>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════ 6. MENTENANȚĂ ═══════ -->
+<!-- ═══════ 7. MENTENANȚĂ ═══════ -->
 <section class="s-lt pad-sm" id="mentenanta">
   <div class="wrap">
     <div class="sh">
-      <div class="sh-n" aria-hidden="true">05</div>
+      <div class="sh-n" aria-hidden="true">06</div>
       <div>
         <span class="sh-label">Suport continuu</span>
         <h2 class="sh-title vf">
@@ -1358,102 +1493,6 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
           <li>Termen de livrare 1–3 zile lucrătoare</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ MARQUEE 2 ═══════ -->
-<div class="mq-wrap">
-  <div class="mq" data-dir="-1">
-    <div class="mq-inner">
-      <span class="mq-item">santier.app</span>
-      <span class="mq-item dim">coursecopilot.app</span>
-      <span class="mq-item">maxbau.vercel.app</span>
-      <span class="mq-item dim">Aplicații Custom</span>
-      <span class="mq-item">Cloudflare Pages</span>
-      <span class="mq-item dim">FormSubmit.co</span>
-      <span class="mq-item">Design Responsiv</span>
-      <span class="mq-item dim">Formulare Contact</span>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════ 7. PORTOFOLIU ═══════ -->
-<section class="s-dk pad" id="portofoliu">
-  <div class="wrap">
-    <div class="sh">
-      <div class="sh-n" aria-hidden="true">06</div>
-      <div>
-        <span class="sh-label">Lucrări recente</span>
-        <h2 class="sh-title vf">
-          <span class="lw"><span class="li">Proiecte live,</span></span>
-          <span class="lw"><span class="li">nu mock-up-uri.</span></span>
-        </h2>
-      </div>
-    </div>
-
-    <div class="pf-list">
-
-      <a class="pf-card" href="https://santier.app" target="_blank" rel="noopener noreferrer" data-work>
-        <div class="pf-media">
-          <img src="images/santier.webp"
-               alt="Pagina principală santier.app — management de șantiere cu asistent AI pentru devize" loading="lazy">
-        </div>
-        <div class="pf-meta">
-          <div>
-            <p class="pf-type">Aplicație Web · React + Supabase</p>
-            <h3 class="pf-name">santier.app</h3>
-            <p class="pf-desc">Management de șantiere cu bugete, echipe și jurnale. Calculează materialele din planuri, transformă pozele de facturi în cheltuieli și găsește normele de deviz pornind de la o descriere în limbaj obișnuit — peste 1.100 de norme românești.</p>
-          </div>
-          <span class="pf-go">
-            Vizitează site-ul
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <a class="pf-card" href="https://coursecopilot.app" target="_blank" rel="noopener noreferrer" data-work>
-        <div class="pf-media">
-          <img src="images/coursecopilot.webp"
-               alt="Pagina principală coursecopilot.app — generare de cursuri pentru traineri" loading="lazy">
-        </div>
-        <div class="pf-meta">
-          <div>
-            <p class="pf-type">Aplicație Web · Educație &amp; AI</p>
-            <h3 class="pf-name">coursecopilot.app</h3>
-            <p class="pf-desc">Pentru traineri care își construiesc singuri cursurile, nu le asamblează din bucăți. Îi dai subiectul, publicul și vocea ta, iar aplicația întoarce un curs complet — de la o oră la o zi întreagă, în tonul tău.</p>
-          </div>
-          <span class="pf-go">
-            Vizitează site-ul
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
-      <a class="pf-card" href="https://maxbau.vercel.app" target="_blank" rel="noopener noreferrer" data-work>
-        <div class="pf-media">
-          <img src="images/maxbau.webp"
-               alt="Configurator de rețete și sisteme din dashboard-ul Max Bau" loading="lazy">
-        </div>
-        <div class="pf-meta">
-          <div>
-            <p class="pf-type">Aplicație Web · Materiale de construcții</p>
-            <h3 class="pf-name">maxbau.vercel.app</h3>
-            <p class="pf-desc">Dashboard pentru un depozit de materiale: catalog, import de antemăsurători din Excel și OCR, plus un configurator care generează oferta automat, cu variante echivalente și calcul de ambalare.</p>
-          </div>
-          <span class="pf-go">
-            Vizitează site-ul
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </div>
-      </a>
-
     </div>
   </div>
 </section>
