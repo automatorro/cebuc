@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poiana Verde · Pensiune în Munții Banatului</title>
+<meta name="description" content="Pensiune cu 5 camere la poalele Semenicului. Verifică disponibilitatea și rezervă online, cu prețul total afișat din prima.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0E3540;--deep2:#164A59;--deep3:#1D5F70;
+  --apr:#E9A178;--apr2:#DC8A5C;--cream:#FBF7F0;--cream2:#F3EDE2;
+  --ink:#16211F;--muted:#6E7B78;--line:#E2DCD0;--ok:#2E8B6B;--busy:#C05B4D
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.55;padding-bottom:0}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+h1,h2,h3,.ff{font-family:'Sora',sans-serif;letter-spacing:-.03em;font-weight:700}
+.wrap{max-width:1220px;margin:0 auto;padding:0 2rem}
+
+/* ── NAV ── */
+#nav{position:sticky;top:0;z-index:400;background:var(--deep);color:var(--cream)}
+.nav-in{max-width:1220px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:2rem}
+.logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:.5rem}
+.logo i{width:9px;height:9px;background:var(--apr);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:block}
+.nav-links{display:flex;gap:1.7rem;list-style:none;margin-left:auto}
+.nav-links a{font-size:.87rem;color:rgba(251,247,240,.7);transition:color .2s}
+.nav-links a:hover{color:var(--apr)}
+.nav-tel{font-family:'Sora',sans-serif;font-weight:600;font-size:.87rem;background:var(--apr);
+  color:var(--deep);padding:.5rem 1.1rem;border-radius:100px;transition:background .2s}
+.nav-tel:hover{background:var(--apr2)}
+
+/* ── HERO SPLIT ── */
+#hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px)}
+.h-left{background:var(--deep);color:var(--cream);padding:3.5rem 3rem;display:flex;
+  flex-direction:column;justify-content:center}
+.h-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--apr);margin-bottom:1.3rem}
+.h-tag::before{content:'';width:24px;height:1px;background:var(--apr)}
+.h-left h1{font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.08;font-weight:800}
+.h-left h1 em{font-style:normal;color:var(--apr)}
+.h-left>p{color:rgba(251,247,240,.68);margin-top:.9rem;font-size:.97rem;max-width:42ch}
+
+/* widget rezervare */
+.bk{background:var(--cream);color:var(--ink);border-radius:14px;padding:1.3rem;margin-top:2rem;
+  box-shadow:0 20px 45px -22px rgba(0,0,0,.6)}
+.bk-t{font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:1rem;
+  display:flex;align-items:center;gap:.5rem}
+.bk-t svg{width:16px;height:16px;stroke:var(--deep3);fill:none;stroke-width:2}
+.bk-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.bf{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.7rem}
+.bf label{font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.bf input,.bf select{padding:.65rem .75rem;border:1.5px solid var(--line);border-radius:9px;
+  background:#fff;font-size:.92rem;font-weight:500;outline:none;transition:border-color .18s;width:100%;
+  -webkit-appearance:none;appearance:none}
+.bf select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236E7B78' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .75rem center;padding-right:2rem}
+.bf input:focus,.bf select:focus{border-color:var(--deep3)}
+.bk-go{width:100%;padding:.85rem;background:var(--deep);color:var(--cream);border-radius:9px;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;transition:background .2s;margin-top:.3rem}
+.bk-go:hover{background:var(--deep2)}
+.bk-info{display:flex;justify-content:space-between;gap:1rem;margin-top:.9rem;padding-top:.9rem;
+  border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
+.bk-info b{font-family:'Sora',sans-serif;color:var(--ink);display:block;font-size:.95rem}
+
+.h-right{position:relative;overflow:hidden;min-height:340px}
+.h-right img{width:100%;height:100%;object-fit:cover}
+.h-badge{position:absolute;left:1.5rem;bottom:1.5rem;background:rgba(251,247,240,.94);
+  padding:.7rem 1.1rem;border-radius:10px;font-size:.82rem;backdrop-filter:blur(6px)}
+.h-badge b{font-family:'Sora',sans-serif;display:block;font-size:.95rem}
+.h-badge span{color:var(--muted)}
+
+/* ── CAMERE ── */
+#camere{padding:5rem 0 4rem}
+.sec-lbl{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--apr2);margin-bottom:.7rem}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.14}
+.cam-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+  flex-wrap:wrap;margin-bottom:2.2rem}
+.cam-state{background:var(--cream2);border:1px solid var(--line);border-radius:11px;
+  padding:.8rem 1.1rem;font-size:.85rem;min-width:250px}
+.cam-state b{font-family:'Sora',sans-serif}
+.cam-state .cs-l{color:var(--muted);font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.rooms{display:grid;gap:1.1rem}
+.room{display:grid;grid-template-columns:300px 1fr auto;gap:1.6rem;background:#fff;
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.room:hover{box-shadow:0 14px 32px -22px rgba(14,53,64,.55)}
+.room.sel{border-color:var(--deep3);box-shadow:0 0 0 2px rgba(29,95,112,.16)}
+.room.off{opacity:.55}
+.r-img{position:relative;overflow:hidden;min-height:200px}
+.r-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.room:hover .r-img img{transform:scale(1.04)}
+.r-state{position:absolute;top:.7rem;left:.7rem;padding:.28rem .65rem;border-radius:100px;
+  font-size:.68rem;font-weight:700;letter-spacing:.03em;color:#fff}
+.r-state.ok{background:var(--ok)}
+.r-state.busy{background:var(--busy)}
+.r-state.small{background:var(--muted)}
+.r-mid{padding:1.4rem 0;min-width:0}
+.r-name{font-size:1.15rem;margin-bottom:.15rem}
+.r-cap{font-size:.82rem;color:var(--muted);margin-bottom:.8rem}
+.r-desc{font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:1rem;max-width:52ch}
+.r-am{display:flex;flex-wrap:wrap;gap:.35rem}
+.r-amt{font-size:.72rem;font-weight:500;padding:.28rem .65rem;background:var(--cream2);
+  border-radius:100px;color:var(--ink)}
+.r-right{padding:1.4rem 1.5rem;border-left:1px dashed var(--line);display:flex;flex-direction:column;
+  justify-content:center;align-items:flex-end;text-align:right;min-width:210px}
+.r-night{font-size:.78rem;color:var(--muted)}
+.r-price{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;line-height:1.1;
+  font-variant-numeric:tabular-nums}
+.r-total{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.45}
+.r-total b{color:var(--deep3);font-family:'Sora',sans-serif;font-size:.95rem;display:block}
+.r-disc{font-size:.73rem;color:var(--ok);font-weight:700;margin-top:.25rem}
+.r-btn{margin-top:1rem;padding:.7rem 1.4rem;background:var(--apr);color:var(--deep);border-radius:9px;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:.85rem;transition:background .2s;white-space:nowrap}
+.r-btn:hover{background:var(--apr2)}
+.r-btn.sel{background:var(--deep);color:var(--cream)}
+.r-btn:disabled{background:var(--cream2);color:var(--muted);cursor:not-allowed}
+
+/* ── FACILITĂȚI ── */
+#facilitati{background:var(--deep);color:var(--cream);padding:4rem 0}
+.fac-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:2.2rem}
+.fac{display:flex;gap:.85rem;align-items:flex-start}
+.fac svg{width:20px;height:20px;stroke:var(--apr);fill:none;stroke-width:1.8;flex-shrink:0;margin-top:.15rem}
+.fac b{font-family:'Sora',sans-serif;font-size:.92rem;display:block;margin-bottom:.15rem}
+.fac span{font-size:.84rem;color:rgba(251,247,240,.6);line-height:1.55}
+#facilitati h2{color:var(--cream)}
+#facilitati .sec-lbl{color:var(--apr)}
+
+/* ── GALERIE ── */
+#galerie{padding:5rem 0}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:.7rem;margin-top:2rem}
+.gi{overflow:hidden;border-radius:10px;cursor:pointer;position:relative}
+.gi:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gi:nth-child(6){grid-column:span 2}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.gi:hover img{transform:scale(1.06)}
+.gi::after{content:'';position:absolute;inset:0;background:rgba(14,53,64,0);transition:background .3s}
+.gi:hover::after{background:rgba(14,53,64,.18)}
+
+/* ── ÎMPREJURIMI ── */
+#imprejurimi{background:var(--cream2);padding:5rem 0}
+.env{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+.ev{background:var(--cream);border:1px solid var(--line);border-radius:13px;padding:1.5rem;
+  display:flex;flex-direction:column}
+.ev-d{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:800;color:var(--apr2);line-height:1}
+.ev-d span{font-size:.85rem;font-weight:600;color:var(--muted)}
+.ev h3{font-size:1rem;margin:.7rem 0 .35rem}
+.ev p{font-size:.87rem;color:var(--muted);line-height:1.6}
+
+/* ── CONTACT ── */
+#contact{padding:5rem 0}
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.ct-list{margin-top:1.6rem;display:grid;gap:1rem}
+.ct-it{display:flex;gap:.85rem;align-items:flex-start}
+.ct-ic{width:36px;height:36px;border-radius:10px;background:var(--cream2);display:flex;
+  align-items:center;justify-content:center;flex-shrink:0}
+.ct-ic svg{width:16px;height:16px;stroke:var(--deep3);fill:none;stroke-width:2}
+.ct-it b{font-family:'Sora',sans-serif;display:block;font-size:.92rem}
+.ct-it span{font-size:.86rem;color:var(--muted)}
+.ct-img{border-radius:14px;overflow:hidden;aspect-ratio:4/3}
+.ct-img img{width:100%;height:100%;object-fit:cover}
+
+/* ── BARĂ REZERVARE ── */
+#bar{position:fixed;left:0;right:0;bottom:0;z-index:500;background:var(--deep);color:var(--cream);
+  transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.8,.3,1)}
+#bar.on{transform:translateY(0)}
+.bar-in{max-width:1220px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;
+  gap:2rem;flex-wrap:wrap}
+.bar-seg{display:flex;flex-direction:column}
+.bar-l{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(251,247,240,.5);font-weight:700}
+.bar-v{font-family:'Sora',sans-serif;font-weight:700;font-size:.92rem}
+.bar-tot{margin-left:auto;text-align:right}
+.bar-tot .bar-v{font-size:1.35rem;color:var(--apr);font-variant-numeric:tabular-nums}
+.bar-go{padding:.75rem 1.6rem;background:var(--apr);color:var(--deep);border-radius:9px;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:.88rem;transition:background .2s}
+.bar-go:hover{background:var(--apr2)}
+.bar-x{color:rgba(251,247,240,.5);font-size:1.3rem;line-height:1;padding:.3rem}
+.bar-x:hover{color:var(--cream)}
+
+/* ── LIGHTBOX ── */
+#lb{position:fixed;inset:0;z-index:900;background:rgba(10,25,30,.94);display:none;
+  align-items:center;justify-content:center;padding:2rem}
+#lb.on{display:flex}
+#lb img{max-width:92vw;max-height:84vh;object-fit:contain;border-radius:8px}
+.lb-x{position:absolute;top:1.3rem;right:1.5rem;color:#fff;font-size:1.8rem;line-height:1}
+.lb-a{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2rem;
+  padding:1rem;opacity:.7;transition:opacity .2s}
+.lb-a:hover{opacity:1}
+.lb-a.p{left:.5rem}.lb-a.n{right:.5rem}
+.lb-c{position:absolute;bottom:1.3rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);
+  font-size:.85rem;font-variant-numeric:tabular-nums}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(251,247,240,.5);padding:2.3rem 0}
+.ft{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.84rem}
+.ft .logo{color:var(--cream)}
+footer a{color:var(--apr);border-bottom:1px solid rgba(233,161,120,.35)}
+
+#toast{position:fixed;bottom:5.5rem;left:50%;transform:translate(-50%,180%);z-index:950;
+  background:var(--ink);color:var(--cream);padding:.75rem 1.3rem;border-radius:100px;
+  font-size:.86rem;font-weight:500;box-shadow:0 12px 30px -12px rgba(0,0,0,.6);
+  transition:transform .35s cubic-bezier(.2,.8,.3,1)}
+#toast.on{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(22px)}
+
+@media(max-width:1000px){
+  #hero{grid-template-columns:1fr}
+  .h-left{padding:2.5rem 1.5rem}
+  .h-right{min-height:280px;order:-1}
+  .room{grid-template-columns:1fr}
+  .r-img{min-height:200px;aspect-ratio:16/9}
+  .r-mid{padding:0 1.3rem}
+  .r-right{border-left:none;border-top:1px dashed var(--line);align-items:stretch;text-align:left;
+    padding:1.2rem 1.3rem 1.4rem;flex-direction:row;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .r-btn{margin-top:0}
+  .fac-grid{grid-template-columns:repeat(2,1fr)}
+  .env{grid-template-columns:1fr}
+  .ct{grid-template-columns:1fr;gap:2rem}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px}
+  .gi:nth-child(1),.gi:nth-child(6){grid-column:span 2}
+  .gi:nth-child(1){grid-row:span 1}
+}
+@media(max-width:700px){
+  .wrap,.nav-in,.bar-in{padding-left:1.1rem;padding-right:1.1rem}
+  .nav-links{display:none}
+  .nav-tel{margin-left:auto}
+  .bk-row{grid-template-columns:1fr}
+  .fac-grid{grid-template-columns:1fr}
+  .bar-in{gap:1rem}
+  .bar-seg.hide-m{display:none}
+  #camere,#galerie,#imprejurimi,#contact{padding:3.5rem 0}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo"><i></i>Poiana Verde</a>
+    <ul class="nav-links">
+      <li><a href="#camere">Camere</a></li>
+      <li><a href="#facilitati">Facilități</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#imprejurimi">Împrejurimi</a></li>
+    </ul>
+    <a href="tel:0255300400" class="nav-tel">0255 300 400</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-left">
+    <div class="h-tag rv">Munții Semenic · 940 m altitudine</div>
+    <h1 class="rv">Cinci camere,<br>o <em>vale întreagă</em><br>doar a ta.</h1>
+    <p class="rv">Pensiune de familie la 68 km de Timișoara. Fără recepție, fără cod de acces, fără taxe ascunse — prețul pe care îl vezi este prețul pe care îl plătești.</p>
+
+    <div class="bk rv">
+      <div class="bk-t">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        Verifică disponibilitatea
+      </div>
+      <div class="bk-row">
+        <div class="bf"><label for="ci">Check-in</label><input type="date" id="ci"></div>
+        <div class="bf"><label for="co">Check-out</label><input type="date" id="co"></div>
+      </div>
+      <div class="bf">
+        <label for="pers">Persoane</label>
+        <select id="pers">
+          <option value="1">1 persoană</option>
+          <option value="2" selected>2 persoane</option>
+          <option value="3">3 persoane</option>
+          <option value="4">4 persoane</option>
+          <option value="5">5 persoane</option>
+          <option value="6">6 persoane</option>
+        </select>
+      </div>
+      <button class="bk-go" id="checkBtn">Vezi camerele libere</button>
+      <div class="bk-info">
+        <div><b id="nightsN">2</b>nopți</div>
+        <div><b id="freeN">—</b>camere libere</div>
+        <div><b id="fromN">—</b>de la / noapte</div>
+      </div>
+    </div>
+  </div>
+  <div class="h-right">
+    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1400&q=85" alt="Pensiune la munte" loading="eager">
+    <div class="h-badge"><b>Micul dejun inclus</b><span>Ouă de la găinile din curte</span></div>
+  </div>
+</section>
+
+<!-- CAMERE -->
+<section id="camere">
+  <div class="wrap">
+    <div class="cam-head">
+      <div>
+        <p class="sec-lbl">Cazare</p>
+        <h2>Camerele noastre</h2>
+      </div>
+      <div class="cam-state">
+        <div class="cs-l">Căutare curentă</div>
+        <div id="stateTxt">—</div>
+      </div>
+    </div>
+    <div class="rooms" id="rooms"></div>
+    <p style="font-size:.83rem;color:var(--muted);margin-top:1.3rem">
+      Prețurile includ micul dejun. Taxa de stațiune este de 3 lei / persoană / noapte.
+      De la 3 nopți se aplică automat o reducere de 10%.
+    </p>
+  </div>
+</section>
+
+<!-- FACILITĂȚI -->
+<section id="facilitati">
+  <div class="wrap">
+    <p class="sec-lbl">Ce găsești aici</p>
+    <h2>Puține lucruri,<br>toate care contează.</h2>
+    <div class="fac-grid">
+      <div class="fac"><svg viewBox="0 0 24 24"><path d="M5 12.5a7 7 0 0114 0"/><path d="M8.5 15.5a3.5 3.5 0 017 0"/><circle cx="12" cy="19" r="1"/></svg>
+        <div><b>Internet prin fibră</b><span>300 Mbps în toată casa, verificat. Se poate lucra de aici.</span></div></div>
+      <div class="fac"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.5L21 9l-5 4.4 1.6 6.6L12 16.5 6.4 20 8 13.4 3 9l6.6-.5z"/></svg>
+        <div><b>Mic dejun de casă</b><span>Ouă, brânză și dulceață din gospodărie. Servit între 8 și 11.</span></div></div>
+      <div class="fac"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg>
+        <div><b>Bucătărie de oaspeți</b><span>Complet utilată, la liber. Frigider separat pentru fiecare cameră.</span></div></div>
+      <div class="fac"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        <div><b>Terasă cu foișor</b><span>Grătar, hamace și priveliște spre valea Nerei. Fără vecini vizibili.</span></div></div>
+      <div class="fac"><svg viewBox="0 0 24 24"><path d="M5 17h14M6 17V9a6 6 0 0112 0v8"/><path d="M10 21h4"/></svg>
+        <div><b>Saună finlandeză</b><span>Se rezervă pe ore, gratuit pentru oaspeți. Maxim 4 persoane.</span></div></div>
+      <div class="fac"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 18v2M18 18v2"/></svg>
+        <div><b>Parcare în curte</b><span>Închisă cu poartă, loc pentru 6 mașini. Priză pentru electrice.</span></div></div>
+      <div class="fac"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
+        <div><b>Trasee de la poartă</b><span>Trei marcaje pornesc chiar din fața casei. Hărți la recepție.</span></div></div>
+      <div class="fac"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2"/></svg>
+        <div><b>Check-in flexibil</b><span>De la 14:00, dar te așteptăm oricând. Sună înainte și e în regulă.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="wrap">
+    <p class="sec-lbl">Galerie</p>
+    <h2>Cum arată, de fapt.</h2>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<!-- ÎMPREJURIMI -->
+<section id="imprejurimi">
+  <div class="wrap">
+    <p class="sec-lbl">Împrejurimi</p>
+    <h2>Ce e aproape.</h2>
+    <div class="env">
+      <div class="ev rv">
+        <div class="ev-d">2,5 <span>km</span></div>
+        <h3>Cascada Bigăr-Mic</h3>
+        <p>Traseu ușor, marcat cu bandă albastră. Aproximativ 40 de minute dus, potrivit și pentru copii.</p>
+      </div>
+      <div class="ev rv">
+        <div class="ev-d">14 <span>km</span></div>
+        <h3>Lacul Trei Ape</h3>
+        <p>Se poate pescui cu permis luat din sat. Vara se închiriază caiace la debarcaderul din capătul nordic.</p>
+      </div>
+      <div class="ev rv">
+        <div class="ev-d">68 <span>km</span></div>
+        <h3>Timișoara</h3>
+        <p>O oră și un sfert pe DN58B, drum asfaltat pe toată lungimea. Ultimii 6 km sunt prin pădure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap ct">
+    <div>
+      <p class="sec-lbl">Contact</p>
+      <h2>Vino să ne vezi.</h2>
+      <div class="ct-list">
+        <div class="ct-it">
+          <div class="ct-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><b>Sat Poiana, nr. 47, jud. Caraș-Severin</b><span>Coordonate GPS: 45.1832, 22.0471</span></div>
+        </div>
+        <div class="ct-it">
+          <div class="ct-ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></div>
+          <div><b>0255 300 400</b><span>Răspundem între 08:00 și 22:00, inclusiv weekend</span></div>
+        </div>
+        <div class="ct-it">
+          <div class="ct-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div><b>rezervari@poianaverde.ro</b><span>Pentru grupuri mai mari de 6 persoane, scrie-ne</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ct-img">
+      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1000&q=80" alt="Pădure în împrejurimi" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap ft">
+    <a href="#" class="logo"><i></i>Poiana Verde</a>
+    <span>Exemplu de site realizat de <a href="index.html">Lucian Cebuc</a> · Design demonstrativ</span>
+  </div>
+</footer>
+
+<!-- BARĂ REZERVARE -->
+<div id="bar">
+  <div class="bar-in">
+    <div class="bar-seg"><span class="bar-l">Cameră</span><span class="bar-v" id="barRoom">—</span></div>
+    <div class="bar-seg hide-m"><span class="bar-l">Perioadă</span><span class="bar-v" id="barDates">—</span></div>
+    <div class="bar-seg hide-m"><span class="bar-l">Oaspeți</span><span class="bar-v" id="barPers">—</span></div>
+    <div class="bar-seg bar-tot"><span class="bar-l">Total de plată</span><span class="bar-v" id="barTotal">—</span></div>
+    <button class="bar-go" id="barGo">Rezervă</button>
+    <button class="bar-x" id="barX" aria-label="Anulează selecția">&times;</button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lb">
+  <button class="lb-x" id="lbX" aria-label="Închide">&times;</button>
+  <button class="lb-a p" id="lbP" aria-label="Anterior">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-a n" id="lbN" aria-label="Următor">&#8250;</button>
+  <div class="lb-c" id="lbC"></div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+const U='https://images.unsplash.com/photo-';
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('ro-RO');
+
+const ROOMS=[
+  {id:1,nume:'Camera Dublă Standard',cap:2,pret:220,
+   desc:'Pat matrimonial, baie proprie cu duș și fereastră spre livadă. Cea mai liniștită cameră din casă, fiind la capătul holului.',
+   am:['Pat 160×200','Baie proprie','Vedere livadă','Birou'],
+   img:U+'1611892440504-42a792e24d32?w=800&q=80'},
+  {id:2,nume:'Camera Dublă Superior',cap:2,pret:280,
+   desc:'Cameră de colț, cu balcon propriu orientat spre vale și fotolii pentru cafeaua de dimineață. Are și un mic frigider.',
+   am:['Balcon propriu','Pat 180×200','Frigider','Vedere vale'],
+   img:U+'1590490360182-c33d57733427?w=800&q=80'},
+  {id:3,nume:'Camera Twin',cap:2,pret:240,
+   desc:'Două paturi separate, potrivită pentru prieteni sau colegi. Dulap generos și spațiu pentru echipament de drumeție.',
+   am:['2 paturi single','Baie proprie','Dulap mare','Uscător'],
+   img:U+'1595576508898-0ad5c879a061?w=800&q=80'},
+  {id:4,nume:'Apartament Familial',cap:4,pret:420,
+   desc:'Două camere comunicante și baie mare cu cadă. Camera copiilor are paturi supraetajate și un colț de joacă.',
+   am:['2 camere','Cadă','Paturi supraetajate','Colț de joacă','Canapea extensibilă'],
+   img:U+'1618773928121-c32242e63f39?w=800&q=80'},
+  {id:5,nume:'Cabana din Curte',cap:6,pret:560,
+   desc:'Construcție separată de casa principală, cu living, bucătărie proprie și șemineu. Are terasă acoperită și intrare independentă.',
+   am:['Clădire separată','Bucătărie proprie','Șemineu','Terasă acoperită','Intrare privată'],
+   img:U+'1551632436-cbf8dd35adfa?w=800&q=80'}
+];
+
+const GAL=[
+  U+'1449824913935-59a10b8d2000?w=1200&q=85',
+  U+'1611892440504-42a792e24d32?w=1200&q=85',
+  U+'1444201983204-c43cbd584d93?w=1200&q=85',
+  U+'1476231682828-37e571bc172f?w=1200&q=85',
+  U+'1533692328991-08159ff19fca?w=1200&q=85',
+  U+'1590490360182-c33d57733427?w=1200&q=85',
+  U+'1470071459604-3b5ec3a7fe05?w=1200&q=85',
+  U+'1441974231531-c6227db76b6e?w=1200&q=85'
+];
+
+/* ═══ DATE ═══ */
+const iso=d=>d.toISOString().slice(0,10);
+const today=new Date();
+const d1=new Date(today);d1.setDate(d1.getDate()+7);
+const d2=new Date(today);d2.setDate(d2.getDate()+9);
+$('#ci').value=iso(d1);$('#co').value=iso(d2);
+$('#ci').min=iso(today);$('#co').min=iso(d1);
+
+const S={ci:iso(d1),co:iso(d2),pers:2,sel:null};
+
+function nights(){
+  const a=new Date(S.ci),b=new Date(S.co);
+  return Math.max(0,Math.round((b-a)/86400000));
+}
+/* disponibilitate deterministă — arată realist, dar e stabilă pentru aceleași date */
+function libera(roomId){
+  const d=new Date(S.ci);
+  const h=(d.getDate()*7+(d.getMonth()+1)*13+roomId*29+d.getFullYear())%10;
+  return h>2;
+}
+function pretTotal(r){
+  const n=nights();
+  let cazare=r.pret*n;
+  const disc=n>=3?cazare*.1:0;
+  const taxa=3*S.pers*n;
+  return{n,cazare,disc,taxa,total:Math.round(cazare-disc+taxa)};
+}
+function dLabel(s){
+  const d=new Date(s);
+  return d.toLocaleDateString('ro-RO',{day:'numeric',month:'short'});
+}
+
+/* ═══ RANDARE CAMERE ═══ */
+function render(){
+  const n=nights();
+  $('#nightsN').textContent=n;
+  const disponibile=ROOMS.filter(r=>libera(r.id)&&r.cap>=S.pers);
+  $('#freeN').textContent=disponibile.length;
+  $('#fromN').textContent=disponibile.length?fmt(Math.min(...disponibile.map(r=>r.pret)))+' lei':'—';
+  $('#stateTxt').innerHTML=n>0
+    ? `<b>${dLabel(S.ci)} – ${dLabel(S.co)}</b> · ${n} ${n===1?'noapte':'nopți'} · ${S.pers} ${S.pers===1?'persoană':'persoane'}`
+    : '<b>Alege o perioadă validă</b>';
+
+  $('#rooms').innerHTML=ROOMS.map(r=>{
+    const lib=libera(r.id), incape=r.cap>=S.pers, ok=lib&&incape&&n>0;
+    const p=pretTotal(r);
+    let stare='<span class="r-state ok">Liberă</span>';
+    if(!lib) stare='<span class="r-state busy">Ocupată în perioada aleasă</span>';
+    else if(!incape) stare=`<span class="r-state small">Maxim ${r.cap} persoane</span>`;
+    return `<article class="room ${ok?'':'off'} ${S.sel===r.id?'sel':''}" data-id="${r.id}">
+      <div class="r-img"><img src="${r.img}" alt="${r.nume}" loading="lazy">${stare}</div>
+      <div class="r-mid">
+        <h3 class="r-name">${r.nume}</h3>
+        <p class="r-cap">Până la ${r.cap} persoane</p>
+        <p class="r-desc">${r.desc}</p>
+        <div class="r-am">${r.am.map(a=>`<span class="r-amt">${a}</span>`).join('')}</div>
+      </div>
+      <div class="r-right">
+        <div>
+          <div class="r-night">de la</div>
+          <div class="r-price">${fmt(r.pret)} lei</div>
+          <div class="r-night">pe noapte</div>
+          ${ok?`<div class="r-total">total ${p.n} ${p.n===1?'noapte':'nopți'}<b>${fmt(p.total)} lei</b></div>`:''}
+          ${ok&&p.disc?`<div class="r-disc">−${fmt(Math.round(p.disc))} lei reducere</div>`:''}
+        </div>
+        <button class="r-btn ${S.sel===r.id?'sel':''}" data-book="${r.id}" ${ok?'':'disabled'}>
+          ${S.sel===r.id?'Selectată ✓':(ok?'Alege camera':'Indisponibilă')}
+        </button>
+      </div>
+    </article>`;
+  }).join('');
+  if(S.sel!==null){
+    const r=ROOMS.find(x=>x.id===S.sel);
+    if(!(libera(r.id)&&r.cap>=S.pers&&n>0)){S.sel=null;hideBar();}
+    else showBar(r);
+  }
+}
+
+/* ═══ BARĂ ═══ */
+function showBar(r){
+  const p=pretTotal(r);
+  $('#barRoom').textContent=r.nume;
+  $('#barDates').textContent=`${dLabel(S.ci)} – ${dLabel(S.co)} · ${p.n} ${p.n===1?'noapte':'nopți'}`;
+  $('#barPers').textContent=S.pers+(S.pers===1?' persoană':' persoane');
+  $('#barTotal').textContent=fmt(p.total)+' lei';
+  $('#bar').classList.add('on');
+  document.body.style.paddingBottom='72px';
+}
+function hideBar(){
+  $('#bar').classList.remove('on');
+  document.body.style.paddingBottom='0';
+}
+
+/* ═══ EVENIMENTE ═══ */
+$('#ci').onchange=e=>{
+  S.ci=e.target.value;
+  const min=new Date(S.ci);min.setDate(min.getDate()+1);
+  $('#co').min=iso(min);
+  if(new Date(S.co)<=new Date(S.ci)){S.co=iso(min);$('#co').value=S.co;}
+  render();
+};
+$('#co').onchange=e=>{
+  if(new Date(e.target.value)<=new Date(S.ci)){
+    toast('Check-out trebuie să fie după check-in');
+    e.target.value=S.co;return;
+  }
+  S.co=e.target.value;render();
+};
+$('#pers').onchange=e=>{S.pers=+e.target.value;render();};
+$('#checkBtn').onclick=()=>{
+  render();
+  const lib=ROOMS.filter(r=>libera(r.id)&&r.cap>=S.pers).length;
+  toast(lib?`${lib} ${lib===1?'cameră liberă':'camere libere'} pentru perioada aleasă`
+           :'Nicio cameră liberă — încearcă altă perioadă');
+  $('#camere').scrollIntoView({behavior:'smooth'});
+};
+$('#rooms').addEventListener('click',e=>{
+  const b=e.target.closest('[data-book]');
+  if(!b||b.disabled)return;
+  const id=+b.dataset.book;
+  S.sel=S.sel===id?null:id;
+  render();
+  if(S.sel===null)hideBar();else toast('Cameră selectată — vezi totalul în bara de jos');
+});
+$('#barX').onclick=()=>{S.sel=null;render();hideBar();};
+$('#barGo').onclick=()=>{
+  const r=ROOMS.find(x=>x.id===S.sel);
+  const p=pretTotal(r);
+  toast(`Rezervare trimisă: ${r.nume}, ${fmt(p.total)} lei. Te sunăm pentru confirmare.`);
+  S.sel=null;render();hideBar();
+};
+
+/* ═══ GALERIE + LIGHTBOX ═══ */
+$('#gal').innerHTML=GAL.map((s,i)=>
+  `<div class="gi" data-i="${i}"><img src="${s}" alt="Fotografie pensiune ${i+1}" loading="lazy"></div>`).join('');
+let li=0;
+function openLb(i){
+  li=i;$('#lbImg').src=GAL[li];$('#lbC').textContent=`${li+1} / ${GAL.length}`;
+  $('#lb').classList.add('on');document.body.style.overflow='hidden';
+}
+function closeLb(){$('#lb').classList.remove('on');document.body.style.overflow='';}
+function lbGo(d){li=(li+d+GAL.length)%GAL.length;$('#lbImg').src=GAL[li];$('#lbC').textContent=`${li+1} / ${GAL.length}`;}
+$('#gal').addEventListener('click',e=>{
+  const g=e.target.closest('.gi');if(g)openLb(+g.dataset.i);
+});
+$('#lbX').onclick=closeLb;
+$('#lbP').onclick=()=>lbGo(-1);
+$('#lbN').onclick=()=>lbGo(1);
+$('#lb').onclick=e=>{if(e.target.id==='lb')closeLb();};
+document.addEventListener('keydown',e=>{
+  if(!$('#lb').classList.contains('on'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft')lbGo(-1);
+  if(e.key==='ArrowRight')lbGo(1);
+});
+
+let tt;
+function toast(m){
+  const t=$('#toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2600);
+}
+
+/* ═══ INIT ═══ */
+render();
+const lenis=new Lenis({duration:1.05,smoothWheel:true});
+function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('.h-left .rv',{opacity:1,y:0,duration:.75,stagger:.1,ease:'power2.out',delay:.1});
+gsap.to('.ev',{opacity:1,y:0,duration:.6,stagger:.12,ease:'power2.out',
+  scrollTrigger:{trigger:'.env',start:'top 84%',once:true}});
+</script>
+</body>
+</html>

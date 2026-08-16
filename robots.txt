@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cebuclucian.pages.dev/sitemap.xml
+Sitemap: https://cebuc.ro/sitemap.xml

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUM · Bistro cu foc deschis, Timișoara</title>
+<meta name="description" content="Bistro cu grătar pe lemn în centrul Timișoarei. Meniu care se schimbă zilnic, rezervări online.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blk:#0B0B0C;--smoke:#15151A;--smoke2:#1E1E24;--paper:#F2EFE9;--paper2:#E4E0D6;
+  --ember:#FF4A1C;--ember2:#FF6B3D;--ash:#8A8A82;--ok:#7BC96F
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:var(--blk);color:var(--paper);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;font-weight:300;line-height:1.6}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+.an{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.005em;line-height:.86;text-transform:uppercase}
+.wrap{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+::selection{background:var(--ember);color:var(--blk)}
+
+/* grain */
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;mix-blend-mode:difference}
+.nav-in{max-width:1280px;margin:0 auto;padding:1.5rem 2.5rem;display:flex;align-items:center;gap:2rem}
+.logo{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:#fff}
+.nav-links{display:flex;gap:1.8rem;list-style:none;margin-left:auto}
+.nav-links a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:#fff;transition:width .3s}
+.nav-links a:hover::after{width:100%}
+
+/* ── HERO TIPOGRAFIC ── */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:8rem 0 0;position:relative;overflow:hidden}
+.h-meta{display:flex;gap:2rem;flex-wrap:wrap;font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ash);margin-bottom:2.5rem}
+.h-meta span{display:flex;align-items:center;gap:.5rem}
+.h-meta i{width:5px;height:5px;background:var(--ember);border-radius:50%;display:block}
+.h-type{font-size:clamp(3.4rem,15.5vw,15rem);color:var(--paper)}
+.h-type .ln{display:block;overflow:hidden}
+.h-type .ln > span{display:block;transform:translateY(105%)}
+.h-type .out{-webkit-text-stroke:1.5px var(--paper);color:transparent}
+.h-type em{font-style:normal;color:var(--ember)}
+.h-bot{display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:end;
+  margin-top:3rem;padding-bottom:3rem;border-bottom:1px solid var(--smoke2)}
+.h-bot p{font-size:.88rem;color:var(--ash);max-width:46ch;line-height:1.8}
+.h-bot p b{color:var(--paper);font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:.7rem;background:var(--ember);color:var(--blk);
+  font-weight:700;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:1.05rem 2.1rem;transition:background .2s;white-space:nowrap}
+.btn:hover{background:var(--ember2)}
+.btn.gh{background:transparent;color:var(--paper);border:1px solid var(--smoke2)}
+.btn.gh:hover{border-color:var(--ember);color:var(--ember);background:transparent}
+
+/* ── AZI ── */
+#azi{padding:3rem 0 0}
+.azi-box{border:1px solid var(--smoke2);display:grid;grid-template-columns:auto 1fr auto;
+  align-items:center;gap:2.5rem;padding:1.6rem 2rem}
+.azi-l{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);white-space:nowrap}
+.azi-d{font-family:'Anton',sans-serif;font-size:clamp(1.1rem,2.4vw,1.9rem);text-transform:uppercase;
+  letter-spacing:.01em;line-height:1.1}
+.azi-p{font-family:'Anton',sans-serif;font-size:1.6rem;color:var(--ember);white-space:nowrap}
+
+/* ── MARQUEE ── */
+.mq{overflow:hidden;border-top:1px solid var(--smoke2);border-bottom:1px solid var(--smoke2);
+  padding:1rem 0;margin:4rem 0;white-space:nowrap}
+.mq-in{display:inline-flex;gap:3rem;animation:slide 26s linear infinite}
+.mq-in span{font-family:'Anton',sans-serif;font-size:1.5rem;text-transform:uppercase;color:var(--smoke2)}
+.mq-in span:nth-child(even){color:var(--ember);opacity:.55}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ── SIGNATURE STRIP (scroll orizontal) ── */
+#semnatura{padding:1rem 0 5rem}
+.sig-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+  flex-wrap:wrap;margin-bottom:2rem}
+.sig-hint{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.strip{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding-bottom:1.2rem;scrollbar-width:thin;scrollbar-color:var(--smoke2) transparent}
+.strip::-webkit-scrollbar{height:3px}
+.strip::-webkit-scrollbar-thumb{background:var(--smoke2)}
+.sig{flex:0 0 340px;scroll-snap-align:start;position:relative}
+.sig-img{aspect-ratio:4/5;overflow:hidden;background:var(--smoke)}
+.sig-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.55) contrast(1.08);
+  transition:filter .5s,transform .7s cubic-bezier(.25,.46,.45,.94)}
+.sig:hover .sig-img img{filter:grayscale(0) contrast(1);transform:scale(1.05)}
+.sig-n{position:absolute;top:.8rem;left:.8rem;font-family:'Anton',sans-serif;font-size:2.6rem;
+  color:var(--paper);mix-blend-mode:difference;line-height:1}
+.sig-b{padding:1rem 0}
+.sig-t{font-family:'Anton',sans-serif;font-size:1.25rem;text-transform:uppercase}
+.sig-d{font-size:.78rem;color:var(--ash);margin-top:.35rem;line-height:1.65}
+.sig-p{font-size:.82rem;color:var(--ember);margin-top:.5rem;font-weight:500}
+
+/* ── MENIU ── */
+#meniu{padding:5rem 0;background:var(--smoke);border-top:1px solid var(--smoke2)}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.sec-t{font-family:'Anton',sans-serif;font-size:clamp(2.2rem,6vw,4.5rem);text-transform:uppercase;line-height:.9}
+.sec-t em{font-style:normal;color:var(--ember)}
+.m-ctrl{display:flex;gap:2rem;align-items:flex-end;flex-wrap:wrap;margin-bottom:2.5rem}
+.tabs{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--smoke2)}
+.tab{padding:.75rem 1.3rem;font-size:.71rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ash);border-right:1px solid var(--smoke2);transition:all .2s}
+.tab:last-child{border-right:none}
+.tab:hover{color:var(--paper)}
+.tab.on{background:var(--ember);color:var(--blk);font-weight:700}
+.diets{display:flex;gap:.6rem;flex-wrap:wrap;margin-left:auto}
+.diet{display:flex;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ash);border:1px solid var(--smoke2);padding:.55rem 1rem;transition:all .2s}
+.diet:hover{border-color:var(--ash);color:var(--paper)}
+.diet.on{border-color:var(--ok);color:var(--ok)}
+.diet i{width:7px;height:7px;border:1px solid currentColor;display:block;flex-shrink:0}
+.diet.on i{background:var(--ok);border-color:var(--ok)}
+
+.m-list{border-top:1px solid var(--smoke2)}
+.dish{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.4rem 0;
+  border-bottom:1px solid var(--smoke2);align-items:baseline}
+.d-top{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap}
+.d-n{font-family:'Anton',sans-serif;font-size:1.22rem;text-transform:uppercase;letter-spacing:.01em}
+.d-badge{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.16rem .5rem;
+  border:1px solid var(--ok);color:var(--ok)}
+.d-badge.gl{border-color:#E8B04B;color:#E8B04B}
+.d-badge.hot{border-color:var(--ember);color:var(--ember)}
+.d-d{font-size:.8rem;color:var(--ash);margin-top:.4rem;line-height:1.7;max-width:62ch}
+.d-p{font-family:'Anton',sans-serif;font-size:1.3rem;color:var(--ember);white-space:nowrap}
+.m-empty{padding:3.5rem 0;text-align:center;color:var(--ash);font-size:.85rem;border-bottom:1px solid var(--smoke2)}
+.m-count{margin-top:1.3rem;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
+.m-count b{color:var(--paper)}
+
+/* ── POVESTE (split sticky) ── */
+#poveste{padding:6rem 0}
+.pv{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.pv-l{position:sticky;top:6rem}
+.pv-l .sec-t{margin-bottom:1.5rem}
+.pv-l p{font-size:.88rem;color:var(--ash);line-height:1.9;margin-bottom:1.1rem;max-width:44ch}
+.pv-l p b{color:var(--paper);font-weight:500}
+.pv-sig{margin-top:2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember)}
+.pv-r{display:grid;gap:1rem}
+.pv-r img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(.4) contrast(1.05)}
+.pv-r img:nth-child(2){aspect-ratio:1}
+.pv-cap{font-size:.72rem;color:var(--ash);letter-spacing:.06em;margin-top:-.5rem}
+
+/* ── REZERVARE ── */
+#rezervare{padding:5rem 0;background:var(--smoke);border-top:1px solid var(--smoke2)}
+.rz{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.rz-l .sec-t{margin-bottom:1.2rem}
+.rz-l p{font-size:.85rem;color:var(--ash);line-height:1.85;max-width:42ch}
+.rz-facts{margin-top:2.5rem;border-top:1px solid var(--smoke2)}
+.rz-f{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;
+  border-bottom:1px solid var(--smoke2);font-size:.78rem}
+.rz-f span:first-child{color:var(--ash);letter-spacing:.1em;text-transform:uppercase;font-size:.68rem}
+.step-l{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:.9rem}
+.days{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.5rem;margin-bottom:2rem}
+.day{flex:0 0 auto;min-width:66px;border:1px solid var(--smoke2);padding:.7rem .3rem;text-align:center;transition:all .2s}
+.day:hover{border-color:var(--ash)}
+.day.on{background:var(--paper);color:var(--blk);border-color:var(--paper)}
+.day-w{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.day-n{font-family:'Anton',sans-serif;font-size:1.35rem;line-height:1.1;margin-top:.2rem}
+.day-m{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
+.pax{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:2rem}
+.px{width:44px;height:44px;border:1px solid var(--smoke2);font-size:.85rem;transition:all .2s}
+.px:hover{border-color:var(--ash)}
+.px.on{background:var(--ember);color:var(--blk);border-color:var(--ember);font-weight:700}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin-bottom:2rem}
+.sl{padding:.7rem .3rem;border:1px solid var(--smoke2);font-size:.8rem;text-align:center;transition:all .2s;position:relative}
+.sl:hover:not(.full){border-color:var(--ash)}
+.sl.on{background:var(--paper);color:var(--blk);border-color:var(--paper);font-weight:700}
+.sl.full{color:var(--smoke2);border-color:var(--smoke2);cursor:not-allowed;text-decoration:line-through}
+.rz-sum{border:1px solid var(--smoke2);padding:1.3rem;margin-bottom:1.2rem}
+.rz-sum-l{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ash);margin-bottom:.5rem}
+.rz-sum-v{font-family:'Anton',sans-serif;font-size:1.35rem;text-transform:uppercase;line-height:1.25}
+.rz-sum-v em{font-style:normal;color:var(--ember)}
+.rz-go{width:100%;justify-content:center}
+.rz-go:disabled{background:var(--smoke2);color:var(--ash);cursor:not-allowed}
+.rz-note{font-size:.7rem;color:var(--ash);margin-top:.8rem;text-align:center;letter-spacing:.05em}
+
+/* ── FOOTER ── */
+footer{padding:5rem 0 2.5rem;border-top:1px solid var(--smoke2)}
+.ft-big{font-family:'Anton',sans-serif;font-size:clamp(2.6rem,11vw,9rem);text-transform:uppercase;
+  line-height:.85;color:var(--smoke2);margin-bottom:3rem}
+.ft-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding-top:2.5rem;border-top:1px solid var(--smoke2)}
+.ft-c b{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:.7rem;font-weight:400}
+.ft-c p,.ft-c a{font-size:.82rem;color:var(--ash);line-height:1.9;display:block}
+.ft-c a:hover{color:var(--paper)}
+.ft-end{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--smoke2);
+  font-size:.72rem;color:var(--ash);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ft-end a{color:var(--ember)}
+
+#toast{position:fixed;bottom:1.5rem;left:50%;transform:translate(-50%,180%);z-index:950;
+  background:var(--paper);color:var(--blk);padding:.85rem 1.5rem;font-size:.78rem;font-weight:500;
+  letter-spacing:.04em;transition:transform .35s cubic-bezier(.2,.8,.3,1);max-width:90vw;text-align:center}
+#toast.on{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(26px)}
+
+@media(max-width:960px){
+  .wrap,.nav-in{padding-left:1.2rem;padding-right:1.2rem}
+  .nav-links{display:none}
+  .h-bot{grid-template-columns:1fr;gap:1.8rem}
+  .azi-box{grid-template-columns:1fr;gap:.8rem;padding:1.3rem}
+  .pv,.rz{grid-template-columns:1fr;gap:2.5rem}
+  .pv-l{position:static}
+  .sig{flex:0 0 250px}
+  .slots{grid-template-columns:repeat(3,1fr)}
+  .ft-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem}
+  .diets{margin-left:0}
+  #hero{padding-top:6rem}
+  .dish{grid-template-columns:1fr;gap:.5rem}
+  .d-p{font-size:1.15rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo">FUM</a>
+    <ul class="nav-links">
+      <li><a href="#meniu">Meniu</a></li>
+      <li><a href="#poveste">Bucătăria</a></li>
+      <li><a href="#rezervare">Rezervă</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="h-meta rv">
+      <span><i id="statusDot"></i><span id="statusTxt">—</span></span>
+      <span>Str. Emanoil Ungureanu 8 · Timișoara</span>
+      <span>Grătar pe lemn de fag</span>
+    </div>
+    <h1 class="h-type an">
+      <span class="ln"><span>Foc,</span></span>
+      <span class="ln"><span class="out">fum</span></span>
+      <span class="ln"><span>și <em>atât.</em></span></span>
+    </h1>
+    <div class="h-bot">
+      <p class="rv">Gătim pe lemn, la vedere, cu ce găsim în piață dimineața. <b>Meniul se schimbă în fiecare zi</b> — de asta nu îl tipărim. Douăzeci și patru de locuri, o singură tură de seară.</p>
+      <div class="rv" style="display:flex;gap:.7rem;flex-wrap:wrap">
+        <a href="#rezervare" class="btn">Rezervă o masă</a>
+        <a href="#meniu" class="btn gh">Vezi meniul</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FARFURIA ZILEI -->
+<section id="azi">
+  <div class="wrap">
+    <div class="azi-box">
+      <div class="azi-l">Farfuria zilei · <span id="aziZi">—</span></div>
+      <div class="azi-d an" id="aziFel">—</div>
+      <div class="azi-p an" id="aziPret">—</div>
+    </div>
+  </div>
+</section>
+
+<div class="mq">
+  <div class="mq-in" id="mq"></div>
+</div>
+
+<!-- SEMNĂTURĂ -->
+<section id="semnatura">
+  <div class="wrap">
+    <div class="sig-head">
+      <h2 class="sec-t">Ce nu<br><em>scoatem</em> din meniu</h2>
+      <p class="sig-hint">← Trage lateral pentru a vedea tot</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="strip" id="strip"></div>
+  </div>
+</section>
+
+<!-- MENIU -->
+<section id="meniu">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2 class="sec-t">Meniul<br>de <em>săptămâna</em> asta</h2>
+    </div>
+    <div class="m-ctrl">
+      <div class="tabs" id="tabs">
+        <button class="tab on" data-cat="toate">Tot meniul</button>
+        <button class="tab" data-cat="start">Începuturi</button>
+        <button class="tab" data-cat="foc">De pe foc</button>
+        <button class="tab" data-cat="garn">Alături</button>
+        <button class="tab" data-cat="dulce">Dulce</button>
+      </div>
+      <div class="diets">
+        <button class="diet" data-diet="veg"><i></i>Vegetarian</button>
+        <button class="diet" data-diet="gluten"><i></i>Fără gluten</button>
+      </div>
+    </div>
+    <div class="m-list" id="mList"></div>
+    <p class="m-count"><b id="mN">0</b> preparate afișate · prețurile sunt în lei, TVA inclus</p>
+  </div>
+</section>
+
+<!-- POVESTE -->
+<section id="poveste">
+  <div class="wrap pv">
+    <div class="pv-l">
+      <h2 class="sec-t">Un <em>grătar</em>,<br>două mâini,<br>fără scurtături.</h2>
+      <p>Nu avem congelator. Ce nu se vinde seara, nu se servește a doua zi — <b>se mănâncă de personal sau se aruncă</b>. E scump și e prost din punct de vedere comercial, dar altfel nu are sens.</p>
+      <p>Carnea vine de la două ferme din Banat, pe care le-am vizitat amândouă. Legumele, din piața Badea Cârțan, cumpărate la 6 dimineața de bucătarul care le gătește.</p>
+      <p>Lemnul e de fag, uscat doi ani. Nu folosim cărbune, brichete sau gaz. Focul se aprinde la 15:00 și se stinge singur, noaptea.</p>
+      <div class="pv-sig">Andrei Mocanu · bucătar și proprietar</div>
+    </div>
+    <div class="pv-r">
+      <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=900&q=80" alt="Preparat pe grătar" loading="lazy">
+      <p class="pv-cap">Antricot maturat 40 de zile, secțiune la 52°C.</p>
+      <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=900&q=80" alt="Interiorul bistroului" loading="lazy">
+      <p class="pv-cap">Sala mare, 24 de locuri, o singură tură pe seară.</p>
+      <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&q=80" alt="Farfurie" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- REZERVARE -->
+<section id="rezervare">
+  <div class="wrap rz">
+    <div class="rz-l">
+      <h2 class="sec-t">Rezervă<br>o <em>masă</em></h2>
+      <p>Avem 24 de locuri și o singură tură. Când se umple, se umple — de asta rezervarea nu e opțională în weekend.</p>
+      <div class="rz-facts">
+        <div class="rz-f"><span>Program</span><span>Marți – Sâmbătă, 18:00 – 23:00</span></div>
+        <div class="rz-f"><span>Închis</span><span>Duminică și Luni</span></div>
+        <div class="rz-f"><span>Locuri</span><span>24 la interior, 12 pe terasă</span></div>
+        <div class="rz-f"><span>Grupuri</span><span>Peste 8 persoane, doar telefonic</span></div>
+        <div class="rz-f"><span>Telefon</span><span>0356 400 800</span></div>
+      </div>
+    </div>
+    <div class="rz-r">
+      <div class="step-l">01 · Alege ziua</div>
+      <div class="days" id="days"></div>
+      <div class="step-l">02 · Câte persoane</div>
+      <div class="pax" id="pax"></div>
+      <div class="step-l">03 · La ce oră</div>
+      <div class="slots" id="slots"></div>
+      <div class="rz-sum">
+        <div class="rz-sum-l">Rezervarea ta</div>
+        <div class="rz-sum-v" id="rzSum">Alege ziua, persoanele și ora</div>
+      </div>
+      <button class="btn rz-go" id="rzGo" disabled>Confirmă rezervarea</button>
+      <p class="rz-note">Demo — nu se trimite nicio rezervare reală</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-big">Ne vedem<br>la foc.</div>
+    <div class="ft-grid">
+      <div class="ft-c"><b>Adresă</b><p>Str. Emanoil Ungureanu 8<br>Timișoara, 300079</p></div>
+      <div class="ft-c"><b>Program</b><p>Marți – Sâmbătă<br>18:00 – 23:00</p></div>
+      <div class="ft-c"><b>Contact</b><a href="tel:0356400800">0356 400 800</a><a href="mailto:rezervari@fum.ro">rezervari@fum.ro</a></div>
+      <div class="ft-c"><b>Urmărește</b><a href="#">Instagram</a><a href="#">Facebook</a></div>
+    </div>
+    <div class="ft-end">
+      <span>FUM Bistro · 2026</span>
+      <span>Exemplu de site realizat de <a href="index.html">Lucian Cebuc</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+const U='https://images.unsplash.com/photo-';
+const $=s=>document.querySelector(s);
+
+/* ═══ FARFURIA ZILEI — chiar după ziua reală ═══ */
+const ZILE=['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
+const AZI={
+  0:{f:'Închis — ne odihnim și noi',p:''},
+  1:{f:'Închis — piața e goală lunea',p:''},
+  2:{f:'Ceafă de porc Mangalița, varză călită pe grătar',p:'62 lei'},
+  3:{f:'Somn de Dunăre pe cărbune, zeamă de leuștean',p:'74 lei'},
+  4:{f:'Coaste de vită afumate 6 ore, piure de rădăcinoase',p:'89 lei'},
+  5:{f:'Antricot maturat 40 zile, unt de măduvă',p:'118 lei'},
+  6:{f:'Miel la ceaun cu usturoi verde și pâine de casă',p:'96 lei'}
+};
+const zi=new Date().getDay();
+$('#aziZi').textContent=ZILE[zi];
+$('#aziFel').textContent=AZI[zi].f;
+$('#aziPret').textContent=AZI[zi].p||'—';
+
+/* status deschis/închis, calculat din ziua și ora reală */
+(function(){
+  const h=new Date().getHours(), inchis=zi===0||zi===1;
+  let txt;
+  if(inchis) txt='Închis azi · deschidem marți la 18:00';
+  else if(h<18) txt='Deschidem azi la 18:00';
+  else if(h<23) txt='Deschis acum · până la 23:00';
+  else txt='Închis · revenim mâine de la 18:00';
+  $('#statusTxt').textContent=txt;
+  if(inchis||h<18||h>=23) $('#statusDot').style.background='var(--ash)';
+})();
+
+/* ═══ MARQUEE ═══ */
+const MQ=['Foc de fag','Fără congelator','24 de locuri','Piața la 6 dimineața','O singură tură','Meniu zilnic'];
+$('#mq').innerHTML=[...MQ,...MQ].map(t=>`<span>${t}</span><span>✦</span>`).join('');
+
+/* ═══ SEMNĂTURĂ ═══ */
+const SIG=[
+  {n:'01',t:'Antricot maturat',d:'40 de zile la uscat, tăiat la 400 g, cu unt de măduvă și sare de Ocna.',p:'118 lei',i:U+'1600891964092-4316c288032e?w=700&q=80'},
+  {n:'02',t:'Coaste de vită',d:'Șase ore la fum jos, apoi glazurate cu must fiert de la Recaș.',p:'89 lei',i:U+'1555939594-58d7cb561ad1?w=700&q=80'},
+  {n:'03',t:'Legume pe jar',d:'Ce e în sezon, aruncat direct pe cărbune, cu iaurt de bivoliță și ierburi.',p:'44 lei',i:U+'1540189549336-e6e99c3679fe?w=700&q=80'},
+  {n:'04',t:'Pâine cu maia',d:'Frământată zilnic, coaptă în același cuptor cu lemne. Vine cu unt afumat.',p:'18 lei',i:U+'1504674900247-0877df9cc836?w=700&q=80'},
+  {n:'05',t:'Desertul casei',d:'Se schimbă săptămânal. Întreabă chelnerul, nu îl trecem niciodată în meniu.',p:'32 lei',i:U+'1590846406792-0adc7f938f1d?w=700&q=80'}
+];
+$('#strip').innerHTML=SIG.map(s=>`
+  <div class="sig">
+    <div class="sig-img"><img src="${s.i}" alt="${s.t}" loading="lazy"><span class="sig-n an">${s.n}</span></div>
+    <div class="sig-b">
+      <div class="sig-t">${s.t}</div>
+      <div class="sig-d">${s.d}</div>
+      <div class="sig-p">${s.p}</div>
+    </div>
+  </div>`).join('');
+
+/* ═══ MENIU ═══ */
+const MENIU=[
+  {c:'start',n:'Pâine cu maia și unt afumat',d:'Coaptă în cuptorul cu lemne, servită caldă. Untul e afumat de noi, la rece.',p:18,veg:1,gluten:0},
+  {c:'start',n:'Vinete pe jar, nucă și mărar',d:'Coapte direct pe cărbune, curățate manual. Fără maioneză, fără compromisuri.',p:29,veg:1,gluten:1},
+  {c:'start',n:'Brânză de burduf, ceapă roșie',d:'De la o stână din Rusca Montană, maturată în coajă de brad.',p:34,veg:1,gluten:1},
+  {c:'start',n:'Măduvă la cuptor, pătrunjel, lămâie',d:'Două oase, coapte 20 de minute. Se mănâncă cu pâine prăjită.',p:38,veg:0,gluten:0},
+  {c:'start',n:'Salată de sfeclă coaptă, hrean proaspăt',d:'Sfeclă coaptă în jar patru ore, hrean ras la comandă.',p:27,veg:1,gluten:1},
+  {c:'foc',n:'Antricot maturat 40 de zile',d:'400 g, de la ferma Cornea. Se servește la 52°C, cu unt de măduvă.',p:118,veg:0,gluten:1},
+  {c:'foc',n:'Coaste de vită afumate',d:'Șase ore la fum jos, glazurate cu must fiert de la Recaș.',p:89,veg:0,gluten:1},
+  {c:'foc',n:'Ceafă de Mangalița',d:'Porc crescut liber în Banat. Marinată 24 de ore în boia dulce și cimbru.',p:62,veg:0,gluten:1},
+  {c:'foc',n:'Somn de Dunăre pe cărbune',d:'Prins în aceeași zi. Servit cu zeamă de leuștean și lămâie arsă.',p:74,veg:0,gluten:1},
+  {c:'foc',n:'Conopidă întreagă pe jar',d:'Un kilogram, coaptă lent, cu tahini de casă și semințe prăjite.',p:48,veg:1,gluten:1},
+  {c:'foc',n:'Miel la ceaun cu usturoi verde',d:'Doar primăvara și doar sâmbăta. Se termină aproape întotdeauna.',p:96,veg:0,gluten:1},
+  {c:'garn',n:'Cartofi în grăsime de rață',d:'Fierți, zdrobiți, prăjiți. Cu rozmarin și sare grunjoasă.',p:24,veg:0,gluten:1},
+  {c:'garn',n:'Varză călită pe grătar',d:'Tăiată în sferturi, arsă pe o parte, apoi călită lent cu chimen.',p:22,veg:1,gluten:1},
+  {c:'garn',n:'Salată verde, zeamă de lămâie',d:'Doar salată, ulei bun și sare. Atât.',p:19,veg:1,gluten:1},
+  {c:'garn',n:'Ciuperci de pădure pe unt',d:'Ce aduce culegătorul. Vara gălbiori, toamna hribi.',p:34,veg:1,gluten:1},
+  {c:'dulce',n:'Papanași cu dulceață de vișine',d:'Făcuți la comandă, așteptare 15 minute. Merită.',p:32,veg:1,gluten:0},
+  {c:'dulce',n:'Înghețată de smântână arsă',d:'Făcută zilnic. Cu sirop de brad de la Semenic.',p:26,veg:1,gluten:1},
+  {c:'dulce',n:'Prăjitură cu mere pe plită',d:'Merele se caramelizează direct pe fontă. Se servește cu frișcă bătută manual.',p:29,veg:1,gluten:0}
+];
+const M={cat:'toate',veg:false,gluten:false};
+function renderMeniu(){
+  const list=MENIU.filter(d=>
+    (M.cat==='toate'||d.c===M.cat)&&(!M.veg||d.veg)&&(!M.gluten||d.gluten));
+  $('#mN').textContent=list.length;
+  $('#mList').innerHTML=list.length?list.map(d=>`
+    <div class="dish">
+      <div>
+        <div class="d-top">
+          <span class="d-n">${d.n}</span>
+          ${d.veg?'<span class="d-badge">Vegetarian</span>':''}
+          ${d.gluten?'<span class="d-badge gl">Fără gluten</span>':''}
+        </div>
+        <p class="d-d">${d.d}</p>
+      </div>
+      <div class="d-p">${d.p}</div>
+    </div>`).join('')
+    :'<div class="m-empty">Nimic nu se potrivește cu filtrele alese. Scoate un filtru.</div>';
+}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');M.cat=t.dataset.cat;renderMeniu();
+});
+document.querySelectorAll('.diet').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.diet;M[k]=!M[k];b.classList.toggle('on',M[k]);renderMeniu();
+});
+renderMeniu();
+
+/* ═══ REZERVARE ═══ */
+const WD=['Dum','Lun','Mar','Mie','Joi','Vin','Sâm'];
+const LN=['ian','feb','mar','apr','mai','iun','iul','aug','sep','oct','nov','dec'];
+const R={zi:null,pax:2,ora:null};
+const zile=[];
+for(let i=0;i<7;i++){const d=new Date();d.setDate(d.getDate()+i);zile.push(d);}
+$('#days').innerHTML=zile.map((d,i)=>{
+  const inchis=d.getDay()===0||d.getDay()===1;
+  return `<button class="day" data-i="${i}" ${inchis?'disabled style="opacity:.3;cursor:not-allowed"':''}>
+    <div class="day-w">${WD[d.getDay()]}</div>
+    <div class="day-n an">${d.getDate()}</div>
+    <div class="day-m">${inchis?'închis':LN[d.getMonth()]}</div>
+  </button>`;}).join('');
+$('#pax').innerHTML=[1,2,3,4,5,6,7,8].map(n=>
+  `<button class="px ${n===2?'on':''}" data-p="${n}">${n}</button>`).join('');
+const ORE=['18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30'];
+
+function liberSlot(ziIdx,ora){
+  if(ziIdx===null)return true;
+  const d=zile[ziIdx];
+  const h=(d.getDate()*11+ORE.indexOf(ora)*17+d.getDay()*5)%10;
+  const weekend=d.getDay()===5||d.getDay()===6;
+  return h>(weekend?4:2);
+}
+function renderSlots(){
+  $('#slots').innerHTML=ORE.map(o=>{
+    const full=R.zi!==null&&!liberSlot(R.zi,o);
+    return `<button class="sl ${full?'full':''} ${R.ora===o?'on':''}" data-o="${o}" ${full?'disabled':''}>${o}</button>`;
+  }).join('');
+}
+function renderSum(){
+  const ok=R.zi!==null&&R.ora;
+  if(!ok){
+    $('#rzSum').textContent=R.zi===null?'Alege ziua, persoanele și ora':'Mai alege o oră liberă';
+    $('#rzGo').disabled=true;return;
+  }
+  const d=zile[R.zi];
+  $('#rzSum').innerHTML=`${WD[d.getDay()]} ${d.getDate()} ${LN[d.getMonth()]} · <em>${R.ora}</em><br>${R.pax} ${R.pax===1?'persoană':'persoane'}`;
+  $('#rzGo').disabled=false;
+}
+$('#days').addEventListener('click',e=>{
+  const b=e.target.closest('.day');if(!b||b.disabled)return;
+  document.querySelectorAll('.day').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');R.zi=+b.dataset.i;
+  if(R.ora&&!liberSlot(R.zi,R.ora))R.ora=null;
+  renderSlots();renderSum();
+});
+$('#pax').addEventListener('click',e=>{
+  const b=e.target.closest('.px');if(!b)return;
+  document.querySelectorAll('.px').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');R.pax=+b.dataset.p;
+  if(R.pax>8)toast('Pentru grupuri mari, sună-ne la 0356 400 800');
+  renderSum();
+});
+$('#slots').addEventListener('click',e=>{
+  const b=e.target.closest('.sl');if(!b||b.disabled)return;
+  if(R.zi===null){toast('Alege întâi ziua');return;}
+  R.ora=b.dataset.o;renderSlots();renderSum();
+});
+$('#rzGo').onclick=()=>{
+  const d=zile[R.zi];
+  toast(`Rezervare confirmată · ${WD[d.getDay()]} ${d.getDate()} ${LN[d.getMonth()]}, ${R.ora}, ${R.pax} pers.`);
+  R.zi=null;R.ora=null;
+  document.querySelectorAll('.day').forEach(x=>x.classList.remove('on'));
+  renderSlots();renderSum();
+};
+renderSlots();renderSum();
+
+let tt;
+function toast(m){
+  const t=$('#toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800);
+}
+
+/* ═══ ANIMAȚII ═══ */
+const lenis=new Lenis({duration:1.1,smoothWheel:true});
+function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('.h-type .ln > span',{y:0,duration:1.05,stagger:.09,ease:'power3.out',delay:.15});
+gsap.to('#hero .rv',{opacity:1,y:0,duration:.8,stagger:.1,ease:'power2.out',delay:.5});
+gsap.from('.azi-box',{opacity:0,y:24,duration:.7,ease:'power2.out',
+  scrollTrigger:{trigger:'.azi-box',start:'top 88%',once:true}});
+gsap.from('.dish',{opacity:0,y:16,duration:.5,stagger:.03,ease:'power2.out',
+  scrollTrigger:{trigger:'#mList',start:'top 85%',once:true}});
+</script>
+</body>
+</html>

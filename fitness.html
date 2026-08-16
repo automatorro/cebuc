@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CADENȚĂ · Sală de fitness și studio, Timișoara</title>
+<meta name="description" content="Sală de fitness cu orar de clase în Timișoara. Rezervi locul online, vezi câte locuri au mai rămas.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blk:#0A0A0B;--card:#131319;--line:#26262F;--wht:#FFFFFF;--gry:#8E8E9C;
+  --volt:#6C4CFF;--volt2:#8570FF;--hot:#FF3D71;--ok:#2BD9A0
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--blk);color:var(--wht);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.55}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+.bb{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.02em;line-height:.88}
+.wrap{max-width:1300px;margin:0 auto;padding:0 2rem}
+::selection{background:var(--volt);color:var(--wht)}
+
+/* ── NAV ── */
+#nav{position:sticky;top:0;z-index:500;background:var(--blk);border-bottom:2px solid var(--wht)}
+.nav-in{max-width:1300px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:.05em}
+.logo span{color:var(--volt)}
+.nav-links{display:flex;gap:1.6rem;list-style:none;margin-left:2rem}
+.nav-links a{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gry);transition:color .18s}
+.nav-links a:hover{color:var(--wht)}
+.nav-r{margin-left:auto;display:flex;gap:.6rem;align-items:center}
+.mybk{border:2px solid var(--wht);padding:.5rem 1rem;font-size:.76rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;transition:all .18s}
+.mybk:hover{background:var(--wht);color:var(--blk)}
+.mybk b{background:var(--volt);color:var(--wht);width:20px;height:20px;display:grid;place-items:center;
+  font-size:.72rem;font-variant-numeric:tabular-nums}
+.mybk:hover b{background:var(--blk);color:var(--wht)}
+.nav-cta{background:var(--volt);padding:.6rem 1.2rem;font-size:.76rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;transition:background .18s}
+.nav-cta:hover{background:var(--volt2)}
+
+/* ── HERO GRILĂ ── */
+#hero{border-bottom:2px solid var(--wht)}
+.hg{display:grid;grid-template-columns:1.35fr .65fr;border-left:2px solid var(--wht)}
+.hg>*{border-right:2px solid var(--wht)}
+.hg-main{padding:3rem 2.5rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.hg-tag{display:inline-flex;align-items:center;gap:.6rem;border:2px solid var(--volt);color:var(--volt);
+  padding:.35rem .8rem;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  align-self:flex-start;margin-bottom:2rem}
+.hg-tag i{width:7px;height:7px;background:var(--volt);display:block;animation:pl 1.6s infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.2}}
+.hg-t{font-size:clamp(3.2rem,12vw,11rem);text-transform:uppercase}
+.hg-t .l2{color:transparent;-webkit-text-stroke:2px var(--wht)}
+.hg-t .l3{color:var(--volt)}
+.hg-sub{margin-top:2rem;padding-top:1.5rem;border-top:2px solid var(--line);
+  display:flex;gap:2.5rem;flex-wrap:wrap;align-items:flex-end}
+.hg-sub p{font-size:.9rem;color:var(--gry);max-width:40ch;line-height:1.75}
+.hg-sub p b{color:var(--wht)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--volt);
+  color:var(--wht);font-weight:700;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;
+  padding:1rem 1.9rem;transition:transform .12s,box-shadow .12s;box-shadow:5px 5px 0 var(--wht)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--wht)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--wht)}
+.btn.alt{background:var(--wht);color:var(--blk);box-shadow:5px 5px 0 var(--volt)}
+.btn.alt:hover{box-shadow:7px 7px 0 var(--volt)}
+.hg-side{display:flex;flex-direction:column}
+.hg-img{flex:1;min-height:220px;overflow:hidden;position:relative;border-bottom:2px solid var(--wht)}
+.hg-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25)}
+.hg-img::after{content:'';position:absolute;inset:0;background:var(--volt);mix-blend-mode:color;opacity:.5}
+.hg-nums{display:grid;grid-template-rows:repeat(3,1fr)}
+.hn{padding:1.1rem 1.4rem;border-bottom:2px solid var(--wht);display:flex;
+  align-items:baseline;justify-content:space-between;gap:1rem}
+.hn:last-child{border-bottom:none}
+.hn-v{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:.9;color:var(--volt)}
+.hn-l{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gry);text-align:right;line-height:1.4}
+
+/* ── MARQUEE ── */
+.mq{background:var(--volt);border-bottom:2px solid var(--wht);overflow:hidden;padding:.7rem 0;white-space:nowrap}
+.mq-in{display:inline-flex;gap:2.5rem;animation:sl 22s linear infinite}
+.mq-in span{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.06em}
+@keyframes sl{to{transform:translateX(-50%)}}
+
+/* ── ORAR ── */
+#orar{padding:4.5rem 0;border-bottom:2px solid var(--wht)}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.sec-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6.5vw,5rem);text-transform:uppercase;line-height:.88}
+.sec-t span{color:var(--volt)}
+.sec-d{font-size:.88rem;color:var(--gry);max-width:38ch;line-height:1.75}
+.dtabs{display:flex;border:2px solid var(--wht);margin-bottom:0;overflow-x:auto}
+.dt{flex:1;min-width:88px;padding:.85rem .5rem;border-right:2px solid var(--wht);
+  font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gry);transition:all .15s;white-space:nowrap}
+.dt:last-child{border-right:none}
+.dt:hover{color:var(--wht);background:var(--card)}
+.dt.on{background:var(--volt);color:var(--wht)}
+.dt small{display:block;font-size:.62rem;opacity:.7;letter-spacing:.05em;margin-top:.15rem}
+.sched{border:2px solid var(--wht);border-top:none}
+.row{display:grid;grid-template-columns:88px 1fr 150px 84px 118px 150px;gap:1rem;
+  padding:1rem 1.2rem;border-bottom:2px solid var(--line);align-items:center}
+.row:last-child{border-bottom:none}
+.row.full{opacity:.42}
+.r-h{background:var(--card);border-bottom:2px solid var(--wht);font-size:.66rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gry);padding:.7rem 1.2rem}
+.r-ora{font-family:'Bebas Neue',sans-serif;font-size:1.65rem;line-height:1}
+.r-nume{font-weight:700;font-size:1rem;letter-spacing:-.01em}
+.r-tip{font-size:.72rem;color:var(--gry);letter-spacing:.06em;text-transform:uppercase;margin-top:.1rem}
+.r-ant{font-size:.85rem;color:var(--gry)}
+.r-dur{font-size:.85rem;color:var(--gry);font-variant-numeric:tabular-nums}
+.r-loc{font-size:.85rem;font-weight:700;font-variant-numeric:tabular-nums}
+.r-loc.few{color:var(--hot)}
+.r-loc.ok{color:var(--ok)}
+.r-loc.zero{color:var(--gry)}
+.r-btn{border:2px solid var(--wht);padding:.55rem .9rem;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;transition:all .15s;width:100%}
+.r-btn:hover:not(:disabled){background:var(--wht);color:var(--blk)}
+.r-btn.on{background:var(--ok);border-color:var(--ok);color:var(--blk)}
+.r-btn:disabled{border-color:var(--line);color:var(--line);cursor:not-allowed}
+.sch-empty{padding:3rem 1.2rem;text-align:center;color:var(--gry);font-size:.9rem}
+
+/* ── ANTRENORI ── */
+#antrenori{padding:4.5rem 0;border-bottom:2px solid var(--wht)}
+.tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.2rem}
+.tr{border:2px solid var(--wht);background:var(--card);display:flex;flex-direction:column}
+.tr-img{aspect-ratio:1;overflow:hidden;border-bottom:2px solid var(--wht);position:relative}
+.tr-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15);transition:filter .4s}
+.tr:hover .tr-img img{filter:grayscale(0) contrast(1)}
+.tr-n{position:absolute;bottom:0;left:0;background:var(--volt);padding:.3rem .8rem;
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.06em}
+.tr-b{padding:1.2rem}
+.tr-b h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.03em}
+.tr-sp{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--volt);margin:.2rem 0 .6rem}
+.tr-b p{font-size:.85rem;color:var(--gry);line-height:1.7}
+
+/* ── ABONAMENTE ── */
+#abonamente{padding:4.5rem 0;border-bottom:2px solid var(--wht)}
+.tg{display:inline-flex;border:2px solid var(--wht);margin-top:1.5rem}
+.tgb{padding:.7rem 1.5rem;font-size:.76rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gry);transition:all .15s}
+.tgb.on{background:var(--wht);color:var(--blk)}
+.tg-save{display:inline-block;margin-left:.9rem;font-size:.74rem;font-weight:700;color:var(--ok);
+  letter-spacing:.06em;vertical-align:middle}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.2rem}
+.pl{border:2px solid var(--wht);padding:1.6rem;display:flex;flex-direction:column;position:relative;background:var(--card)}
+.pl.hi{background:var(--volt);box-shadow:8px 8px 0 var(--wht)}
+.pl-badge{position:absolute;top:-2px;right:-2px;background:var(--wht);color:var(--blk);
+  padding:.25rem .7rem;font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.pl-n{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.04em}
+.pl-d{font-size:.82rem;color:var(--gry);margin-top:.2rem;min-height:2.6em;line-height:1.6}
+.pl.hi .pl-d{color:rgba(255,255,255,.8)}
+.pl-p{font-family:'Bebas Neue',sans-serif;font-size:3.4rem;line-height:.95;margin:1rem 0 .1rem;
+  font-variant-numeric:tabular-nums}
+.pl-per{font-size:.78rem;color:var(--gry)}
+.pl.hi .pl-per{color:rgba(255,255,255,.8)}
+.pl-tot{font-size:.76rem;color:var(--ok);font-weight:700;margin-top:.35rem;min-height:1.4em}
+.pl.hi .pl-tot{color:var(--wht)}
+.pl-f{list-style:none;margin:1.3rem 0;padding-top:1.3rem;border-top:2px solid var(--line);flex:1}
+.pl.hi .pl-f{border-color:rgba(255,255,255,.3)}
+.pl-f li{font-size:.85rem;padding:.42rem 0;display:flex;gap:.6rem;align-items:flex-start;color:var(--gry)}
+.pl.hi .pl-f li{color:rgba(255,255,255,.92)}
+.pl-f li::before{content:'—';color:var(--volt);flex-shrink:0}
+.pl.hi .pl-f li::before{color:var(--wht)}
+.pl .btn{width:100%}
+.pl.hi .btn{background:var(--wht);color:var(--blk);box-shadow:5px 5px 0 var(--blk)}
+
+/* ── PANOU REZERVĂRI ── */
+#panel{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);background:var(--card);
+  border-left:2px solid var(--wht);z-index:800;transform:translateX(102%);
+  transition:transform .35s cubic-bezier(.2,.8,.3,1);display:flex;flex-direction:column}
+#panel.on{transform:translateX(0)}
+.pn-h{padding:1.3rem;border-bottom:2px solid var(--wht);display:flex;align-items:center;justify-content:space-between}
+.pn-h b{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em}
+.pn-x{font-size:1.6rem;line-height:1;color:var(--gry);padding:.2rem .4rem}
+.pn-x:hover{color:var(--wht)}
+.pn-b{flex:1;overflow-y:auto;padding:1.1rem}
+.pn-it{border:2px solid var(--line);padding:.9rem;margin-bottom:.7rem;display:flex;
+  justify-content:space-between;gap:1rem;align-items:flex-start}
+.pn-it b{font-size:.9rem;font-weight:700;display:block}
+.pn-it span{font-size:.76rem;color:var(--gry)}
+.pn-rm{color:var(--hot);font-size:.7rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;white-space:nowrap;padding-top:.15rem}
+.pn-rm:hover{text-decoration:underline}
+.pn-empty{color:var(--gry);font-size:.87rem;text-align:center;padding:3rem 1rem;line-height:1.8}
+.pn-f{padding:1.1rem;border-top:2px solid var(--wht)}
+.pn-f .btn{width:100%}
+#ovl{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:790;opacity:0;pointer-events:none;transition:opacity .3s}
+#ovl.on{opacity:1;pointer-events:auto}
+
+/* ── CONTACT / FOOTER ── */
+#contact{padding:4.5rem 0}
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.ct-l{border:2px solid var(--wht);padding:1.6rem}
+.ct-r{display:flex;flex-direction:column;gap:.9rem}
+.ct-it{border:2px solid var(--line);padding:1rem 1.2rem}
+.ct-it b{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--volt);display:block;margin-bottom:.3rem}
+.ct-it span{font-size:.95rem}
+.fg{margin-bottom:.9rem}
+.fg label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gry);margin-bottom:.35rem}
+.fg input,.fg select{width:100%;padding:.7rem .8rem;background:var(--blk);border:2px solid var(--line);
+  color:var(--wht);outline:none;transition:border-color .18s;-webkit-appearance:none;appearance:none;border-radius:0}
+.fg input:focus,.fg select:focus{border-color:var(--volt)}
+footer{border-top:2px solid var(--wht);padding:3rem 0 2rem}
+.ft-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,13vw,11rem);text-transform:uppercase;
+  line-height:.85;color:transparent;-webkit-text-stroke:2px var(--line);margin-bottom:2rem}
+.ft-end{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding-top:1.5rem;border-top:2px solid var(--line);font-size:.8rem;color:var(--gry)}
+.ft-end a{color:var(--volt)}
+
+#toast{position:fixed;bottom:1.5rem;left:50%;transform:translate(-50%,180%);z-index:950;
+  background:var(--wht);color:var(--blk);padding:.85rem 1.5rem;font-size:.8rem;font-weight:700;
+  letter-spacing:.03em;box-shadow:5px 5px 0 var(--volt);transition:transform .35s cubic-bezier(.2,.8,.3,1);
+  max-width:90vw;text-align:center}
+#toast.on{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(24px)}
+
+@media(max-width:1100px){
+  .row{grid-template-columns:70px 1fr 100px 118px;gap:.8rem}
+  .r-ant,.r-dur{display:none}
+  .r-h span:nth-child(3),.r-h span:nth-child(4){display:none}
+}
+@media(max-width:900px){
+  .wrap,.nav-in{padding-left:1.1rem;padding-right:1.1rem}
+  .nav-links{display:none}
+  .hg{grid-template-columns:1fr}
+  .hg-main{padding:2rem 1.2rem}
+  .hg-nums{grid-template-rows:none}
+  .hg-side{border-top:2px solid var(--wht)}
+  .tr-grid,.plans{grid-template-columns:1fr}
+  .ct{grid-template-columns:1fr}
+  .row{grid-template-columns:62px 1fr 108px;gap:.6rem;padding:.9rem}
+  .r-loc{display:none}
+  .r-h span:nth-child(5){display:none}
+  .dt{min-width:74px;font-size:.72rem}
+  #orar,#antrenori,#abonamente,#contact{padding:3rem 0}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#" class="logo">CADEN<span>ȚĂ</span></a>
+    <ul class="nav-links">
+      <li><a href="#orar">Orar</a></li>
+      <li><a href="#antrenori">Antrenori</a></li>
+      <li><a href="#abonamente">Abonamente</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="mybk" id="openPanel">Rezervările mele <b id="bkN">0</b></button>
+      <a href="#abonamente" class="nav-cta">Vino la o probă</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hg">
+    <div class="hg-main">
+      <div>
+        <div class="hg-tag rv"><i></i>34 de clase pe săptămână</div>
+        <h1 class="hg-t bb">
+          <div class="rv">Nu vindem</div>
+          <div class="l2 rv">abonamente.</div>
+          <div class="l3 rv">Vindem ore.</div>
+        </h1>
+      </div>
+      <div class="hg-sub">
+        <p class="rv">Fiecare clasă are maximum <b>14 locuri</b> și un antrenor care îți știe numele. Rezervi online, vezi câte locuri au rămas, vii la oră fixă.</p>
+        <div class="rv" style="display:flex;gap:.8rem;flex-wrap:wrap">
+          <a href="#orar" class="btn">Vezi orarul</a>
+          <a href="#abonamente" class="btn alt">Abonamente</a>
+        </div>
+      </div>
+    </div>
+    <div class="hg-side">
+      <div class="hg-img">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85" alt="Sală de fitness" loading="eager">
+      </div>
+      <div class="hg-nums">
+        <div class="hn"><span class="hn-v">14</span><span class="hn-l">locuri<br>maxim / clasă</span></div>
+        <div class="hn"><span class="hn-v">06:30</span><span class="hn-l">prima clasă<br>de dimineață</span></div>
+        <div class="hn"><span class="hn-v">0</span><span class="hn-l">taxă de<br>înscriere</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mq"><div class="mq-in" id="mq"></div></div>
+
+<!-- ORAR -->
+<section id="orar">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2 class="sec-t">Orarul <span>săptămânii</span></h2>
+      <p class="sec-d">Locurile afișate sunt cele rămase acum. Rezervarea se anulează gratuit cu până la 2 ore înainte.</p>
+    </div>
+    <div class="dtabs" id="dtabs"></div>
+    <div class="sched" id="sched"></div>
+  </div>
+</section>
+
+<!-- ANTRENORI -->
+<section id="antrenori">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2 class="sec-t">Cine te <span>ține de rău</span></h2>
+    </div>
+    <div class="tr-grid">
+      <div class="tr rv">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700&q=80" alt="Antrenor" loading="lazy">
+          <span class="tr-n">01</span>
+        </div>
+        <div class="tr-b">
+          <h3>Dan Petrescu</h3>
+          <div class="tr-sp">Forță · CrossFit · Haltere</div>
+          <p>Fost powerlifter, 11 ani de sală. Corectează tehnica înainte să adauge greutate — de fiecare dată, fără excepție.</p>
+        </div>
+      </div>
+      <div class="tr rv">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=80" alt="Antrenoare" loading="lazy">
+          <span class="tr-n">02</span>
+        </div>
+        <div class="tr-b">
+          <h3>Ioana Marcu</h3>
+          <div class="tr-sp">Yoga · Mobilitate · Pilates</div>
+          <p>Formare în India și 800 de ore de predare. Clasele ei sunt pline pentru că nu grăbește pe nimeni.</p>
+        </div>
+      </div>
+      <div class="tr rv">
+        <div class="tr-img">
+          <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=700&q=80" alt="Antrenor" loading="lazy">
+          <span class="tr-n">03</span>
+        </div>
+        <div class="tr-b">
+          <h3>Vlad Sima</h3>
+          <div class="tr-sp">HIIT · Spinning · Condiție fizică</div>
+          <p>Maratonist cu 8 curse la activ. Dacă vrei să alergi Semimaratonul Timișoara, el te duce acolo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABONAMENTE -->
+<section id="abonamente">
+  <div class="wrap">
+    <div class="sec-h">
+      <div>
+        <h2 class="sec-t">Cât <span>costă</span></h2>
+        <div>
+          <div class="tg">
+            <button class="tgb on" data-per="luna">Lunar</button>
+            <button class="tgb" data-per="an">Anual</button>
+          </div>
+          <span class="tg-save" id="tgSave"></span>
+        </div>
+      </div>
+      <p class="sec-d">Fără taxă de înscriere, fără perioadă minimă la abonamentul lunar. Se anulează oricând.</p>
+    </div>
+    <div class="plans" id="plans"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-h"><h2 class="sec-t">Prima ședință<br>e <span>gratuită</span></h2></div>
+    <div class="ct">
+      <form class="ct-l" id="ctForm">
+        <div class="fg"><label for="n">Nume</label><input id="n" type="text" placeholder="Numele tău" required></div>
+        <div class="fg"><label for="t">Telefon</label><input id="t" type="tel" placeholder="07xx xxx xxx" required></div>
+        <div class="fg">
+          <label for="c">Ce te interesează</label>
+          <select id="c">
+            <option>Ședință de probă gratuită</option>
+            <option>Abonament lunar</option>
+            <option>Antrenament personal</option>
+            <option>Consultanță nutriție</option>
+          </select>
+        </div>
+        <button type="submit" class="btn" style="width:100%">Trimite</button>
+      </form>
+      <div class="ct-r">
+        <div class="ct-it"><b>Adresă</b><span>Calea Aradului 42, Timișoara</span></div>
+        <div class="ct-it"><b>Program</b><span>Luni–Vineri 06:00–22:00 · Sâmbătă–Duminică 08:00–20:00</span></div>
+        <div class="ct-it"><b>Telefon</b><span>0356 700 900</span></div>
+        <div class="ct-it"><b>Email</b><span>salut@cadenta.ro</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft-big">Cadență</div>
+    <div class="ft-end">
+      <span>CADENȚĂ Fitness · Timișoara · 2026</span>
+      <span>Exemplu de site realizat de <a href="index.html">Lucian Cebuc</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- PANOU -->
+<div id="ovl"></div>
+<aside id="panel">
+  <div class="pn-h"><b>Rezervările mele</b><button class="pn-x" id="closePanel" aria-label="Închide">&times;</button></div>
+  <div class="pn-b" id="pnBody"></div>
+  <div class="pn-f"><button class="btn" id="pnGo">Confirmă rezervările</button></div>
+</aside>
+
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.1/dist/lenis.min.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+
+$('#mq').innerHTML=[...Array(2)].map(()=>
+  ['Maxim 14 locuri','Fără taxă de înscriere','34 de clase','Anulare gratuită','Prima ședință gratis']
+  .map(t=>`<span>${t}</span><span>/</span>`).join('')).join('');
+
+/* ═══ ORAR ═══ */
+const ZI=['Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă','Duminică'];
+const ZIS=['Lun','Mar','Mie','Joi','Vin','Sâm','Dum'];
+const ORAR=[
+  [ /* Luni */
+    {o:'06:30',n:'Wake Up HIIT',t:'Cardio',a:'Vlad Sima',d:45,l:14},
+    {o:'09:00',n:'Yoga Flow',t:'Mobilitate',a:'Ioana Marcu',d:60,l:14},
+    {o:'17:30',n:'Forță Totală',t:'Haltere',a:'Dan Petrescu',d:60,l:12},
+    {o:'19:00',n:'Spinning',t:'Cardio',a:'Vlad Sima',d:45,l:14},
+    {o:'20:15',n:'Stretching profund',t:'Recuperare',a:'Ioana Marcu',d:45,l:14}
+  ],
+  [ /* Marți */
+    {o:'07:00',n:'Pilates Matinal',t:'Core',a:'Ioana Marcu',d:50,l:14},
+    {o:'12:00',n:'Express Prânz',t:'Cardio',a:'Vlad Sima',d:30,l:14},
+    {o:'18:00',n:'CrossFit WOD',t:'Funcțional',a:'Dan Petrescu',d:60,l:12},
+    {o:'19:30',n:'TRX Circuit',t:'Funcțional',a:'Dan Petrescu',d:45,l:10}
+  ],
+  [ /* Miercuri */
+    {o:'06:30',n:'Wake Up HIIT',t:'Cardio',a:'Vlad Sima',d:45,l:14},
+    {o:'09:00',n:'Yoga Flow',t:'Mobilitate',a:'Ioana Marcu',d:60,l:14},
+    {o:'17:30',n:'Forță Totală',t:'Haltere',a:'Dan Petrescu',d:60,l:12},
+    {o:'19:00',n:'Box Fitness',t:'Cardio',a:'Vlad Sima',d:60,l:12},
+    {o:'20:15',n:'Mobilitate șolduri',t:'Recuperare',a:'Ioana Marcu',d:45,l:14}
+  ],
+  [ /* Joi */
+    {o:'07:00',n:'Pilates Matinal',t:'Core',a:'Ioana Marcu',d:50,l:14},
+    {o:'12:00',n:'Express Prânz',t:'Cardio',a:'Vlad Sima',d:30,l:14},
+    {o:'18:00',n:'CrossFit WOD',t:'Funcțional',a:'Dan Petrescu',d:60,l:12},
+    {o:'19:30',n:'Spinning',t:'Cardio',a:'Vlad Sima',d:45,l:14}
+  ],
+  [ /* Vineri */
+    {o:'06:30',n:'Wake Up HIIT',t:'Cardio',a:'Vlad Sima',d:45,l:14},
+    {o:'17:00',n:'Forță Totală',t:'Haltere',a:'Dan Petrescu',d:60,l:12},
+    {o:'18:30',n:'Yoga de seară',t:'Mobilitate',a:'Ioana Marcu',d:60,l:14},
+    {o:'19:45',n:'TRX Circuit',t:'Funcțional',a:'Dan Petrescu',d:45,l:10}
+  ],
+  [ /* Sâmbătă */
+    {o:'09:00',n:'CrossFit Open',t:'Funcțional',a:'Dan Petrescu',d:75,l:12},
+    {o:'10:30',n:'Yoga Flow',t:'Mobilitate',a:'Ioana Marcu',d:60,l:14},
+    {o:'12:00',n:'Alergare în grup',t:'Outdoor',a:'Vlad Sima',d:90,l:20}
+  ],
+  [ /* Duminică */
+    {o:'10:00',n:'Mobilitate & Respirație',t:'Recuperare',a:'Ioana Marcu',d:60,l:14},
+    {o:'11:30',n:'HIIT de duminică',t:'Cardio',a:'Vlad Sima',d:45,l:14}
+  ]
+];
+/* locuri deja ocupate — arată realist, stabil între randări */
+ORAR.forEach((zi,zi_i)=>zi.forEach((c,i)=>{
+  const ocupate=(zi_i*7+i*11+c.o.charCodeAt(1)*3)%(c.l-1);
+  c.ramase=Math.max(0,c.l-ocupate);
+}));
+
+let ziSel=(new Date().getDay()+6)%7;   /* Luni = 0 */
+const rez=new Map();                    /* cheie "zi-index" */
+
+$('#dtabs').innerHTML=ZI.map((z,i)=>
+  `<button class="dt ${i===ziSel?'on':''}" data-z="${i}">${ZIS[i]}<small>${ORAR[i].length} clase</small></button>`).join('');
+
+function renderOrar(){
+  const zi=ORAR[ziSel];
+  $('#sched').innerHTML=
+    `<div class="row r-h"><span>Ora</span><span>Clasa</span><span>Antrenor</span><span>Durată</span><span>Locuri</span><span></span></div>`+
+    zi.map((c,i)=>{
+      const k=ziSel+'-'+i, luat=rez.has(k), full=c.ramase<=0&&!luat;
+      const cls=c.ramase<=0?'zero':(c.ramase<=3?'few':'ok');
+      return `<div class="row ${full?'full':''}">
+        <div class="r-ora bb">${c.o}</div>
+        <div><div class="r-nume">${c.n}</div><div class="r-tip">${c.t}</div></div>
+        <div class="r-ant">${c.a}</div>
+        <div class="r-dur">${c.d} min</div>
+        <div class="r-loc ${cls}">${c.ramase<=0?'Complet':c.ramase+' locuri'}</div>
+        <button class="r-btn ${luat?'on':''}" data-k="${k}" ${full?'disabled':''}>
+          ${luat?'Rezervat ✓':(full?'Complet':'Rezervă')}
+        </button>
+      </div>`;
+    }).join('');
+}
+$('#dtabs').addEventListener('click',e=>{
+  const b=e.target.closest('.dt');if(!b)return;
+  document.querySelectorAll('.dt').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');ziSel=+b.dataset.z;renderOrar();
+});
+$('#sched').addEventListener('click',e=>{
+  const b=e.target.closest('.r-btn');if(!b||b.disabled)return;
+  toggleRez(b.dataset.k);
+});
+function toggleRez(k){
+  const [z,i]=k.split('-').map(Number), c=ORAR[z][i];
+  if(rez.has(k)){rez.delete(k);c.ramase++;toast('Rezervare anulată');}
+  else{
+    if(c.ramase<=0){toast('Clasa este completă');return;}
+    rez.set(k,{zi:ZI[z],...c});c.ramase--;
+    toast(`${c.n} · ${ZI[z]} ${c.o} — loc rezervat`);
+  }
+  $('#bkN').textContent=rez.size;
+  renderOrar();renderPanel();
+}
+
+/* ═══ PANOU ═══ */
+function renderPanel(){
+  if(!rez.size){
+    $('#pnBody').innerHTML='<p class="pn-empty">Nu ai nicio clasă rezervată.<br>Alege una din orar și apare aici.</p>';
+    $('#pnGo').disabled=true;$('#pnGo').style.opacity=.4;return;
+  }
+  $('#pnGo').disabled=false;$('#pnGo').style.opacity=1;
+  $('#pnBody').innerHTML=[...rez.entries()].map(([k,c])=>`
+    <div class="pn-it">
+      <div><b>${c.n}</b><span>${c.zi} · ${c.o} · ${c.a} · ${c.d} min</span></div>
+      <button class="pn-rm" data-rm="${k}">Scoate</button>
+    </div>`).join('');
+}
+$('#pnBody').addEventListener('click',e=>{
+  const b=e.target.closest('[data-rm]');if(b)toggleRez(b.dataset.rm);
+});
+function openPn(){$('#panel').classList.add('on');$('#ovl').classList.add('on');document.body.style.overflow='hidden';}
+function closePn(){$('#panel').classList.remove('on');$('#ovl').classList.remove('on');document.body.style.overflow='';}
+$('#openPanel').onclick=()=>{
+  if(!rez.size)toast('Nu ai rezervat încă nicio clasă');
+  openPn();
+};
+$('#closePanel').onclick=closePn;
+$('#ovl').onclick=closePn;
+$('#pnGo').onclick=()=>{
+  toast(`${rez.size} ${rez.size===1?'clasă confirmată':'clase confirmate'} — te așteptăm!`);
+  rez.clear();$('#bkN').textContent=0;renderOrar();renderPanel();closePn();
+};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePn();});
+
+/* ═══ ABONAMENTE ═══ */
+const PLANS=[
+  {n:'Acces liber',d:'Sala de forță și cardio, fără clase cu antrenor.',p:149,
+   f:['Acces nelimitat la sală','Program 06:00–22:00','Vestiar și dușuri','Fără taxă de înscriere']},
+  {n:'Complet',d:'Sala plus toate clasele din orar. Cel mai luat.',p:219,hi:1,
+   f:['Tot ce include Acces liber','Clase nelimitate din orar','Rezervare online cu 7 zile înainte','Evaluare fizică la 3 luni','Invitație lunară pentru un prieten']},
+  {n:'Complet + PT',d:'Antrenament personal săptămânal, inclus.',p:349,
+   f:['Tot ce include Complet','4 ședințe de PT pe lună','Plan de nutriție personalizat','Analiză compoziție corporală lunară','Acces cu 30 min înainte de program']}
+];
+let per='luna';
+function renderPlans(){
+  const an=per==='an';
+  $('#tgSave').textContent=an?'Economisești 20% la plata anuală':'';
+  $('#plans').innerHTML=PLANS.map(p=>{
+    const lunar=an?Math.round(p.p*.8):p.p;
+    const total=an?lunar*12:0;
+    return `<div class="pl ${p.hi?'hi':''}">
+      ${p.hi?'<span class="pl-badge">Cel mai ales</span>':''}
+      <div class="pl-n bb">${p.n}</div>
+      <p class="pl-d">${p.d}</p>
+      <div class="pl-p bb">${lunar} lei</div>
+      <div class="pl-per">pe lună${an?', plătit anual':''}</div>
+      <div class="pl-tot">${an?`${total.toLocaleString('ro-RO')} lei pe an · economisești ${((p.p-lunar)*12).toLocaleString('ro-RO')} lei`:''}</div>
+      <ul class="pl-f">${p.f.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <button class="btn" data-plan="${p.n}">Alege ${p.n}</button>
+    </div>`;
+  }).join('');
+}
+document.querySelectorAll('.tgb').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tgb').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');per=b.dataset.per;renderPlans();
+});
+$('#plans').addEventListener('click',e=>{
+  const b=e.target.closest('[data-plan]');
+  if(b)toast(`Ai ales «${b.dataset.plan}» · ${per==='an'?'plată anuală':'plată lunară'}. Te sunăm pentru detalii.`);
+});
+
+$('#ctForm').onsubmit=e=>{e.preventDefault();toast('Mulțumim! Te contactăm în maximum 24 de ore.');e.target.reset();};
+
+let tt;
+function toast(m){
+  const t=$('#toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2600);
+}
+
+/* ═══ INIT ═══ */
+renderOrar();renderPanel();renderPlans();
+const lenis=new Lenis({duration:1,smoothWheel:true});
+function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('#hero .rv',{opacity:1,y:0,duration:.7,stagger:.08,ease:'power2.out',delay:.1});
+gsap.to('.tr',{opacity:1,y:0,duration:.6,stagger:.11,ease:'power2.out',
+  scrollTrigger:{trigger:'.tr-grid',start:'top 84%',once:true}});
+</script>
+</body>
+</html>

@@ -1,32 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cebuclucian.pages.dev/</loc>
-    <lastmod>2025-08-09</lastmod>
+    <loc>https://cebuc.ro/</loc>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://cebuclucian.pages.dev/kennel.html</loc>
-    <lastmod>2025-08-09</lastmod>
+    <loc>https://cebuc.ro/kennel.html</loc>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cebuclucian.pages.dev/instalatii.html</loc>
-    <lastmod>2025-08-09</lastmod>
+    <loc>https://cebuc.ro/instalatii.html</loc>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cebuclucian.pages.dev/cabinet.html</loc>
-    <lastmod>2025-08-09</lastmod>
+    <loc>https://cebuc.ro/cabinet.html</loc>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cebuclucian.pages.dev/fashion.html</loc>
-    <lastmod>2025-08-09</lastmod>
+    <loc>https://cebuc.ro/fashion.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cebuc.ro/imobiliare.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cebuc.ro/pensiune.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cebuc.ro/restaurant.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://cebuc.ro/fitness.html</loc>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
