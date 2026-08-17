@@ -16,7 +16,15 @@
   --ink:#16211F;--muted:#6E7B78;--line:#E2DCD0;--ok:#2E8B6B;--busy:#C05B4D
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;scroll-behavior:smooth}
+/* fără scroll-behavior:smooth pe html — se bate cap în cap cu Lenis.
+   Se activează din JS doar dacă Lenis nu s-a încărcat (vezi .no-lenis). */
+html{font-size:16px}
+html.no-lenis{scroll-behavior:smooth}
+/* CSS-ul cerut de Lenis; bundle-ul de pe CDN nu îl aduce cu el */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
 body{font-family:'DM Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);
   overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.55;padding-bottom:0}
 img{display:block;max-width:100%}
@@ -640,12 +648,55 @@ function toast(m){
 
 /* ═══ INIT ═══ */
 render();
-const lenis=new Lenis({duration:1.05,smoothWheel:true});
-function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
-gsap.registerPlugin(ScrollTrigger);
-gsap.to('.h-left .rv',{opacity:1,y:0,duration:.75,stagger:.1,ease:'power2.out',delay:.1});
-gsap.to('.ev',{opacity:1,y:0,duration:.6,stagger:.12,ease:'power2.out',
-  scrollTrigger:{trigger:'.env',start:'top 84%',once:true}});
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* .rv pornește cu opacity:0 — dacă GSAP lipsește (CDN blocat, offline) sau
+   userul cere mișcare redusă, conținutul trebuie arătat necondiționat */
+function revealAll(){
+  document.querySelectorAll('.rv').forEach(e=>{e.style.opacity=1;e.style.transform='none'});
+}
+
+let lenis=null;
+if(typeof Lenis!=='undefined' && !REDUCED){
+  lenis=new Lenis({duration:1.05,smoothWheel:true});
+}else{
+  document.documentElement.classList.add('no-lenis');
+}
+
+/* Ancorele trec prin Lenis, altfel sar peste animația lui și scroll-ul zvâcnește */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');
+  if(!a)return;
+  const id=a.getAttribute('href');
+  if(id==='#'){if(lenis){e.preventDefault();lenis.scrollTo(0)}return}
+  const t=document.querySelector(id);
+  if(t&&lenis){e.preventDefault();lenis.scrollTo(t,{offset:-70})}
+});
+
+if(typeof gsap==='undefined'){
+  revealAll();
+  if(lenis){const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
+}else if(REDUCED){
+  revealAll();
+}else try{
+  if(typeof ScrollTrigger!=='undefined'){
+    gsap.registerPlugin(ScrollTrigger);
+    /* ScrollTrigger trebuie ținut în pas cu Lenis, altfel declanșatoarele rămân în urmă */
+    if(lenis)lenis.on('scroll',ScrollTrigger.update);
+  }
+  if(lenis)gsap.ticker.add(t=>lenis.raf(t*1000));
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.to('.h-left .rv',{opacity:1,y:0,duration:.75,stagger:.1,ease:'power2.out',delay:.1});
+  if(typeof ScrollTrigger!=='undefined'){
+    gsap.to('.ev',{opacity:1,y:0,duration:.6,stagger:.12,ease:'power2.out',
+      scrollTrigger:{trigger:'.env',start:'top 84%',once:true}});
+  }else{
+    revealAll();
+  }
+}catch(err){
+  revealAll();
+}
 </script>
 </body>
 </html>

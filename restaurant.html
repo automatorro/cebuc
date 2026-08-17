@@ -15,7 +15,15 @@
   --ember:#FF4A1C;--ember2:#FF6B3D;--ash:#8A8A82;--ok:#7BC96F
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;scroll-behavior:smooth}
+/* fără scroll-behavior:smooth pe html — se bate cap în cap cu Lenis.
+   Se activează din JS doar dacă Lenis nu s-a încărcat (vezi .no-lenis). */
+html{font-size:16px}
+html.no-lenis{scroll-behavior:smooth}
+/* CSS-ul cerut de Lenis; bundle-ul de pe CDN nu îl aduce cu el */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
 body{font-family:'JetBrains Mono',ui-monospace,monospace;background:var(--blk);color:var(--paper);
   overflow-x:hidden;-webkit-font-smoothing:antialiased;font-weight:300;line-height:1.6}
 img{display:block;max-width:100%}
@@ -41,7 +49,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .nav-links a:hover::after{width:100%}
 
 /* ── HERO TIPOGRAFIC ── */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+#hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding:8rem 0 0;position:relative;overflow:hidden}
 .h-meta{display:flex;gap:2rem;flex-wrap:wrap;font-size:.7rem;letter-spacing:.18em;
   text-transform:uppercase;color:var(--ash);margin-bottom:2.5rem}
@@ -86,6 +94,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   flex-wrap:wrap;margin-bottom:2rem}
 .sig-hint{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
 .strip{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;
+  overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
   padding-bottom:1.2rem;scrollbar-width:thin;scrollbar-color:var(--smoke2) transparent}
 .strip::-webkit-scrollbar{height:3px}
 .strip::-webkit-scrollbar-thumb{background:var(--smoke2)}
@@ -139,6 +148,9 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* ── POVESTE (split sticky) ── */
 #poveste{padding:6rem 0}
 .pv{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+/* fără min-width:0, dimensiunea automată minimă a itemului de grid e dictată
+   de conținutul lui (ex. .days, lat de 500px) și lățește coloana peste ecran */
+.pv>*{min-width:0}
 .pv-l{position:sticky;top:6rem}
 .pv-l .sec-t{margin-bottom:1.5rem}
 .pv-l p{font-size:.88rem;color:var(--ash);line-height:1.9;margin-bottom:1.1rem;max-width:44ch}
@@ -152,6 +164,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* ── REZERVARE ── */
 #rezervare{padding:5rem 0;background:var(--smoke);border-top:1px solid var(--smoke2)}
 .rz{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.rz>*{min-width:0}
 .rz-l .sec-t{margin-bottom:1.2rem}
 .rz-l p{font-size:.85rem;color:var(--ash);line-height:1.85;max-width:42ch}
 .rz-facts{margin-top:2.5rem;border-top:1px solid var(--smoke2)}
@@ -159,7 +172,8 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   border-bottom:1px solid var(--smoke2);font-size:.78rem}
 .rz-f span:first-child{color:var(--ash);letter-spacing:.1em;text-transform:uppercase;font-size:.68rem}
 .step-l{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:.9rem}
-.days{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.5rem;margin-bottom:2rem}
+.days{display:flex;gap:.4rem;overflow-x:auto;overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;padding-bottom:.5rem;margin-bottom:2rem}
 .day{flex:0 0 auto;min-width:66px;border:1px solid var(--smoke2);padding:.7rem .3rem;text-align:center;transition:all .2s}
 .day:hover{border-color:var(--ash)}
 .day.on{background:var(--paper);color:var(--blk);border-color:var(--paper)}
@@ -556,15 +570,62 @@ function toast(m){
 }
 
 /* ═══ ANIMAȚII ═══ */
-const lenis=new Lenis({duration:1.1,smoothWheel:true});
-function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
-gsap.registerPlugin(ScrollTrigger);
-gsap.to('.h-type .ln > span',{y:0,duration:1.05,stagger:.09,ease:'power3.out',delay:.15});
-gsap.to('#hero .rv',{opacity:1,y:0,duration:.8,stagger:.1,ease:'power2.out',delay:.5});
-gsap.from('.azi-box',{opacity:0,y:24,duration:.7,ease:'power2.out',
-  scrollTrigger:{trigger:'.azi-box',start:'top 88%',once:true}});
-gsap.from('.dish',{opacity:0,y:16,duration:.5,stagger:.03,ease:'power2.out',
-  scrollTrigger:{trigger:'#mList',start:'top 85%',once:true}});
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Arată tot conținutul ascuns pentru animație. Se apelează dacă GSAP lipsește
+   (CDN blocat, offline) sau dacă userul cere mișcare redusă — altfel eroul
+   rămâne invizibil pentru totdeauna. */
+function revealAll(){
+  document.querySelectorAll('.h-type .ln > span').forEach(e=>e.style.transform='none');
+  document.querySelectorAll('.rv').forEach(e=>{e.style.opacity=1;e.style.transform='none'});
+}
+
+let lenis=null;
+if(typeof Lenis!=='undefined' && !REDUCED){
+  /* syncTouch rămâne pe false: pe touch vrem scroll nativ, nu inerție simulată */
+  lenis=new Lenis({duration:1.1,smoothWheel:true});
+}else{
+  /* fără Lenis, ancorele au nevoie de scroll-ul nativ animat */
+  document.documentElement.classList.add('no-lenis');
+}
+
+/* Ancorele trec prin Lenis, altfel sar peste animația lui și scroll-ul zvâcnește */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');
+  if(!a)return;
+  const id=a.getAttribute('href');
+  if(id==='#'){if(lenis){e.preventDefault();lenis.scrollTo(0)}return}
+  const t=document.querySelector(id);
+  if(t&&lenis){e.preventDefault();lenis.scrollTo(t,{offset:-70})}
+});
+
+if(typeof gsap==='undefined'){
+  revealAll();
+  if(lenis){const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
+}else if(REDUCED){
+  revealAll();
+}else try{
+  if(typeof ScrollTrigger!=='undefined'){
+    gsap.registerPlugin(ScrollTrigger);
+    /* ScrollTrigger trebuie ținut în pas cu Lenis, altfel declanșatoarele
+       rămân în urmă și secțiunile apar la momentul greșit */
+    if(lenis)lenis.on('scroll',ScrollTrigger.update);
+  }
+  if(lenis)gsap.ticker.add(t=>lenis.raf(t*1000));
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.to('.h-type .ln > span',{y:0,duration:1.05,stagger:.09,ease:'power3.out',delay:.15});
+  gsap.to('#hero .rv',{opacity:1,y:0,duration:.8,stagger:.1,ease:'power2.out',delay:.5});
+  if(typeof ScrollTrigger!=='undefined'){
+    gsap.from('.azi-box',{opacity:0,y:24,duration:.7,ease:'power2.out',
+      scrollTrigger:{trigger:'.azi-box',start:'top 88%',once:true}});
+    gsap.from('.dish',{opacity:0,y:16,duration:.5,stagger:.03,ease:'power2.out',
+      scrollTrigger:{trigger:'#mList',start:'top 85%',once:true}});
+  }
+}catch(err){
+  /* orice pică în lanțul de animații, conținutul rămâne vizibil */
+  revealAll();
+}
 </script>
 </body>
 </html>
