@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lucian Cebuc · Creare Site Web Timișoara & Aplicații Custom România</title>
-<meta name="description" content="Creare site de prezentare, magazin online și aplicații web custom în Timișoara și România. Prețuri fixe, livrare în 5–14 zile, contract clar. 25+ ani IT.">
+<meta name="description" content="Creare site de prezentare, magazin online și aplicații web custom în Timișoara și România. Prețuri fixe, livrare în 5–14 zile, contract clar. 10+ ani IT.">
 <meta name="keywords" content="web developer timisoara, creare site timisoara, web design timisoara, magazin online timisoara, creare site prezentare firma, aplicatii web custom romania, programator web freelance, dezvoltare site romania, lucian cebuc">
 <meta name="author" content="Lucian Cebuc">
 <meta name="robots" content="index, follow">
@@ -44,7 +44,7 @@
       "alternateName": "Cebuc Lucian PFA",
       "description": "Web developer freelance în Timișoara. Creare site de prezentare, magazin online, aplicații web custom React + Supabase. Prețuri fixe și costuri clare de la început.",
       "url": "https://cebuc.ro",
-      "telephone": "+40",
+      "telephone": "+40734205111",
       "email": "lucian.cebuc@gmail.com",
       "address": {
         "@type": "PostalAddress",
@@ -272,6 +272,17 @@ a{color:inherit;text-decoration:none}
   transition:background .3s ease, color .3s ease;
 }
 .nav-btn:hover{background:#DEFF00}
+.nav-actions{display:flex;align-items:center;gap:1.5rem}
+.nav-tel{
+  font-family:'Syne',sans-serif;
+  font-variation-settings:'wght' 600;
+  font-size:.74rem;letter-spacing:.08em;
+  color:var(--ods);transition:color .3s ease;
+  min-height:44px;display:inline-flex;align-items:center;
+}
+.nav-tel:hover{color:var(--lime)}
+#nav.inv .nav-tel{color:var(--ink)}
+#nav.inv .nav-tel:hover{color:var(--olive)}
 
 /* ── HERO ─────────────────────────── */
 #hero{
@@ -920,11 +931,13 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 
   /* nav-ul trebuie să rămână pe un rând pe ecrane mici */
   #nav{padding:.85rem 1.25rem}
+  .nav-actions{gap:.75rem}
+  .nav-tel{display:none}
   .nav-logo{font-size:.76rem;letter-spacing:.07em;white-space:nowrap}
   .nav-btn{font-size:.63rem;padding:.7rem 1rem;letter-spacing:.08em;white-space:nowrap}
 
   /* ținte de tap de minim 44px pe touch */
-  .pkg-cta,.demo-btn,.ci-val,.ft-meta a,.nav-btn{
+  .pkg-cta,.demo-btn,.ci-val,.ft-meta a,.nav-btn,.nav-tel{
     min-height:44px;display:inline-flex;align-items:center;flex-shrink:0;
   }
   .demo-btn{padding:.85rem 1.2rem}
@@ -946,7 +959,10 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">Lucian Cebuc</a>
-  <a href="#contact" class="nav-btn">Hai să vorbim</a>
+  <div class="nav-actions">
+    <a href="tel:+40734205111" class="nav-tel" aria-label="Telefon +40 734 205 111">+40 734 205 111</a>
+    <a href="#contact" class="nav-btn">Hai să vorbim</a>
+  </div>
 </nav>
 
 <!-- ═══════ 1. HERO ═══════ -->
@@ -1049,6 +1065,10 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
         </h2>
       </div>
     </div>
+
+    <p class="demo-lead">
+      Astea sunt produsele mele — construite, lansate și folosite zilnic. Sunt dovada că știu să duc un produs de la concept la utilizare reală, 100% funcțională.
+    </p>
 
     <div class="pf-list">
 
@@ -1828,7 +1848,8 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       <div class="stat-n">10+</div>
       <p class="stat-lbl">Ani experiență IT</p>
       <p class="about-p">Pornesc de la „ce trebuie să facă site-ul pentru afacerea ta?" — nu de la tehnologie și nu de la design.</p>
-      <p class="about-p">Sunt Lucian Cebuc, freelancer web din Timișoara. Am peste 10 de ani în dezvoltare web, mai bine de un deceniu în care am construit site-uri și aplicații pentru afaceri reale. Înainte de a fi developer, am lucrat în vânzări, management și antreprenoriat.</p>
+      <p class="about-p">Sunt Lucian Cebuc, freelancer web din Timișoara. Am peste 10 ani în dezvoltare web, mai bine de un deceniu în care am construit site-uri și aplicații pentru afaceri reale. Înainte de a fi developer, am lucrat în vânzări, management și antreprenoriat.</p>
+      <p class="about-p">Am construit și vândut magazine online complete pentru clienți reali de peste 10 ani — de la propunerea și achiziția numelui de domeniu, până la configurarea modulelor de plată, integrarea curierilor și a tracking-ului, și încărcarea produselor de la furnizori. Unele dintre primele magazine pe care le-am construit nu mai sunt online azi — nu pentru că nu au funcționat tehnic, ci pentru că proprietarii au renunțat să le mai administreze sau domeniul nu a prins.</p>
       <p class="about-p">Asta înseamnă că înțeleg nu doar cum se construiește, ci de ce ar trebui să funcționeze pentru afacerea ta. Livrez lucruri care chiar funcționează — fără cod umflat, fără costuri ascunse, fără promisiuni pe care nu le pot ține.</p> 
    </div>
   </div>
@@ -1853,6 +1874,10 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
         <div class="ci">
           <p class="ci-lbl">Email</p>
           <a href="mailto:lucian.cebuc@gmail.com" class="ci-val">lucian.cebuc@gmail.com</a>
+        </div>
+        <div class="ci">
+          <p class="ci-lbl">Telefon</p>
+          <a href="tel:+40734205111" class="ci-val">+40 734 205 111</a>
         </div>
         <div class="ci">
           <p class="ci-lbl">Locație</p>
@@ -1956,6 +1981,7 @@ footer{background:var(--ink2);border-top:1px solid var(--ldk);padding:3rem 0}
       <span class="ft-brand">Lucian Cebuc</span>
       <p class="ft-meta">Cebuc Lucian PFA · CIF 25267322<br>Timișoara, România</p>
       <p class="ft-meta" style="text-align:right">
+        <a href="tel:+40734205111">+40 734 205 111</a><br>
         <a href="mailto:lucian.cebuc@gmail.com">lucian.cebuc@gmail.com</a><br>
         © 2026 Lucian Cebuc
       </p>
