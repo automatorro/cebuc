@@ -1196,13 +1196,59 @@
       object-fit: cover;
       object-position: center top;
       filter: saturate(.88) brightness(.9);
-      transition: filter .8s var(--fx);
+      transform: scale(1);
+      transition: filter .8s var(--fx), transform .8s var(--fx);
       /* transform e condus de GSAP (scrub) */
       will-change: transform;
     }
 
-    .pf-card:hover .pf-media img {
-      filter: saturate(1) brightness(.85)
+    @media (hover:hover) and (pointer:fine) {
+      .pf-card:hover .pf-media img {
+        filter: saturate(1) brightness(.85);
+        transform: scale(1.04)
+      }
+
+      .pf-card:hover .pf-name {
+        font-variation-settings: 'wght' 400;
+        color: var(--lime)
+      }
+
+      .demo-card:hover .pkg-link,
+      .pf-card:hover .pkg-link {
+        color: var(--lime)
+      }
+
+      .pf-card:hover .pf-go {
+        color: var(--lime)
+      }
+
+      .pf-card:hover .pf-go svg {
+        transform: translateX(4px)
+      }
+    }
+
+    @media (hover:none), (pointer:coarse) {
+      .pf-card.in-view .pf-media img {
+        filter: saturate(1) brightness(.85);
+        transform: scale(1.04)
+      }
+
+      .pf-card.in-view .pf-name {
+        font-variation-settings: 'wght' 400;
+        color: var(--lime)
+      }
+
+      .pf-card.in-view .pkg-link {
+        color: var(--lime)
+      }
+
+      .pf-card.in-view .pf-go {
+        color: var(--lime)
+      }
+
+      .pf-card.in-view .pf-go svg {
+        transform: translateX(4px)
+      }
     }
 
     /* pânza WebGL stă peste <img>; dacă nu pornește, rămâne imaginea normală */
@@ -1252,11 +1298,6 @@
       transition: font-variation-settings .55s var(--fx), color .4s ease;
     }
 
-    .pf-card:hover .pf-name {
-      font-variation-settings: 'wght' 400;
-      color: var(--lime)
-    }
-
     .pf-desc {
       font-size: .875rem;
       color: var(--mdk);
@@ -1295,11 +1336,6 @@
       flex-shrink: 0;
     }
 
-    .demo-card:hover .pkg-link,
-    .pf-card:hover .pkg-link {
-      color: var(--lime)
-    }
-
     .pkg-lead {
       font-size: .95rem;
       color: var(--od);
@@ -1322,14 +1358,6 @@
       border-bottom: 1px solid var(--lime);
       padding-bottom: .25rem;
       transition: color .25s;
-    }
-
-    .pf-card:hover .pf-go {
-      color: var(--lime)
-    }
-
-    .pf-card:hover .pf-go svg {
-      transform: translateX(4px)
     }
 
     .pf-go svg {
@@ -1496,7 +1524,7 @@
       }
     }
 
-    /* pe mobil: fără pin, listă normală */
+    /* pe mobil: un panel activ rămâne fixat la top, fără pin global al întregii secțiuni */
     @media (max-width:960px) {
       .proc-lay {
         grid-template-columns: 1fr;
@@ -1518,7 +1546,8 @@
 
       .proc-panels {
         display: flex;
-        flex-direction: column
+        flex-direction: column;
+        position: relative
       }
 
       .proc-panel {
@@ -1526,6 +1555,20 @@
         border-bottom: 1px solid var(--llt);
         grid-template-columns: 3.5rem 1fr;
         gap: 0 1.25rem;
+        opacity: .48;
+        transform: translateY(20px);
+        transition: opacity .45s ease, transform .45s ease, border-color .45s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .proc-panel.on {
+        opacity: 1;
+        transform: translateY(0);
+        position: sticky;
+        top: 5.25rem;
+        z-index: 2;
+        background: rgba(255, 255, 255, .02)
       }
 
       .proc-panel:first-child {
@@ -1993,6 +2036,11 @@
         padding: 0 1.5rem
       }
 
+      #proces .proc-pin > .wrap {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
+      }
+
       #hero {
         padding: 5rem 1.5rem 4rem
       }
@@ -2044,6 +2092,39 @@
     }
 
     @media(max-width:640px) {
+      #proces .proc-pin > .wrap {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem
+      }
+
+      #nav {
+        padding: .75rem 1rem;
+        flex-wrap: wrap;
+        row-gap: .6rem;
+        column-gap: .5rem
+      }
+
+      .nav-actions {
+        width: auto;
+        margin-left: auto;
+        justify-content: flex-end;
+        flex-wrap: nowrap
+      }
+
+      .nav-logo {
+        font-size: .72rem;
+        letter-spacing: .06em;
+        white-space: nowrap;
+        flex: 0 0 auto
+      }
+
+      .nav-btn {
+        font-size: .54rem;
+        letter-spacing: .05em;
+        padding: .7rem .8rem;
+        white-space: nowrap
+      }
+
       .pad {
         padding: 5rem 0
       }
@@ -3324,6 +3405,23 @@
         });
       }
 
+      function setupTouchReveal() {
+        if (FINE || !('IntersectionObserver' in window)) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const target = entry.target;
+            target.classList.toggle('in-view', entry.isIntersecting);
+          });
+        }, {
+          threshold: 0.2,
+          rootMargin: '0px 0px -8% 0px'
+        });
+
+        document.querySelectorAll('.pf-card').forEach(el => observer.observe(el));
+      }
+      setupTouchReveal();
+
       /* ═══ LENIS — smooth scroll cu inerție ═════════════════ */
       let lenis = null;
       if (typeof Lenis !== 'undefined' && !REDUCED) {
@@ -3631,12 +3729,49 @@
       });
 
       mm.add('(max-width:960px)', () => {
-        const tw = gsap.fromTo('.proc-panel', { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, stagger: .14, duration: 1, ease: 'expo.out',
-            scrollTrigger: { trigger: '.proc-panels', start: 'top 82%', once: true }
+        const panels = gsap.utils.toArray('.proc-panel');
+        const triggers = [];
+
+        panels.forEach((panel, index) => {
+          const active = index === 0;
+          if (active) panel.classList.add('on');
+          else panel.classList.remove('on');
+
+          gsap.set(panel, {
+            opacity: active ? 1 : .48,
+            y: active ? 0 : 20
           });
-        return () => tw.scrollTrigger && tw.scrollTrigger.kill();
+
+          const st = ScrollTrigger.create({
+            trigger: panel,
+            start: 'top 82%',
+            end: 'bottom 18%',
+            onEnter: () => {
+              panels.forEach((p, i) => p.classList.toggle('on', i === index));
+              gsap.to(panel, { opacity: 1, y: 0, duration: .55, ease: 'expo.out' });
+            },
+            onEnterBack: () => {
+              panels.forEach((p, i) => p.classList.toggle('on', i === index));
+              gsap.to(panel, { opacity: 1, y: 0, duration: .55, ease: 'expo.out' });
+            },
+            onLeave: () => {
+              const next = panels[Math.min(index + 1, panels.length - 1)];
+              if (next && next !== panel) {
+                next.classList.add('on');
+                gsap.to(next, { opacity: 1, y: 0, duration: .55, ease: 'expo.out' });
+              }
+            }
+          });
+          triggers.push(st);
+        });
+
+        return () => {
+          triggers.forEach(st => st.kill());
+          panels.forEach(panel => {
+            panel.classList.remove('on');
+            gsap.set(panel, { clearProps: 'all' });
+          });
+        };
       });
 
       /* ═══ MARQUEE — viteza reacționează la scroll ══════════ */
