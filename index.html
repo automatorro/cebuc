@@ -418,7 +418,8 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 1.5rem
+      gap: 1.5rem;
+      flex-wrap: nowrap
     }
 
     .nav-tel {
@@ -431,6 +432,7 @@
       min-height: 44px;
       display: inline-flex;
       align-items: center;
+      white-space: nowrap;
     }
 
     .nav-tel:hover {
@@ -1748,31 +1750,47 @@
     footer {
       background: var(--ink2);
       border-top: 1px solid var(--ldk);
-      padding: 3rem 0
+      padding: 2.25rem 0
     }
 
     .ft-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas: 'brand company contact';
+      align-items: end;
+      column-gap: 1.25rem;
+      row-gap: .75rem
     }
 
     .ft-brand {
+      grid-area: brand;
       font-family: 'Syne', sans-serif;
       font-variation-settings: 'wght' 800;
       font-size: .85rem;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--ods);
+      justify-self: start;
+      align-self: end
     }
 
     .ft-meta {
       font-size: .75rem;
       color: var(--mdk);
-      line-height: 1.7;
-      text-align: center
+      line-height: 1.55;
+      margin: 0
+    }
+
+    .ft-meta--company {
+      grid-area: company;
+      justify-self: start;
+      text-align: left
+    }
+
+    .ft-meta--contact {
+      grid-area: contact;
+      justify-self: end;
+      text-align: right
     }
 
     .ft-meta a {
@@ -2099,8 +2117,8 @@
 
       #nav {
         padding: .75rem 1rem;
-        flex-wrap: wrap;
-        row-gap: .6rem;
+        flex-wrap: nowrap;
+        row-gap: 0;
         column-gap: .5rem
       }
 
@@ -2108,12 +2126,13 @@
         width: auto;
         margin-left: auto;
         justify-content: flex-end;
-        flex-wrap: nowrap
+        flex-wrap: nowrap;
+        gap: .5rem
       }
 
       .nav-logo {
         font-size: .72rem;
-        letter-spacing: .06em;
+        letter-spacing: .08em;
         white-space: nowrap;
         flex: 0 0 auto
       }
@@ -2207,20 +2226,26 @@
       }
 
       .nav-tel {
-        display: none
+        display: inline-flex;
+        font-size: .58rem;
+        letter-spacing: .04em;
+        white-space: nowrap;
+        flex-shrink: 0
       }
 
       .nav-logo {
         font-size: .76rem;
-        letter-spacing: .07em;
-        white-space: nowrap
+        letter-spacing: .1em;
+        white-space: nowrap;
+        flex-shrink: 0
       }
 
       .nav-btn {
-        font-size: .63rem;
-        padding: .7rem 1rem;
-        letter-spacing: .08em;
-        white-space: nowrap
+        font-size: .58rem;
+        padding: .7rem .9rem;
+        letter-spacing: .06em;
+        white-space: nowrap;
+        flex-shrink: 0
       }
 
       /* ținte de tap de minim 44px pe touch */
@@ -2234,6 +2259,37 @@
         display: inline-flex;
         align-items: center;
         flex-shrink: 0;
+      }
+
+      .ft-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+          'brand company'
+          'contact contact';
+        row-gap: .55rem;
+        column-gap: .75rem;
+        align-items: end;
+      }
+
+      .ft-brand {
+        grid-area: brand;
+        justify-self: start;
+      }
+
+      .ft-meta--company {
+        grid-area: company;
+        justify-self: end;
+        text-align: left;
+      }
+
+      .ft-meta--contact {
+        grid-area: contact;
+        justify-self: start;
+        text-align: left;
+      }
+
+      .ft-meta--contact br {
+        display: none;
       }
 
       .demo-btn {
@@ -2276,7 +2332,7 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="#" class="nav-logo">Lucian Cebuc</a>
+    <a href="#" class="nav-logo">CEBUC</a>
     <div class="nav-actions">
       <a href="tel:+40734205111" class="nav-tel" aria-label="Telefon +40 734 205 111">+40 734 205 111</a>
       <a href="#contact" class="nav-btn">Hai să vorbim</a>
@@ -3359,8 +3415,8 @@
     <div class="wrap">
       <div class="ft-row">
         <span class="ft-brand">Lucian Cebuc</span>
-        <p class="ft-meta">Cebuc Lucian PFA · CIF 25267322<br>Timișoara, România</p>
-        <p class="ft-meta" style="text-align:right">
+        <p class="ft-meta ft-meta--company">Cebuc Lucian PFA · CIF 25267322<br>Timișoara, România</p>
+        <p class="ft-meta ft-meta--contact">
           <a href="tel:+40734205111">+40 734 205 111</a><br>
           <a href="mailto:lucian.cebuc@gmail.com">lucian.cebuc@gmail.com</a><br>
           © 2026 Lucian Cebuc
