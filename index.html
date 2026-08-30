@@ -28,7 +28,7 @@
     content="Sisteme digitale, website-uri rapide, lead management și soluții AI verificate pentru afaceri. De la site de prezentare la infrastructură digitală completă.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=85">
   <meta property="og:locale" content="ro_RO">
-  <meta property="og:site_name" content="Lucian Cebuc · Digital Business Systems">
+  <meta property="og:site_name" content="Lucian Cebuc · Sisteme Digitale pentru Afaceri">
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -1015,6 +1015,26 @@
       transition: border-color .3s;
     }
 
+    .pkg-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .45rem .8rem;
+      border: 1px solid rgba(200, 255, 0, .35);
+      background: rgba(200, 255, 0, .12);
+      color: var(--lime);
+      font-family: 'Syne', sans-serif;
+      font-size: .58rem;
+      font-variation-settings: 'wght' 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-radius: 999px;
+    }
+
     .pkg-card::after {
       content: '';
       position: absolute;
@@ -1566,7 +1586,8 @@
         z-index: 1;
       }
 
-      .proc-panel.on {
+      .proc-panel.on,
+      .proc-panel.in-view {
         opacity: 1;
         transform: translateY(0);
         position: sticky;
@@ -2113,8 +2134,8 @@
 
     @media(max-width:640px) {
       #proces .proc-pin > .wrap {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
       }
 
       #nav {
@@ -2353,7 +2374,7 @@
       </h1>
       <div class="h-foot">
         <p class="h-sub">
-          Construiesc website-uri ultra-rapide, lead systems și date structurate — ca afacerea ta să fie sursa citată direct de Google AI și motoarele moderne de căutare, nu doar un link pierdut pe internet.
+          Construiesc website-uri rapide, sisteme de gestionare a clienților și conținut structurat corect — ca oamenii să te găsească și să te aleagă, fie că vin de pe Google, de pe un chat AI sau printr-o recomandare directă.
         </p>
         <div class="h-cta-w">
           <a href="#contact" class="btn">
@@ -2385,38 +2406,33 @@
           </h2>
         </div>
       </div>
+      <p class="pkg-lead" style="margin-top:-1.5rem;margin-bottom:2.25rem;max-width:48ch">
+        O idee rapidă despre ce pot construi și cât costă — fără niciun angajament, doar ca reper.
+      </p>
       <div class="pkg-grid">
-        <div class="pkg-card">
+        <div class="pkg-card" id="summary-pachet-01">
           <span class="pkg-tag">01</span>
-          <h3 class="pkg-name">Website &amp; AI Search Ready</h3>
-          <p class="pkg-desc" style="margin-bottom:1rem;font-size:.88rem;color:var(--mlt)">Prezență rapidă cu date
-            structurate (Schema.org / JSON-LD) pentru a fi citat de Google AI Overviews și căutarea modernă.</p>
-          <div class="pkg-price">2.500 – 3.500 RON<small>produs de intrare</small></div>
-          <a href="#pachete" class="pkg-cta">Vezi detalii pachet →</a>
+          <h3 class="pkg-name">Website Profesional &amp; Prezență Curată</h3>
+          <p class="pkg-desc" style="margin-bottom:0;font-size:.88rem;color:var(--mlt)">un site clar, rapid și gata să capteze lead-uri cu încredere</p>
+          <a href="#pachet-start" class="pkg-cta">Vezi detalii pachet →</a>
         </div>
-        <div class="pkg-card">
+        <div class="pkg-card" id="summary-pachet-02">
           <span class="pkg-tag">02</span>
-          <h3 class="pkg-name">Smart Lead &amp; Follow-up</h3>
-          <p class="pkg-desc" style="margin-bottom:1rem;font-size:.88rem;color:var(--mlt)">Formulare inteligente de
-            calificare și alertare instantă pe WhatsApp/Email pentru fiecare cerere.</p>
-          <div class="pkg-price">5.000 – 8.000 RON<small>lead system</small></div>
-          <a href="#pachete" class="pkg-cta">Vezi detalii pachet →</a>
+          <h3 class="pkg-name">Website / Magazin online + Smart Lead System</h3>
+          <p class="pkg-desc" style="margin-bottom:0;font-size:.88rem;color:var(--mlt)">un site sau magazin online care nu lasă niciun client necontactat</p>
+          <a href="#pachet-grow" class="pkg-cta">Vezi detalii pachet →</a>
         </div>
-        <div class="pkg-card">
+        <div class="pkg-card" id="summary-pachet-03">
           <span class="pkg-tag">03</span>
-          <h3 class="pkg-name">Knowledge Hub &amp; AI</h3>
-          <p class="pkg-desc" style="margin-bottom:1rem;font-size:.88rem;color:var(--mlt)">Bază de cunoștințe a firmei
-            cu asistent AI integrat pe site, antrenat strict pe datele tale verificate.</p>
-          <div class="pkg-price">8.000 – 15.000+ RON<small>sistem AI verificat</small></div>
-          <a href="#pachete" class="pkg-cta">Vezi detalii pachet →</a>
+          <h3 class="pkg-name">Knowledge Hub + Asistent AI</h3>
+          <p class="pkg-desc" style="margin-bottom:0;font-size:.88rem;color:var(--mlt)">Knowledge Hub AI pe date verificate</p>
+          <a href="#pachet-ai" class="pkg-cta">Vezi detalii pachet →</a>
         </div>
-        <div class="pkg-card">
+        <div class="pkg-card" id="summary-pachet-04">
           <span class="pkg-tag">04</span>
-          <h3 class="pkg-name">Aplicație Web &amp; Portal Custom</h3>
-          <p class="pkg-desc" style="margin-bottom:1rem;font-size:.88rem;color:var(--mlt)">Automatizare procese interne,
-            înlocuire tabele Excel și dashboard-uri dedicate pe React + Supabase.</p>
-          <div class="pkg-price">15.000 – 30.000+ RON<small>sistem dedicat</small></div>
-          <a href="#pachete" class="pkg-cta">Vezi detalii pachet →</a>
+          <h3 class="pkg-name">Sistem Digital Personalizat</h3>
+          <p class="pkg-desc" style="margin-bottom:0;font-size:.88rem;color:var(--mlt)">orice sistem specific de care ai nevoie, construit pe măsură</p>
+          <a href="#pachet-digital" class="pkg-cta">Vezi detalii pachet →</a>
         </div>
       </div>
     </div>
@@ -2429,7 +2445,7 @@
         <span class="mq-item">Sisteme Digitale</span>
         <span class="mq-item">Timișoara &amp; România</span>
         <span class="mq-item dim">Knowledge Hub</span>
-        <span class="mq-item">AI fără halucinații</span>
+        <span class="mq-item">AI pe date verificate</span>
         <span class="mq-item dim">Smart Lead Systems</span>
         <span class="mq-item">React + Supabase</span>
         <span class="mq-item dim">Cloudflare Pages</span>
@@ -2899,7 +2915,7 @@
       loading="lazy">
   </div>
 
-  <!-- ═══════ 3. CĂUTAREA S-A SCHIMBAT / GEO ═══════ -->
+  <!-- ═══════ 4. CĂUTAREA S-A SCHIMBAT / GEO ═══════ -->
   <section class="s-lt pad" id="de-ce-eu">
     <div class="wrap">
       <div class="sh">
@@ -2941,106 +2957,82 @@
           </div>
         </div>
       </div>
+      <p class="pkg-lead" style="margin-top:2rem;max-width:64ch">
+        Pe scurt: nu contează dacă reții toți termenii tehnici de mai sus. Contează ca, atunci când cineva caută exact ce oferi tu — fie pe Google clasic, fie printr-un chat AI — numele tău să apară primul, nu al concurenței.
+      </p>
     </div>
   </section>
 
-  <!-- ═══════ 6. PACHETE ═══════ -->
+  <!-- ═══════ 5. PACHETE ═══════ -->
   <section class="s-dk pad" id="pachete">
     <div class="wrap">
       <div class="sh">
         <div class="sh-n" aria-hidden="true">05</div>
         <div>
-          <span class="sh-label">Servicii &amp; Pachete Concrete</span>
+          <span class="sh-label">Pachete clare</span>
           <h2 class="sh-title vf">
-            <span class="lw"><span class="li">Alege nivelul potrivit</span></span>
-            <span class="lw"><span class="li">afacerii tale.</span></span>
+            <span class="lw"><span class="li">Alege pachetul</span></span>
+            <span class="lw"><span class="li">care se potrivește afacerii tale.</span></span>
           </h2>
         </div>
       </div>
-      <p class="pkg-lead">
-        Costuri clare și transparente de la început. Fără abonamente ascunse, fără pluginuri nesigure, cu livrare
-        predictibilă pe bază de contract.
-      </p>
+
       <div class="pkg-grid">
-        <div class="pkg-card">
-          <span class="pkg-tag">Pachet 01 · START</span>
+        <article class="pkg-card" id="pachet-start">
+          <span class="pkg-tag">01</span>
           <h3 class="pkg-name">Website Profesional &amp; Prezență Curată</h3>
-          <p class="pkg-desc" style="margin-bottom:.6rem;font-size:.82rem;color:var(--mlt)">
-            Pentru firme care au nevoie de o prezență online ultra-rapidă, pregătită pentru căutarea modernă.
-          </p>
-          <div class="pkg-price">2.500 – 3.500 RON<small>produs de intrare</small></div>
-          <p class="pkg-desc">Fără platforme lente sau pluginuri sparte. Un site modern, impecabil pe mobil, optimizat
-            pentru Google și motoarele de căutare AI.</p>
-          <ul class="fl fl-dk">
-            <li>Design custom modern, mobile-first</li>
-            <li>Hosting ultra-rapid pe Cloudflare Pages</li>
-            <li>Date structurate (Schema.org / JSON-LD)</li>
-            <li>Google Business Profile &amp; Maps sync</li>
-            <li>Formular de contact cu notificare email</li>
-            <li>Livrare în 5–7 zile lucrătoare</li>
+          <div class="pkg-price">2.500 - 3.500 RON</div>
+          <p class="pkg-desc">Website clar, rapid și credibil, pregătit pentru prezentare profesională, servicii și formulare de contact.</p>
+          <ul class="fl fl-lt">
+            <li>1-5 pagini relevante</li>
+            <li>Design modern, responsive și gata pentru mobil</li>
+            <li>Formular de contact / cerere ofertă</li>
+            <li>SEO de bază și structură clară</li>
           </ul>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
-        </div>
-        <div class="pkg-card">
-          <span class="pkg-tag">Pachet 02 · GROW</span>
-          <h3 class="pkg-name">Website + Smart Lead System</h3>
-          <p class="pkg-desc" style="margin-bottom:.6rem;font-size:.82rem;color:var(--mlt)">
-            Pentru afaceri care vor să atragă clienți activ și să primească alertele instant pe telefon.
+        </article>
+
+        <article class="pkg-card" id="pachet-grow">
+          <span class="pkg-badge">Recomandat</span>
+          <span class="pkg-tag">02</span>
+          <h3 class="pkg-name">Website / Magazin online + Smart Lead System</h3>
+          <div class="pkg-price">5.000–12.000 RON</div>
+          <p class="pkg-desc">
+            <strong>5.000–7.000 RON</strong> — Website de prezentare cu lead system<br>
+            <strong>8.000–12.000 RON</strong> — Magazin online cu lead system
           </p>
-          <div class="pkg-price">5.000 – 8.000 RON<small>lead &amp; follow-up</small></div>
-          <p class="pkg-desc">Tot din pachetul START, plus formulare inteligente de calificare, alertare imediată și
-            pagini dedicate pe fiecare serviciu.</p>
-          <ul class="fl fl-dk">
-            <li>Toate beneficiile pachetului START</li>
-            <li>Pagini dedicate extinse per serviciu</li>
-            <li>Formulare interactive de calificare lead-uri</li>
-            <li>Alertare instantă WhatsApp &amp; Email</li>
-            <li>Panou simplu de Lead Management (Mini-CRM)</li>
-            <li>Structură de FAQ pe întrebările clienților</li>
-            <li>Livrare în 7–12 zile lucrătoare</li>
+          <ul class="fl fl-lt">
+            <li><strong>Website:</strong> pagini rapide, formular contact, captare lead-uri cu email/WhatsApp</li>
+            <li><strong>Magazin online:</strong> catalog produse, coș de cumpărături, procesare plăți, lead system</li>
+            <li>Ambele: fluxuri de automatizare și notificări real-time</li>
+            <li>Integrări email, WhatsApp, CRM și facturare</li>
           </ul>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
-        </div>
-        <div class="pkg-card">
-          <span class="pkg-tag">Pachet 03 · AI BUSINESS</span>
+        </article>
+
+        <article class="pkg-card" id="pachet-ai">
+          <span class="pkg-tag">03</span>
           <h3 class="pkg-name">Knowledge Hub + Asistent AI</h3>
-          <p class="pkg-desc" style="margin-bottom:.6rem;font-size:.82rem;color:var(--mlt)">
-            Bază de cunoștințe dedicată și asistent virtual antrenat strict pe datele verificate ale companiei.
-          </p>
-          <div class="pkg-price">8.000 – 15.000+ RON<small>sistem AI verificat</small></div>
-          <p class="pkg-desc">Asistentul AI răspunde 24/7 exclusiv pe baza politicilor, prețurilor și documentelor tale,
-            fără să inventeze răspunsuri eronate.</p>
-          <ul class="fl fl-dk">
-            <li>Website complet + Business Knowledge Hub</li>
-            <li>Asistent AI antrenat pe date verificate</li>
-            <li>Răspunsuri automate din tarife, FAQ &amp; servicii</li>
-            <li>Knowledge Gap Dashboard (ce caută clienții)</li>
-            <li>Panou unic de actualizare date</li>
-            <li>Livrare în 14–21 zile lucrătoare</li>
+          <div class="pkg-price">8.000 - 15.000 RON</div>
+          <p class="pkg-desc">Asistent AI gata să răspundă clar, precis și pe date reale ale afacerii, fără să inventeze informații sau să creeze confuzie.</p>
+          <ul class="fl fl-lt">
+            <li>Asistent AI pentru clienți și echipă</li>
+            <li>Bază de cunoștințe pe documente reale</li>
+            <li>Răspunsuri verificabile și fundamentate</li>
+            <li>Chat + FAQ și audit de conținut</li>
           </ul>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
-        </div>
-        <div class="pkg-card">
-          <span class="pkg-tag">Pachet 04 · DIGITAL SYSTEM</span>
+        </article>
+
+        <article class="pkg-card" id="pachet-digital">
+          <span class="pkg-tag">04</span>
           <h3 class="pkg-name">Sistem Digital Personalizat</h3>
-          <p class="pkg-desc" style="margin-bottom:.6rem;font-size:.82rem;color:var(--mlt)">
-            Aplicații web custom, automatizare de fluxuri interne, portaluri pentru clienți sau SaaS.
-          </p>
-          <div class="pkg-price">15.000 – 30.000+ RON<small>în funcție de proiect</small></div>
-          <p class="pkg-desc">Când ai nevoie de un sistem operațional dedicat care să elimine Excel-urile complicate și
-            să digitalizeze complet fluxul de lucru.</p>
-          <ul class="fl fl-dk">
-            <li>Arhitectură performantă React + Supabase</li>
-            <li>Autentificare &amp; roluri de acces utilizatori</li>
-            <li>Bază de date în timp real &amp; dashboard live</li>
-            <li>Integrări API externe (facturi, plăți, SMS)</li>
-            <li>Termen stabilit în funcție de complexitate</li>
+          <div class="pkg-price">Peste 15.000 RON</div>
+          <p class="pkg-desc">Sistem de lucru custom pentru fluxuri interne, dashboard-uri, booking, automatizări și aplicații personalizate pentru afacerea ta.</p>
+          <ul class="fl fl-lt">
+            <li>Fluxuri specifice afacerii tale</li>
+            <li>Dashboard / aplicație web personalizată</li>
+            <li>Integrări cu CRM, facturare, email și WhatsApp</li>
+            <li>Arhitectură scalabilă și pregătită pentru creștere</li>
           </ul>
-          <p style="font-size:.78rem;color:var(--mdk);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--ldk)">
-            ⚠ Termenele de 5–21 zile se aplică pachetelor 01–03. Sistemele custom au calendarul stabilit după brief.
-          </p>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
-        </div>
+        </article>
       </div>
     </div>
   </section>
@@ -3058,6 +3050,9 @@
           </h2>
         </div>
       </div>
+      <p class="pkg-lead" style="margin-top:-1.25rem;margin-bottom:2rem;max-width:64ch">
+        Opțional, doar dacă vrei. Sistemul tău funcționează complet și fără abonament — pachetele de mai jos sunt pentru cei care vor actualizări constante și zero bătaie de cap, nu o condiție a colaborării.
+      </p>
       <div class="mt-grid">
         <div class="mt-card">
           <h3 class="mt-name">Basic Care</h3>
@@ -3280,7 +3275,7 @@
         <p class="stat-lbl">Ani experiență IT &amp; Sisteme</p>
         <p class="about-p">Pornesc de la „ce vrei să optimizezi în afacerea ta și cum facem să fii găsit ușor de clienți buni?" — nu de la tehnologii complicate de dragul tehnologiei.</p>
         <p class="about-p">Sunt Lucian Cebuc, dezvoltator de sisteme digitale din Timișoara. Am peste 10 ani de experiență practică în IT, timp în care am construit soluții software, magazine online și aplicații operaționale pentru firme reale.</p>
-        <p class="about-p">Înțeleg atât logica de afaceri (vânzări, conversii, costuri clare), cât și partea tehnică avansată (arhitecturi moderne, date structurate, integrări AI fără halucinații). Livrez sisteme care funcționează predictibil, pe bază de contract și fără costuri ascunse.</p>
+        <p class="about-p">Înțeleg atât logica de afaceri (vânzări, conversii, costuri clare), cât și partea tehnică avansată (arhitecturi moderne, date structurate, integrări AI cu răspunsuri fundamentate strict pe datele reale ale afacerii). Livrez sisteme care funcționează predictibil, pe bază de contract și fără costuri ascunse.</p>
       </div>
     </div>
   </section>
@@ -3470,10 +3465,13 @@
       function setupTouchReveal() {
         if (FINE || !('IntersectionObserver' in window)) return;
 
+        const seen = new WeakSet();
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             const target = entry.target;
-            target.classList.toggle('in-view', entry.isIntersecting);
+            if (!entry.isIntersecting || seen.has(target)) return;
+            seen.add(target);
+            target.classList.add('in-view');
           });
         }, {
           threshold: 0.2,
@@ -3483,6 +3481,31 @@
         document.querySelectorAll('.pf-card').forEach(el => observer.observe(el));
       }
       setupTouchReveal();
+
+      function setupMobileProcessReveal() {
+        if (FINE || !('IntersectionObserver' in window)) return;
+
+        const panels = Array.from(document.querySelectorAll('.proc-panel'));
+        if (!panels.length) return;
+
+        const seen = new WeakSet();
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const panel = entry.target;
+            if (!entry.isIntersecting || seen.has(panel)) return;
+            const idx = panels.indexOf(panel);
+            seen.add(panel);
+            panels.forEach((item, i) => item.classList.toggle('in-view', i === idx));
+            panels.forEach((item, i) => item.classList.toggle('on', i === idx));
+          });
+        }, {
+          threshold: 0.45,
+          rootMargin: '0px 0px -10% 0px'
+        });
+
+        panels.forEach(panel => observer.observe(panel));
+      }
+      setupMobileProcessReveal();
 
       /* ═══ LENIS — smooth scroll cu inerție ═════════════════ */
       let lenis = null;
