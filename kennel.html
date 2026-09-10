@@ -371,13 +371,25 @@ footer a:hover{border-color:var(--gold)}
   window.addEventListener('scroll',()=>{nav.classList.toggle('on',window.scrollY>80);},{passive:true});
 
   /* lenis */
+  let lenis=null;
   if(typeof Lenis!=='undefined'){
-    const lenis=new Lenis({duration:1.25,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+    lenis=new Lenis({duration:1.25,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
     lenis.on('scroll',ScrollTrigger.update);
     gsap.ticker.add(t=>lenis.raf(t*1000));
     gsap.ticker.lagSmoothing(0);
     setTimeout(()=>ScrollTrigger.refresh(),600);
   }
+
+  /* Ancorele trec prin Lenis: altfel pagina sare instant, cu inerție peste
+     tot în rest, iar titlul secțiunii ajunge sub bara fixă de sus */
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#"]');
+    if(!a)return;
+    const id=a.getAttribute('href');
+    if(id==='#'){if(lenis){e.preventDefault();lenis.scrollTo(0)}return}
+    const t=document.querySelector(id);
+    if(t&&lenis){e.preventDefault();lenis.scrollTo(t,{offset:-70})}
+  });
 
   /* hero parallax */
   gsap.to('#hBg img',{yPercent:22,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
