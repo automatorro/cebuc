@@ -4,7 +4,7 @@ Tool intern de prospectare: analizează site-ul unei firme și generează un
 audit comercial cu Top 3 oportunități, de folosit într-o discuție de
 vânzare. Nu e public — rulează doar local, pe calculatorul tău.
 
-## Setup
+## Setup local
 
 ```bash
 cd tools/audit-scanner
@@ -15,6 +15,26 @@ cp .env.example .env
 Completează `.env` cu `ANTHROPIC_API_KEY` (obligatoriu) și, opțional,
 `PAGESPEED_API_KEY` (dacă lipsește, categoria Mobile apare ca "date
 incomplete", restul funcționează normal).
+
+## Setup fără nimic instalat local (GitHub Codespaces)
+
+Nu ai nevoie de niciun program instalat — totul rulează într-un browser.
+
+1. **Adaugă cheia ca secret**, pe GitHub: în repo → **Settings** →
+   **Secrets and variables** → **Codespaces** → **New repository secret** →
+   nume `ANTHROPIC_API_KEY`, valoare cheia ta. (Opțional, la fel, și
+   `PAGESPEED_API_KEY`.) Cheia nu ajunge niciodată în cod sau în chat.
+2. Pe pagina principală a repo-ului → butonul verde **Code** → tab
+   **Codespaces** → **Create codespace on main**.
+3. Așteaptă să se pornească (instalează automat dependențele).
+4. În terminalul din browser, rulează:
+   ```bash
+   cd tools/audit-scanner
+   npm run serve
+   ```
+5. Codespace-ul va detecta portul 4173 și va oferi un buton/notificare
+   **Open in Browser** — apasă-l ca să vezi interfața. Accesul e privat,
+   vizibil doar pentru tine (proprietarul repo-ului).
 
 ## Interfață vizuală (recomandat)
 

@@ -13,7 +13,11 @@ import { writeReport } from "./src/report.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = join(__dirname, "output");
 const PORT = process.env.PORT || 4173;
-const HOST = "127.0.0.1"; // legat doar de localhost — nu e expus în rețea
+// Local: doar loopback, nu e expus în rețea. Într-un GitHub Codespace
+// (CODESPACES=true e setat automat de platformă) trebuie să asculte pe
+// 0.0.0.0 ca forwarding-ul de porturi să-l poată detecta — accesul rămâne
+// privat, controlat de GitHub, nu public pe internet.
+const HOST = process.env.CODESPACES ? "0.0.0.0" : (process.env.HOST || "127.0.0.1");
 
 const app = express();
 app.use(express.json());
