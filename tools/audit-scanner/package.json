@@ -2,17 +2,19 @@
   "name": "audit-scanner",
   "version": "1.0.0",
   "private": true,
-  "description": "Internal CLI tool: analyzes a prospect's website and generates a commercial opportunity audit report.",
+  "description": "Internal CLI + local admin UI: analyzes a prospect's website and generates a commercial opportunity audit report.",
   "type": "module",
   "main": "audit.js",
   "scripts": {
-    "audit": "node audit.js"
+    "audit": "node audit.js",
+    "serve": "node server.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.124.0",
     "cheerio": "^1.0.0",
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",
-    "zod": "^3.23.8"
+    "express": "^4.21.2",
+    "zod": "^4.6.2"
   }
 }

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Cebuc Digital Opportunity Scanner</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --border: #2a2e38;
+    --text: #e8e9ec;
+    --muted: #9aa0ac;
+    --accent: #4f8cff;
+    --mare: #ff5c5c;
+    --medie: #f0a93b;
+    --mica: #6bcf7f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 24px;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+  .tab {
+    padding: 8px 14px; border-radius: 8px; cursor: pointer;
+    background: var(--panel); border: 1px solid var(--border); color: var(--muted); font-size: 13px;
+  }
+  .tab.active { color: var(--text); border-color: var(--accent); }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 4px; }
+  input {
+    width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border);
+    background: #0d0f13; color: var(--text); font-size: 14px;
+  }
+  .checkbox-row { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+  .checkbox-row input { width: auto; }
+  .checkbox-row label { margin: 0; color: var(--text); font-size: 13px; }
+  button {
+    margin-top: 20px; width: 100%; padding: 12px; border-radius: 8px; border: none;
+    background: var(--accent); color: white; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .progress-list { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+  .progress-list li { padding: 6px 0; color: var(--muted); }
+  .progress-list li.done { color: var(--mica); }
+  .progress-list li.active { color: var(--text); }
+  .error { color: var(--mare); font-size: 13px; margin-top: 12px; }
+  .scores { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+  .score-item { background: #0d0f13; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .score-item .val { font-size: 20px; font-weight: 700; }
+  .score-item .label { font-size: 12px; color: var(--muted); }
+  .opportunity {
+    border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 12px; background: #0d0f13;
+  }
+  .opportunity h3 { margin: 0 0 6px; font-size: 15px; }
+  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 600; margin-left: 8px; }
+  .badge.mare { background: rgba(255,92,92,0.15); color: var(--mare); }
+  .badge.medie { background: rgba(240,169,59,0.15); color: var(--medie); }
+  .badge.mica { background: rgba(107,207,127,0.15); color: var(--mica); }
+  .opportunity .impact { font-size: 13px; margin: 6px 0; }
+  .opportunity .rec { font-size: 13px; color: var(--text); }
+  .opportunity .evidence { font-size: 11px; color: var(--muted); margin-top: 8px; font-family: monospace; }
+  .history-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 13px; cursor: pointer; }
+  .history-item:hover { color: var(--accent); }
+  .history-item .meta { color: var(--muted); }
+  .back-link { color: var(--accent); font-size: 13px; cursor: pointer; margin-bottom: 12px; display: inline-block; }
+  .files { font-size: 12px; color: var(--muted); margin-top: 16px; font-family: monospace; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Cebuc Digital Opportunity Scanner</h1>
+  <div class="sub">Tool intern — audit comercial de site pentru prospectare. Vizibil doar pe acest calculator.</div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="new">Audit nou</div>
+    <div class="tab" data-tab="history">Istoric</div>
+  </div>
+
+  <div id="view-new" class="panel">
+    <form id="audit-form">
+      <label>Website</label>
+      <input type="text" id="url" placeholder="firma.ro" required>
+
+      <label>Domeniu de activitate</label>
+      <input type="text" id="industry" placeholder="Construcții" required>
+
+      <label>Localitate</label>
+      <input type="text" id="city" placeholder="Timișoara" required>
+
+      <label>Serviciu principal</label>
+      <input type="text" id="service" placeholder="Renovări fațade" required>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="skipPagespeed">
+        <label for="skipPagespeed">Sări peste analiza de viteză mobilă (PageSpeed)</label>
+      </div>
+
+      <button type="submit" id="submit-btn">Analizează</button>
+    </form>
+
+    <div id="progress" class="hidden" style="margin-top:20px;">
+      <ul class="progress-list">
+        <li id="step-fetch">Se accesează site-ul...</li>
+        <li id="step-analyze">Se analizează structura...</li>
+        <li id="step-ai">Se interpretează oportunitățile (AI)...</li>
+        <li id="step-done">Raport generat</li>
+      </ul>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <div id="result" class="hidden" style="margin-top:20px;"></div>
+  </div>
+
+  <div id="view-history" class="panel hidden">
+    <div id="history-list"></div>
+    <div id="history-detail" class="hidden"></div>
+  </div>
+</div>
+
+<script>
+const PRIORITY_LABEL = { mare: 'PRIORITATE MARE', medie: 'PRIORITATE MEDIE', mica: 'PRIORITATE MICĂ' };
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('view-new').classList.toggle('hidden', tab.dataset.tab !== 'new');
+    document.getElementById('view-history').classList.toggle('hidden', tab.dataset.tab !== 'history');
+    if (tab.dataset.tab === 'history') loadHistory();
+  });
+});
+
+function scoreLabel(scores) {
+  const items = [
+    ['Prima impresie', scores.prima_impresie],
+    ['Contact & conversie', scores.contact_conversie],
+    ['Servicii', scores.servicii],
+    ['Încredere', scores.incredere],
+    ['SEO', scores.seo],
+    ['Mobile', scores.mobile_incomplete ? '—' : scores.mobile],
+  ];
+  return items.map(([label, val]) => `
+    <div class="score-item">
+      <div class="val">${val === null || val === '—' ? '—' : val + '/10'}</div>
+      <div class="label">${label}</div>
+    </div>
+  `).join('');
+}
+
+function opportunityHtml(op) {
+  return `
+    <div class="opportunity">
+      <h3>${op.problem} <span class="badge ${op.priority}">${PRIORITY_LABEL[op.priority] || op.priority}</span></h3>
+      <div class="impact">${op.commercial_impact}</div>
+      <div class="rec"><strong>Recomandare:</strong> ${op.recommendation}</div>
+      <div class="evidence">Dovadă: ${op.evidence}</div>
+    </div>
+  `;
+}
+
+function renderResult(data, container) {
+  const top = data.aiResult.top_opportunities || [];
+  const other = (data.aiResult.findings || []).filter(f => !top.includes(f));
+
+  let html = `<h2 style="font-size:16px;">${data.url}</h2>`;
+  html += `<div class="scores">${scoreLabel(data.scores)}</div>`;
+  html += `<h3 style="font-size:14px;">Top oportunități</h3>`;
+  html += top.length ? top.map(opportunityHtml).join('') : '<p style="color:var(--muted);font-size:13px;">Nu s-au identificat oportunități clare.</p>';
+
+  if (other.length) {
+    html += `<h3 style="font-size:14px;">Alte observații</h3>`;
+    html += other.map(opportunityHtml).join('');
+  }
+
+  if (data.pagespeed && (data.pagespeed.skipped || !data.pagespeed.ok)) {
+    html += `<p style="font-size:12px;color:var(--muted);">Notă: analiza de viteză mobilă a fost omisă (${data.pagespeed.reason || 'indisponibil'}).</p>`;
+  }
+
+  if (data.files && (data.files.jsonPath || data.files.mdPath)) {
+    html += `<div class="files">JSON: ${data.files.jsonPath}<br>Markdown: ${data.files.mdPath}</div>`;
+  }
+
+  const target = container || document.getElementById('result');
+  target.innerHTML = html;
+  target.classList.remove('hidden');
+}
+
+document.getElementById('audit-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const url = document.getElementById('url').value.trim();
+  const industry = document.getElementById('industry').value.trim();
+  const city = document.getElementById('city').value.trim();
+  const service = document.getElementById('service').value.trim();
+  const skipPagespeed = document.getElementById('skipPagespeed').checked;
+
+  const submitBtn = document.getElementById('submit-btn');
+  const progress = document.getElementById('progress');
+  const errorBox = document.getElementById('error');
+  const result = document.getElementById('result');
+
+  submitBtn.disabled = true;
+  errorBox.classList.add('hidden');
+  result.classList.add('hidden');
+  progress.classList.remove('hidden');
+  document.querySelectorAll('.progress-list li').forEach(li => li.className = '');
+  document.getElementById('step-fetch').className = 'active';
+
+  try {
+    const stepTimer = setTimeout(() => {
+      document.getElementById('step-fetch').className = 'done';
+      document.getElementById('step-analyze').className = 'active';
+    }, 600);
+    const stepTimer2 = setTimeout(() => {
+      document.getElementById('step-analyze').className = 'done';
+      document.getElementById('step-ai').className = 'active';
+    }, 1500);
+
+    const res = await fetch('/api/audit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, industry, city, service, skipPagespeed }),
+    });
+
+    clearTimeout(stepTimer);
+    clearTimeout(stepTimer2);
+    document.querySelectorAll('.progress-list li').forEach(li => li.className = 'done');
+
+    const data = await res.json();
+
+    if (!res.ok || data.error) {
+      errorBox.textContent = data.error || 'Eroare necunoscută.';
+      errorBox.classList.remove('hidden');
+      progress.classList.add('hidden');
+      return;
+    }
+
+    renderResult(data);
+    progress.classList.add('hidden');
+  } catch (err) {
+    errorBox.textContent = 'Eroare de rețea: ' + err.message;
+    errorBox.classList.remove('hidden');
+    progress.classList.add('hidden');
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+
+async function loadHistory() {
+  const listEl = document.getElementById('history-list');
+  const detailEl = document.getElementById('history-detail');
+  detailEl.classList.add('hidden');
+  listEl.classList.remove('hidden');
+  listEl.innerHTML = 'Se încarcă...';
+
+  const res = await fetch('/api/audits');
+  const data = await res.json();
+
+  if (!data.audits || data.audits.length === 0) {
+    listEl.innerHTML = '<p style="color:var(--muted);font-size:13px;">Niciun audit salvat încă.</p>';
+    return;
+  }
+
+  listEl.innerHTML = data.audits.map(a => `
+    <div class="history-item" data-file="${a.file}">
+      <span>${a.website || a.file}</span>
+      <span class="meta">${a.industry || ''} · ${a.city || ''} · ${a.top_count} oportunități</span>
+    </div>
+  `).join('');
+
+  listEl.querySelectorAll('.history-item').forEach(item => {
+    item.addEventListener('click', async () => {
+      const file = item.dataset.file;
+      const detailRes = await fetch('/api/audits/' + file);
+      const detail = await detailRes.json();
+      if (detail.error) return;
+
+      listEl.classList.add('hidden');
+      detailEl.classList.remove('hidden');
+
+      const aiResult = {
+        top_opportunities: detail.audit_opportunities.top_opportunities || [],
+        findings: detail.audit_opportunities.findings || [],
+      };
+
+      detailEl.innerHTML = '<span class="back-link" id="back-to-list">← Înapoi la listă</span><div id="history-result"></div>';
+      renderResult({
+        url: detail.audit.website,
+        scores: detail.audit_metrics.scores,
+        pagespeed: detail.audit_metrics.pagespeed,
+        aiResult,
+        files: null,
+      }, document.getElementById('history-result'));
+
+      document.getElementById('back-to-list').addEventListener('click', () => {
+        detailEl.classList.add('hidden');
+        listEl.classList.remove('hidden');
+      });
+    });
+  });
+}
+</script>
+</body>
+</html>
