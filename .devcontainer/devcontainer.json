@@ -1,0 +1,12 @@
+{
+  "name": "Cebuc Audit Scanner",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "postCreateCommand": "cd tools/audit-scanner && npm install",
+  "forwardPorts": [4173],
+  "portsAttributes": {
+    "4173": {
+      "label": "Audit Scanner UI",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
