@@ -34,11 +34,168 @@
     </div>
   </footer>
 
-  <div class="modal-overlay" id="checkout-modal" hidden>
-    <div class="modal-box">
-      <h3>Aceasta este o demonstrație</h3>
-      <p>Comanda nu se trimite. Într-un magazin real, aici urmează plata și emiterea AWB.</p>
-      <button type="button" class="btn btn-primary" id="close-modal">Am înțeles</button>
+  <!-- Flux de checkout demonstrativ: nicio comandă reală nu se trimite, nicio plată nu se procesează. -->
+  <div class="checkout-overlay" id="checkout-flow">
+    <div class="checkout-nav">
+      <span class="brand-name">AtelierPrint</span>
+      <button type="button" class="checkout-close" id="checkout-close">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Închide
+      </button>
+    </div>
+
+    <div class="checkout-steps" id="checkout-steps">
+      <div class="checkout-step active" data-step="1">
+        <span class="checkout-step-n">1</span><span class="checkout-step-label">Sumar</span>
+      </div>
+      <div class="checkout-divider-step"></div>
+      <div class="checkout-step" data-step="2">
+        <span class="checkout-step-n">2</span><span class="checkout-step-label">Livrare</span>
+      </div>
+      <div class="checkout-divider-step"></div>
+      <div class="checkout-step" data-step="3">
+        <span class="checkout-step-n">3</span><span class="checkout-step-label">Plată</span>
+      </div>
+      <div class="checkout-divider-step"></div>
+      <div class="checkout-step" data-step="4">
+        <span class="checkout-step-n">✓</span><span class="checkout-step-label">Confirmare</span>
+      </div>
+    </div>
+
+    <div class="checkout-body">
+      <div class="checkout-inner">
+
+        <!-- Pas 1: sumar -->
+        <div class="checkout-panel active" id="co-panel-1">
+          <h2>Sumar comandă</h2>
+          <div id="co-summary"></div>
+          <div class="co-totals" id="co-totals"></div>
+          <div class="checkout-actions">
+            <button type="button" class="btn btn-outline" id="co-back-1">← Înapoi la coș</button>
+            <button type="button" class="btn btn-primary" id="co-next-1">Continuă → Livrare</button>
+          </div>
+        </div>
+
+        <!-- Pas 2: livrare -->
+        <div class="checkout-panel" id="co-panel-2">
+          <h2>Date de livrare</h2>
+          <div class="co-form">
+            <div class="co-form-2">
+              <div class="co-field"><label>Nume</label><input type="text" placeholder="Popescu" id="co-lastname" /></div>
+              <div class="co-field"><label>Prenume</label><input type="text" placeholder="Ana" id="co-firstname" /></div>
+            </div>
+            <div class="co-field"><label>Email</label><input type="email" placeholder="ana@email.com" id="co-email" /></div>
+            <div class="co-field"><label>Telefon</label><input type="tel" placeholder="+40 7XX XXX XXX" id="co-phone" /></div>
+            <div class="co-field"><label>Adresă</label><input type="text" placeholder="Str. Exemplu nr. 10" id="co-address" /></div>
+            <div class="co-form-2">
+              <div class="co-field"><label>Oraș</label><input type="text" placeholder="Cluj-Napoca" id="co-city" /></div>
+              <div class="co-field">
+                <label>Județ</label>
+                <select id="co-county">
+                  <option value="">Selectează județul</option>
+                  <option>Alba</option><option>Arad</option><option>Argeș</option><option>Bacău</option>
+                  <option>Bihor</option><option>Bistrița-Năsăud</option><option>Botoșani</option>
+                  <option>Brăila</option><option>Brașov</option><option selected>București</option>
+                  <option>Buzău</option><option>Călărași</option><option>Caraș-Severin</option>
+                  <option>Cluj</option><option>Constanța</option><option>Covasna</option>
+                  <option>Dâmbovița</option><option>Dolj</option><option>Galați</option>
+                  <option>Giurgiu</option><option>Gorj</option><option>Harghita</option>
+                  <option>Hunedoara</option><option>Ialomița</option><option>Iași</option>
+                  <option>Ilfov</option><option>Maramureș</option><option>Mehedinți</option>
+                  <option>Mureș</option><option>Neamț</option><option>Olt</option>
+                  <option>Prahova</option><option>Sălaj</option><option>Satu Mare</option>
+                  <option>Sibiu</option><option>Suceava</option><option>Teleorman</option>
+                  <option>Timiș</option><option>Tulcea</option><option>Vâlcea</option>
+                  <option>Vaslui</option><option>Vrancea</option>
+                </select>
+              </div>
+            </div>
+            <div class="co-field"><label>Cod poștal</label><input type="text" placeholder="010101" id="co-zip" /></div>
+          </div>
+          <div class="checkout-actions">
+            <button type="button" class="btn btn-outline" id="co-back-2">← Sumar</button>
+            <button type="button" class="btn btn-primary" id="co-next-2">Continuă → Plată</button>
+          </div>
+        </div>
+
+        <!-- Pas 3: plată -->
+        <div class="checkout-panel" id="co-panel-3">
+          <h2>Detalii plată</h2>
+
+          <div class="pay-card-scene">
+            <div class="pay-card-3d" id="pay-card-3d">
+              <div class="pay-card-face">
+                <div class="pay-card-top">
+                  <div class="pay-card-chip"></div>
+                  <div class="pay-card-brand">AtelierPrint</div>
+                </div>
+                <div class="pay-card-number" id="pay-card-number-disp">•••• •••• •••• ••••</div>
+                <div class="pay-card-bottom">
+                  <div>
+                    <div class="pay-card-label">Titular</div>
+                    <div class="pay-card-value" id="pay-card-name-disp">NUMELE TĂU</div>
+                  </div>
+                  <div>
+                    <div class="pay-card-label">Expiră</div>
+                    <div class="pay-card-value" id="pay-card-exp-disp">MM/AA</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pay-card-back">
+                <div class="pay-card-strip"></div>
+                <div class="pay-card-cvv-label">CVV</div>
+                <div class="pay-card-cvv-box" id="pay-card-cvv-disp">•••</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="co-form">
+            <div class="co-field">
+              <label>Număr card</label>
+              <input type="text" id="pay-number" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" inputmode="numeric" />
+            </div>
+            <div class="co-field">
+              <label>Titular card</label>
+              <input type="text" id="pay-name" placeholder="ANA POPESCU" autocomplete="cc-name" />
+            </div>
+            <div class="pay-row">
+              <div class="co-field">
+                <label>Data expirării</label>
+                <input type="text" id="pay-exp" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp" inputmode="numeric" />
+              </div>
+              <div class="co-field">
+                <label>CVV</label>
+                <input type="text" id="pay-cvv" placeholder="•••" maxlength="3" autocomplete="cc-csc" inputmode="numeric" />
+              </div>
+            </div>
+          </div>
+
+          <p class="pay-secure-note">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Plată securizată SSL · Demo — nicio tranzacție reală, niciun card nu este stocat.
+          </p>
+
+          <div class="checkout-actions">
+            <button type="button" class="btn btn-outline" id="co-back-3">← Livrare</button>
+            <button type="button" class="btn btn-primary" id="co-place-order">Plasează comanda →</button>
+          </div>
+        </div>
+
+        <!-- Pas 4: confirmare -->
+        <div class="checkout-panel" id="co-panel-4">
+          <div class="co-success">
+            <div class="co-success-ring" id="co-success-ring">
+              <svg viewBox="0 0 36 36"><polyline points="6 18 14 26 30 10"/></svg>
+            </div>
+            <h2>Mulțumim, <em id="co-success-name">!</em></h2>
+            <p>Comanda ta demonstrativă a fost „plasată" cu succes. Într-un magazin real, aici ar începe procesul de print, control de calitate și expediere.</p>
+            <p class="co-order-nr">Număr comandă: <strong id="co-order-nr">#ATP-000000</strong></p>
+            <p style="font-size:0.82rem; color: var(--muted-foreground); margin-top:6px;">Livrare estimată: <strong style="color: var(--foreground);">2–4 zile lucrătoare</strong></p>
+            <button type="button" class="btn btn-outline" id="co-success-back" style="margin-top:24px;">← Înapoi la produse</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -94,14 +251,118 @@
         });
       });
 
-      document.getElementById("checkout-btn").addEventListener("click", () => {
-        document.getElementById("checkout-modal").hidden = false;
-      });
+      document.getElementById("checkout-btn").addEventListener("click", openCheckout);
     }
 
-    document.getElementById("close-modal").addEventListener("click", () => {
-      document.getElementById("checkout-modal").hidden = true;
+    // --- flux de checkout (demonstrativ) ----------------------------------
+    const checkoutOverlay = document.getElementById("checkout-flow");
+    const checkoutPanels = [null, 1, 2, 3, 4].map((n) => (n ? document.getElementById(`co-panel-${n}`) : null));
+    const checkoutStepEls = document.querySelectorAll(".checkout-step");
+
+    function goToStep(n) {
+      checkoutPanels.forEach((panel, i) => {
+        if (panel) panel.classList.toggle("active", i === n);
+      });
+      checkoutStepEls.forEach((el) => {
+        const stepN = parseInt(el.getAttribute("data-step"), 10);
+        el.classList.toggle("active", stepN === n);
+        el.classList.toggle("done", stepN < n);
+      });
+      checkoutOverlay.scrollTo(0, 0);
+      if (n === 1) renderCheckoutSummary();
+      if (n === 4) triggerSuccess();
+    }
+
+    function renderCheckoutSummary() {
+      const items = readCart();
+      const summaryEl = document.getElementById("co-summary");
+      summaryEl.innerHTML = items
+        .map(
+          (item) => `
+        <div class="co-summary-item">
+          <img src="${item.thumb}" alt="${item.name}" />
+          <div>
+            <div class="name">${item.name}</div>
+            <div class="variant">Variantă: ${item.variant}</div>
+          </div>
+          <span class="price">${formatRON(item.price)}</span>
+        </div>`
+        )
+        .join("");
+
+      const total = cartTotal(items);
+      document.getElementById("co-totals").innerHTML = `
+        <div class="co-row"><span>Subtotal</span><span>${formatRON(total)}</span></div>
+        <div class="co-row"><span>Livrare</span><span style="color: var(--success); font-weight:600;">Gratuită</span></div>
+        <div class="co-row grand"><span>Total</span><span>${formatRON(total)}</span></div>
+      `;
+    }
+
+    function openCheckout() {
+      if (readCart().length === 0) return;
+      goToStep(1);
+      checkoutOverlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeCheckout() {
+      checkoutOverlay.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("checkout-close").addEventListener("click", closeCheckout);
+    document.getElementById("co-back-1").addEventListener("click", closeCheckout);
+    document.getElementById("co-next-1").addEventListener("click", () => goToStep(2));
+    document.getElementById("co-back-2").addEventListener("click", () => goToStep(1));
+    document.getElementById("co-next-2").addEventListener("click", () => goToStep(3));
+    document.getElementById("co-back-3").addEventListener("click", () => goToStep(2));
+    document.getElementById("co-place-order").addEventListener("click", () => goToStep(4));
+    document.getElementById("co-success-back").addEventListener("click", () => {
+      closeCheckout();
+      clearCart();
+      updateCartBadge();
+      renderCart();
     });
+
+    // --- card 3D live preview ------------------------------------------------
+    const payCard3d = document.getElementById("pay-card-3d");
+
+    document.getElementById("pay-number").addEventListener("input", function () {
+      const digits = this.value.replace(/\D/g, "").slice(0, 16);
+      this.value = digits.replace(/(.{4})/g, "$1 ").trim();
+      const disp = digits.padEnd(16, "•").replace(/(.{4})/g, "$1 ").trim();
+      document.getElementById("pay-card-number-disp").textContent = disp;
+    });
+
+    document.getElementById("pay-name").addEventListener("input", function () {
+      document.getElementById("pay-card-name-disp").textContent = this.value.toUpperCase() || "NUMELE TĂU";
+    });
+
+    document.getElementById("pay-exp").addEventListener("input", function () {
+      let v = this.value.replace(/\D/g, "").slice(0, 4);
+      if (v.length >= 3) v = v.slice(0, 2) + "/" + v.slice(2);
+      this.value = v;
+      document.getElementById("pay-card-exp-disp").textContent = v || "MM/AA";
+    });
+
+    document.getElementById("pay-cvv").addEventListener("input", function () {
+      const v = this.value.replace(/\D/g, "").slice(0, 3);
+      this.value = v;
+      document.getElementById("pay-card-cvv-disp").textContent = v.padEnd(3, "•");
+    });
+    document.getElementById("pay-cvv").addEventListener("focus", () => payCard3d.classList.add("flipped"));
+    document.getElementById("pay-cvv").addEventListener("blur", () => payCard3d.classList.remove("flipped"));
+
+    // --- confirmare ------------------------------------------------------
+    function triggerSuccess() {
+      const firstName = document.getElementById("co-firstname").value.trim() || "prietene";
+      document.getElementById("co-success-name").textContent = firstName + "!";
+      const orderNr = "#ATP-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+      document.getElementById("co-order-nr").textContent = orderNr;
+      const ring = document.getElementById("co-success-ring");
+      ring.classList.remove("anim");
+      setTimeout(() => ring.classList.add("anim"), 80);
+    }
 
     renderCart();
   </script>
