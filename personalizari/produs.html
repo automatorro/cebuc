@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Configurator produs — AtelierPrint</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-name">AtelierPrint</span>
+        <span class="brand-tag">Producție proprie · fără intermediari</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html#produse">Produse</a>
+        <a href="cos.html">Coș <span class="cart-count" data-cart-count hidden>0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <a href="index.html#produse" class="back-link">← Înapoi la produse</a>
+
+      <div class="configurator">
+        <div class="stage">
+          <div class="stage-canvas-wrap" id="stage-canvas-wrap">
+            <canvas id="stage-canvas"></canvas>
+          </div>
+          <p class="stage-hint">Trage designul cu mouse-ul / degetul ca să-l poziționezi în zona printabilă.</p>
+          <div class="res-indicator" id="res-indicator" hidden></div>
+        </div>
+
+        <div class="panel">
+          <div>
+            <h1 id="product-name">Produs</h1>
+            <p class="desc" id="product-desc"></p>
+            <p class="price" id="product-price"></p>
+          </div>
+
+          <hr class="divider" />
+
+          <div class="field" id="variant-field">
+            <span class="field-label">Variantă</span>
+            <div class="variant-row" id="variant-row"></div>
+          </div>
+
+          <div class="field">
+            <span class="field-label">1. Urcă imaginea ta</span>
+            <div class="upload-box">
+              <label for="file-input">Alege un fișier</label>
+              <input type="file" id="file-input" accept="image/*" />
+              <div class="file-name" id="file-name">Niciun fișier ales</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field-label">2. Dimensiune</span>
+            <div class="range-row">
+              <input type="range" id="scale-range" min="0.2" max="3" step="0.01" value="1" />
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field-label">3. Rotație</span>
+            <div class="range-row">
+              <input type="range" id="rotate-range" min="-180" max="180" step="1" value="0" />
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-outline btn-sm" id="reset-position" style="align-self:flex-start;">
+            Resetează poziția
+          </button>
+
+          <hr class="divider" />
+
+          <button type="button" class="btn btn-primary btn-block" id="add-to-cart" disabled>
+            Adaugă în coș
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 AtelierPrint — producție proprie în România.</span>
+      <span class="demo-badge">Demo</span>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="added-toast" hidden style="align-items:flex-start; justify-content:flex-end; background:transparent; pointer-events:none;">
+    <div class="modal-box" style="max-width:280px; text-align:left; margin:80px 20px 0 0; box-shadow:0 12px 30px -14px rgba(0,0,0,.3); pointer-events:auto;">
+      <strong>Adăugat în coș ✓</strong>
+      <p style="margin:6px 0 0;">Continuă personalizarea sau <a href="cos.html">mergi la coș</a>.</p>
+    </div>
+  </div>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/configurator.js"></script>
+</body>
+</html>
