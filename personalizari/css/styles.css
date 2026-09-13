@@ -24,6 +24,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 
 body {
@@ -646,6 +647,16 @@ img { display: block; max-width: 100%; }
   .cart-item { grid-template-columns: 70px 1fr; }
   .cart-item .price { grid-column: 2; justify-self: start; }
   .cart-summary { max-width: none; }
+
+  /* Pe mobil, canvas-ul și stage-ul nu mai stau lipite unul de altul (o coloană),
+     deci mutăm upload/dimensiune/rotație imediat sub imagine ca să vezi live
+     efectul fără să tot derulezi sus-jos până la informațiile produsului. */
+  .controls-group { order: 1; display: flex; flex-direction: column; gap: 22px; }
+  .divider-info { order: 2; }
+  .panel-info { order: 3; }
+  #variant-field { order: 4; }
+  .divider-action { order: 5; }
+  #add-to-cart { order: 6; }
 }
 
 @media (max-width: 520px) {
