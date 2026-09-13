@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AtelierPrint — Personalizări printate în 2 minute</title>
+  <meta name="description" content="Configurator demonstrativ de printuri personalizate: alege produsul, urcă imaginea, vezi previzualizarea live." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-name">AtelierPrint</span>
+        <span class="brand-tag">Producție proprie · fără intermediari</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html#produse">Produse</a>
+        <a href="cos.html">Coș <span class="cart-count" data-cart-count hidden>0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy-col">
+          <h1 class="hero-title">Designul tău, printat de noi.<br /><span class="accent-text">Comandat în 2 minute.</span></h1>
+          <p class="hero-copy">
+            Alegi produsul, urci imaginea, o poziționezi direct pe produs și vezi imediat cum arată.
+            Restul facem noi în atelier: print, control de calitate, expediere.
+          </p>
+          <a href="#produse" class="btn btn-primary">Începe personalizarea</a>
+
+          <ul class="trust-list">
+            <li><span class="trust-icon">✓</span> Verificare automată de rezoluție</li>
+            <li><span class="trust-icon">300</span> Fișier print generat la 300 DPI</li>
+            <li><span class="trust-icon">🚚</span> AWB curier emis automat</li>
+          </ul>
+        </div>
+        <div class="hero-media">
+          <img src="products/_preview-hero.png" alt="Produse personalizate AtelierPrint" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="produse">
+      <div class="container">
+        <div class="section-head">
+          <h2>Alege produsul</h2>
+          <p>Fiecare produs are zona printabilă calibrată în atelier.</p>
+        </div>
+        <div class="product-grid" id="product-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 AtelierPrint — producție proprie în România.</span>
+      <span class="demo-badge">Demo</span>
+    </div>
+  </footer>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    const grid = document.getElementById("product-grid");
+    CATALOG.forEach((p) => {
+      const a = document.createElement("a");
+      a.href = `produs.html?slug=${encodeURIComponent(p.slug)}`;
+      a.className = "product-card";
+      a.innerHTML = `
+        <div class="thumb"><img src="${p.variants[0].image}" alt="${p.name}" loading="lazy" /></div>
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+          <span class="price-tag">de la ${formatRON(p.priceFrom)}</span>
+        </div>`;
+      grid.appendChild(a);
+    });
+  </script>
+</body>
+</html>

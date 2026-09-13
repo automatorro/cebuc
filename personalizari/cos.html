@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coșul tău — AtelierPrint</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-name">AtelierPrint</span>
+        <span class="brand-tag">Producție proprie · fără intermediari</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html#produse">Produse</a>
+        <a href="cos.html">Coș <span class="cart-count" data-cart-count hidden>0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding-top:32px;">
+      <h1 style="margin-bottom:22px;">Coșul tău</h1>
+      <div id="cart-root"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 AtelierPrint — producție proprie în România.</span>
+      <span class="demo-badge">Demo</span>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="checkout-modal" hidden>
+    <div class="modal-box">
+      <h3>Aceasta este o demonstrație</h3>
+      <p>Comanda nu se trimite. Într-un magazin real, aici urmează plata și emiterea AWB.</p>
+      <button type="button" class="btn btn-primary" id="close-modal">Am înțeles</button>
+    </div>
+  </div>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    function renderCart() {
+      const items = readCart();
+      const root = document.getElementById("cart-root");
+
+      if (items.length === 0) {
+        root.innerHTML = `
+          <div class="empty-state">
+            <p>Coșul tău este gol.</p>
+            <a href="index.html#produse">Alege un produs de personalizat →</a>
+          </div>`;
+        return;
+      }
+
+      const list = document.createElement("div");
+      list.className = "cart-list";
+      items.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <img src="${item.thumb}" alt="${item.name}" />
+          <div>
+            <div class="name">${item.name}</div>
+            <div class="variant">Variantă: ${item.variant}</div>
+            <button class="remove-btn" data-remove="${item.id}">Elimină</button>
+          </div>
+          <div class="price">${formatRON(item.price)}</div>
+        `;
+        list.appendChild(row);
+      });
+
+      const summary = document.createElement("div");
+      summary.className = "cart-summary";
+      summary.innerHTML = `
+        <div class="total-row"><span>Total</span><span>${formatRON(cartTotal(items))}</span></div>
+        <button type="button" class="btn btn-primary btn-block" id="checkout-btn">Finalizează comanda</button>
+      `;
+
+      root.innerHTML = "";
+      root.appendChild(list);
+      root.appendChild(summary);
+
+      root.querySelectorAll("[data-remove]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          removeFromCart(btn.getAttribute("data-remove"));
+          updateCartBadge();
+          renderCart();
+        });
+      });
+
+      document.getElementById("checkout-btn").addEventListener("click", () => {
+        document.getElementById("checkout-modal").hidden = false;
+      });
+    }
+
+    document.getElementById("close-modal").addEventListener("click", () => {
+      document.getElementById("checkout-modal").hidden = true;
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>
