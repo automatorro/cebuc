@@ -20,23 +20,25 @@ incomplete", restul funcționează normal).
 
 Nu ai nevoie de niciun program instalat — totul rulează într-un browser.
 
-1. **Adaugă cheia ca secret**, pe GitHub: în repo → **Settings** →
-   **Secrets and variables** → **Codespaces** → **New repository secret** →
-   nume `ANTHROPIC_API_KEY`, valoare cheia ta. (Opțional, la fel, și
-   `PAGESPEED_API_KEY`.) Cheia nu ajunge niciodată în cod sau în chat.
+1. **Adaugă cheia ca secret**, pe GitHub (cont personal): profilul tău
+   (colț dreapta-sus) → **Settings** → **Codespaces** (sau direct
+   `github.com/settings/codespaces`) → secțiunea **Codespaces secrets** →
+   **New secret** → nume `ANTHROPIC_API_KEY`, valoare cheia ta, acces la
+   repo-ul `cebuc`. (Opțional, la fel, și `PAGESPEED_API_KEY`.) Cheia nu
+   ajunge niciodată în cod sau în chat.
 2. Pe pagina principală a repo-ului → butonul verde **Code** → tab
    **Codespaces** → **Create codespace on main**.
-3. Așteaptă să se pornească (instalează automat dependențele).
-4. În terminalul din browser, rulează:
-   ```bash
-   cd tools/audit-scanner
-   npm run serve
-   ```
-5. Codespace-ul va detecta portul 4173 și va oferi un buton/notificare
-   **Open in Browser** — apasă-l ca să vezi interfața. Accesul e privat,
-   vizibil doar pentru tine (proprietarul repo-ului).
+3. Așteaptă să se pornească — instalează automat dependențele **și
+   pornește automat serverul** (`npm run serve`, pe portul 4173).
+4. Codespace-ul va detecta portul și va oferi un buton/notificare
+   **Open in Browser** — apasă-l ca să vezi interfața direct. Accesul e
+   privat, vizibil doar pentru tine (proprietarul repo-ului).
 
-## Interfață vizuală (recomandat)
+**La reluări ulterioare:** nu creezi un Codespace nou — îl reiei pe cel
+existent din listă (tab **Codespaces**). Serverul pornește din nou automat
+la fiecare reluare, fără să mai scrii vreo comandă în terminal.
+
+## Interfață vizuală (local, manual)
 
 ```bash
 npm run serve
@@ -45,7 +47,8 @@ npm run serve
 Deschide [http://localhost:4173](http://localhost:4173) în browser. Interfața
 are două ecrane: formular pentru un audit nou (cu progres live) și un
 istoric al audit-urilor deja generate. Serverul este legat doar pe
-`127.0.0.1` — nu este accesibil din rețea.
+`127.0.0.1` — nu este accesibil din rețea. (În Codespaces, acest pas se
+face automat — vezi secțiunea de mai sus.)
 
 ## Linie de comandă (alternativ)
 
