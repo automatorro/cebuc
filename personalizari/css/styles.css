@@ -345,6 +345,11 @@ img { display: block; max-width: 100%; }
   font-size: 0.85rem;
 }
 
+.ft-credit a {
+  color: var(--muted-foreground);
+  text-decoration: underline;
+}
+
 .demo-badge {
   display: inline-flex;
   align-items: center;
