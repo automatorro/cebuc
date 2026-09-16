@@ -55,14 +55,15 @@ function renderMarkdown({ context, analysis, scores, pagespeed, aiResult }) {
     });
   }
 
-  if (aiResult.findings.length > aiResult.top_opportunities.length) {
+  const topEvidence = new Set(aiResult.top_opportunities.map((o) => o.evidence));
+  const otherFindings = aiResult.findings.filter((f) => !topEvidence.has(f.evidence));
+
+  if (otherFindings.length > 0) {
     lines.push("## Alte observații");
     lines.push("");
-    aiResult.findings
-      .filter((f) => !aiResult.top_opportunities.includes(f))
-      .forEach((f) => {
-        lines.push(`- **${f.problem}** (${PRIORITY_LABEL[f.priority]}) — ${f.recommendation}`);
-      });
+    otherFindings.forEach((f) => {
+      lines.push(`- **${f.problem}** (${PRIORITY_LABEL[f.priority]}) — ${f.recommendation}`);
+    });
     lines.push("");
   }
 
