@@ -35,8 +35,15 @@ Nu ai nevoie de niciun program instalat — totul rulează într-un browser.
    privat, vizibil doar pentru tine (proprietarul repo-ului).
 
 **La reluări ulterioare:** nu creezi un Codespace nou — îl reiei pe cel
-existent din listă (tab **Codespaces**). Serverul pornește din nou automat
-la fiecare reluare, fără să mai scrii vreo comandă în terminal.
+existent din listă (tab **Codespaces**). La fiecare pornire/reluare,
+Codespace-ul face automat `git pull` (ca să aibă mereu ultima variantă din
+`main`) și repornește serverul — fără să mai scrii vreo comandă în terminal.
+
+**Important:** actualizarea automată se întâmplă doar la *pornirea*
+Codespace-ului (creare sau reluare după ce a fost oprit). Dacă îl lași
+pornit continuu, fără să-l oprești, nu se actualizează singur doar pentru
+că s-a făcut push pe `main` — oprește-l și reia-l (sau rulează manual
+`git pull` + repornește serverul) ca să prinzi codul nou.
 
 ## Interfață vizuală (local, manual)
 

@@ -2,7 +2,7 @@
   "name": "Cebuc Audit Scanner",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
   "postCreateCommand": "cd tools/audit-scanner && npm install",
-  "postStartCommand": "cd tools/audit-scanner && (nohup npm run serve > /tmp/audit-scanner.log 2>&1 &)",
+  "postStartCommand": "git pull origin main || true; cd tools/audit-scanner && (npm install --no-audit --no-fund || true) && (nohup npm run serve > /tmp/audit-scanner.log 2>&1 &)",
   "forwardPorts": [4173],
   "portsAttributes": {
     "4173": {
