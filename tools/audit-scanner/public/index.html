@@ -170,7 +170,8 @@ function opportunityHtml(op) {
 
 function renderResult(data, container) {
   const top = data.aiResult.top_opportunities || [];
-  const other = (data.aiResult.findings || []).filter(f => !top.includes(f));
+  const topEvidence = new Set(top.map(o => o.evidence));
+  const other = (data.aiResult.findings || []).filter(f => !topEvidence.has(f.evidence));
 
   let html = `<h2 style="font-size:16px;">${data.url}</h2>`;
   html += `<div class="scores">${scoreLabel(data.scores)}</div>`;
