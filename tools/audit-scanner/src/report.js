@@ -30,6 +30,7 @@ function renderMarkdown({ context, analysis, scores, pagespeed, aiResult }) {
   lines.push(`- Servicii: ${scores.servicii}/10`);
   lines.push(`- Încredere: ${scores.incredere}/10`);
   lines.push(`- SEO: ${scores.seo}/10`);
+  lines.push(`- Tehnic: ${scores.tehnic}/10`);
   lines.push(
     scores.mobile_incomplete
       ? `- Mobile: date incomplete (PageSpeed indisponibil)`

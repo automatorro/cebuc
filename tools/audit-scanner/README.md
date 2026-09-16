@@ -63,3 +63,25 @@ Rezultatul (JSON + Markdown) apare în `output/`, indiferent de metoda folosită
 Fiecare oportunitate din raport are un câmp `evidence`/"Dovadă" care trebuie
 să corespundă exact unei observații reale de pe site. Verifică manual cel
 puțin primele câteva rapoarte, ca să confirmi că AI-ul nu inventează nimic.
+
+## Ce verifică analizorul
+
+~27 de reguli, în 6 categorii — AI-ul alege dintre ele pe cele mai relevante
+pentru fiecare site, nu doar din 2-3 categorii fixe:
+
+- **Contact & conversie**: telefon click-to-call, WhatsApp, formular, CTA
+- **Servicii**: pagini dedicate per serviciu sau totul aglomerat
+- **Încredere**: portofoliu, testimoniale, experiență, date firmă
+- **SEO**: title/meta description, H1/H2, canonical, alt text, sitemap,
+  Open Graph (previzualizare la distribuire pe social/WhatsApp), date
+  structurate schema.org (rezultate îmbogățite în Google), duplicate
+  title/meta între pagini (verifică și o a doua pagină, nu doar homepage)
+- **Tehnic**: HTTPS, viewport mobil, favicon, link-uri interne stricate,
+  imagini fără lazy-loading
+- **Mobil**: scor Lighthouse (opțional, cu `PAGESPEED_API_KEY`) —
+  accesibilitate, best-practices, SEO tehnic, viteză
+
+JSON-ul complet din `output/` conține *toate* problemele găsite (câmpul
+`audit_opportunities.candidates`), nu doar cele narate de AI în raport —
+util să știi tot ce e de reparat, chiar dacă în prima discuție cu un lead
+prezinți doar Top 3.

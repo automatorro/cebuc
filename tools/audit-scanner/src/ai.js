@@ -18,7 +18,7 @@ const FindingSchema = z.object({
 });
 
 const AuditResponseSchema = z.object({
-  findings: z.array(FindingSchema).max(5),
+  findings: z.array(FindingSchema).max(8),
   top_opportunities: z.array(FindingSchema).max(3),
 });
 
