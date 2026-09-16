@@ -41,15 +41,30 @@ function scoreTrust(ts) {
   return clamp(score);
 }
 
-function scoreSeo(seo) {
+function scoreSeo(seo, tech) {
   let score = 0;
   if (seo.title_length > 0 && seo.title_length <= 60) score += 2;
-  if (seo.meta_description_length > 0) score += 2;
-  if (seo.h1_count === 1) score += 2;
+  if (seo.meta_description_length > 0) score += 1;
+  if (seo.h1_count === 1) score += 1;
   if (seo.h2_count > 0) score += 1;
   if (seo.has_canonical) score += 1;
   if (seo.sitemap_reachable) score += 1;
   if (seo.robots_reachable) score += 1;
+  if (tech.has_og_title && tech.has_og_description && tech.has_og_image) score += 1;
+  if (tech.has_structured_data) score += 1;
+  return clamp(score);
+}
+
+function scoreTechnical(tech, brokenLinks) {
+  let score = 0;
+  if (tech.is_https) score += 3;
+  if (tech.has_viewport_meta) score += 3;
+  if (tech.has_favicon) score += 1;
+  if (brokenLinks && brokenLinks.checked_count > 0) {
+    score += brokenLinks.broken_count === 0 ? 3 : 0;
+  } else {
+    score += 2; // nimic de verificat, nu penalizăm și nu recompensăm integral
+  }
   return clamp(score);
 }
 
@@ -69,7 +84,8 @@ export function computeScores(analysis, pagespeed) {
     contact_conversie: scoreContactConversion(analysis.contact_conversion),
     servicii: scoreServices(analysis.service_structure),
     incredere: scoreTrust(analysis.trust_signals),
-    seo: scoreSeo(analysis.seo_basics),
+    seo: scoreSeo(analysis.seo_basics, analysis.technical_signals),
+    tehnic: scoreTechnical(analysis.technical_signals, analysis.broken_links),
     mobile: mobile.score,
     mobile_incomplete: mobile.incomplete,
   };

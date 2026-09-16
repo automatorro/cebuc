@@ -1,6 +1,8 @@
 import * as cheerio from "cheerio";
 
 const FETCH_TIMEOUT_MS = 10000;
+const LINK_CHECK_TIMEOUT_MS = 5000;
+const MAX_LINKS_TO_CHECK = 8;
 const CTA_PATTERNS = [
   /cere\s*ofert[aă]/i,
   /solicit[aă]\s*ofert[aă]/i,
@@ -143,6 +145,143 @@ async function extractSeoBasics($, baseUrl) {
   };
 }
 
+function extractTechnicalSignals($, baseUrl) {
+  const hasViewport = $('meta[name="viewport"]').length > 0;
+  const hasFavicon = $('link[rel*="icon"]').length > 0;
+  const isHttps = baseUrl.startsWith("https://");
+
+  const ogTags = $('meta[property^="og:"]');
+  const hasOgTitle = $('meta[property="og:title"]').length > 0;
+  const hasOgDescription = $('meta[property="og:description"]').length > 0;
+  const hasOgImage = $('meta[property="og:image"]').length > 0;
+
+  const hasStructuredData = $('script[type="application/ld+json"]').length > 0;
+
+  const images = $("img");
+  const totalImages = images.length;
+  const imagesWithoutDimensions = images.filter(
+    (_, el) => !$(el).attr("width") || !$(el).attr("height")
+  ).length;
+  const imagesWithoutLazyLoading = images.filter(
+    (_, el) => $(el).attr("loading") !== "lazy"
+  ).length;
+
+  return {
+    has_viewport_meta: hasViewport,
+    has_favicon: hasFavicon,
+    is_https: isHttps,
+    has_og_title: hasOgTitle,
+    has_og_description: hasOgDescription,
+    has_og_image: hasOgImage,
+    og_tag_count: ogTags.length,
+    has_structured_data: hasStructuredData,
+    image_count: totalImages,
+    images_without_dimensions: imagesWithoutDimensions,
+    images_without_lazy_loading: imagesWithoutLazyLoading,
+  };
+}
+
+async function checkBrokenLinks($, baseUrl) {
+  let hostname;
+  try {
+    hostname = new URL(baseUrl).hostname;
+  } catch {
+    return { checked_count: 0, broken_count: 0, broken_samples: [] };
+  }
+
+  const hrefs = $("a[href]")
+    .map((_, el) => $(el).attr("href") || "")
+    .get()
+    .filter((href) => {
+      if (!href || href.startsWith("#") || href.startsWith("tel:") || href.startsWith("mailto:")) return false;
+      if (href.startsWith("/")) return true;
+      try {
+        return new URL(href, baseUrl).hostname === hostname;
+      } catch {
+        return false;
+      }
+    })
+    .map((href) => {
+      try {
+        return new URL(href, baseUrl).href;
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+
+  const uniqueLinks = [...new Set(hrefs)].slice(0, MAX_LINKS_TO_CHECK);
+
+  const results = await Promise.all(
+    uniqueLinks.map(async (link) => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), LINK_CHECK_TIMEOUT_MS);
+      try {
+        const res = await fetch(link, { method: "HEAD", signal: controller.signal });
+        return { link, broken: !res.ok };
+      } catch {
+        return { link, broken: true };
+      } finally {
+        clearTimeout(timeout);
+      }
+    })
+  );
+
+  const broken = results.filter((r) => r.broken);
+
+  return {
+    checked_count: uniqueLinks.length,
+    broken_count: broken.length,
+    broken_samples: broken.map((r) => r.link).slice(0, 5),
+  };
+}
+
+async function crawlSecondaryPage($, baseUrl) {
+  const candidateLinks = $("nav a, header a, footer a")
+    .map((_, el) => ($(el).attr("href") || "").trim())
+    .get()
+    .filter((href) => href && !href.startsWith("#") && !href.startsWith("tel:") && !href.startsWith("mailto:"));
+
+  let hostname;
+  try {
+    hostname = new URL(baseUrl).hostname;
+  } catch {
+    return null;
+  }
+
+  const keywords = /serviciu|servicii|service|contact|despre|about/i;
+  const target = candidateLinks.find((href) => {
+    if (!keywords.test(href)) return false;
+    try {
+      const resolved = new URL(href, baseUrl);
+      return resolved.hostname === hostname && resolved.href !== baseUrl;
+    } catch {
+      return false;
+    }
+  });
+
+  if (!target) return null;
+
+  let resolvedUrl;
+  try {
+    resolvedUrl = new URL(target, baseUrl).href;
+  } catch {
+    return null;
+  }
+
+  try {
+    const res = await fetchWithTimeout(resolvedUrl);
+    if (!res.ok) return null;
+    const html = await res.text();
+    const $$ = cheerio.load(html);
+    const title = $$("title").first().text().trim() || null;
+    const metaDescription = $$('meta[name="description"]').attr("content")?.trim() || null;
+    return { url: resolvedUrl, title, meta_description: metaDescription };
+  } catch {
+    return null;
+  }
+}
+
 function extractServiceStructure($) {
   const navLinks = $("nav a, header a")
     .map((_, el) => ($(el).attr("href") || "").trim())
@@ -214,7 +353,29 @@ export async function analyzeWebsite(rawUrl) {
   const html = await response.text();
   const $ = cheerio.load(html);
 
-  const [seo] = await Promise.all([extractSeoBasics($, url)]);
+  const [seo, brokenLinks, secondaryPage] = await Promise.all([
+    extractSeoBasics($, url),
+    checkBrokenLinks($, url),
+    crawlSecondaryPage($, url),
+  ]);
+
+  const homepageTitle = $("title").first().text().trim() || null;
+  const homepageMetaDescription = $('meta[name="description"]').attr("content")?.trim() || null;
+
+  const multiPage = {
+    secondary_page_url: secondaryPage?.url ?? null,
+    secondary_page_reachable: !!secondaryPage,
+    duplicate_title: !!(
+      secondaryPage?.title &&
+      homepageTitle &&
+      secondaryPage.title === homepageTitle
+    ),
+    duplicate_meta_description: !!(
+      secondaryPage?.meta_description &&
+      homepageMetaDescription &&
+      secondaryPage.meta_description === homepageMetaDescription
+    ),
+  };
 
   return {
     ok: true,
@@ -224,5 +385,8 @@ export async function analyzeWebsite(rawUrl) {
     seo_basics: seo,
     service_structure: extractServiceStructure($),
     trust_signals: extractTrustSignals($),
+    technical_signals: extractTechnicalSignals($, url),
+    broken_links: brokenLinks,
+    multi_page: multiPage,
   };
 }
