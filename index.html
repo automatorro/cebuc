@@ -1135,6 +1135,86 @@
       border-top: 1px solid var(--llt)
     }
 
+    .pkg-mini {
+      margin-top: 1.4rem;
+      padding-top: 1.3rem;
+      border-top: 1px solid var(--ldk);
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
+
+    .pkg-mini-title {
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-variation-settings: 'wght' 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--lime);
+    }
+
+    .pkg-mini-desc {
+      font-size: .8rem;
+      color: var(--od);
+      line-height: 1.6;
+    }
+
+    .pkg-mini-row {
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .pkg-mini-in {
+      width: 100%;
+      padding: .7rem .85rem;
+      background: transparent;
+      border: 1px solid var(--ldk);
+      color: var(--ods);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .pkg-mini-in::placeholder {
+      color: var(--mdk);
+    }
+
+    .pkg-mini-in:focus {
+      border-color: var(--lime)
+    }
+
+    .pkg-mini-sub {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      font-family: 'Syne', sans-serif;
+      font-size: .68rem;
+      font-variation-settings: 'wght' 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--lime);
+      border: none;
+      padding: .8rem 1.2rem;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .pkg-mini-sub:hover {
+      background: #fff;
+      transform: translateY(-1px)
+    }
+
+    .pkg-mini-note {
+      font-size: .7rem;
+      color: var(--mdk);
+      line-height: 1.5;
+    }
+
     .fl li {
       font-size: .82rem;
       display: flex;
@@ -2991,8 +3071,8 @@
       <div class="pkg-grid">
         <div class="pkg-card" id="summary-pachet-01">
           <span class="pkg-tag">01</span>
-          <h3 class="pkg-name">Vizibilitate Locală Google</h3>
-          <p class="pkg-desc" style="margin-bottom:0;font-size:.88rem;color:var(--mlt)">apari pe hartă și în căutările din zona ta</p>
+          <h3 class="pkg-name">Vizibilitate Google &amp; AI</h3>
+          <p class="pkg-desc" style="margin-bottom:0;font-size:.88rem;color:var(--mlt)">apari pe hartă și în recomandările ChatGPT/Gemini</p>
           <a href="#pachet-vizibilitate" class="pkg-cta">Vezi detalii pachet →</a>
         </div>
         <div class="pkg-card" id="summary-pachet-02">
@@ -3029,16 +3109,31 @@
       <div class="pkg-grid">
         <article class="pkg-card" id="pachet-vizibilitate">
           <span class="pkg-tag">01</span>
-          <h3 class="pkg-name">Apari pe Google și pe hartă când te caută lumea</h3>
+          <h3 class="pkg-name">Apari acolo unde te caută lumea — Google și AI</h3>
           <div class="pkg-price">180–300 EUR, o singură dată</div>
-          <p class="pkg-desc">Îți pun la punct fișa de Google (Maps): categorii, servicii, zone, poze și recenzii — ca să apari sus când cineva din zona ta caută exact ce faci.</p>
+          <p class="pkg-desc">Îți pun la punct fișa de Google (Maps): categorii, servicii, zone, poze și recenzii — ca să apari sus când cineva din zona ta caută exact ce faci. Tot mai mulți clienți cer însă recomandări direct de la ChatGPT sau Gemini înainte să caute pe Google — verific și dacă brandul tău apare acolo.</p>
           <ul class="fl fl-lt">
             <li>Fișă Google optimizată, gata să-ți aducă telefoane</li>
             <li>Apari pe hartă în căutările din zona ta</li>
             <li>Configurare recenzii și program</li>
+            <li>Verific dacă ChatGPT/Gemini te recomandă sau te ignoră</li>
             <li>Plată o singură dată, fără abonament</li>
           </ul>
           <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+
+          <div class="pkg-mini">
+            <span class="pkg-mini-title">Testează gratuit</span>
+            <p class="pkg-mini-desc">Verific manual dacă AI-ul recomandă brandul tău sau doar concurența, când cineva îi cere sfatul. Primești rezultatul pe email, în 2-3 zile lucrătoare.</p>
+            <form class="pkg-mini-row" action="https://formsubmit.co/lucian.cebuc@gmail.com" method="POST">
+              <input type="hidden" name="_subject" value="Test gratuit Vizibilitate AI - Cebuc.ro">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+              <input class="pkg-mini-in" type="text" name="site" required placeholder="Site-ul tău, ex: firma-ta.ro">
+              <input class="pkg-mini-in" type="email" name="email" required placeholder="Email-ul tău">
+              <button type="submit" class="pkg-mini-sub">Trimite-mi rezultatul gratuit</button>
+            </form>
+            <p class="pkg-mini-note">Fără cont, fără abonament — doar emailul, ca să-ți trimit rezultatul.</p>
+          </div>
         </article>
 
         <article class="pkg-card" id="pachet-start">
@@ -3362,8 +3457,8 @@
             <label class="cl">Ce pachet sau soluție te interesează?</label>
             <div style="display:flex;flex-direction:column;gap:.55rem;margin-top:.4rem">
               <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="tip_proiect" value="Vizibilitate Locală Google (apari pe hartă)"
-                  style="accent-color:var(--lime)"> Vizibilitate Locală Google (apari pe hartă)
+                <input type="radio" name="tip_proiect" value="Vizibilitate Google & AI (apari pe hartă și în ChatGPT/Gemini)"
+                  style="accent-color:var(--lime)"> Vizibilitate Google &amp; AI (apari pe hartă și în ChatGPT/Gemini)
               </label>
               <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
                 <input type="radio" name="tip_proiect" value="Pachet START (Website Profesional)"
@@ -3402,7 +3497,7 @@
             <label class="cl">Buget orientativ</label>
             <div style="display:flex;flex-direction:column;gap:.55rem;margin-top:.4rem">
               <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="buget" value="180 - 300 EUR" style="accent-color:var(--lime)"> 180 – 300 EUR (Vizibilitate Locală Google)
+                <input type="radio" name="buget" value="180 - 300 EUR" style="accent-color:var(--lime)"> 180 – 300 EUR (Vizibilitate Google &amp; AI)
               </label>
               <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
                 <input type="radio" name="buget" value="500 - 700 EUR" style="accent-color:var(--lime)"> 500 – 700 EUR (Pachet START)
