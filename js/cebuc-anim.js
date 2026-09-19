@@ -1,9 +1,9 @@
 /* ==========================================================
-   cebuc.ro — animații pentru pachetele 03, 04 și 05
+   cebuc.ro — animații pentru pachetele 03 GROW, 04 AI BUSINESS și 05 DIGITAL SYSTEM
    Fără librării, fără video. Folosire (mod la cerere):
-     <div class="cbc-anim" data-scene="grow"    data-mode="ondemand"></div>  (Pachet 03, scurtă)
-     <div class="cbc-anim" data-scene="ai"      data-mode="ondemand"></div>  (Pachet 04)
-     <div class="cbc-anim" data-scene="digital" data-mode="ondemand"></div>  (Pachet 05)
+     <div class="cbc-anim" data-scene="grow"    data-mode="ondemand"></div>  (Pachet 03 · GROW, scurtă)
+     <div class="cbc-anim" data-scene="ai"      data-mode="ondemand"></div>  (Pachet 04 · AI BUSINESS)
+     <div class="cbc-anim" data-scene="digital" data-mode="ondemand"></div>  (Pachet 05 · DIGITAL SYSTEM)
    Fără data-mode="ondemand", scena pornește singură când apare pe ecran.
    Cu "prefers-reduced-motion" se afișează direct cadrul final.
    Doar Telegram apare în animații (fără alte canale de mesagerie).
@@ -73,14 +73,28 @@
   }
   var DOTS = '<span class="cbc-dots"><i></i><i></i><i></i></span>';
 
+  /* Antetul scenei: eticheta pachetului (aceeași schemă ca pe restul site-ului)
+     plus avertismentul că totul e o simulare. */
+  var PKG = {
+    grow: 'Pachet 03 · GROW',
+    ai: 'Pachet 04 · AI BUSINESS',
+    digital: 'Pachet 05 · DIGITAL SYSTEM'
+  };
+  function stageHead(scene) {
+    return '<div class="cbc-head">' +
+      '<span class="cbc-tag">' + PKG[scene] + '</span>' +
+      '<p class="cbc-note">Simulare ilustrativă, cu date fictive</p>' +
+      '</div>';
+  }
+
   /* ==========================================================
      Scena 04 — Asistent AI pe date verificate
      ========================================================== */
 
   function buildAI(root) {
     root.innerHTML =
-      '<div class="cbc-stage" role="img" aria-label="Simulare: noaptea, un client întreabă despre stoc și livrare. Asistentul AI răspunde din datele verificate ale firmei, iar la întrebarea la care nu are răspuns trimite mesaj echipei pe Telegram.">' +
-        '<p class="cbc-note">Simulare ilustrativă, cu date fictive</p>' +
+      '<div class="cbc-stage" role="img" aria-label="Pachet 04 · AI BUSINESS. Simulare: noaptea, un client întreabă despre stoc și livrare. Asistentul AI răspunde din datele verificate ale firmei, iar la întrebarea la care nu are răspuns trimite mesaj echipei pe Telegram.">' +
+        stageHead('ai') +
         '<div class="cbc-ai-grid">' +
           '<div class="cbc-chat">' +
             '<div class="cbc-chat-head"><span class="cbc-dot"></span>Asistent AI pentru firma ta<span class="cbc-clock">23:40</span></div>' +
@@ -185,9 +199,9 @@
         '<div class="cbc-inv-line total"><span>Total</span><span>4.800 lei</span></div>' +
       '</div></div>';
   }
-  function flowStage(aria, nodes, counters, btnLabel) {
-    return '<div class="cbc-stage" role="img" aria-label="' + aria + '">' +
-      '<p class="cbc-note">Simulare ilustrativă, cu date fictive</p>' +
+  function flowStage(scene, aria, nodes, counters, btnLabel) {
+    return '<div class="cbc-stage" role="img" aria-label="' + PKG[scene] + '. ' + aria + '">' +
+      stageHead(scene) +
       '<div class="cbc-flow" data-n="' + nodes.length + '">' + nodes.join('<div class="cbc-link"><i></i></div>') + '</div>' +
       '<div class="cbc-foot"><div class="cbc-counters">' + counters + '</div>' +
       '<button type="button" class="cbc-btn">' + btnLabel + '</button></div></div>';
@@ -231,7 +245,7 @@
   /* ---------- Scena 05 — Sistem digital (5 pași, ~12 s) ---------- */
 
   function buildDig(root) {
-    root.innerHTML = flowStage(
+    root.innerHTML = flowStage('digital',
       'Simulare: o cerere nouă din formular apare în dashboard, ajunge pe Telegram, clientul primește email de confirmare și se generează automat proforma.',
       [nForm(), nDash(), nTg(), nMail(), nInv()],
       '<span><b>0</b>mesaje pierdute</span><span><b>0</b>retastări</span><span><b>4</b>acțiuni automate dintr-o singură cerere</span>',
@@ -278,7 +292,7 @@
   /* ---------- Scena 03 — GROW, versiune scurtă (3 pași, ~7 s) ---------- */
 
   function buildGrow(root) {
-    root.innerHTML = flowStage(
+    root.innerHTML = flowStage('grow',
       'Simulare: o cerere nouă din formular apare în dashboard și ajunge imediat pe Telegram, pe telefonul tău.',
       [nForm(), nDash(), nTg()],
       '<span><b>0</b>mesaje pierdute</span><span><b>Instant</b>pe Telegram, pe telefonul tău</span>',

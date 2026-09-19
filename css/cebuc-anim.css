@@ -1,5 +1,5 @@
 /* ==========================================================
-   cebuc.ro — animații pachete 04 (Asistent AI) și 05 (Sistem digital)
+   cebuc.ro — animații pachete 03 GROW, 04 AI BUSINESS și 05 DIGITAL SYSTEM
    Totul e izolat sub .cbc-anim ca să nu intre în conflict cu site-ul.
    Culorile se schimbă dintr-un singur loc (variabilele de mai jos).
    ========================================================== */
@@ -39,11 +39,32 @@
   padding: 18px;
 }
 
+/* antetul scenei: eticheta pachetului + avertismentul de simulare */
+.cbc-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 14px;
+}
+
+/* aceeași formă ca .pkg-tag de pe site: chenar subțire, lime, majuscule */
+.cbc-tag {
+  flex: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--cbc-lime);
+  border: 1px solid var(--cbc-lime-line);
+  padding: 3px 9px;
+}
+
 .cbc-note {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 14px;
+  margin: 0;
   font-size: 12px;
   color: var(--cbc-muted);
 }
