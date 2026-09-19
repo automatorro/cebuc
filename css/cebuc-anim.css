@@ -1,0 +1,470 @@
+/* ==========================================================
+   cebuc.ro — animații pachete 03 GROW, 04 AI BUSINESS și 05 DIGITAL SYSTEM
+   Totul e izolat sub .cbc-anim ca să nu intre în conflict cu site-ul.
+   Culorile se schimbă dintr-un singur loc (variabilele de mai jos).
+   ========================================================== */
+
+.cbc-anim {
+  --cbc-bg: #0A0A0D;
+  --cbc-surface: #13131A;
+  --cbc-surface-2: #1A1A23;
+  --cbc-line: #2c2c2c;
+  --cbc-text: #E2E4EE;
+  --cbc-muted: #8f8f8f;
+  --cbc-lime: #C8FF00;
+  --cbc-lime-soft: rgba(200, 255, 0, .10);
+  --cbc-lime-line: rgba(200, 255, 0, .32);
+  --cbc-red: #ff6161;
+  --cbc-tg: #2aabee;
+
+  font-family: inherit;
+  color: var(--cbc-text);
+  /* width: 100% e necesar pentru montarea în cardurile de pachet:
+     container-type declanșează size containment, iar într-un părinte
+     flex/grid marginile auto ar face containerul să se strângă la 0. */
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  position: relative;
+  container-type: inline-size;
+}
+.cbc-anim *, .cbc-anim *::before, .cbc-anim *::after { box-sizing: border-box; }
+
+.cbc-stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--cbc-bg);
+  border: 1px solid var(--cbc-line);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+/* antetul scenei: eticheta pachetului + avertismentul de simulare */
+.cbc-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 14px;
+}
+
+/* aceeași formă ca .pkg-tag de pe site: chenar subțire, lime, majuscule */
+.cbc-tag {
+  flex: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--cbc-lime);
+  border: 1px solid var(--cbc-lime-line);
+  padding: 3px 9px;
+}
+
+.cbc-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--cbc-muted);
+}
+.cbc-note::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cbc-lime);
+  animation: cbc-ping 2.2s ease-out infinite;
+}
+
+/* ---------- Scena 04: chat + surse ---------- */
+
+.cbc-ai-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@container (min-width: 700px) { .cbc-ai-grid { grid-template-columns: 1.25fr 1fr; } }
+
+.cbc-chat {
+  background: var(--cbc-surface);
+  border: 1px solid var(--cbc-line);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.cbc-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--cbc-line);
+  font-size: 13px;
+}
+.cbc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cbc-lime); }
+.cbc-clock { margin-left: auto; color: var(--cbc-lime); font-variant-numeric: tabular-nums; }
+
+.cbc-msgs {
+  height: 410px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  overflow: hidden;
+}
+.cbc-b {
+  flex: none;
+  max-width: 90%;
+  padding: 10px 13px;
+  font-size: 14px;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.cbc-b.in { opacity: 1; transform: none; }
+.cbc-b-u {
+  align-self: flex-end;
+  background: #242424;
+  border-radius: 14px 14px 4px 14px;
+}
+.cbc-b-a {
+  align-self: flex-start;
+  background: var(--cbc-lime-soft);
+  border: 1px solid var(--cbc-lime-line);
+  border-radius: 14px 14px 14px 4px;
+}
+.cbc-caret::after {
+  content: "";
+  display: inline-block;
+  width: 2px; height: 1em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--cbc-lime);
+  animation: cbc-caret .8s steps(1) infinite;
+}
+.cbc-dots { display: inline-flex; gap: 4px; padding: 5px 0; }
+.cbc-dots i {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cbc-lime);
+  animation: cbc-blink 1s ease-in-out infinite;
+}
+.cbc-dots i:nth-child(2) { animation-delay: .15s; }
+.cbc-dots i:nth-child(3) { animation-delay: .3s; }
+
+.cbc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.cbc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  font-size: 11.5px;
+  color: var(--cbc-lime);
+  border: 1px solid var(--cbc-lime-line);
+  border-radius: 99px;
+  opacity: 0;
+  animation: cbc-pop .4s ease forwards;
+}
+.cbc-chip:nth-child(2) { animation-delay: .18s; }
+
+.cbc-side { display: flex; flex-direction: column; gap: 10px; }
+.cbc-side-title { font-size: 13px; color: var(--cbc-muted); margin: 2px 0 0; }
+
+.cbc-src {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  background: var(--cbc-surface);
+  border: 1px solid var(--cbc-line);
+  border-radius: 10px;
+  opacity: .45;
+  transition: opacity .4s ease, border-color .4s ease, box-shadow .4s ease;
+}
+.cbc-src svg { flex: none; color: var(--cbc-muted); transition: color .4s ease; }
+.cbc-src b { display: block; font-size: 13.5px; font-weight: 600; }
+.cbc-src small { color: var(--cbc-muted); font-size: 12px; }
+.cbc-src .cbc-ok { margin-left: auto; color: var(--cbc-lime); opacity: 0; transition: opacity .4s ease .15s; }
+.cbc-src.on {
+  opacity: 1;
+  border-color: var(--cbc-lime);
+  box-shadow: 0 0 0 1px rgba(200, 255, 0, .2), 0 0 26px -8px rgba(200, 255, 0, .55);
+}
+.cbc-src.on svg { color: var(--cbc-lime); }
+.cbc-src.on .cbc-ok { opacity: 1; }
+
+.cbc-generic {
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  border: 1px dashed #55302f;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.cbc-generic.on { opacity: 1; transform: none; }
+.cbc-generic .cbc-gl { display: block; margin-bottom: 3px; font-size: 12px; color: var(--cbc-muted); }
+.cbc-gt {
+  text-decoration: line-through;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  transition: text-decoration-color .35s ease;
+}
+.cbc-generic.strike .cbc-gt { text-decoration-color: var(--cbc-red); color: #b9b9b9; }
+.cbc-bad {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  font-size: 11px;
+  color: var(--cbc-red);
+  border: 1px solid rgba(255, 97, 97, .4);
+  border-radius: 99px;
+  opacity: 0;
+  transition: opacity .3s ease .2s;
+}
+.cbc-generic.strike .cbc-bad { opacity: 1; }
+
+.cbc-tg {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--cbc-surface-2);
+  border: 1px solid var(--cbc-line);
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .45s ease, transform .45s ease, border-color .45s ease;
+}
+.cbc-tg.on { opacity: 1; transform: none; border-color: rgba(42, 171, 238, .6); }
+.cbc-tg-ico {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--cbc-tg);
+  color: #fff;
+}
+.cbc-tg b { display: block; font-weight: 600; }
+.cbc-tg span { color: var(--cbc-muted); }
+
+/* ---------- Scena 05: flux automat ---------- */
+
+.cbc-flow { display: flex; flex-direction: column; align-items: stretch; }
+
+.cbc-node {
+  flex: none;
+  min-width: 0;
+  min-height: 132px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: var(--cbc-surface);
+  border: 1px solid var(--cbc-line);
+  border-radius: 12px;
+  opacity: .4;
+  transition: opacity .45s ease, border-color .45s ease, box-shadow .45s ease;
+}
+.cbc-node.on {
+  opacity: 1;
+  border-color: var(--cbc-lime);
+  box-shadow: 0 0 0 1px rgba(200, 255, 0, .2), 0 0 30px -8px rgba(200, 255, 0, .6);
+}
+.cbc-node.done { opacity: 1; border-color: #34401a; }
+
+.cbc-node-h { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--cbc-muted); transition: color .4s ease; }
+.cbc-node.on .cbc-node-h, .cbc-node.done .cbc-node-h { color: var(--cbc-text); }
+.cbc-node-h svg { flex: none; }
+.cbc-node.on .cbc-node-h svg { color: var(--cbc-lime); }
+.cbc-tick { margin-left: auto; color: var(--cbc-lime); opacity: 0; transition: opacity .35s ease; }
+.cbc-node.done .cbc-tick { opacity: 1; }
+
+.cbc-link { position: relative; flex: none; width: 2px; height: 24px; margin: 0 auto; background: var(--cbc-line); transition: background .4s ease; }
+.cbc-link.done { background: var(--cbc-lime); }
+.cbc-link i {
+  position: absolute;
+  left: 50%; top: 0;
+  width: 10px; height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--cbc-lime);
+  box-shadow: 0 0 14px 4px rgba(200, 255, 0, .75);
+  opacity: 0;
+}
+.cbc-link.go i { animation: cbc-run-y .7s ease-in-out forwards; }
+
+/* Flux pe orizontală: 5 noduri au nevoie de ~900px, 3 noduri de ~600px */
+@container (min-width: 900px) {
+  .cbc-flow[data-n="5"] { flex-direction: row; }
+  .cbc-flow[data-n="5"] > .cbc-node { flex: 1 1 0; min-height: 218px; }
+  .cbc-flow[data-n="5"] > .cbc-link { width: 26px; height: 2px; margin: auto 0; }
+  .cbc-flow[data-n="5"] > .cbc-link i { left: 0; top: 50%; }
+  .cbc-flow[data-n="5"] > .cbc-link.go i { animation-name: cbc-run-x; }
+}
+@container (min-width: 600px) {
+  .cbc-flow[data-n="3"] { flex-direction: row; }
+  .cbc-flow[data-n="3"] > .cbc-node { flex: 1 1 0; min-height: 218px; }
+  .cbc-flow[data-n="3"] > .cbc-link { width: 26px; height: 2px; margin: auto 0; }
+  .cbc-flow[data-n="3"] > .cbc-link i { left: 0; top: 50%; }
+  .cbc-flow[data-n="3"] > .cbc-link.go i { animation-name: cbc-run-x; }
+}
+
+/* conținut noduri */
+.cbc-field { font-size: 12.5px; }
+.cbc-field small { display: block; color: var(--cbc-muted); font-size: 11.5px; }
+.cbc-field span {
+  display: block;
+  min-height: 28px;
+  padding: 5px 8px;
+  margin-top: 2px;
+  background: var(--cbc-bg);
+  border: 1px solid var(--cbc-line);
+  border-radius: 7px;
+}
+.cbc-fbtn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0A0A0D;
+  background: var(--cbc-lime);
+  border-radius: 99px;
+  transition: transform .15s ease, box-shadow .3s ease;
+}
+.cbc-fbtn.press { transform: scale(.93); box-shadow: 0 0 0 6px rgba(200, 255, 0, .22); }
+
+.cbc-rows { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
+.cbc-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: var(--cbc-bg);
+  border: 1px solid var(--cbc-line);
+  border-radius: 7px;
+  color: var(--cbc-muted);
+}
+.cbc-row em { font-style: normal; line-height: 1.25; }
+.cbc-row em small { display: block; font-size: 11px; color: var(--cbc-muted); }
+.cbc-row.new { opacity: 0; transform: translateY(-6px); transition: opacity .4s ease, transform .4s ease, border-color .4s ease; color: var(--cbc-text); }
+.cbc-row.new.on { opacity: 1; transform: none; border-color: var(--cbc-lime); }
+.cbc-pill { padding: 1px 8px; font-size: 11px; border-radius: 99px; border: 1px solid var(--cbc-line); color: var(--cbc-muted); transition: all .35s ease; }
+.cbc-pill.hot { color: #0A0A0D; background: var(--cbc-lime); border-color: var(--cbc-lime); }
+.cbc-pill.ok { color: var(--cbc-lime); border-color: var(--cbc-lime-line); }
+
+.cbc-phone {
+  align-self: center;
+  width: 100%;
+  max-width: 190px;
+  min-height: 118px;
+  padding: 10px;
+  background: var(--cbc-bg);
+  border: 2px solid #363636;
+  border-radius: 18px;
+}
+.cbc-phone.buzz { animation: cbc-buzz .6s ease 1; }
+.cbc-notif {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  font-size: 12px;
+  line-height: 1.35;
+  background: var(--cbc-surface-2);
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.cbc-notif.on { opacity: 1; transform: none; }
+.cbc-notif .cbc-tg-ico { width: 24px; height: 24px; }
+.cbc-notif b { display: block; font-weight: 600; }
+.cbc-notif span { color: var(--cbc-muted); }
+
+.cbc-mail, .cbc-inv { font-size: 12.5px; line-height: 1.45; opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
+.cbc-mail.on, .cbc-inv.on { opacity: 1; transform: none; }
+.cbc-mail small, .cbc-inv small { display: block; color: var(--cbc-muted); font-size: 11.5px; }
+.cbc-mail q { display: block; margin-top: 6px; padding: 8px; quotes: none; background: var(--cbc-bg); border: 1px solid var(--cbc-line); border-radius: 7px; }
+.cbc-inv-line { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--cbc-line); opacity: 0; transition: opacity .4s ease; }
+.cbc-inv-line.on { opacity: 1; }
+.cbc-inv-line.total { font-weight: 700; color: var(--cbc-lime); border-bottom: 0; }
+
+.cbc-counters { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; opacity: 0; transition: opacity .5s ease; }
+.cbc-counters.on { opacity: 1; }
+.cbc-counters b { color: var(--cbc-lime); font-size: 18px; margin-right: 5px; font-variant-numeric: tabular-nums; }
+
+/* ---------- Comune: rezultat + buton ---------- */
+
+.cbc-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 16px; min-height: 42px; }
+.cbc-result { font-size: 14px; opacity: 0; transition: opacity .5s ease; }
+.cbc-result.on { opacity: 1; }
+.cbc-result b { color: var(--cbc-lime); }
+
+.cbc-btn {
+  margin-left: auto;
+  padding: 9px 16px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--cbc-lime);
+  background: transparent;
+  border: 1px solid var(--cbc-lime);
+  border-radius: 99px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease, background .2s ease, color .2s ease;
+}
+.cbc-btn.on { opacity: 1; pointer-events: auto; }
+.cbc-btn:hover { background: var(--cbc-lime); color: #0A0A0D; }
+.cbc-btn:focus-visible { outline: 2px solid var(--cbc-lime); outline-offset: 3px; }
+
+/* ---------- Mod "la cerere": buton + panou ---------- */
+
+.cbc-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cbc-lime);
+  background: var(--cbc-lime-soft);
+  border: 1px solid var(--cbc-lime);
+  border-radius: 99px;
+  cursor: pointer;
+  scroll-margin-top: 80px;
+  transition: background .2s ease, color .2s ease;
+}
+.cbc-open:hover, .cbc-open[aria-expanded="true"] { background: var(--cbc-lime); color: #0A0A0D; }
+.cbc-open:focus-visible { outline: 2px solid var(--cbc-lime); outline-offset: 3px; }
+.cbc-panel { margin-top: 14px; }
+.cbc-panel[hidden] { display: none; }
+
+/* ---------- Animații ---------- */
+
+@keyframes cbc-ping { 0% { box-shadow: 0 0 0 0 rgba(200, 255, 0, .55); } 80%, 100% { box-shadow: 0 0 0 8px rgba(200, 255, 0, 0); } }
+@keyframes cbc-caret { 50% { opacity: 0; } }
+@keyframes cbc-blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes cbc-pop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+@keyframes cbc-run-y { 0% { top: 0; opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+@keyframes cbc-run-x { 0% { left: 0; opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+@keyframes cbc-buzz {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  15% { transform: translateX(-4px) rotate(-2deg); }
+  30% { transform: translateX(4px) rotate(2deg); }
+  45% { transform: translateX(-3px) rotate(-1.5deg); }
+  60% { transform: translateX(3px) rotate(1.5deg); }
+  75% { transform: translateX(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbc-anim *, .cbc-anim *::before, .cbc-anim *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
