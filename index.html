@@ -2416,6 +2416,172 @@
       outline-offset: 3px
     }
   </style>
+  <!-- ═══════ MODAL „PROGRAM DE LANSARE" — CSS izolat ═══════ -->
+  <style>
+    /* CSS izolat pentru modalul „Program de lansare".
+       Tot ce urmează e prefixat cu .lansare-modal. Nu modifică nicio clasă
+       existentă. Culorile, fonturile și butoanele preiau variabilele din :root. */
+
+    .lansare-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;               /* peste nav (500) și marquee, sub grain (9990) și cursorul custom (9998/9999) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(5, 5, 8, .82);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      visibility: hidden;          /* implicit invizibil — nu clipește la încărcare */
+      /* visibility comută instant la deschidere și abia după fade la închidere.
+         Dacă ar fi tranziționată în ambele sensuri, panoul ar rămâne
+         visibility:hidden în primele cadre și n-ar putea primi focus. */
+      transition: opacity .4s var(--fx), visibility 0s linear .4s;
+    }
+
+    .lansare-modal[data-deschis="1"] {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .4s var(--fx), visibility 0s linear 0s;
+    }
+
+    .lansare-modal__panel {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      max-height: 85vh;            /* pe mobil nu acoperă tot ecranul */
+      overflow-y: auto;            /* conținutul se derulează în interior */
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      background: var(--ink);
+      border: 1px solid var(--ldk);
+      padding: 2.5rem 2rem 2rem;
+      transform: translateY(24px);
+      transition: transform .55s var(--fx);
+    }
+
+    .lansare-modal[data-deschis="1"] .lansare-modal__panel { transform: translateY(0) }
+
+    .lansare-modal__close {
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+      width: 44px;                 /* țintă de tap de 44px, ca restul site-ului */
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      color: var(--od);
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: color .25s ease;
+    }
+    .lansare-modal__close:hover { color: var(--lime) }
+
+    .lansare-modal__tag {          /* același tratament ca .pkg-tag */
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-size: .6rem;
+      font-variation-settings: 'wght' 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      border: 1px solid rgba(200, 255, 0, .28);
+      padding: .2rem .55rem;
+      margin-bottom: 1rem;
+    }
+
+    .lansare-modal__title {        /* același tratament ca .pkg-name */
+      font-family: 'Cormorant Garamond', serif;
+      font-variation-settings: 'wght' 700;
+      font-size: 1.7rem;
+      line-height: 1.15;
+      color: var(--ods);
+      margin-bottom: 1rem;
+      padding-right: 2.5rem;       /* loc pentru X */
+    }
+
+    .lansare-modal__text {         /* același tratament ca .pkg-desc */
+      font-size: .875rem;
+      color: var(--od);
+      line-height: 1.78;
+      margin-bottom: .9rem;
+    }
+
+    .lansare-modal__contor {       /* același tratament ca .pkg-price */
+      font-family: 'Syne', sans-serif;
+      font-variation-settings: 'wght' 800;
+      font-size: 1.05rem;
+      color: var(--lime);
+      margin: 1.2rem 0;
+    }
+
+    .lansare-modal__form { display: flex; flex-direction: column; gap: .7rem; margin-top: 1.2rem }
+
+    .lansare-modal__in {           /* același tratament ca .ci-in */
+      width: 100%;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .9rem;
+      font-weight: 300;
+      color: var(--ods);
+      background: transparent;
+      border: 1px solid var(--ldk);
+      padding: .8rem .9rem;
+      transition: border-color .25s ease;
+    }
+    .lansare-modal__in::placeholder { color: var(--mdk) }
+    .lansare-modal__in:focus { outline: none; border-color: var(--lime) }
+
+    .lansare-modal__sub {          /* același tratament ca .nav-btn / .c-sub */
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-variation-settings: 'wght' 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--lime);
+      border: 0;
+      padding: .95rem 1.6rem;
+      cursor: pointer;
+      transition: background .3s ease;
+    }
+    .lansare-modal__sub:hover { background: #DEFF00 }
+
+    .lansare-modal__mic { font-size: .74rem; color: var(--mdk); line-height: 1.6 }
+
+    .lansare-modal__nu {           /* link secundar „Nu acum" */
+      align-self: flex-start;
+      font-family: 'Syne', sans-serif;
+      font-size: .68rem;
+      font-variation-settings: 'wght' 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--mdk);
+      background: none;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      padding: .4rem 0;
+      cursor: pointer;
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .lansare-modal__nu:hover { color: var(--od); border-bottom-color: var(--ldk) }
+
+    @media (max-width: 600px) {
+      .lansare-modal { padding: 1rem; align-items: flex-end }
+      .lansare-modal__panel { padding: 2rem 1.25rem 1.5rem }
+      .lansare-modal__title { font-size: 1.4rem }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lansare-modal,
+      .lansare-modal__panel { transition: none }
+    }
+  </style>
 </head>
 
 <body>
@@ -2423,6 +2589,55 @@
   <div id="grain" aria-hidden="true"></div>
   <div id="cur" aria-hidden="true"></div>
   <div id="curR" aria-hidden="true"><span id="curT">Vezi proiect</span></div>
+
+  <!-- ═══════ MODAL „PROGRAM DE LANSARE" ═══════ -->
+  <div class="lansare-modal" id="lansareModal" role="dialog" aria-modal="true"
+    aria-labelledby="lansareTitlu" aria-describedby="lansareText" data-deschis="0">
+    <div class="lansare-modal__panel">
+      <button type="button" class="lansare-modal__close" id="lansareInchide"
+        aria-label="Închide fereastra">&times;</button>
+
+      <span class="lansare-modal__tag">Program de lansare</span>
+      <h2 class="lansare-modal__title" id="lansareTitlu">Program de lansare: 10 site-uri, în schimbul unui
+        testimonial</h2>
+
+      <div id="lansareText">
+        <p class="lansare-modal__text">Îmi construiesc portofoliul. Fac gratuit site de prezentare (pachetul Start,
+          valoare 500–700 EUR) și fișa de Google pentru primele 10 firme care aplică și se potrivesc. Tu plătești doar
+          domeniul, aproximativ 10–15 EUR pe an, înregistrat pe numele tău.</p>
+        <p class="lansare-modal__text">În schimb îți cer: materialele (texte, poze) în 5 zile lucrătoare, răspuns la
+          mesajele mele în 48 de ore și, după 30–60 de zile de la lansare, un testimonial sincer cu poză — sincer, nu
+          neapărat pozitiv.</p>
+        <p class="lansare-modal__text">Nu aleg după cine aplică primul. Aleg firmele unde pot arăta un rezultat.</p>
+      </div>
+
+      <p class="lansare-modal__contor">Locuri rămase: <span id="lansareLocuri">[COMPLETEAZĂ: X]</span> din 10</p>
+
+      <form class="lansare-modal__form" id="lansareForm"
+        action="https://formsubmit.co/lucian.cebuc@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Aplicare program lansare">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <input class="lansare-modal__in" type="text" name="nume" required
+          placeholder="Numele tău" aria-label="Numele tău">
+        <input class="lansare-modal__in" type="tel" name="telefon" required
+          placeholder="Telefon" aria-label="Telefon">
+        <input class="lansare-modal__in" type="text" name="firma" required
+          placeholder="Ce firmă ai" aria-label="Ce firmă ai">
+        <input class="lansare-modal__in" type="text" name="fisa_google"
+          placeholder="Link la fișa ta de Google, dacă ai (opțional)"
+          aria-label="Link la fișa ta de Google, dacă ai — opțional">
+
+        <button type="submit" class="lansare-modal__sub">Vreau să aplic</button>
+
+        <p class="lansare-modal__mic">Site-ul e realizat gratuit în cadrul programului de lansare, în schimbul unui
+          testimonial sincer. Lucrăm pe bază de contract, la fel ca la proiectele plătite.</p>
+
+        <button type="button" class="lansare-modal__nu" id="lansareNuAcum">Nu acum</button>
+      </form>
+    </div>
+  </div>
 
   <!-- NAV -->
   <nav id="nav">
@@ -4207,6 +4422,124 @@
     })();
   </script>
   <script src="js/cebuc-anim.js?v=1" defer></script>
+  <script>
+    /* ═══ MODAL „PROGRAM DE LANSARE" ═══════════════════════
+       Script independent. Nu atinge scriptul de efecte/animații și nu
+       declanșează nimic din el: modalul e position:fixed, deci nu mută
+       layout-ul și nu forțează recalcularea ScrollTrigger. */
+    (function () {
+      'use strict';
+
+      /* ───── DE MODIFICAT DE MÂNĂ, SINGURELE DOUĂ LOCURI ─────
+         1. Când programul se termină, pune PROGRAM_ACTIV = false.
+            Modalul nu mai apare deloc, fără altă modificare.
+         2. LOCURI_RAMASE: actualizează numărul după fiecare firmă acceptată. */
+      var PROGRAM_ACTIV = true;
+      var LOCURI_RAMASE = '[COMPLETEAZĂ: X]';
+      /* ────────────────────────────────────────────────────── */
+
+      var CHEIE = 'lansare-modal-vazut';
+      var ZILE = 30;
+      var SECUNDE_PANA_LA_APARITIE = 20;
+      var PROCENT_SCROLL = 0.5;
+
+      var modal = document.getElementById('lansareModal');
+      if (!modal || !PROGRAM_ACTIV) return;
+
+      document.getElementById('lansareLocuri').textContent = LOCURI_RAMASE;
+
+      /* ───── memoria vizitatorului (expiră în 30 de zile) ───── */
+      function vazutDeja() {
+        try {
+          var v = localStorage.getItem(CHEIE);
+          if (!v) return false;
+          if (Date.now() - parseInt(v, 10) > ZILE * 864e5) { localStorage.removeItem(CHEIE); return false; }
+          return true;
+        } catch (e) { return false; }   /* navigare privată, stocare blocată */
+      }
+      function tineMinte() {
+        try { localStorage.setItem(CHEIE, String(Date.now())); } catch (e) { }
+      }
+      if (vazutDeja()) return;
+
+      var panou = modal.querySelector('.lansare-modal__panel');
+      var deschis = false;
+      var elementAnterior = null;
+
+      /* ───── oprim derularea fundalului, dar nu blocăm pagina ─────
+         Nu punem overflow:hidden pe body: ar apărea/dispărea bara de
+         scroll și ar muta layout-ul. Oprim doar evenimentele care nu
+         pornesc din interiorul panoului, pe faza de captură, ca Lenis
+         să nu le mai vadă. */
+      function opresteFundal(e) {
+        if (!deschis) return;
+        if (panou.contains(e.target)) return;
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      function capcanaFocus(e) {
+        if (e.key !== 'Tab') return;
+        var focusabile = panou.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusabile.length) return;
+        var primul = focusabile[0], ultimul = focusabile[focusabile.length - 1];
+        if (e.shiftKey && document.activeElement === primul) { e.preventDefault(); ultimul.focus(); }
+        else if (!e.shiftKey && document.activeElement === ultimul) { e.preventDefault(); primul.focus(); }
+      }
+
+      function laTasta(e) {
+        if (e.key === 'Escape') { inchide(); return; }
+        capcanaFocus(e);
+      }
+
+      function deschide() {
+        if (deschis || vazutDeja()) return;
+        deschis = true;
+        elementAnterior = document.activeElement;
+        modal.setAttribute('data-deschis', '1');
+        document.addEventListener('keydown', laTasta);
+        document.addEventListener('wheel', opresteFundal, { passive: false, capture: true });
+        document.addEventListener('touchmove', opresteFundal, { passive: false, capture: true });
+        requestAnimationFrame(function () {
+          var tinta = modal.querySelector('.lansare-modal__close');
+          if (tinta) tinta.focus();
+        });
+      }
+
+      function inchide() {
+        if (!deschis) return;
+        deschis = false;
+        modal.setAttribute('data-deschis', '0');
+        document.removeEventListener('keydown', laTasta);
+        document.removeEventListener('wheel', opresteFundal, { capture: true });
+        document.removeEventListener('touchmove', opresteFundal, { capture: true });
+        tineMinte();
+        if (elementAnterior && elementAnterior.focus) elementAnterior.focus();
+      }
+
+      document.getElementById('lansareInchide').addEventListener('click', inchide);
+      document.getElementById('lansareNuAcum').addEventListener('click', inchide);
+      modal.addEventListener('click', function (e) { if (e.target === modal) inchide(); });
+      /* trimiterea formularului = l-a văzut, deci nu mai reapare */
+      document.getElementById('lansareForm').addEventListener('submit', tineMinte);
+
+      /* ───── declanșare: 20 de secunde SAU 50% scroll, ce vine primul.
+               Niciodată la încărcare. ───── */
+      var cronometru = setTimeout(function () { deschide(); curata(); }, SECUNDE_PANA_LA_APARITIE * 1000);
+
+      function laScroll() {
+        var inaltime = document.documentElement.scrollHeight - window.innerHeight;
+        if (inaltime <= 0) return;
+        if ((window.scrollY || window.pageYOffset) / inaltime >= PROCENT_SCROLL) { deschide(); curata(); }
+      }
+      function curata() {
+        clearTimeout(cronometru);
+        window.removeEventListener('scroll', laScroll);
+      }
+      window.addEventListener('scroll', laScroll, { passive: true });
+    })();
+  </script>
   <script>
     /* Preselectarea pachetului în formularul de contact.
        Script separat, independent de scriptul de efecte/animații:
