@@ -2416,9 +2416,9 @@
       outline-offset: 3px
     }
   </style>
-  <!-- ═══════ MODAL „PROGRAM DE LANSARE" — CSS izolat ═══════ -->
+  <!-- ═══════ MODAL „SITE GRATUIT" — CSS izolat ═══════ -->
   <style>
-    /* CSS izolat pentru modalul „Program de lansare".
+    /* CSS izolat pentru modalul „Site gratuit".
        Tot ce urmează e prefixat cu .lansare-modal. Nu modifică nicio clasă
        existentă. Culorile, fonturile și butoanele preiau variabilele din :root. */
 
@@ -2590,32 +2590,35 @@
   <div id="cur" aria-hidden="true"></div>
   <div id="curR" aria-hidden="true"><span id="curT">Vezi proiect</span></div>
 
-  <!-- ═══════ MODAL „PROGRAM DE LANSARE" ═══════ -->
+  <!-- ═══════ MODAL „SITE GRATUIT" ═══════ -->
   <div class="lansare-modal" id="lansareModal" role="dialog" aria-modal="true"
     aria-labelledby="lansareTitlu" aria-describedby="lansareText" data-deschis="0">
     <div class="lansare-modal__panel">
       <button type="button" class="lansare-modal__close" id="lansareInchide"
         aria-label="Închide fereastra">&times;</button>
 
-      <span class="lansare-modal__tag">Program de lansare</span>
-      <h2 class="lansare-modal__title" id="lansareTitlu">Program de lansare: 10 site-uri, în schimbul unui
-        testimonial</h2>
+      <span class="lansare-modal__tag">Pe o perioadă limitată</span>
+      <h2 class="lansare-modal__title" id="lansareTitlu">Îți construiesc site-ul,
+        gratuit</h2>
 
       <div id="lansareText">
-        <p class="lansare-modal__text">Îmi construiesc portofoliul. Fac gratuit site de prezentare (pachetul Start,
-          valoare 500–700 EUR) și fișa de Google pentru primele 10 firme care aplică și se potrivesc. Tu plătești doar
-          domeniul, aproximativ 10–15 EUR pe an, înregistrat pe numele tău.</p>
-        <p class="lansare-modal__text">În schimb îți cer: materialele (texte, poze) în 5 zile lucrătoare, răspuns la
-          mesajele mele în 48 de ore și, după 30–60 de zile de la lansare, un testimonial sincer cu poză — sincer, nu
-          neapărat pozitiv.</p>
-        <p class="lansare-modal__text">Nu aleg după cine aplică primul. Aleg firmele unde pot arăta un rezultat.</p>
+        <p class="lansare-modal__text">Pe o perioadă limitată, construiesc gratuit site de prezentare pentru 10
+          firme. E pachetul Start, cel care costă în mod normal 500–700 EUR: design, construcție și publicare, fără
+          niciun cost din partea ta.</p>
+        <p class="lansare-modal__text">Ce plătești tu e domeniul, undeva la 10–15 EUR pe an. Se înregistrează pe
+          numele tău sau al firmei tale și rămâne al tău — ori îl cumperi tu, ori mă ocup eu în numele tău, cum
+          preferi. Găzduirea o asigur eu și intră în ce fac, deci fără cost lunar. Dacă ajungem la ceva mai complex,
+          cu conturi de utilizatori sau bază de date, acolo apar costuri lunare — ți le spun în cifre înainte să
+          începem și le aprobi tu.</p>
+        <p class="lansare-modal__text">Nu merg pe principiul primul venit, primul servit. Vorbim fiecare caz în parte
+          și îți spun sincer dacă mă pot ține de el.</p>
       </div>
 
-      <p class="lansare-modal__contor">Locuri rămase: <span id="lansareLocuri">[COMPLETEAZĂ: X]</span> din 10</p>
+      <p class="lansare-modal__contor">Locuri rămase: <span id="lansareLocuri">5</span> din 10</p>
 
       <form class="lansare-modal__form" id="lansareForm"
         action="https://formsubmit.co/lucian.cebuc@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Aplicare program lansare">
+        <input type="hidden" name="_subject" value="Cerere site gratuit">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -2631,8 +2634,8 @@
 
         <button type="submit" class="lansare-modal__sub">Vreau să aplic</button>
 
-        <p class="lansare-modal__mic">Site-ul e realizat gratuit în cadrul programului de lansare, în schimbul unui
-          testimonial sincer. Lucrăm pe bază de contract, la fel ca la proiectele plătite.</p>
+        <p class="lansare-modal__mic">Lucrăm pe bază de contract, la fel ca la proiectele plătite. Restul
+          detaliilor le stabilim împreună, înainte să începem.</p>
 
         <button type="button" class="lansare-modal__nu" id="lansareNuAcum">Nu acum</button>
       </form>
@@ -4423,7 +4426,7 @@
   </script>
   <script src="js/cebuc-anim.js?v=1" defer></script>
   <script>
-    /* ═══ MODAL „PROGRAM DE LANSARE" ═══════════════════════
+    /* ═══ MODAL „SITE GRATUIT" ═══════════════════════
        Script independent. Nu atinge scriptul de efecte/animații și nu
        declanșează nimic din el: modalul e position:fixed, deci nu mută
        layout-ul și nu forțează recalcularea ScrollTrigger. */
@@ -4431,11 +4434,11 @@
       'use strict';
 
       /* ───── DE MODIFICAT DE MÂNĂ, SINGURELE DOUĂ LOCURI ─────
-         1. Când programul se termină, pune PROGRAM_ACTIV = false.
+         1. Când oferta se termină, pune PROGRAM_ACTIV = false.
             Modalul nu mai apare deloc, fără altă modificare.
          2. LOCURI_RAMASE: actualizează numărul după fiecare firmă acceptată. */
       var PROGRAM_ACTIV = true;
-      var LOCURI_RAMASE = '[COMPLETEAZĂ: X]';
+      var LOCURI_RAMASE = '5';
       /* ────────────────────────────────────────────────────── */
 
       var CHEIE = 'lansare-modal-vazut';
