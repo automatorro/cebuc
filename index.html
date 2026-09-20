@@ -2430,9 +2430,9 @@
       align-items: center;
       justify-content: center;
       padding: 1.25rem;
-      background: rgba(5, 5, 8, .82);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
+      background: rgba(5, 5, 8, .78);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
       opacity: 0;
       visibility: hidden;          /* implicit invizibil — nu clipește la încărcare */
       /* visibility comută instant la deschidere și abia după fade la închidere.
@@ -2456,7 +2456,9 @@
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
       background: var(--ink);
-      border: 1px solid var(--ldk);
+      border: 1px solid rgba(200, 255, 0, .28);   /* aceeași valoare ca .pkg-tag */
+      border-top: 2px solid var(--lime);          /* aceeași bară ca .pkg-card la hover */
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .75);
       padding: 2.5rem 2rem 2rem;
       transform: translateY(24px);
       transition: transform .55s var(--fx);
@@ -2605,13 +2607,9 @@
         <p class="lansare-modal__text">Pe o perioadă limitată, construiesc gratuit site de prezentare pentru 10
           firme. E pachetul Start, cel care costă în mod normal 500–700 EUR: design, construcție și publicare, fără
           niciun cost din partea ta.</p>
-        <p class="lansare-modal__text">Ce plătești tu e domeniul, undeva la 10–15 EUR pe an. Se înregistrează pe
-          numele tău sau al firmei tale și rămâne al tău — ori îl cumperi tu, ori mă ocup eu în numele tău, cum
-          preferi. Găzduirea o asigur eu și intră în ce fac, deci fără cost lunar. Dacă ajungem la ceva mai complex,
-          cu conturi de utilizatori sau bază de date, acolo apar costuri lunare — ți le spun în cifre înainte să
-          începem și le aprobi tu.</p>
-        <p class="lansare-modal__text">Nu merg pe principiul primul venit, primul servit. Vorbim fiecare caz în parte
-          și îți spun sincer dacă mă pot ține de el.</p>
+        <p class="lansare-modal__text">Ce plătești tu sunt domeniul și găzduirea, ambele pe numele tău sau al
+          firmei tale și amândouă rămân ale tale. Domeniul e undeva la 10–15 EUR pe an. Îți recomand furnizorii,
+          îți spun costurile în cifre înainte să începem și mă ocup eu de configurare, dacă vrei.</p>
       </div>
 
       <p class="lansare-modal__contor">Locuri rămase: <span id="lansareLocuri">5</span> din 10</p>
@@ -3219,10 +3217,11 @@
             tu și îți dau lista de pași, ori, dacă preferi, mă ocup eu de cumpărare și configurare — în numele tău sau
             al firmei tale, nu pe numele meu. Dacă nu ai încă domeniu, îți propun și variante de denumire. Dacă ai
             deja domeniu și găzduire, lucrăm pe ce ai — îți spun din start ce se poate face acolo și ce nu.</p>
-          <p class="mt-desc">Pentru un site de prezentare, găzduirea o asigur eu, pe platforma pe care o folosesc, și
-            intră în preț — fără cost lunar pentru tine. Pentru sistemele cu conturi de utilizatori sau bază de date,
-            conturile se fac pe numele tău, iar costurile lunare ți le spun în ofertă, în cifre, și le aprobi tu
-            înainte să începem. Nimic nu se pornește fără acordul tău.</p>
+          <p class="mt-desc">Găzduirea e tot a ta, pe contul tău. Îți recomand furnizorul potrivit pentru ce
+            construim, îți spun costul în cifre înainte să începem și mă ocup eu de configurare și de publicare.
+            Contul rămâne pe numele tău, cu plata ta — așa nu depinzi de mine ca să ții site-ul în aer. La sistemele
+            cu conturi de utilizatori sau bază de date, costurile lunare sunt mai mari și ți le trec în ofertă, tot în
+            cifre. Nimic nu se pornește fără acordul tău.</p>
         </div>
 
         <div class="mt-card">
