@@ -2910,7 +2910,7 @@
             <li>Verific dacă ChatGPT/Gemini te recomandă sau te ignoră</li>
             <li>Plată o singură dată, fără abonament</li>
           </ul>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+          <a href="#contact" class="pkg-cta" data-pkg="Pachet 01 · Vizibilitate Google &amp; AI">Cere o ofertă →</a>
 
           <div class="pkg-mini">
             <span class="pkg-mini-title">Testează gratuit</span>
@@ -2938,7 +2938,7 @@
             <li>Rapid și sigur, fără programe care-l încetinesc</li>
             <li>Structurat corect, ca Google să înțeleagă ce faci</li>
           </ul>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+          <a href="#contact" class="pkg-cta" data-pkg="Pachet 02 · Start">Cere o ofertă →</a>
         </article>
 
         <article class="pkg-card" id="pachet-grow">
@@ -2958,7 +2958,7 @@
             <li>Pentru magazin: coș, plată online, catalog de produse</li>
           </ul>
           <p class="pkg-desc" style="font-size:.88rem;color:var(--mlt)">Notificările vin pe Telegram, gratuit. Dacă preferi WhatsApp, se poate — dar are un cost lunar cerut de Meta (nu de mine), pe care ți-l spun transparent din start.</p>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+          <a href="#contact" class="pkg-cta" data-pkg="Pachet 03 · Grow">Cere o ofertă →</a>
         </article>
 
         <article class="pkg-card" id="pachet-ai" style="opacity:.92">
@@ -2973,7 +2973,7 @@
             <li>Răspunsuri verificabile, nu ghicite</li>
             <li>Chat + secțiune de întrebări frecvente</li>
           </ul>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+          <a href="#contact" class="pkg-cta" data-pkg="Pachet 04 · Asistent AI">Cere o ofertă →</a>
         </article>
 
         <article class="pkg-card" id="pachet-digital">
@@ -2988,7 +2988,7 @@
             <li>Integrări cu facturare, email, Telegram (WhatsApp opțional)</li>
             <li>Pregătit să crească odată cu tine</li>
           </ul>
-          <a href="#contact" class="pkg-cta">Cere o ofertă →</a>
+          <a href="#contact" class="pkg-cta" data-pkg="Pachet 05 · Sistem custom">Cere o ofertă →</a>
         </article>
       </div>
     </div>
@@ -3490,6 +3490,11 @@
             <a href="tel:+40734205111" class="ci-val">+40 734 205 111</a>
           </div>
           <div class="ci">
+            <p class="ci-lbl">WhatsApp</p>
+            <a href="https://wa.me/40734205111?text=Bun%C4%83%2C%20am%20v%C4%83zut%20cebuc.ro%20%C8%99i%20vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20site." class="ci-val" target="_blank" rel="noopener noreferrer"
+              aria-label="Scrie-mi pe WhatsApp la +40 734 205 111">Scrie-mi pe WhatsApp →</a>
+          </div>
+          <div class="ci">
             <p class="ci-lbl">Locație</p>
             <span class="ci-val">Timișoara, România</span>
           </div>
@@ -3544,29 +3549,6 @@
               </label>
               <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
                 <input type="radio" name="are_site" value="Nu" style="accent-color:var(--lime)"> Nu
-              </label>
-            </div>
-          </div>
-          <div class="cg">
-            <label class="cl">Buget orientativ</label>
-            <div style="display:flex;flex-direction:column;gap:.55rem;margin-top:.4rem">
-              <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="buget" value="180 - 300 EUR" style="accent-color:var(--lime)"> 180 – 300 EUR (Pachet 01 · Vizibilitate Google &amp; AI)
-              </label>
-              <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="buget" value="500 - 700 EUR" style="accent-color:var(--lime)"> 500 – 700 EUR (Pachet 02 · Start)
-              </label>
-              <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="buget" value="1.000 - 2.400 EUR" style="accent-color:var(--lime)"> 1.000 – 2.400 EUR (Pachet 03 · Grow)
-              </label>
-              <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="buget" value="1.600 - 3.000 EUR" style="accent-color:var(--lime)"> 1.600 – 3.000 EUR (Pachet 04 · Asistent AI)
-              </label>
-              <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="buget" value="Peste 3.000 EUR" style="accent-color:var(--lime)"> Peste 3.000 EUR (Pachet 05 · Sistem custom)
-              </label>
-              <label style="display:flex;align-items:center;gap:.7rem;font-size:.9rem;cursor:pointer">
-                <input type="radio" name="buget" value="Nu stiu inca" style="accent-color:var(--lime)"> Nu știu încă / Vreau consultanță
               </label>
             </div>
           </div>
@@ -4286,6 +4268,22 @@
     })();
   </script>
   <script src="js/cebuc-anim.js?v=1" defer></script>
+  <script>
+    /* Preselectarea pachetului în formularul de contact.
+       Script separat, independent de scriptul de efecte/animații:
+       butonul "Cere o ofertă" bifează opțiunea corespunzătoare și
+       lasă mai departe scroll-ul normal către #contact. */
+    (function () {
+      'use strict';
+      document.querySelectorAll('.pkg-cta[data-pkg]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var radio = document.querySelector(
+            '.c-form input[name="tip_proiect"][value="' + btn.dataset.pkg + '"]');
+          if (radio) radio.checked = true;
+        });
+      });
+    })();
+  </script>
 </body>
 
 </html>
