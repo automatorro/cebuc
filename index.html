@@ -3261,6 +3261,12 @@
     </div>
   </section>
 
+  <!-- ═══════ FULL-BLEED IMAGE ═══════ -->
+  <div class="fb-img" id="fb1">
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85" alt="Open space de lucru modern"
+      loading="lazy">
+  </div>
+
   <!-- ═══════ CE PRIMEȘTI, CONCRET (continuarea directă a pachetelor) ═══════ -->
   <section class="s-lt pad" id="ce-primesti">
     <div class="wrap">
@@ -3326,7 +3332,7 @@
   </section>
 
   <!-- ═══════ SINCERITATE DIN START ═══════ -->
-  <section class="s-lt pad-sm">
+  <section class="s-lt pad-sm" id="sinceritate">
     <div class="wrap">
       <p class="pkg-lead" style="max-width:70ch;margin:0 auto;padding-left:1.25rem;border-left:3px solid var(--lime);color:var(--ol);font-size:1.05rem"><strong>Un site bun te face credibil și îi ajută pe vizitatori să se hotărască — dar nu-ți aduce singur oameni pe el. Clienții vin din Google Maps, din recomandări și din prospectare directă, pe care o fac eu. De aceea îți spun de la început de unde vor veni clienții tăi și, dacă are sens pentru afacerea ta, mă ocup și eu de partea asta de vizibilitate — nu te las cu un site frumos și gol.</strong></p>
     </div>
@@ -3363,12 +3369,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ═══════ FULL-BLEED IMAGE ═══════ -->
-  <div class="fb-img" id="fb1">
-    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85" alt="Open space de lucru modern"
-      loading="lazy">
-  </div>
 
   <!-- ═══════ 04. CUM LUCREZ ═══════ -->
   <section class="s-lt" id="proces">
@@ -3970,7 +3970,7 @@
 
       /* ═══ NAV — 3 stări ════════════════════════════════════ */
       const nav = document.getElementById('nav');
-      const LIGHT_IDS = ['de-ce-eu', 'mentenanta', 'proces', 'contact'];
+      const LIGHT_IDS = ['ce-primesti', 'sinceritate', 'de-ce-eu', 'mentenanta', 'proces', 'contact'];
       const NAV_BOTTOM = 72;
 
       function updateNav() {
