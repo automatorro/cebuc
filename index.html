@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0A0D">
   <title>Lucian Cebuc · Sisteme Digitale & AI pentru Afaceri · Web & Automatizări</title>
   <meta name="description"
     content="Site-uri rapide, sisteme prin care cererile clienților ajung direct la tine și asistenți AI care răspund pe baza informațiilor firmei tale. Prețuri transparente, 10+ ani experiență IT.">
@@ -163,6 +164,11 @@
   <link rel="stylesheet" href="css/cebuc-anim.css?v=1">
   <style>
     :root {
+      /* Pagina e deja întunecată. Fără linia asta, browserele cu "temă întunecată
+         pentru site-uri" (Chrome pe Android, Samsung Internet) recolorează singure
+         CSS-ul și transformă lime-ul #C8FF00 în RGB(42,68,23), pe tot site-ul.
+         Eticheta meta echivalentă nu se înregistrează în Chromium — verificat. */
+      color-scheme: dark;
       --ink: #0A0A0D;
       --ink2: #050508;
       --stone: #E4E5E8;
